@@ -18,8 +18,10 @@ export const ButtonContainer = styled.button`
     cursor: pointer;
     background: ${({theme}) => theme.colors.tomato200};
   }
-
+  
   &:disabled {
     opacity: 0.5;
+    cursor: auto;
+    background: ${({theme}) => theme.colors.tomato100};
   }
 `;
