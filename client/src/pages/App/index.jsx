@@ -6,8 +6,8 @@ import { Container } from "./style"
 export function App() {
   return (
     <Container>
-      <HeaderAuthentication/>
-      {/* <HeaderMenu/> */}
+      {/* <HeaderAuthentication/> */}
+      <HeaderMenu/>
       <Button name={"Entrar"}/>
     </Container>
   )
