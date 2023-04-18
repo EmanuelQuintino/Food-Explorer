@@ -1,10 +1,13 @@
 import { Button } from "../../components/Button"
+import { HeaderAuthentication } from "../../components/HeaderAuthentication"
+import { HeaderMenu } from "../../components/HeaderMenu"
 import { Container } from "./style"
 
 export function App() {
   return (
     <Container>
-      <h1>food explorer</h1>
+      <HeaderAuthentication/>
+      {/* <HeaderMenu/> */}
       <Button name={"Entrar"}/>
     </Container>
   )
