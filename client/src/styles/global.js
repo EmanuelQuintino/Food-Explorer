@@ -32,6 +32,7 @@ export const GlobalStyles = createGlobalStyle`
   button {
     font-size: 1.6rem;
     font-family: 'Poppins', sans-serif;
+    border: none;
   }
 
   a {
