@@ -7,7 +7,7 @@ export const FooterContainer = styled.footer`
 
   padding: 2.8rem;
 
-  background: ${({ theme }) => theme.colors.dark700};
+  background: ${({ theme }) => theme.colors.dark600};
 
   .logo {
     display: flex;
