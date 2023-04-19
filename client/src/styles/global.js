@@ -13,7 +13,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    background: ${({ theme }) => theme.colors.background};
+    background: ${({ theme }) => theme.colors.dark500};
     color: ${({ theme }) => theme.colors.light100};
     font-size: 1.6rem;
     font-family: 'Roboto', sans-serif;
@@ -30,6 +30,10 @@ export const GlobalStyles = createGlobalStyle`
     font-family: 'Poppins', sans-serif;
     border: none;
     background: none;
+  }
+
+  button:hover {
+    cursor: pointer;
   }
 
   a {

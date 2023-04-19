@@ -15,7 +15,6 @@ export const ButtonContainer = styled.button`
   color: ${({theme}) => theme.colors.light100};
   
   &:hover {
-    cursor: pointer;
     background: ${({theme}) => theme.colors.tomato200};
   }
   

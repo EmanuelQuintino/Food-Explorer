@@ -24,7 +24,9 @@ export function HeaderMenu() {
       </div>
 
       <div className="saleContainer">
-        <img src={saleIcon} className="saleIcon" alt="sale-icon" />
+        <button>
+          <img src={saleIcon} className="saleIcon" alt="sale-icon" />
+        </button>
         <div className="saleTotal">0</div>
       </div>
     </HeaderContainer>

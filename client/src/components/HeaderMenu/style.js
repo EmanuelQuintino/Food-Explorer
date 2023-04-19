@@ -6,6 +6,8 @@ export const HeaderContainer = styled.header`
   justify-content: space-between;
 
   padding: 6.4rem 3.2rem 3.2rem;
+
+  background: ${({ theme }) => theme.colors.dark700};
   
   .toggleMenu img {
     height: 1.8rem;
@@ -16,6 +18,7 @@ export const HeaderContainer = styled.header`
     display: flex;
     align-items: center;
     gap: .8rem;
+    padding: 0 0 .4rem;
   }
   
   .logo img {
