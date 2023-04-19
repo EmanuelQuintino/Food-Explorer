@@ -5,7 +5,7 @@ import logoExplorer from "../../assets/logoExplorer.svg"
 import saleIcon from "../../assets/saleIcon.svg"
 import { useState } from "react";
 
-export function HeaderMenu() {
+export function Navbar() {
   const [menuActive, setMenuActive] = useState(false);
   const toggleMenu = () => setMenuActive(menuActive ? false : true);
 
