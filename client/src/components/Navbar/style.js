@@ -25,8 +25,15 @@ export const HeaderContainer = styled.header`
     width: 2.4rem;
   }
 
+  
   h1 {
     font-size: 2.2rem;
+  }
+  
+  .paragraphAdmin {
+    font-size: 1.2rem;
+    line-height: 160%;
+    color: ${({ theme }) => theme.colors.cake200};
   }
 
   .saleContainer {

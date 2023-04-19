@@ -25,5 +25,6 @@ export default {
     tomato200: "#92000E",
     tomato300: "#AB222E",
     tomato400: "#AB4D55",
+    cake200: "#82F3FF",
   }
 }

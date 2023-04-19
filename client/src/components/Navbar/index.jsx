@@ -8,6 +8,7 @@ import { useState } from "react";
 export function Navbar() {
   const [menuActive, setMenuActive] = useState(false);
   const toggleMenu = () => setMenuActive(menuActive ? false : true);
+  const [isAdmin, setIsAdmin] = useState(true);
 
   return (
     <HeaderContainer>
@@ -21,14 +22,19 @@ export function Navbar() {
       <div className="logo">
         <img src={logoExplorer} alt="logo-explorer" />
         <h1>food explorer</h1>
+        {isAdmin &&
+          <p className="paragraphAdmin">admin</p> 
+        }
       </div>
 
-      <div className="saleContainer">
-        <button>
-          <img src={saleIcon} className="saleIcon" alt="sale-icon" />
-        </button>
-        <div className="saleTotal">0</div>
-      </div>
+      {!isAdmin && 
+        <div className="saleContainer">
+          <button>
+            <img src={saleIcon} className="saleIcon" alt="sale-icon" />
+          </button>
+          <div className="saleTotal">0</div>
+        </div>
+      }
     </HeaderContainer>
   )
 }
