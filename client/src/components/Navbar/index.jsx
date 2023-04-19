@@ -8,7 +8,8 @@ import { useState } from "react";
 export function Navbar() {
   const [menuActive, setMenuActive] = useState(false);
   const toggleMenu = () => setMenuActive(menuActive ? false : true);
-  const [isAdmin, setIsAdmin] = useState(true);
+  // const [isAdmin, setIsAdmin] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   return (
     <HeaderContainer>
