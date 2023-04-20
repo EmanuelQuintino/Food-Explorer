@@ -7,11 +7,12 @@ import { Button } from "../Button";
 import { useState } from "react";
 
 export function FoodPlate({image, name, price}) {
-  const [countPlate, setCountPlate] = useState(0);
+  const [countPlate, setCountPlate] = useState(1);
   const [favoriteMatch, setFavoriteMatch] = useState(false);
   const toFavorite = () => setFavoriteMatch(favoriteMatch ? false : true);
 
-  const plateMinus = () => setCountPlate() 
+  const platePlus = () => setCountPlate(previousState => Math.min(previousState + 1, 99)) 
+  const plateMinus = () => setCountPlate(previousState => Math.max(previousState - 1, 1)) 
   
   return (
     <Container>
@@ -28,9 +29,9 @@ export function FoodPlate({image, name, price}) {
       
       <div className="box">
         <div className="boxMinusPlus">
-          <img src={minus} alt="minus" />
-          <p>{countPlate}</p>
-          <img src={plus} alt="plus" />
+          <img src={minus} alt="minus" onClick={plateMinus}/>
+          <p>{String(countPlate).padStart(2, "0")}</p>
+          <img src={plus} alt="plus" onClick={platePlus}/>
         </div> 
         <Button name="Incluir"/>
       </div>
