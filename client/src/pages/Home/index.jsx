@@ -9,32 +9,32 @@ export function Home() {
   return (
     <Container>
       <Header/>
-      <Slogan/>
 
-      <ButtonBack/>
-      
-      <div className="boxPlates">
-        <h2>Refeições</h2>
-        <div className="plates">
-          <FoodPlate 
-            image={"food-plate-pictures/Mask group-1.png"}
-            name="Salada Ravanello"
-            price="49.97"
-          />
+      <main>
+        <Slogan/>        
+        <section className="boxPlates">
+          <h2>Refeições</h2>
+          <div className="plates">
+            <FoodPlate 
+              image={"food-plate-pictures/Mask group-1.png"}
+              name="Salada Ravanello"
+              price="49.97"
+            />
 
-          <FoodPlate 
-            image={"food-plate-pictures/Mask group-1.png"}
-            name="Salada Ravanello"
-            price="49.97"
-          />
+            <FoodPlate 
+              image={"food-plate-pictures/Mask group-1.png"}
+              name="Salada Ravanello"
+              price="49.97"
+              />
 
-          <FoodPlate 
-            image={"food-plate-pictures/Mask group-1.png"}
-            name="Salada Ravanello"
-            price="49.97"
-          />
-        </div>
-      </div>
+            <FoodPlate 
+              image={"food-plate-pictures/Mask group-1.png"}
+              name="Salada Ravanello"
+              price="49.97"
+              />
+          </div>
+        </section>
+      </main>
        
       <Footer/>
     </Container>
