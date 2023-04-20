@@ -1,4 +1,5 @@
 import { Button } from "../../components/Button"
+import { FoodPlate } from "../../components/FoodPlate"
 import { Footer } from "../../components/Footer"
 import { HeaderAuthentication } from "../../components/HeaderAuthentication"
 import { Navbar } from "../../components/Navbar"
@@ -10,8 +11,17 @@ export function App() {
     <Container>
       {/* <HeaderAuthentication/> */}
       <Navbar/>
+      
       <Slogan/>
+      
+      <FoodPlate 
+        image={"food-plate-pictures/Mask group-1.png"}
+        name="Salada Ravanello"
+        price="49.97"
+      />
+      
       <Button name={"Entrar"}/>
+ 
       <Footer/>
     </Container>
   )
