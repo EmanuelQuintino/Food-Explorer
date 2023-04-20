@@ -23,6 +23,7 @@ export const GlobalStyles = createGlobalStyle`
     font-family: 'Roboto', sans-serif;
     font-size: 1.6rem;
     outline: none;
+    border: none;
   } 
   
   button {
