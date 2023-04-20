@@ -1,16 +1,13 @@
 import { FoodPlate } from "../../components/FoodPlate"
 import { Footer } from "../../components/Footer"
-import { HeaderAuthentication } from "../../components/HeaderAuthentication"
-import { Navbar } from "../../components/Navbar"
+import { Header } from "../../components/Header"
 import { Slogan } from "../../components/Slogan"
 import { Container } from "./style"
 
 export function App() {
   return (
     <Container>
-      {/* <HeaderAuthentication/> */}
-      <Navbar/>
-      
+      <Header/>
       <Slogan/>
       
       <div className="boxPlates">

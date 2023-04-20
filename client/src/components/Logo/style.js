@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const HeaderContainer = styled.header`
+export const Container = styled.div`
   display: flex;
   align-items: center;
   gap: 1.2rem;

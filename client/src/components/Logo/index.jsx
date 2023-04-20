@@ -1,11 +1,11 @@
-import { HeaderContainer } from "./style";
+import { Container } from "./style";
 import logoExplorer from "../../assets/logoExplorer.svg"
 
-export function HeaderAuthentication() {
+export function Logo() {
   return (
-    <HeaderContainer>
+    <Container>
       <img src={logoExplorer} alt="Logo-Explorer" />
       <h1>food explorer</h1>
-    </HeaderContainer>
+    </Container>
   )
 }

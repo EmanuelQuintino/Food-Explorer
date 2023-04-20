@@ -5,10 +5,9 @@ import logoExplorer from "../../assets/logoExplorer.svg"
 import orderIcon from "../../assets/order.svg"
 import { useState } from "react";
 
-export function Navbar() {
+export function Header() {
   const [menuActive, setMenuActive] = useState(false);
   const toggleMenu = () => setMenuActive(menuActive ? false : true);
-  // const [isAdmin, setIsAdmin] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
 
   return (
@@ -29,9 +28,9 @@ export function Navbar() {
       </div>
 
       {!isAdmin && 
-        <div className="saleContainer">
+        <div className="orderContainer">
           <button>
-            <img src={orderIcon} className="orderIcon" alt="sale-icon" />
+            <img src={orderIcon} className="orderIcon" alt="order-icon" />
           </button>
           <div className="orderTotal">0</div>
         </div>

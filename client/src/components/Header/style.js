@@ -25,7 +25,6 @@ export const HeaderContainer = styled.header`
     width: 2.4rem;
   }
 
-  
   h1 {
     font-size: 2.2rem;
   }
@@ -36,7 +35,7 @@ export const HeaderContainer = styled.header`
     color: ${({ theme }) => theme.colors.cake200};
   }
 
-  .saleContainer {
+  .orderContainer {
     position: relative;
   }
 
