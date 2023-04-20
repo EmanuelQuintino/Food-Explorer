@@ -2,7 +2,7 @@ import { HeaderContainer } from "./style";
 import menuOpen from "../../assets/menuOpen.svg"
 import menuClose from "../../assets/menuClose.svg"
 import logoExplorer from "../../assets/logoExplorer.svg"
-import saleIcon from "../../assets/saleIcon.svg"
+import orderIcon from "../../assets/order.svg"
 import { useState } from "react";
 
 export function Navbar() {
@@ -31,7 +31,7 @@ export function Navbar() {
       {!isAdmin && 
         <div className="saleContainer">
           <button>
-            <img src={saleIcon} className="saleIcon" alt="sale-icon" />
+            <img src={orderIcon} className="orderIcon" alt="sale-icon" />
           </button>
           <div className="saleTotal">0</div>
         </div>

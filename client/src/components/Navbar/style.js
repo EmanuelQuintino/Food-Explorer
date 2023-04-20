@@ -40,7 +40,7 @@ export const HeaderContainer = styled.header`
     position: relative;
   }
 
-  .saleIcon {
+  .orderIcon {
     width: 2.4rem;
   }
 
