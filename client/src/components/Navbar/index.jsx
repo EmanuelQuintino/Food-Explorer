@@ -33,7 +33,7 @@ export function Navbar() {
           <button>
             <img src={orderIcon} className="orderIcon" alt="sale-icon" />
           </button>
-          <div className="saleTotal">0</div>
+          <div className="orderTotal">0</div>
         </div>
       }
     </HeaderContainer>

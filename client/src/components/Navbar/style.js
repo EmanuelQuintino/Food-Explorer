@@ -44,7 +44,7 @@ export const HeaderContainer = styled.header`
     width: 2.4rem;
   }
 
-  .saleTotal {
+  .orderTotal {
     background: ${({ theme }) => theme.colors.tomato100};
     text-align: center;
     border-radius: 50%;
