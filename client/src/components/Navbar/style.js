@@ -5,7 +5,7 @@ export const HeaderContainer = styled.header`
   align-items: center;
   justify-content: space-between;
 
-  padding: 6.4rem 3.2rem 3.2rem;
+  padding: 4.2rem 3.2rem 3.2rem;
 
   background: ${({ theme }) => theme.colors.dark700};
   

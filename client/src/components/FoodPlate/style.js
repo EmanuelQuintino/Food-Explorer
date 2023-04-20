@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 21.0rem;
+  width: 24.0rem;
   height: 29.2rem;
   padding: 2.4rem;
   text-align: center;
@@ -13,6 +13,7 @@ export const Container = styled.div`
   gap: 1.2rem;
 
   position: relative;
+  scroll-snap-align: start;
 
   .favoriteIcon {
     position: absolute;
@@ -28,6 +29,7 @@ export const Container = styled.div`
   .name {
     font-family: 'Poppins', sans-serif;
     font-size: 1.4rem;
+    width: 21.0rem;
   }
 
   .price {
