@@ -2,7 +2,6 @@ import { ButtonBack } from "../../components/ButtonBack"
 import { FoodPlate } from "../../components/FoodPlate"
 import { Footer } from "../../components/Footer"
 import { Header } from "../../components/Header"
-import { Menu } from "../../components/Menu"
 import { Slogan } from "../../components/Slogan"
 import { Container } from "./style"
 
@@ -10,8 +9,7 @@ export function Home() {
   return (
     <Container>
       <Header/>
-      <Menu/>
-      {/* <Slogan/>
+      <Slogan/>
 
       <ButtonBack/>
       
@@ -36,7 +34,7 @@ export function Home() {
             price="49.97"
           />
         </div>
-      </div> */}
+      </div>
        
       <Footer/>
     </Container>
