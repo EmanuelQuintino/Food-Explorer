@@ -3,15 +3,26 @@ import styled from "styled-components";
 export const HeaderContainer = styled.header`
   display: flex;
   align-items: center;
+  /* justify-content: ${({ menuActive }) => menuActive ? "flex-start" : "space-between"}; */
   justify-content: space-between;
+  /* gap: 1.6rem; */
 
-  padding: 4.2rem 3.2rem 3.2rem;
+  width: 100%;
+  height: 4.2rem;
+
+  padding: 5.6rem 3.2rem 3.2rem;
 
   background: ${({ theme }) => theme.colors.dark700};
   
   .toggleMenu img {
     height: 1.8rem;
     width: 1.8rem;
+  }
+
+  h3 {
+    font-size: 2.2rem;
+    font-weight: 400;
+    line-height: 2.4rem;
   }
   
   .logo {
