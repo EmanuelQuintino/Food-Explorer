@@ -24,6 +24,7 @@ export const GlobalStyles = createGlobalStyle`
     font-size: 1.6rem;
     outline: none;
     border: none;
+    color: ${({ theme }) => theme.colors.light300};
   } 
   
   button {

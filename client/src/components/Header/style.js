@@ -3,9 +3,8 @@ import styled from "styled-components";
 export const HeaderContainer = styled.header`
   display: flex;
   align-items: center;
-  /* justify-content: ${({ menuActive }) => menuActive ? "flex-start" : "space-between"}; */
-  justify-content: space-between;
-  /* gap: 1.6rem; */
+  justify-content: ${({ menuActive }) => menuActive ? "flex-start" : "space-between"};
+  gap: 1.6rem;
 
   width: 100%;
   height: 4.2rem;
@@ -22,7 +21,7 @@ export const HeaderContainer = styled.header`
   h3 {
     font-size: 2.2rem;
     font-weight: 400;
-    line-height: 2.4rem;
+    padding-bottom: .6rem;
   }
   
   .logo {

@@ -28,7 +28,6 @@ export const Container = styled.section`
     border-radius: .8rem;
     padding: 1.2rem 1.4rem 1.4rem 4.2rem;
     font-size: 1.6rem;
-    color: ${({theme}) => theme.colors.light500};
     background: ${({theme}) => theme.colors.dark900};
   }
 `;
