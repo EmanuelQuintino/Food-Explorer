@@ -1,14 +1,17 @@
+import { ButtonBack } from "../../components/ButtonBack"
 import { FoodPlate } from "../../components/FoodPlate"
 import { Footer } from "../../components/Footer"
 import { Header } from "../../components/Header"
 import { Slogan } from "../../components/Slogan"
 import { Container } from "./style"
 
-export function App() {
+export function Home() {
   return (
     <Container>
       <Header/>
       <Slogan/>
+
+      <ButtonBack/>
       
       <div className="boxPlates">
         <h2>Refeições</h2>
