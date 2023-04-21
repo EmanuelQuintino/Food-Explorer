@@ -22,7 +22,7 @@ export function SignUp() {
             placeholder="Exemplo: Maria da Silva" 
             {...register("name", { 
               required: "Campo obrigatório",
-              pattern: {value: /[A-Za-z]/, message: "Somente texto é permitido"},
+              pattern: {value: /^[^0-9]+$/, message: "Somente texto é permitido"},
               maxLength: {value: 255, message: "Número máximo de caracteres é 255"}
             })}
           />
