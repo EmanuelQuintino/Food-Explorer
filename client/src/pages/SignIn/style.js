@@ -6,8 +6,9 @@ export const Container = styled.section`
   place-content: center;
   
   form {
+    margin-top: 4.2rem;
     width: 32.0rem;
-    margin-top: 7.2rem;
+    padding: 0 1.0rem;
     display: grid;
     gap: 3.2rem;
   }

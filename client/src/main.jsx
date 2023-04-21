@@ -13,8 +13,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <SystemProvider>
       <ThemeProvider theme={Theme}>
         {/* <SignIn/> */}
-        {/* <SignUp/> */}
-        <Home />
+        <SignUp/>
+        {/* <Home /> */}
         <GlobalStyles/>
       </ThemeProvider>
     </SystemProvider>
