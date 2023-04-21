@@ -41,4 +41,12 @@ export const GlobalStyles = createGlobalStyle`
   a {
     text-decoration: none;
   }
+
+  .inputError {
+    color: ${({ theme }) => theme.colors.tomato400};
+    display: block;
+    position: absolute;
+    font-size: 1.0rem;
+    margin-top: .4rem;
+  }
 `;

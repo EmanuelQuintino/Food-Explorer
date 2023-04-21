@@ -27,15 +27,7 @@ export const Container = styled.section`
     background: ${({theme}) => theme.colors.dark900};
   }
   
-  .error {
-    color: ${({ theme }) => theme.colors.tomato300};
-    display: block;
-    position: absolute;
-    font-size: 1.0rem;
-    margin-top: .2rem;
-  }
-
-  .buttonSignUp{
+  .buttonSignIn{
     margin-top: 3.2rem;
     font-size: 1.4rem;
   }

@@ -26,7 +26,7 @@ export function SignIn() {
               maxLength: {value: 255, message: "Número máximo de caracteres é 255"}
             })}
           />
-          {errors.email && <span className='error'>{errors.email.message}</span>}
+          {errors.email && <span className='inputError'>{errors.email.message}</span>}
         </section>
 
         <section>
@@ -41,7 +41,7 @@ export function SignIn() {
               minLength: {value: 6, message: "No mínimo 6 caracteres"},
             })}
           />
-          {errors.password && <span className='error'>{errors.password.message}</span>}
+          {errors.password && <span className='inputError'>{errors.password.message}</span>}
         </section>
 
         <Button name="Entrar"/>

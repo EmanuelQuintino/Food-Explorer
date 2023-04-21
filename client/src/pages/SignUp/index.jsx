@@ -26,7 +26,7 @@ export function SignUp() {
               maxLength: {value: 255, message: "Número máximo de caracteres é 255"}
             })}
           />
-          {errors.name && <span className='error'>{errors.name.message}</span>}
+          {errors.name && <span className='inputError'>{errors.name.message}</span>}
         </section>
 
         <section>
@@ -41,7 +41,7 @@ export function SignUp() {
               maxLength: {value: 255, message: "Número máximo de caracteres é 255"}
             })}
           />
-          {errors.email && <span className='error'>{errors.email.message}</span>}
+          {errors.email && <span className='inputError'>{errors.email.message}</span>}
         </section>
 
         <section>
@@ -56,12 +56,12 @@ export function SignUp() {
               minLength: {value: 6, message: "No mínimo 6 caracteres"},
             })}
           />
-          {errors.password && <span className='error'>{errors.password.message}</span>}
+          {errors.password && <span className='inputError'>{errors.password.message}</span>}
         </section>
 
-        <Button name="Entrar"/>
+        <Button name="Criar conta"/>
       </form>
-      <button className="buttonSignUp">Já tenho uma conta</button>
+      <button className="buttonSignIn">Já tenho uma conta</button>
    </Container>
   )
 }
