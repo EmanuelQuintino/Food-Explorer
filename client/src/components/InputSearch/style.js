@@ -7,14 +7,6 @@ export const Container = styled.section`
   label {
     width: 100%;
   }
-  
-  .srOnly {
-    position: absolute;
-    width: 0.1rem;
-    height: 0.1rem;
-    overflow: hidden;
-    color: transparent;
-  }
 
   .searchIcon {
     width: 2.4rem;

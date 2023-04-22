@@ -42,6 +42,14 @@ export const GlobalStyles = createGlobalStyle`
     text-decoration: none;
   }
 
+  .srOnly {
+    position: absolute;
+    width: 0.1rem;
+    height: 0.1rem;
+    overflow: hidden;
+    color: transparent;
+  }
+
   .inputError {
     color: ${({ theme }) => theme.colors.tomato400};
     display: block;
