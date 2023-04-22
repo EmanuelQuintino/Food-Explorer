@@ -30,5 +30,6 @@ export const Container = styled.section`
   .buttonSignIn{
     margin-top: 3.2rem;
     font-size: 1.4rem;
+    text-align: center;
   }
 `;

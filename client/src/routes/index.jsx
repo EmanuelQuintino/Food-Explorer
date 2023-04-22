@@ -3,7 +3,7 @@ import { AppRoutes } from "./app";
 import { AuthRoutes } from "./auth";
 // import { PageError } from "../pages/PageError"
 
-const isAuth = true;
+const isAuth = false;
 
 export function Routes(){ 
   return (

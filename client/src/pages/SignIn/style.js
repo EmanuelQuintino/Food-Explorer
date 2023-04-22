@@ -29,5 +29,7 @@ export const Container = styled.section`
 
   .buttonSignUp{
     margin-top: 3.2rem;
+    font-size: 1.4rem;
+    text-align: center;
   }
 `;
