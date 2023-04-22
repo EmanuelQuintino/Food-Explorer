@@ -5,7 +5,7 @@ import { PageError } from "../pages/PageError"
 export function AppRoutes() {
   return (
     <Routes>
-      <Route path='/' element={<Home/>} errorElement={<PageError/>}/>
+      <Route path='/' element={<Home/>}/>
     </Routes>
   )
 }
