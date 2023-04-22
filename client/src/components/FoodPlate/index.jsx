@@ -28,10 +28,16 @@ export function FoodPlate({image, name, price}) {
       <p className="price">R$ {price}</p>
       
       <div className="box">
-        <div className="boxMinusPlus">
-          <img src={minus} alt="minus" onClick={plateMinus}/>
+        <div className="boxMinusPlus">  
+          <button onClick={plateMinus}>
+            <img src={minus} alt="minus"/>
+          </button>
+          
           <p>{String(countPlate).padStart(2, "0")}</p>
-          <img src={plus} alt="plus" onClick={platePlus}/>
+          
+          <button onClick={platePlus}>
+            <img src={plus} alt="plus"/>
+          </button>
         </div> 
         <Button name="Incluir"/>
       </div>

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 24.0rem;
+  width: 21.0rem;
   height: 29.2rem;
   padding: 2.4rem;
   text-align: center;
@@ -48,7 +48,13 @@ export const Container = styled.div`
     gap: 1.4rem;
   }
 
-  .box button {
+  .boxMinusPlus button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .box > button {
    margin-top: 2.0rem;
    border-radius: .5rem;
    height: 3.2rem;
