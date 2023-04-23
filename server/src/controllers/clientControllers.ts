@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 
-export const authControllers = {
+export const clientControllers = {
   read: async (req: Request, res: Response) => {
     res.status(200).json({message: "OK"});
   }
