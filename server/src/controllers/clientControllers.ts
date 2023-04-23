@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from "express";
 import { prisma } from "../database";
-import { log } from "console";
 
 export const clientControllers = {
   read: async (req: Request, res: Response, next: NextFunction) => {
@@ -14,7 +13,7 @@ export const clientControllers = {
         const clients = await prisma.clients.findMany();
         return res.status(200).json({clients});
       }
-    } catch (error) {
+    } catch (error: any) {
       if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
       next(error);
     }
@@ -29,7 +28,7 @@ export const clientControllers = {
         
         await prisma.clients.create({data: { name, email, password }})
         return res.status(201).json("Cliente cadastrado com sucesso");
-    } catch (error) {
+    } catch (error: any) {
       if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
       next(error);
     }
@@ -50,7 +49,7 @@ export const clientControllers = {
         where: { id: String(id)}
       });
       return res.status(201).json("Cliente atualizado com sucesso");
-    } catch (error) {
+    } catch (error: any) {
       if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
       if (error.code == "P2002") return res.status(400).json("Email já cadastrado");
       next(error);      
@@ -64,7 +63,7 @@ export const clientControllers = {
 
       await prisma.clients.delete({where: { id: String(id)}});
       return res.status(200).json('Cliente deletado com sucesso');
-    } catch (error) {
+    } catch (error: any) {
       if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
       if (error.code == "P2025") return res.status(400).json("Cliente não existente");
       next(error);

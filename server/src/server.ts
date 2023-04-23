@@ -9,7 +9,7 @@ app.use(routes);
 app.listen(3000, () => console.log("Server is running on port 3000"));
 
 app.use((req, res, next: NextFunction) => {
-  const error = new Error('Page not found');
+  const error: any = new Error('Page not found');
   error.status = 404;
   next(error);
 });
