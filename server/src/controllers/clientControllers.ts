@@ -78,11 +78,13 @@ export const clientControllers = {
       const { id } = req.params;   
       if (!id) return res.status(400).json("Por favor insirar o ID do cliente");
 
+      const client = await prisma.clients.findUnique({where: { id: String(id)}});
+      if (!client) return res.status(400).json('Cliente não encontrado');
+
       await prisma.clients.delete({where: { id: String(id)}});
       return res.status(200).json('Cliente deletado com sucesso');
     } catch (error: any) {
       if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
-      if (error.code == "P2025") return res.status(404).json("Cliente não existente");
       next(error);
     }
   },
