@@ -2,10 +2,10 @@ import { NextFunction, Request, Response } from "express";
 import { prisma } from "../database";
 import { z } from "zod";
 
-export const clientControllers = {
+export const userControllers = {
   create: async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const clientSchema = z.object({
+        const userSchema = z.object({
           name: z.string()
             .min(3, "Nome com mínimo de 3 caracteres")
             .max(255, "Campo com tamanho máximo de 255 caracteres"),
@@ -17,13 +17,13 @@ export const clientControllers = {
             .max(255, "Campo com tamanho máximo de 255 caracteres")
         }).strict();
 
-        const { name, email, password } = clientSchema.parse(req.body);
+        const { name, email, password } = userSchema.parse(req.body);
 
-        const clientEmail = await prisma.clients.findUnique({where: { email: String(email)}});
-        if (clientEmail) return res.status(400).json('Email já cadastrado');
+        const userEmail = await prisma.users.findUnique({where: { email: String(email)}});
+        if (userEmail) return res.status(400).json('Email já cadastrado');
         
-        await prisma.clients.create({data: { name, email, password }})
-        return res.status(201).json("Cliente cadastrado com sucesso");
+        await prisma.users.create({data: { name, email, password }})
+        return res.status(201).json("Usuário cadastrado com sucesso");
     } catch (error: any) {
       if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
       next(error);
@@ -34,12 +34,12 @@ export const clientControllers = {
     try {
       const { id } = req.query;      
       if (id) {
-        const client = await prisma.clients.findUnique({where: { id: String(id)}});
-        if (!client) return res.status(400).json('Cliente não encontrado');
-        return res.status(200).json({client});
+        const user = await prisma.users.findUnique({where: { id: String(id)}});
+        if (!user) return res.status(400).json('Usuário não encontrado');
+        return res.status(200).json({ user });
       } else {
-        const clients = await prisma.clients.findMany();
-        return res.status(200).json({clients});
+        const users = await prisma.users.findMany();
+        return res.status(200).json({ users });
       }
     } catch (error: any) {
       if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
@@ -52,21 +52,21 @@ export const clientControllers = {
       const { id } = req.params;      
       const { name, email, password } = req.body;
 
-      if (!id) return res.status(400).json("Por favor insirar o ID do cliente");
+      if (!id) return res.status(400).json("Por favor insirar o ID do usere");
 
-      const client = await prisma.clients.findUnique({where: { id: String(id)}});
-      if (!client) return res.status(400).json('Cliente não encontrado');
+      const user = await prisma.users.findUnique({where: { id: String(id)}});
+      if (!user) return res.status(400).json('Usuário não encontrado');
 
-      const clientEmail = await prisma.clients.findUnique({where: { email: String(email)}});
-      if (clientEmail && (client.email != clientEmail.email)){
+      const userEmail = await prisma.users.findUnique({where: { email: String(email)}});
+      if (userEmail && (user.email != userEmail.email)){
         return res.status(400).json('Email já cadastrado');  
       }
       
-      await prisma.clients.update({
+      await prisma.users.update({
         data: { name, email, password },
         where: { id: String(id)}
       });
-      return res.status(201).json("Cliente atualizado com sucesso");
+      return res.status(201).json("Usuário atualizado com sucesso");
     } catch (error: any) {
       if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
       next(error);      
@@ -76,13 +76,13 @@ export const clientControllers = {
   delete: async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { id } = req.params;   
-      if (!id) return res.status(400).json("Por favor insirar o ID do cliente");
+      if (!id) return res.status(400).json("Por favor insirar o ID do usere");
 
-      const client = await prisma.clients.findUnique({where: { id: String(id)}});
-      if (!client) return res.status(400).json('Cliente não encontrado');
+      const user = await prisma.users.findUnique({where: { id: String(id)}});
+      if (!user) return res.status(400).json('Usuário não encontrado');
 
-      await prisma.clients.delete({where: { id: String(id)}});
-      return res.status(200).json('Cliente deletado com sucesso');
+      await prisma.users.delete({where: { id: String(id)}});
+      return res.status(200).json('Usuário deletado com sucesso');
     } catch (error: any) {
       if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
       next(error);

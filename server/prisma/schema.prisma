@@ -7,14 +7,14 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Clients {
+model Users {
   id         String   @id @default(uuid())
   name       String
   email      String   @unique
   password   String
-
+  is_admin   Boolean?
   created_at DateTime @default(now())
   updated_at DateTime @default(now()) @updatedAt
 
-  @@map("clients")
+  @@map("users")
 }

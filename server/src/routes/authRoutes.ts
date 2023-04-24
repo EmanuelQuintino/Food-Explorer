@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { clientControllers } from "../controllers/clientControllers";
+import { userControllers } from "../controllers/userControllers";
 
 const authRoutes = Router();
 
-authRoutes.get("/auth", clientControllers.read);
+authRoutes.get("/auth", userControllers.read);
 
 export { authRoutes };
