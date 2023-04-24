@@ -16,6 +16,7 @@ app.use((req, res, next: NextFunction) => {
 
 app.use((error: any, req: Request, res: Response, next: NextFunction) => {
   return res.status(error.status || 500).json({error: error.message});
+  // return res.status(error.status || 500).json(JSON.parse(error.message)[0].message);
 });
 
 prisma.$connect()
