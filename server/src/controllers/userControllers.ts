@@ -49,8 +49,20 @@ export const userControllers = {
 
   update: async (req: Request, res: Response, next: NextFunction) => {
     try {
+      const userSchema = z.object({
+        name: z.string()
+          .min(3, "Nome com mínimo de 3 caracteres")
+          .max(255, "Campo com tamanho máximo de 255 caracteres"),
+        email: z.string()
+          .email("Por favor insira um email válido")
+          .max(255, "Campo com tamanho máximo de 255 caracteres"),
+        password: z.string()
+          .min(6, "Senha com mínimo de 6 carácteres")
+          .max(255, "Campo com tamanho máximo de 255 caracteres")
+      }).strict();
+
       const { id } = req.params;      
-      const { name, email, password } = req.body;
+      const { name, email, password } = userSchema.parse(req.body);
 
       if (!id) return res.status(400).json("Por favor insirar o ID do usere");
 
@@ -66,7 +78,7 @@ export const userControllers = {
         data: { name, email, password },
         where: { id: String(id)}
       });
-      return res.status(201).json("Usuário atualizado com sucesso");
+      return res.status(200).json("Usuário atualizado com sucesso");
     } catch (error: any) {
       if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
       next(error);      
