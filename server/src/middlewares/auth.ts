@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
-import { auth } from "../config/auth"
+import { auth } from "../configs/auth"
 
 export function authMiddleware(req: Request, res: Response, next: NextFunction) {
   try {
@@ -10,7 +10,7 @@ export function authMiddleware(req: Request, res: Response, next: NextFunction) 
     const token = headerToken.split(' ');
     if (token.length != 2) return res.status(401).json('Token inválido');
     if (!/^Bearer$/i.test(token[0])) return res.status(401).json('Token inválido');
-    
+
     jwt.verify(token[1], String(auth.secret), (error, decoded: any) => {
       if (error) return res.status(401).json('Token inválido');
       req.userID = decoded.id;

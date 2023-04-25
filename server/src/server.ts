@@ -1,7 +1,7 @@
 import "express-async-errors";
 import express from "express";
 import { routes } from "./routes";
-import { prisma } from "./database";
+import { prisma } from "./databases";
 import { pageNotFoundError } from "./errors/pageNotFound";
 import { appError } from "./errors/appError";
 import dotenv from 'dotenv';
