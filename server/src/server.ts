@@ -3,6 +3,7 @@ import { routes } from "./routes";
 import { prisma } from "./database";
 import { Request, Response, NextFunction } from "express";
 import dotenv from 'dotenv';
+import { ZodError } from "zod";
 
 const app = express();
 app.use(express.json());
@@ -16,9 +17,16 @@ app.use((req, res, next: NextFunction) => {
   next(error);
 });
 
-app.use((error: any, req: Request, res: Response, next: NextFunction) => {
+interface appError {
+  status: number;
+  message: string;
+}
+
+app.use((error: appError, req: Request, res: Response, next: NextFunction) => {
+  if (error instanceof ZodError) {
+    return res.status(error.status || 400).json(JSON.parse(error.message)[0].message);
+  };
   return res.status(error.status || 500).json({error: error.message});
-  // return res.status(error.status || 500).json(JSON.parse(error.message)[0].message);
 });
 
 prisma.$connect()
