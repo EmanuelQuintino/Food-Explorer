@@ -4,7 +4,7 @@ import { z } from "zod";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { auth } from "../configs/auth";
-import { newAppError } from "../errors/newAppError";
+import { newAppError } from "../utils/newAppError";
 
 export const authControllers = {
   login: async (req: Request, res: Response, next: NextFunction) => {

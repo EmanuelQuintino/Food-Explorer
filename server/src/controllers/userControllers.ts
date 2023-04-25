@@ -3,7 +3,7 @@ import { prisma } from "../databases";
 import { z } from "zod";
 import bcrypt from "bcrypt";
 import { excludeFields } from "../utils/excludeFields";
-import { newAppError } from "../errors/newAppError";
+import { newAppError } from "../utils/newAppError";
 
 export const userControllers = {
   create: async (req: Request, res: Response, next: NextFunction) => {
