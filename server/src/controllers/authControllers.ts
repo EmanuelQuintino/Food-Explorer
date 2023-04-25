@@ -4,6 +4,7 @@ import { z } from "zod";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { auth } from "../config/auth";
+import { newAppError } from "../errors/newAppError";
 
 export const authControllers = {
   login: async (req: Request, res: Response, next: NextFunction) => {
@@ -19,10 +20,10 @@ export const authControllers = {
         const { email, password } = userSchema.parse(req.body);
 
         const user = await prisma.users.findUnique({where: { email: String(email)}});
-        if (!user) return res.status(401).json('Email ou Senha inválida');
+        if (!user) throw newAppError('Email ou Senha inválida', 401);
         
         const passwordMatch = await bcrypt.compare(password, user.password);
-        if (!passwordMatch) return res.status(401).json('Email ou Senha inválida');
+        if (!passwordMatch) throw newAppError('Email ou Senha inválida', 401);
         
         const token = jwt.sign({
           id: String(user.id)}, 
@@ -30,7 +31,7 @@ export const authControllers = {
           {expiresIn: String(auth.expiresIn)
         });
 
-        return res.status(200).json(token);
+        return res.status(200).json({token});
     } catch (error: any) {
       if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
       next(error);
