@@ -38,6 +38,7 @@ export const userControllers = {
   read: async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { id } = req.query;
+      // const id = req.userID;
       if (id) {
         const user = await prisma.users.findUnique({ where: { id: String(id) } });
         if (!user) throw newAppError('Usuário não encontrado', 404);
@@ -72,7 +73,7 @@ export const userControllers = {
           .max(255, "Campo com tamanho máximo de 255 caracteres")
       }).strict();
 
-      const { id } = req.params;
+      const id = req.userID;
       const { name, email, password } = userSchema.parse(req.body);
 
       if (!id) throw newAppError("Por favor insirar o ID do usuário", 400);
@@ -100,7 +101,7 @@ export const userControllers = {
 
   delete: async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const { id } = req.params;
+      const id = req.userID;      
       if (!id) throw newAppError("Por favor insirar o ID do usuário", 400);
 
       const user = await prisma.users.findUnique({ where: { id: String(id) } });

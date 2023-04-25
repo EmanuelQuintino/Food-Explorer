@@ -9,7 +9,7 @@ userRoutes.post("/users", userControllers.create);
 
 userRoutes.use(authMiddleware, isAdmin);
 userRoutes.get("/users", userControllers.read);
-userRoutes.put("/users/:id", userControllers.update);
-userRoutes.delete("/users/:id", userControllers.delete);
+userRoutes.put("/users", userControllers.update);
+userRoutes.delete("/users", userControllers.delete);
 
 export { userRoutes };

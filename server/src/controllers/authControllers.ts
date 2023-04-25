@@ -24,15 +24,13 @@ export const authControllers = {
 
       const passwordMatch = await bcrypt.compare(password, user.password);
       if (!passwordMatch) throw newAppError('Email ou Senha inválida', 401);
-
-      const token = jwt.sign({
-        id: String(user.id)
-      },
+      
+      const token = jwt.sign(
+        {id: String(user.id)},
         String(auth.secret),
-        {
-          expiresIn: String(auth.expiresIn)
-        });
-
+        {expiresIn: String(auth.expiresIn)}
+      );
+      
       return res.status(200).json({ token });
     } catch (error: any) {
       if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
