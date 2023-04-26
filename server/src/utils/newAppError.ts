@@ -3,4 +3,4 @@ export function newAppError(message: string, status: number) {
     message,
     status,
   };
-}
+};

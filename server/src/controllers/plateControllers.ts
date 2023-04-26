@@ -35,7 +35,7 @@ export const plateControllers = {
     } catch (error: any) {
       if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
       next(error);
-    }
+    };
   },
 
   read: async (req: Request, res: Response, next: NextFunction) => {
@@ -49,11 +49,11 @@ export const plateControllers = {
       } else {
         const plates = await prisma.plates.findMany();
         return res.status(200).json(plates);
-      }
+      };
     } catch (error: any) {
       if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
       next(error);
-    }
+    };
   },
 
   update: async (req: Request, res: Response, next: NextFunction) => {
@@ -93,7 +93,7 @@ export const plateControllers = {
     } catch (error: any) {
       if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
       next(error);
-    }
+    };
   },
 
   delete: async (req: Request, res: Response, next: NextFunction) => {
@@ -110,6 +110,6 @@ export const plateControllers = {
     } catch (error: any) {
       if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
       next(error);
-    }
+    };
   },
-}
+};

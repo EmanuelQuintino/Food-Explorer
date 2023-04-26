@@ -19,5 +19,5 @@ export function authMiddleware(req: Request, res: Response, next: NextFunction) 
     });
   } catch (error) {
     return next(error);
-  }
-}
+  };
+};

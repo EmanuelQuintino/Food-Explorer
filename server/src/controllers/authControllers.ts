@@ -35,6 +35,6 @@ export const authControllers = {
     } catch (error: any) {
       if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
       next(error);
-    }
-  }
-}
+    };
+  },
+};

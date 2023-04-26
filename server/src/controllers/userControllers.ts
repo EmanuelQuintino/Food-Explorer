@@ -32,7 +32,7 @@ export const userControllers = {
     } catch (error: any) {
       if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
       next(error);
-    }
+    };
   },
 
   read: async (req: Request, res: Response, next: NextFunction) => {
@@ -52,11 +52,11 @@ export const userControllers = {
         });
 
         return res.status(200).json(usersExcludeFields);
-      }
+      };
     } catch (error: any) {
       if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
       next(error);
-    }
+    };
   },
 
   update: async (req: Request, res: Response, next: NextFunction) => {
@@ -84,7 +84,7 @@ export const userControllers = {
       const userEmail = await prisma.users.findUnique({ where: { email: String(email) } });
       if (userEmail && (user.email != userEmail.email)) {
         throw newAppError('Email já cadastrado', 409);
-      }
+      };
 
       const passwordHash = await bcrypt.hash(password, 10);
       await prisma.users.update({
@@ -96,7 +96,7 @@ export const userControllers = {
     } catch (error: any) {
       if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
       next(error);
-    }
+    };
   },
 
   delete: async (req: Request, res: Response, next: NextFunction) => {
@@ -113,6 +113,6 @@ export const userControllers = {
     } catch (error: any) {
       if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
       next(error);
-    }
+    };
   },
 }
