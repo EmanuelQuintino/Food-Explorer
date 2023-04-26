@@ -8,27 +8,30 @@ import { newAppError } from "../utils/newAppError";
 export const plateControllers = {
   create: async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const userSchema = z.object({
+      const plateSchema = z.object({
         name: z.string()
           .min(3, "Nome com mínimo de 3 caracteres")
           .max(255, "Campo com tamanho máximo de 255 caracteres"),
-        email: z.string()
+        description: z.string()
           .email("Por favor insira um email válido")
           .max(255, "Campo com tamanho máximo de 255 caracteres"),
-        password: z.string()
+        price: z.string()
+          .min(6, "Senha com mínimo de 6 carácteres")
+          .max(255, "Campo com tamanho máximo de 255 caracteres"),
+        category: z.string()
+          .min(6, "Senha com mínimo de 6 carácteres")
+          .max(255, "Campo com tamanho máximo de 255 caracteres"),
+        image: z.string()
           .min(6, "Senha com mínimo de 6 carácteres")
           .max(255, "Campo com tamanho máximo de 255 caracteres")
       }).strict();
 
-      const { name, email, password } = userSchema.parse(req.body);
+      const { name, description, price, category, image } = plateSchema.parse(req.body);
 
-      const userEmail = await prisma.users.findUnique({ where: { email: String(email) } });
-      if (userEmail) throw newAppError("Email já cadastrado", 409);
+      const plate = await prisma.plates.findFirst({ where: { name: String(name) } });
+      if (plate) throw newAppError("Prato já cadastrado", 409);
 
-      const passwordHash = await bcrypt.hash(password, 10);
-      await prisma.users.create({ data: { name, email, password: passwordHash } });
-
-      return res.status(201).json("Usuário cadastrado com sucesso");
+      return res.status(201).json("Prato cadastrado com sucesso");
     } catch (error: any) {
       if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
       next(error);
@@ -38,20 +41,14 @@ export const plateControllers = {
   read: async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { id } = req.query;
-      // const id = req.userID;
       if (id) {
-        const user = await prisma.users.findUnique({ where: { id: String(id) } });
-        if (!user) throw newAppError('Usuário não encontrado', 404);
+        const plate = await prisma.plates.findUnique({ where: { id: String(id) } });
+        if (!plate) throw newAppError('Prato não encontrado', 404);
 
-        return res.status(200).json(excludeFields(user, ["password", "is_admin"]));
+        return res.status(200).json(plate);
       } else {
-        const users = await prisma.users.findMany();
-
-        const usersExcludeFields = users.map((user) => {
-          return excludeFields(user, ["password", "is_admin"]);
-        });
-
-        return res.status(200).json(usersExcludeFields);
+        const plates = await prisma.plates.findMany();
+        return res.status(200).json(plates);
       }
     } catch (error: any) {
       if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
@@ -61,38 +58,38 @@ export const plateControllers = {
 
   update: async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const userSchema = z.object({
+      const plateSchema = z.object({
         name: z.string()
           .min(3, "Nome com mínimo de 3 caracteres")
           .max(255, "Campo com tamanho máximo de 255 caracteres"),
-        email: z.string()
+        description: z.string()
           .email("Por favor insira um email válido")
           .max(255, "Campo com tamanho máximo de 255 caracteres"),
-        password: z.string()
+        price: z.string()
+          .min(6, "Senha com mínimo de 6 carácteres")
+          .max(255, "Campo com tamanho máximo de 255 caracteres"),
+        category: z.string()
+          .min(6, "Senha com mínimo de 6 carácteres")
+          .max(255, "Campo com tamanho máximo de 255 caracteres"),
+        image: z.string()
           .min(6, "Senha com mínimo de 6 carácteres")
           .max(255, "Campo com tamanho máximo de 255 caracteres")
       }).strict();
 
-      const id = req.userID;
-      const { name, email, password } = userSchema.parse(req.body);
+      const id = req.params;
+      const { name, description, price, category, image } = plateSchema.parse(req.body);
 
-      if (!id) throw newAppError("Por favor insirar o ID do usuário", 400);
+      if (!id) throw newAppError("Por favor insirar o ID do Prato", 400);
 
-      const user = await prisma.users.findUnique({ where: { id: String(id) } });
-      if (!user) throw newAppError('Usuário não encontrado', 404);
+      const plate = await prisma.plates.findUnique({ where: { id: String(id) } });
+      if (!plate) throw newAppError('Prato não encontrado', 404);
 
-      const userEmail = await prisma.users.findUnique({ where: { email: String(email) } });
-      if (userEmail && (user.email != userEmail.email)) {
-        throw newAppError('Email já cadastrado', 409);
-      }
-
-      const passwordHash = await bcrypt.hash(password, 10);
-      await prisma.users.update({
-        data: { name, email, password: passwordHash },
+      await prisma.plates.update({
+        data: { name, description, price, category, image },
         where: { id: String(id) }
       });
 
-      return res.status(200).json("Usuário atualizado com sucesso");
+      return res.status(200).json("Prato atualizado com sucesso");
     } catch (error: any) {
       if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
       next(error);
@@ -101,15 +98,15 @@ export const plateControllers = {
 
   delete: async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const id = req.userID;      
-      if (!id) throw newAppError("Por favor insirar o ID do usuário", 400);
+      const id = req.params;      
+      if (!id) throw newAppError("Por favor insirar o ID do Prato", 400);
 
-      const user = await prisma.users.findUnique({ where: { id: String(id) } });
-      if (!user) throw newAppError('Usuário não encontrado', 404);
+      const plate = await prisma.plates.findUnique({ where: { id: String(id) } });
+      if (!plate) throw newAppError('Prato não encontrado', 404);
 
-      await prisma.users.delete({ where: { id: String(id) } });
+      await prisma.plates.delete({ where: { id: String(id) } });
 
-      return res.status(200).json('Usuário deletado com sucesso');
+      return res.status(200).json('Prato deletado com sucesso');
     } catch (error: any) {
       if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
       next(error);

@@ -7,7 +7,7 @@ const userRoutes = Router();
 
 userRoutes.post("/users", userControllers.create);
 
-userRoutes.use(authMiddleware, isAdmin);
+userRoutes.use(authMiddleware);
 
 userRoutes.get("/users", userControllers.read);
 userRoutes.put("/users", userControllers.update);
