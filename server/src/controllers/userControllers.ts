@@ -31,7 +31,7 @@ export const userControllers = {
       return res.status(201).json("Usuário cadastrado com sucesso");
     } catch (error: any) {
       if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
-      next(error);
+      return next(error);
     };
   },
 
@@ -55,7 +55,7 @@ export const userControllers = {
       };
     } catch (error: any) {
       if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
-      next(error);
+      return next(error);
     };
   },
 
@@ -95,7 +95,7 @@ export const userControllers = {
       return res.status(200).json("Usuário atualizado com sucesso");
     } catch (error: any) {
       if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
-      next(error);
+      return next(error);
     };
   },
 
@@ -112,7 +112,7 @@ export const userControllers = {
       return res.status(200).json('Usuário deletado com sucesso');
     } catch (error: any) {
       if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
-      next(error);
+      return next(error);
     };
   },
 }

@@ -34,7 +34,7 @@ export const plateControllers = {
       return res.status(201).json("Prato cadastrado com sucesso");
     } catch (error: any) {
       if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
-      next(error);
+      return next(error);
     };
   },
 
@@ -52,7 +52,7 @@ export const plateControllers = {
       };
     } catch (error: any) {
       if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
-      next(error);
+      return next(error);
     };
   },
 
@@ -92,7 +92,7 @@ export const plateControllers = {
       return res.status(200).json("Prato atualizado com sucesso");
     } catch (error: any) {
       if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
-      next(error);
+      return next(error);
     };
   },
 
@@ -109,7 +109,16 @@ export const plateControllers = {
       return res.status(200).json('Prato deletado com sucesso');
     } catch (error: any) {
       if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
-      next(error);
+      return next(error);
     };
   },
+
+  patch: async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      console.log(req.file?.filename);
+      return res.status(200).json('Upload de imagem com sucesso');
+    } catch (error: any) {
+      return next(error);
+    };
+  },  
 };
