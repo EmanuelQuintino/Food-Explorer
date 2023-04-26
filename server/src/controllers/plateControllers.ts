@@ -1,8 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { prisma } from "../databases";
 import { z } from "zod";
-import bcrypt from "bcrypt";
-import { excludeFields } from "../utils/excludeFields";
 import { newAppError } from "../utils/newAppError";
 
 export const plateControllers = {
@@ -13,23 +11,25 @@ export const plateControllers = {
           .min(3, "Nome com mínimo de 3 caracteres")
           .max(255, "Campo com tamanho máximo de 255 caracteres"),
         description: z.string()
-          .email("Por favor insira um email válido")
+          .min(3, "Descrição com mínimo de 3 caracteres")
           .max(255, "Campo com tamanho máximo de 255 caracteres"),
         price: z.string()
-          .min(6, "Senha com mínimo de 6 carácteres")
+          .min(3, "Preço com mínimo de 3 carácteres")
           .max(255, "Campo com tamanho máximo de 255 caracteres"),
         category: z.string()
-          .min(6, "Senha com mínimo de 6 carácteres")
+          .min(3, "Categoria com mínimo de 3 carácteres")
           .max(255, "Campo com tamanho máximo de 255 caracteres"),
         image: z.string()
-          .min(6, "Senha com mínimo de 6 carácteres")
-          .max(255, "Campo com tamanho máximo de 255 caracteres")
+          .min(3, "Imagem com mínimo de 3 carácteres")
+          .max(255, "Campo com tamanho máximo de 255 caracteres").nullable()
       }).strict();
 
       const { name, description, price, category, image } = plateSchema.parse(req.body);
 
       const plate = await prisma.plates.findFirst({ where: { name: String(name) } });
       if (plate) throw newAppError("Prato já cadastrado", 409);
+      
+      await prisma.plates.create({ data: { name, description, price, category, image }});
 
       return res.status(201).json("Prato cadastrado com sucesso");
     } catch (error: any) {
@@ -63,20 +63,20 @@ export const plateControllers = {
           .min(3, "Nome com mínimo de 3 caracteres")
           .max(255, "Campo com tamanho máximo de 255 caracteres"),
         description: z.string()
-          .email("Por favor insira um email válido")
+          .min(3, "Descrição com mínimo de 3 caracteres")
           .max(255, "Campo com tamanho máximo de 255 caracteres"),
         price: z.string()
-          .min(6, "Senha com mínimo de 6 carácteres")
+          .min(3, "Preço com mínimo de 3 carácteres")
           .max(255, "Campo com tamanho máximo de 255 caracteres"),
         category: z.string()
-          .min(6, "Senha com mínimo de 6 carácteres")
+          .min(3, "Categoria com mínimo de 3 carácteres")
           .max(255, "Campo com tamanho máximo de 255 caracteres"),
         image: z.string()
-          .min(6, "Senha com mínimo de 6 carácteres")
-          .max(255, "Campo com tamanho máximo de 255 caracteres")
+          .min(3, "Imagem com mínimo de 3 carácteres")
+          .max(255, "Campo com tamanho máximo de 255 caracteres").nullable()
       }).strict();
 
-      const id = req.params;
+      const { id } = req.params;      
       const { name, description, price, category, image } = plateSchema.parse(req.body);
 
       if (!id) throw newAppError("Por favor insirar o ID do Prato", 400);
@@ -98,7 +98,7 @@ export const plateControllers = {
 
   delete: async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const id = req.params;      
+      const { id } = req.params;      
       if (!id) throw newAppError("Por favor insirar o ID do Prato", 400);
 
       const plate = await prisma.plates.findUnique({ where: { id: String(id) } });
