@@ -1,11 +1,15 @@
 import { Request, Response, NextFunction } from "express";
+import { prisma } from "../databases";
+import { newAppError } from "../utils/newAppError";
 
-export function isAdmin(req: Request, res: Response, next: NextFunction) {
+export async function isAdmin(req: Request, res: Response, next: NextFunction) {
   try {
-    console.log("isAdmin");
-    next();
-    
+    const id = req.userID;
+    const user = await prisma.users.findUnique({ where: { id: String(id) } });
+    if (!user) throw newAppError('Usuário não encontrado', 404);
+    if (!user.is_admin) throw newAppError('Usuário não autorizado', 401);
+    next();    
   } catch (error) {
-    
+    return res.status(401).json({error: "Usuário não autorizado por error"});
   }
 }
