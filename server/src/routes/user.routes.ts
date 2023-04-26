@@ -8,6 +8,7 @@ const userRoutes = Router();
 userRoutes.post("/users", userControllers.create);
 
 userRoutes.use(authMiddleware, isAdmin);
+
 userRoutes.get("/users", userControllers.read);
 userRoutes.put("/users", userControllers.update);
 userRoutes.delete("/users", userControllers.delete);

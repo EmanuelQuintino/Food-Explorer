@@ -19,7 +19,7 @@ model Users {
   @@map("users")
 }
 
-model FoodPlates {
+model Plates {
   id          String   @id @default(uuid())
   name        String
   description String
@@ -29,5 +29,5 @@ model FoodPlates {
   created_at  DateTime @default(now())
   updated_at  DateTime @default(now()) @updatedAt
 
-  @@map("food_plates")
+  @@map("plates")
 }
