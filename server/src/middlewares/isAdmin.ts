@@ -8,9 +8,8 @@ export async function isAdmin(req: Request, res: Response, next: NextFunction) {
     const user = await prisma.users.findUnique({ where: { id: String(id) } });
     if (!user) throw newAppError('Usuário não encontrado', 404);
     if (!user.is_admin) throw newAppError('Usuário não autorizado', 401);
-    console.log("isAdmin");
-    next();    
+    return next();    
   } catch (error) {
-    next(error)
+    return next(error)
   }
 }
