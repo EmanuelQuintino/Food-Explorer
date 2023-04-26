@@ -14,6 +14,6 @@ plateRoutes.post("/plates", plateControllers.create);
 plateRoutes.get("/plates", plateControllers.read);
 plateRoutes.put("/plates/:id", plateControllers.update);
 plateRoutes.delete("/plates/:id", plateControllers.delete);
-plateRoutes.patch("/plates/image", upload.single("image"), plateControllers.patch);
+plateRoutes.patch("/plates/image/:id", upload.single("image"), plateControllers.patch);
 
 export { plateRoutes };

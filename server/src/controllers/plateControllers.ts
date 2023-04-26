@@ -2,6 +2,8 @@ import { NextFunction, Request, Response } from "express";
 import { prisma } from "../databases";
 import { z } from "zod";
 import { newAppError } from "../utils/newAppError";
+import { diskStorage } from "../providers/diskStorage";
+import { log } from "console";
 
 export const plateControllers = {
   create: async (req: Request, res: Response, next: NextFunction) => {
@@ -26,10 +28,10 @@ export const plateControllers = {
 
       const { name, description, price, category, image } = plateSchema.parse(req.body);
 
-      const plate = await prisma.plates.findFirst({ where: { name: String(name) } });
+      const plate = await prisma.plates.findFirst({where: {name: String(name)}});
       if (plate) throw newAppError("Prato já cadastrado", 409);
       
-      await prisma.plates.create({ data: { name, description, price, category, image }});
+      await prisma.plates.create({ data: {name, description, price, category, image}});
 
       return res.status(201).json("Prato cadastrado com sucesso");
     } catch (error: any) {
@@ -42,7 +44,7 @@ export const plateControllers = {
     try {
       const { id } = req.query;
       if (id) {
-        const plate = await prisma.plates.findUnique({ where: { id: String(id) } });
+        const plate = await prisma.plates.findUnique({where: {id: String(id)}});
         if (!plate) throw newAppError('Prato não encontrado', 404);
 
         return res.status(200).json(plate);
@@ -81,12 +83,12 @@ export const plateControllers = {
 
       if (!id) throw newAppError("Por favor insirar o ID do Prato", 400);
 
-      const plate = await prisma.plates.findUnique({ where: { id: String(id) } });
+      const plate = await prisma.plates.findUnique({where: {id: String(id)}});
       if (!plate) throw newAppError('Prato não encontrado', 404);
 
       await prisma.plates.update({
-        data: { name, description, price, category, image },
-        where: { id: String(id) }
+        data: {name, description, price, category, image},
+        where: {id: String(id)}
       });
 
       return res.status(200).json("Prato atualizado com sucesso");
@@ -101,10 +103,10 @@ export const plateControllers = {
       const { id } = req.params;      
       if (!id) throw newAppError("Por favor insirar o ID do Prato", 400);
 
-      const plate = await prisma.plates.findUnique({ where: { id: String(id) } });
+      const plate = await prisma.plates.findUnique({where: {id: String(id)}});
       if (!plate) throw newAppError('Prato não encontrado', 404);
 
-      await prisma.plates.delete({ where: { id: String(id) } });
+      await prisma.plates.delete({where: {id: String(id)}});
 
       return res.status(200).json('Prato deletado com sucesso');
     } catch (error: any) {
@@ -115,7 +117,25 @@ export const plateControllers = {
 
   patch: async (req: Request, res: Response, next: NextFunction) => {
     try {
-      console.log(req.file?.filename);
+      const { id } = req.params;
+      if (!id) throw newAppError("Por favor insirar o ID do Prato", 400);
+      
+      const imageFileName = req.file?.filename;
+      if (!imageFileName) throw newAppError("Por favor insirar imagem", 400);
+      
+      const plate = await prisma.plates.findUnique({where: {id: String(id)}});
+      if (!plate) throw newAppError('Prato não encontrado', 404);
+
+      if (plate.image) await diskStorage.deleteFile(plate.image);
+
+      const plateFileName = await diskStorage.saveFile(imageFileName);
+      plate.image = plateFileName;
+
+      await prisma.plates.update({
+        data: {image: plateFileName}, 
+        where: {id: String(id)}
+      });
+
       return res.status(200).json('Upload de imagem com sucesso');
     } catch (error: any) {
       return next(error);
