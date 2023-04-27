@@ -15,8 +15,22 @@ model Users {
   is_admin   Boolean?
   created_at DateTime @default(now())
   updated_at DateTime @default(now()) @updatedAt
+  
+  orders     Orders[]
 
   @@map("users")
+}
+
+model Orders {
+  id         String   @id @default(uuid())
+  status     String
+  users_id   String
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
+
+  user Users @relation(fields: [users_id], references: [id])
+
+  @@map("orders")
 }
 
 model Plates {
