@@ -37,15 +37,19 @@ export const userControllers = {
 
   read: async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const { id } = req.query;
-      // const id = req.userID;
+      // const { id } = req.query;
+      const id = req.userID;
       if (id) {
-        const user = await prisma.users.findUnique({where: {id: String(id)}});
+        const user = await prisma.users.findUnique({
+          where: {id: String(id)},
+          include: {orders: true}
+        });
+
         if (!user) throw newAppError('Usuário não encontrado', 404);
 
         return res.status(200).json(excludeFields(user, ["password", "is_admin"]));
       } else {
-        const users = await prisma.users.findMany();
+        const users = await prisma.users.findMany({include: {orders: true}});
 
         const usersExcludeFields = users.map((user) => {
           return excludeFields(user, ["password", "is_admin"]);
