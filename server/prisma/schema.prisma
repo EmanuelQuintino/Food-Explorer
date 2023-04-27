@@ -19,8 +19,8 @@ model Users {
   is_admin   Boolean?
   created_at DateTime @default(now())
   updated_at DateTime @default(now()) @updatedAt
-  
-  orders     Orders[]
+
+  orders Orders[]
 
   @@map("users")
 }
@@ -32,7 +32,8 @@ model Orders {
   created_at DateTime @default(now())
   updated_at DateTime @default(now()) @updatedAt
 
-  user Users @relation(fields: [users_id], references: [id])
+  user        Users         @relation(fields: [users_id], references: [id])
+  orderPlates OrderPlates[]
 
   @@map("orders")
 }
@@ -47,5 +48,20 @@ model Plates {
   created_at  DateTime @default(now())
   updated_at  DateTime @default(now()) @updatedAt
 
+  orderPlates OrderPlates[]
+
   @@map("plates")
+}
+
+model OrderPlates {
+  id         String   @id @default(uuid())
+  order_id   String
+  plate_id   String
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
+
+  order Orders @relation(fields: [order_id], references: [id])
+  plate Plates @relation(fields: [plate_id], references: [id])
+
+  @@map("order_plates")
 }
