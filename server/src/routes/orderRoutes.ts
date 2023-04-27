@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { plateControllers } from "../controllers/plateControllers";
+import { orderControllers } from "../controllers/orderControllers";
 import { authMiddleware } from "../middlewares/auth";
 import { isAdmin } from "../middlewares/isAdmin";
 
@@ -7,9 +7,9 @@ const orderRoutes = Router();
 
 orderRoutes.use(authMiddleware);
 
-orderRoutes.post("/orders", plateControllers.create);
-orderRoutes.get("/orders", plateControllers.read);
-orderRoutes.put("/orders/:id", isAdmin, plateControllers.update);
-orderRoutes.delete("/orders/:id", isAdmin, plateControllers.delete);
+orderRoutes.post("/orders", orderControllers.create);
+orderRoutes.get("/orders", orderControllers.read);
+orderRoutes.put("/orders/:id", isAdmin, orderControllers.update);
+orderRoutes.delete("/orders/:id", isAdmin, orderControllers.delete);
 
 export { orderRoutes };

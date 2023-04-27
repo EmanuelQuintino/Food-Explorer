@@ -6,19 +6,12 @@ import { newAppError } from "../utils/newAppError";
 export const orderControllers = {
   create: async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const userSchema = z.object({
-        status: z.string()
-          .min(3, "Nome com mínimo de 3 caracteres")
-          .max(255, "Campo com tamanho máximo de 255 caracteres"),
-      }).strict();
-
-      const { status } = userSchema.parse(req.body);
       const userID = req.userID;
-
-      const user = await prisma.orders.findUnique({where: {id: String(userID)}});
+      
+      const user = await prisma.users.findUnique({where: {id: String(userID)}});
       if (!user) throw newAppError('Usuário não encontrado', 404);
-
-      await prisma.orders.create({data: {status, users_id: userID}});
+      
+      await prisma.orders.create({data: {users_id: userID}});
 
       return res.status(201).json("Pedido realizado com sucesso");
     } catch (error: any) {
@@ -56,20 +49,14 @@ export const orderControllers = {
           .max(255, "Campo com tamanho máximo de 255 caracteres"),
       }).strict();
 
-      const userID = req.userID;
       const { id } = req.params;
       const { status } = userSchema.parse(req.body);
 
       if (!id) throw newAppError("Por favor insirar o ID do pedido", 400);
-      if (!userID) throw newAppError("Por favor insirar o ID do usuário", 400);
 
       const order = await prisma.orders.findUnique({where: {id: String(id)}});
       if (!order) throw newAppError('Pedido não encontrado', 404);
-      
-      const user = await prisma.users.findUnique({where: {id: String(userID)}});
-      if (!user) throw newAppError('Usuário não encontrado', 404);
-      if (!user.is_admin) throw newAppError('Usuário não autorizado', 401);
-      
+            
       await prisma.orders.update({
         data: {status},
         where: {id: String(id)}

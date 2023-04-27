@@ -8,7 +8,7 @@ const routes = Router();
 
 routes.use(authRoutes);
 routes.use(userRoutes);
-routes.use(plateRoutes);
 routes.use(orderRoutes);
+routes.use(plateRoutes);
 
 export { routes };
