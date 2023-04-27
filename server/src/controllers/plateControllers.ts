@@ -3,7 +3,6 @@ import { prisma } from "../databases";
 import { z } from "zod";
 import { newAppError } from "../utils/newAppError";
 import { diskStorage } from "../providers/diskStorage";
-import { log } from "console";
 
 export const plateControllers = {
   create: async (req: Request, res: Response, next: NextFunction) => {

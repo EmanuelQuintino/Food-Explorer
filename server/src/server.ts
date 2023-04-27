@@ -5,12 +5,18 @@ import { prisma } from "./databases";
 import { pageNotFoundError } from "./errors/pageNotFound";
 import { appError } from "./errors/appError";
 import dotenv from 'dotenv';
+import { UPLOADS_FOLDER } from "./configs/upload";
+import { authMiddleware } from "./middlewares/auth";
 
 const app = express();
+app.listen(3000, () => console.log("Server is running on port 3000"));
+
 app.use(express.json());
 app.use(routes);
-app.listen(3000, () => console.log("Server is running on port 3000"));
+
 dotenv.config();
+
+app.use("/files", authMiddleware, express.static(UPLOADS_FOLDER));
 
 app.use(pageNotFoundError);
 app.use(appError);
