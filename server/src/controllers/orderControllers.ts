@@ -41,13 +41,23 @@ export const orderControllers = {
       const userID = req.userID;
       
       if (id) {
-        const order = await prisma.orders.findUnique({where: {id: String(id)}});
+        const order = await prisma.orders.findUnique({
+          where: {id: String(id)},
+          include: {
+            order_plates: true
+          }
+        });
         if (!order) throw newAppError('Pedido não encontrado', 404);
         if (order?.users_id != userID) throw newAppError('Sem autorização para acessar pedido', 401);
 
         return res.status(200).json(order);
       } else {
-        const orders = await prisma.orders.findMany({where: {users_id: userID}});
+        const orders = await prisma.orders.findMany({
+          where: {users_id: userID},
+          include: {
+            order_plates: true
+          }
+        });
         return res.status(200).json(orders);
       };
     } catch (error: any) {
@@ -71,10 +81,14 @@ export const orderControllers = {
 
       const order = await prisma.orders.findUnique({where: {id: String(id)}});
       if (!order) throw newAppError('Pedido não encontrado', 404);
-            
+
+      interface Plate {
+        id: string;
+      }
+                        
       await prisma.orders.update({
         data: {status},
-        where: {id: String(id)}
+        where: {id: String(id)},
       });
 
       return res.status(200).json("Pedido atualizado com sucesso");
