@@ -23,23 +23,19 @@ export const plateControllers = {
         image: z.string()
           .min(3, "Imagem com mínimo de 3 carácteres")
           .max(255, "Campo com tamanho máximo de 255 caracteres").nullable(),
-        ingredients: z.array(z.object({name: z.string()}))
+        ingredients: z.array(z.string())
       }).strict();
 
       const { name, description, price, category, image, ingredients } = plateSchema.parse(req.body);
 
       const plate = await prisma.plates.findFirst({where: {name: String(name)}});
       if (plate) throw newAppError("Prato já cadastrado", 409);
-
-      interface Ingredient {
-        name: string;
-      }
       
       await prisma.plates.create({ 
         data: {
           name, description, price, category, image,
           ingredients: {
-            create: ingredients.map((ingredient: Ingredient) => ({name: ingredient.name}))
+            create: ingredients.map((ingredient: string) => ({name: ingredient}))
           }
         }
       });
