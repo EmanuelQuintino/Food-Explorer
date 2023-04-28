@@ -85,21 +85,22 @@ export const plateControllers = {
         category: z.string()
           .min(3, "Categoria com mínimo de 3 carácteres")
           .max(255, "Campo com tamanho máximo de 255 caracteres"),
-        image: z.string()
-          .min(3, "Imagem com mínimo de 3 carácteres")
-          .max(255, "Campo com tamanho máximo de 255 caracteres").nullable()
+        ingredients: z.array(z.string())
       }).strict();
 
       const { id } = req.params;      
-      const { name, description, price, category, image } = plateSchema.parse(req.body);
+      const { name, description, price, category } = plateSchema.parse(req.body);
 
       if (!id) throw newAppError("Por favor insirar o ID do Prato", 400);
 
       const plate = await prisma.plates.findUnique({where: {id: String(id)}});
       if (!plate) throw newAppError('Prato não encontrado', 404);
 
+      const plateName = await prisma.plates.findFirst({where: {name: String(name)}});
+      if (plateName && (plateName.name != plate.name)) throw newAppError("Prato já cadastrado", 409);
+
       await prisma.plates.update({
-        data: {name, description, price, category, image},
+        data: {name, description, price, category},
         where: {id: String(id)}
       });
 
