@@ -19,7 +19,7 @@ export const orderControllers = {
       await prisma.orders.create({
         data: {
           users_id: userID,
-          orderPlates: {
+          order_plates: {
             create: plates.map((plate: Plate) => ({
               plate_id: plate.id
             }))

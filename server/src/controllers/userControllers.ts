@@ -45,7 +45,7 @@ export const userControllers = {
           include: {
             orders: {
               include: {
-                orderPlates: true
+                order_plates: true
               }
             }
           }
