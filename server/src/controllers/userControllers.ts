@@ -35,34 +35,56 @@ export const userControllers = {
     };
   },
 
+  index: async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const id = req.userID;
+      if (!id) throw newAppError("Por favor insirar o ID do usuário", 400);
+
+      const user = await prisma.users.findUnique({where: {id: String(id)}});
+      if (!user) throw newAppError('Usuário não encontrado', 404);
+
+      const users = await prisma.users.findMany({
+        include: {
+          orders: {
+            include: {
+              order_plates: true
+            }
+          },
+          favorites: true
+        }
+      });
+      
+      const usersExcludeFields = users.map((user) => {
+        return excludeFields(user, ["password", "is_admin"]);
+      });
+
+      return res.status(200).json(usersExcludeFields);
+    } catch (error: any) {
+      if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
+      return next(error);
+    };
+  },
+
   read: async (req: Request, res: Response, next: NextFunction) => {
     try {
-      // const { id } = req.query;
       const id = req.userID;
-      if (id) {
-        const user = await prisma.users.findUnique({
-          where: {id: String(id)},
-          include: {
-            orders: {
-              include: {
-                order_plates: true
-              }
+      if (!id) throw newAppError("Por favor insirar o ID do usuário", 400);
+
+      const user = await prisma.users.findUnique({
+        where: {id: String(id)},
+        include: {
+          orders: {
+            include: {
+              order_plates: true
             }
-          }
-        });
+          },
+          favorites: true
+        }
+      });
 
-        if (!user) throw newAppError('Usuário não encontrado', 404);
+      if (!user) throw newAppError('Usuário não encontrado', 404);
 
-        return res.status(200).json(excludeFields(user, ["password", "is_admin"]));
-      } else {
-        const users = await prisma.users.findMany({include: {orders: true}});
-
-        const usersExcludeFields = users.map((user) => {
-          return excludeFields(user, ["password", "is_admin"]);
-        });
-
-        return res.status(200).json(usersExcludeFields);
-      };
+      return res.status(200).json(excludeFields(user, ["password", "is_admin"]));
     } catch (error: any) {
       if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
       return next(error);
@@ -85,8 +107,6 @@ export const userControllers = {
 
       const id = req.userID;
       const { name, email, password } = userSchema.parse(req.body);
-
-      if (!id) throw newAppError("Por favor insirar o ID do usuário", 400);
 
       const user = await prisma.users.findUnique({where: {id: String(id)}});
       if (!user) throw newAppError('Usuário não encontrado', 404);
