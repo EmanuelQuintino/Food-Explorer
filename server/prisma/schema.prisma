@@ -4,7 +4,7 @@ generator client {
 
 generator erd {
   provider = "prisma-erd-generator"
-  output = "./ERD.svg"
+  output   = "./ERD.svg"
 }
 
 datasource db {
@@ -33,7 +33,7 @@ model Orders {
   created_at DateTime @default(now())
   updated_at DateTime @default(now()) @updatedAt
 
-  user        Users         @relation(fields: [users_id], references: [id])
+  user         Users         @relation(fields: [users_id], references: [id])
   order_plates OrderPlates[]
 
   @@map("orders")
@@ -50,6 +50,7 @@ model Plates {
   updated_at  DateTime @default(now()) @updatedAt
 
   order_plates OrderPlates[]
+  ingredients  Ingredients[]
 
   @@map("plates")
 }
@@ -65,4 +66,16 @@ model OrderPlates {
   plate Plates @relation(fields: [plate_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
 
   @@map("order_plates")
+}
+
+model Ingredients {
+  id         String   @id @default(uuid())
+  name       String
+  plate_id   String
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
+
+  plate Plates @relation(fields: [plate_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
+
+  @@map("ingredients")
 }
