@@ -48,7 +48,7 @@ export const orderControllers = {
           }
         });
         if (!order) throw newAppError('Pedido não encontrado', 404);
-        if (order?.users_id != userID) throw newAppError('Sem autorização para acessar pedido', 401);
+        if (order?.users_id != userID) throw newAppError('Sem autorização para acessar este pedido', 401);
 
         return res.status(200).json(order);
       } else {
@@ -81,10 +81,6 @@ export const orderControllers = {
 
       const order = await prisma.orders.findUnique({where: {id: String(id)}});
       if (!order) throw newAppError('Pedido não encontrado', 404);
-
-      interface Plate {
-        id: string;
-      }
                         
       await prisma.orders.update({
         data: {status},
@@ -108,16 +104,17 @@ export const orderControllers = {
 
       const order = await prisma.orders.findUnique({where: {id: String(id)}});
       if (!order) throw newAppError('Pedido não encontrado', 404);
+      if (order?.users_id != userID) throw newAppError('Sem autorização para deletar este pedido', 401);
 
       const user = await prisma.users.findUnique({where: {id: String(userID)}});
       if (!user) throw newAppError('Usuário não encontrado', 404);
-      if (!user.is_admin) throw newAppError('Usuário não autorizado', 401);
       
       await prisma.orders.delete({where: {id: String(id)}});
 
       return res.status(200).json('Pedido deletado com sucesso');
     } catch (error: any) {
       if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
+      if (error.code == "P2003") return res.status(404).json({error: "Prato não encontrado"});
       return next(error);
     };
   },
