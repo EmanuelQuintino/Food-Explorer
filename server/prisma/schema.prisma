@@ -21,7 +21,8 @@ model Users {
   created_at DateTime @default(now())
   updated_at DateTime @default(now()) @updatedAt
 
-  orders Orders[]
+  orders    Orders[]
+  favorites Favorites[]
 
   @@map("users")
 }
@@ -33,7 +34,7 @@ model Orders {
   created_at DateTime @default(now())
   updated_at DateTime @default(now()) @updatedAt
 
-  user         Users         @relation(fields: [users_id], references: [id])
+  user         Users @relation(fields: [users_id], references: [id])
   order_plates OrderPlates[]
 
   @@map("orders")
@@ -51,6 +52,7 @@ model Plates {
 
   order_plates OrderPlates[]
   ingredients  Ingredients[]
+  favorites    Favorites[]
 
   @@map("plates")
 }
@@ -78,4 +80,15 @@ model Ingredients {
   plate Plates @relation(fields: [plate_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
 
   @@map("ingredients")
+}
+
+model Favorites {
+  user_id  String
+  plate_id String
+
+  user  Users  @relation(fields: [user_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  plate Plates @relation(fields: [plate_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
+
+  @@id([user_id, plate_id])
+  @@map("favorites")
 }
