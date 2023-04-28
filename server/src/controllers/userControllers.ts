@@ -42,7 +42,13 @@ export const userControllers = {
       if (id) {
         const user = await prisma.users.findUnique({
           where: {id: String(id)},
-          include: {orders: true}
+          include: {
+            orders: {
+              include: {
+                orderPlates: true
+              }
+            }
+          }
         });
 
         if (!user) throw newAppError('Usuário não encontrado', 404);

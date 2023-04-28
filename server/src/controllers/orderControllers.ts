@@ -7,15 +7,30 @@ export const orderControllers = {
   create: async (req: Request, res: Response, next: NextFunction) => {
     try {
       const userID = req.userID;
+      const plates = req.body;      
       
       const user = await prisma.users.findUnique({where: {id: String(userID)}});
       if (!user) throw newAppError('Usuário não encontrado', 404);
       
-      await prisma.orders.create({data: {users_id: userID}});
+      interface Plate {
+        id: string;
+      }
+            
+      await prisma.orders.create({
+        data: {
+          users_id: userID,
+          orderPlates: {
+            create: plates.map((plate: Plate) => ({
+              plate_id: plate.id
+            }))
+          }
+        }
+      });
 
       return res.status(201).json("Pedido realizado com sucesso");
     } catch (error: any) {
       if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
+      if (error.code == "P2003") return res.status(404).json({error: "Prato não encontrado"});
       return next(error);
     };
   },
