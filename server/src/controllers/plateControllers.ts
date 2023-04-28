@@ -53,12 +53,15 @@ export const plateControllers = {
     try {
       const { id } = req.query;
       if (id) {
-        const plate = await prisma.plates.findUnique({where: {id: String(id)}});
+        const plate = await prisma.plates.findUnique({
+          where: {id: String(id)},
+          include: {ingredients: true}
+        });
         if (!plate) throw newAppError('Prato não encontrado', 404);
 
         return res.status(200).json(plate);
       } else {
-        const plates = await prisma.plates.findMany();
+        const plates = await prisma.plates.findMany({include: {ingredients: true}});
         return res.status(200).json(plates);
       };
     } catch (error: any) {
