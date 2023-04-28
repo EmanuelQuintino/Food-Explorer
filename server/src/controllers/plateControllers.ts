@@ -31,6 +31,8 @@ export const plateControllers = {
       const plate = await prisma.plates.findFirst({where: {name: String(name)}});
       if (plate) throw newAppError("Prato já cadastrado", 409);
       
+      if (ingredients.length == 0) throw newAppError("Por favor inserir ingredientes", 400);
+      
       await prisma.plates.create({ 
         data: {
           name, description, price, category, image,
