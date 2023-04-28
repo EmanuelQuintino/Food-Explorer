@@ -20,9 +20,7 @@ export const orderControllers = {
         data: {
           users_id: userID,
           order_plates: {
-            create: plates.map((plate: Plate) => ({
-              plate_id: plate.id
-            }))
+            create: plates.map((plate: Plate) => ({plate_id: plate.id}))
           }
         }
       });
@@ -43,9 +41,7 @@ export const orderControllers = {
       if (id) {
         const order = await prisma.orders.findUnique({
           where: {id: String(id)},
-          include: {
-            order_plates: true
-          }
+          include: {order_plates: true}
         });
         if (!order) throw newAppError('Pedido não encontrado', 404);
         if (order?.users_id != userID) throw newAppError('Sem autorização para acessar este pedido', 401);
@@ -54,9 +50,7 @@ export const orderControllers = {
       } else {
         const orders = await prisma.orders.findMany({
           where: {users_id: userID},
-          include: {
-            order_plates: true
-          }
+          include: {order_plates: true}
         });
         return res.status(200).json(orders);
       };

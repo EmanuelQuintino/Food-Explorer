@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { prisma } from "../databases";
-import { z } from "zod";
+import { array, z } from "zod";
 import { newAppError } from "../utils/newAppError";
 import { diskStorage } from "../providers/diskStorage";
 
@@ -22,15 +22,27 @@ export const plateControllers = {
           .max(255, "Campo com tamanho máximo de 255 caracteres"),
         image: z.string()
           .min(3, "Imagem com mínimo de 3 carácteres")
-          .max(255, "Campo com tamanho máximo de 255 caracteres").nullable()
+          .max(255, "Campo com tamanho máximo de 255 caracteres").nullable(),
+        ingredients: z.array(z.object({name: z.string()}))
       }).strict();
 
-      const { name, description, price, category, image } = plateSchema.parse(req.body);
+      const { name, description, price, category, image, ingredients } = plateSchema.parse(req.body);
 
       const plate = await prisma.plates.findFirst({where: {name: String(name)}});
       if (plate) throw newAppError("Prato já cadastrado", 409);
+
+      interface Ingredient {
+        name: string;
+      }
       
-      await prisma.plates.create({ data: {name, description, price, category, image}});
+      await prisma.plates.create({ 
+        data: {
+          name, description, price, category, image,
+          ingredients: {
+            create: ingredients.map((ingredient: Ingredient) => ({name: ingredient.name}))
+          }
+        }
+      });
 
       return res.status(201).json("Prato cadastrado com sucesso");
     } catch (error: any) {
