@@ -13,7 +13,7 @@ export const orderControllers = {
       if (!user) throw newAppError('Usuário não encontrado', 404);
       
       type Plate = {
-        id: string
+        id: string;
       };
             
       await prisma.orders.create({
