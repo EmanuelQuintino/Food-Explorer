@@ -85,6 +85,8 @@ model Ingredients {
 model Favorites {
   user_id  String
   plate_id String
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
 
   user  Users  @relation(fields: [user_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
   plate Plates @relation(fields: [plate_id], references: [id], onUpdate: Cascade, onDelete: Cascade)

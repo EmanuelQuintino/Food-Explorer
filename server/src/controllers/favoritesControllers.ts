@@ -18,7 +18,7 @@ export const favoritesControllers = {
             
       await prisma.favorites.create({data: {user_id: userID, plate_id: plateID}});
 
-      return res.status(201).json("Prato listado como favorito");
+      return res.status(201).json("Prato listado em favoritos");
     } catch (error: any) {
       if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
       if (error.code == "P2002") return res.status(400).json("Prato já favoritado");
