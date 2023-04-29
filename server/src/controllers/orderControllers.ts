@@ -12,9 +12,9 @@ export const orderControllers = {
       const user = await prisma.users.findUnique({where: {id: String(userID)}});
       if (!user) throw newAppError('Usuário não encontrado', 404);
       
-      interface Plate {
-        id: string;
-      }
+      type Plate = {
+        id: string
+      };
             
       await prisma.orders.create({
         data: {
