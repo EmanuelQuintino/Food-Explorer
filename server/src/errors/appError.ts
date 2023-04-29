@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction } from "express";
 import { ZodError } from "zod";
 
-interface AppError {
-  status: number;
-  message: string;
+type AppError = {
+  status: number,
+  message: string
 };
 
 export function appError(error: AppError, req: Request, res: Response, next: NextFunction) {
