@@ -1,8 +1,8 @@
 import { ButtonContainer } from "./style";
 
-type TButton = {
+export type TButton = {
   name: string;
-  disabled: boolean;
+  disabled?: boolean;
 }
 
 export function Button({ name, disabled = false, ...rest }: TButton) {

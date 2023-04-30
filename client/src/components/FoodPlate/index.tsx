@@ -6,7 +6,13 @@ import plus from "../../assets/plus.svg"
 import { Button } from "../Button";
 import { useState } from "react";
 
-export function FoodPlate({image, name, price}) {
+type TFoodPlate = {
+  image: string;
+  name: string;
+  price: string;
+}
+
+export function FoodPlate({image, name, price}: TFoodPlate) {
   const [countPlate, setCountPlate] = useState(1);
   const [favoriteMatch, setFavoriteMatch] = useState(false);
   const toFavorite = () => setFavoriteMatch(favoriteMatch ? false : true);
