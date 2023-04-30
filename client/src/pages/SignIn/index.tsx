@@ -1,13 +1,18 @@
 import { Container } from "./style"
 import { Logo } from "../../components/Logo"
-import { useForm } from "react-hook-form"
+import { useForm, SubmitHandler } from "react-hook-form"
 import { Button } from "../../components/Button";
 import { Link } from "react-router-dom";
 
-export function SignIn() {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+type FormDataType = {
+  email: string;
+  password: string;
+}
 
-  function onSubmit(data) {
+export function SignIn() {
+  const { register, handleSubmit, formState: { errors } } = useForm<FormDataType>();
+
+  const onSubmit: SubmitHandler<FormDataType> = (data) => {
     console.log(data);
   }
 
