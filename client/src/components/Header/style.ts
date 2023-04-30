@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-export const HeaderContainer = styled.header`
+type HeaderContainerType = {
+  menuActive: boolean;
+}
+
+export const HeaderContainer = styled.header<HeaderContainerType>`
   .boxHeader {
     display: flex;
     align-items: center;

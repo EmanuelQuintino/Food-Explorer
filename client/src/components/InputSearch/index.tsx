@@ -6,7 +6,7 @@ import { systemContext } from "../../context/system";
 export function InputSearch() {
   const { menuActive, toggleMenu } = useContext(systemContext);
 
-  function handleSubmit(event) {
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     menuActive ? toggleMenu() : "";
   }

@@ -1,7 +1,7 @@
 import { ButtonContainer } from "./style";
-import { TButton } from "../Button";
+import { ButtonType } from "../Button";
 
-export function ButtonBack({ name, disabled = false, ...rest }: TButton) {
+export function ButtonBack({ name, disabled = false, ...rest }: ButtonType) {
   return (
     <ButtonContainer 
       type="button" 
