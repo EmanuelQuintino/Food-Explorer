@@ -5,10 +5,7 @@ type SystemContextType = {
   toggleMenu: () => void;
 }
 
-export const systemContext = createContext<SystemContextType>({
-  menuActive: false,
-  toggleMenu: () => {},
-});
+export const systemContext = createContext<SystemContextType>({} as SystemContextType);
 
 export function SystemProvider({ children }: PropsWithChildren) {
   const [menuActive, setMenuActive] = useState(false);
