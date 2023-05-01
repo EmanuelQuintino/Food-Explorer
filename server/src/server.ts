@@ -7,12 +7,14 @@ import { appError } from "./errors/appError";
 import dotenv from 'dotenv';
 import { UPLOADS_FOLDER } from "./configs/upload";
 import { authMiddleware } from "./middlewares/auth";
+import cors from "cors";
 
 const app = express();
 app.listen(3000, () => console.log("Server is running on port 3000"));
 
 app.use(express.json());
 app.use(routes);
+app.use(cors());
 
 dotenv.config();
 
