@@ -18,6 +18,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
   const { toggleMenu } = useSystem();
 
   function handleLogin({email, password}: HandleLoginTypes) {
+    if (!email || !password) return alert("Por favor preencha todos os campos");
     API.post("/login", {email, password})
     .then((res) => {
       if (res.data.token) {
@@ -27,17 +28,15 @@ export function AuthProvider({ children }: PropsWithChildren) {
       }    
     })
     .catch((error) => alert(error.response.data.error));
-  }
+  };
 
   useEffect(() => {
-    const token = JSON.parse(localStorage.getItem("@FoodExplorer:token"));
-    console.log(token);
-    
+    const token = JSON.parse(localStorage.getItem("@FoodExplorer:token"));    
     if (token) {
       API.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       setUserAuth({token});                    
     }
-  }, [])
+  }, []);
 
   function handleLogout() {
     const isConfirmLogout = confirm('Tem certeza que deseja sair da aplicação?');
@@ -45,16 +44,16 @@ export function AuthProvider({ children }: PropsWithChildren) {
       localStorage.removeItem("@FoodExplorer:token");
       setUserAuth({});
       toggleMenu();
-    } 
-  }
+    }; 
+  };
 
   return (
     <AuthContext.Provider value={{handleLogin, userAuth, handleLogout}}>
       {children}
     </AuthContext.Provider>
   )
-}
+};
 
 export function useAuth() {
   return useContext(AuthContext);
-}
+};

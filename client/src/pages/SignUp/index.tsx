@@ -2,7 +2,8 @@ import { Container } from "./style"
 import { Logo } from "../../components/Logo"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { Button } from "../../components/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { API } from "../../services/api";
 
 type FormDataType = {
   name: string
@@ -12,15 +13,29 @@ type FormDataType = {
 
 export function SignUp() {
   const { register, handleSubmit, formState: { errors } } = useForm<FormDataType>();
+  const navigate = useNavigate();
 
-  const onSubmit: SubmitHandler<FormDataType> = (data) => {
-    console.log(data);
+  const createUser: SubmitHandler<FormDataType> = ({ name, email, password }) => {
+    if (!name || !email || !password) return alert("Por favor preencha todos os campos");
+    
+    API.post("/users", {name, email, password})
+    .then((res) => {
+      alert(res.data);
+      navigate('/');
+    })
+    .catch((error) => {
+      if (error.response) {
+        alert(error.response.data.error);
+      } else {
+        alert("Erro ao cadastrar")
+      };
+    });
   }
 
   return (
     <Container>
       <Logo/>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(createUser)}>
       <section>
           <label htmlFor="name">Nome</label>
           <input 
