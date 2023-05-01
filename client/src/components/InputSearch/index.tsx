@@ -1,10 +1,9 @@
 import { Container } from "./style";
 import searchIcon from "../../assets/search.svg"
-import { useContext } from "react";
-import { systemContext } from "../../context/system";
+import { useSystem } from "../../hooks/system";
 
 export function InputSearch() {
-  const { menuActive, toggleMenu } = useContext(systemContext);
+  const { menuActive, toggleMenu } = useSystem();
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();

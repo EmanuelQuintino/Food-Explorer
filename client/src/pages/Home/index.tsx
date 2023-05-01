@@ -3,11 +3,10 @@ import { Header } from "../../components/Header"
 import { Slogan } from "../../components/Slogan"
 import { FoodPlate } from "../../components/FoodPlate"
 import { Footer } from "../../components/Footer"
-import { useContext } from "react"
-import { systemContext } from "../../context/system"
+import { useSystem } from "../../hooks/system"
 
 export function Home() {
-  const { menuActive } = useContext(systemContext);
+  const { menuActive } = useSystem();
 
   return (
     <Container>

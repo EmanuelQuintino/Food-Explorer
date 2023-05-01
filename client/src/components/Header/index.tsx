@@ -6,11 +6,10 @@ import orderIcon from "../../assets/order.svg"
 import { useState } from "react";
 import { InputSearch } from "../InputSearch";
 import { Menu } from "../Menu";
-import { useContext } from "react";
-import { systemContext } from "../../context/system";
+import { useSystem } from "../../hooks/system";
 
 export function Header() {
-  const { menuActive, toggleMenu } = useContext(systemContext);
+  const { menuActive, toggleMenu } = useSystem();
   const [isAdmin, setIsAdmin] = useState(false);
 
   return (
@@ -34,7 +33,7 @@ export function Header() {
               }
             </div>
 
-            <InputSearch/>
+            <InputSearch />
 
             {!isAdmin &&
               <div className="orderContainer">
