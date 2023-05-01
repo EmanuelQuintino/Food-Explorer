@@ -3,17 +3,14 @@ import { Logo } from "../../components/Logo"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { Button } from "../../components/Button";
 import { Link } from "react-router-dom";
-
-type FormDataType = {
-  email: string;
-  password: string;
-}
+import { HandleLoginTypes, useAuth } from "../../hooks/auth";
 
 export function SignIn() {
-  const { register, handleSubmit, formState: { errors } } = useForm<FormDataType>();
+  const { register, handleSubmit, formState: { errors } } = useForm<HandleLoginTypes>();
+  const { handleLogin } = useAuth();
 
-  const onSubmit: SubmitHandler<FormDataType> = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<HandleLoginTypes> = ({ email, password }) => {
+    handleLogin({email, password})
   }
 
   return (
