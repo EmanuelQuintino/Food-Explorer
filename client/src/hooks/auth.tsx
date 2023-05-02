@@ -12,6 +12,7 @@ type AuthContextType = {
   userAuth: {token?: string};
   handleLogout: () => void;
 }
+
 const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 
 export function AuthProvider({ children }: PropsWithChildren) {
@@ -24,7 +25,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
     .then((res) => {
       if (res.data.token) {
         API.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;
-        localStorage.setItem("@FoodExplorer:token", JSON.stringify(res.data.token));
+        localStorage.setItem("@FoodExplorer:token", res.data.token);
         setUserAuth(res.data);
       }    
     })
@@ -32,17 +33,15 @@ export function AuthProvider({ children }: PropsWithChildren) {
   };
 
   useEffect(() => {
-    const token = JSON.parse(localStorage.getItem("@FoodExplorer:token") as string);    
-    if (token) {
-      console.log(token);
-      
+    const token = localStorage.getItem("@FoodExplorer:token");    
+    if (token) {      
       API.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       setUserAuth({token});                    
     }
   }, []);
 
   function handleLogout() {
-    const isConfirmLogout = confirm('Tem certeza que deseja sair da aplicação?');
+    const isConfirmLogout = confirm('Deseja sair da aplicação?');
     if (isConfirmLogout) {
       localStorage.removeItem("@FoodExplorer:token");
       setUserAuth({});

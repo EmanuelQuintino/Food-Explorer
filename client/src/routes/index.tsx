@@ -5,7 +5,6 @@ import { useAuth } from "../hooks/auth";
 
 export function Routes(){ 
   const { userAuth } = useAuth();
-
   return (
     <BrowserRouter>
       {userAuth.token ? <AppRoutes/> : <AuthRoutes/>}

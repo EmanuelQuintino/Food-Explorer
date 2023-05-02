@@ -33,7 +33,7 @@ export function Header() {
               }
             </div>
 
-            <InputSearch />
+            {/* <InputSearch /> */}
 
             {!isAdmin &&
               <div className="orderContainer">
