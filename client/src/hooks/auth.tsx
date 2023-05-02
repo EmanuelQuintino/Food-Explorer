@@ -8,9 +8,10 @@ export type HandleLoginTypes = {
 }
 
 type AuthContextType = {
-  handleLogin: (params: HandleLoginTypes) => Promise<void>;
+  handleLogin: (params: HandleLoginTypes) => void;
+  userAuth: {token?: string};
+  handleLogout: () => void;
 }
-
 const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 
 export function AuthProvider({ children }: PropsWithChildren) {
@@ -31,8 +32,10 @@ export function AuthProvider({ children }: PropsWithChildren) {
   };
 
   useEffect(() => {
-    const token = JSON.parse(localStorage.getItem("@FoodExplorer:token"));    
+    const token = JSON.parse(localStorage.getItem("@FoodExplorer:token") as string);    
     if (token) {
+      console.log(token);
+      
       API.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       setUserAuth({token});                    
     }
