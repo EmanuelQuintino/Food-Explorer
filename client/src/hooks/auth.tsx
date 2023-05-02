@@ -18,7 +18,6 @@ const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 
 export function AuthProvider({ children }: PropsWithChildren) {
   const [ userAuth, setUserAuth ] = useState({});
-  const { toggleMenu } = useSystem();
 
   function handleLogin({email, password}: HandleLoginTypes) {
     if (!email || !password) return alert("Por favor preencha todos os campos");
@@ -34,22 +33,26 @@ export function AuthProvider({ children }: PropsWithChildren) {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("@FoodExplorer:token");    
-    if (token) {   
-      const decodedToken = jwt_decode(token) as { exp: number };      
-      const expirationTime = decodedToken.exp * 1000;
+    try {
+      const token = localStorage.getItem("@FoodExplorer:token");    
+      if (token) {  
+        const decodedToken = jwt_decode(token) as { exp: number };      
+        const expirationTime = decodedToken.exp * 1000;
 
-      if (Date.now() > expirationTime) return handleLogout();
+        if (Date.now() > expirationTime) return handleLogout();
       
-      API.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-      setUserAuth({token});                    
+        API.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        setUserAuth({token});                    
+      }
+    } catch (error) {
+      console.error(error);
+      return handleLogout();
     }
   }, []);
 
   function handleLogout() {
       localStorage.removeItem("@FoodExplorer:token");
       setUserAuth({});
-      toggleMenu();
   };
 
   return (
