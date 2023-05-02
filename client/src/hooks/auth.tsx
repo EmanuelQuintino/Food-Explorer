@@ -1,6 +1,5 @@
 import { PropsWithChildren, createContext, useContext, useState, useEffect } from "react";
 import { API } from "../services/api";
-import { useSystem } from "./system";
 import jwt_decode from "jwt-decode";
 
 export type HandleLoginTypes = {
