@@ -36,9 +36,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
   useEffect(() => {
     const token = localStorage.getItem("@FoodExplorer:token");    
     if (token) {   
-      const decodedToken = jwt_decode(token) as { exp: number };
-      console.log(decodedToken);
-      
+      const decodedToken = jwt_decode(token) as { exp: number };      
       const expirationTime = decodedToken.exp * 1000;
 
       if (Date.now() > expirationTime) return handleLogout();
