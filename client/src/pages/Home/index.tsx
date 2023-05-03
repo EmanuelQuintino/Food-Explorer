@@ -14,19 +14,19 @@ export function Home() {
             <h2>Refeições</h2>
             <div className="plates">
               <FoodPlate
-                image={"food-plate-pictures/Mask group-1.png"}
+                image={"food-plate-pictures/torradas-de-parma.png"}
                 name="Salada Ravanello"
                 price="49.97"
               />
 
               <FoodPlate
-                image={"food-plate-pictures/Mask group-1.png"}
+                image={"food-plate-pictures/torradas-de-parma.png"}
                 name="Salada Ravanello"
                 price="49.97"
               />
 
               <FoodPlate
-                image={"food-plate-pictures/Mask group-1.png"}
+                image={"food-plate-pictures/torradas-de-parma.png"}
                 name="Salada Ravanello"
                 price="49.97"
               />
