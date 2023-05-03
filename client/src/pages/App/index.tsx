@@ -1,7 +1,7 @@
 import { Container } from "./style";
-import { Header } from "../components/Header";
+import { Header } from "../../components/Header";
 import { Outlet } from "react-router-dom";
-import { Footer } from "../components/Footer";
+import { Footer } from "../../components/Footer";
 
 export function App() {
   return (
@@ -13,7 +13,7 @@ export function App() {
         <Outlet />
       </main>
       <footer>
-        <Footer/>
+        <Footer />
       </footer>
     </Container>
   )
