@@ -32,6 +32,52 @@ export function Home() {
               />
             </div>
           </section>
+
+          <section className="boxPlates">
+            <h2>Sobremesas</h2>
+            <div className="plates">
+              <FoodPlate
+                image={"food-plate-pictures/peachy-pastrie.png"}
+                name="Salada Ravanello"
+                price="49.97"
+              />
+
+              <FoodPlate
+                image={"food-plate-pictures/peachy-pastrie.png"}
+                name="Salada Ravanello"
+                price="49.97"
+              />
+
+              <FoodPlate
+                image={"food-plate-pictures/peachy-pastrie.png"}
+                name="Salada Ravanello"
+                price="49.97"
+              />
+            </div>
+          </section>
+
+          <section className="boxPlates">
+            <h2>Bebidas</h2>
+            <div className="plates">
+              <FoodPlate
+                image={"food-plate-pictures/cocktail-de-maca.png"}
+                name="Salada Ravanello"
+                price="49.97"
+              />
+
+              <FoodPlate
+                image={"food-plate-pictures/cocktail-de-maca.png"}
+                name="Salada Ravanello"
+                price="49.97"
+              />
+
+              <FoodPlate
+                image={"food-plate-pictures/cocktail-de-maca.png"}
+                name="Salada Ravanello"
+                price="49.97"
+              />
+            </div>
+          </section>
         </>
       }
     </Container>

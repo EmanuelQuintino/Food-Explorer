@@ -1,6 +1,10 @@
 import styled from "styled-components"
 
 export const Container = styled.section`
+  .boxPlates {
+    margin: 2.4rem 0;
+  }
+
   .boxPlates h2 {
     font-size: 1.8rem;
     font-weight: 500;
