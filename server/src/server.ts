@@ -18,7 +18,7 @@ app.use(routes);
 
 dotenv.config();
 
-app.use("/files", authMiddleware, express.static(UPLOADS_FOLDER));
+app.use("/images", authMiddleware, express.static(UPLOADS_FOLDER));
 
 app.use(pageNotFoundError);
 app.use(appError);
