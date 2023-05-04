@@ -5,20 +5,23 @@ import minus from "../../assets/minus.svg"
 import plus from "../../assets/plus.svg"
 import { Button } from "../Button";
 import { useState } from "react";
+import { API } from "../../services/api";
 
 type FoodPlateType = {
-  image: string;
   name: string;
   price: string;
-}
+  image: string;
+};
 
-export function FoodPlate({image, name, price}: FoodPlateType) {
+export function FoodPlate({ name, price, image }: FoodPlateType) {
   const [countPlate, setCountPlate] = useState(1);
   const [favoriteMatch, setFavoriteMatch] = useState(false);
-  const toFavorite = () => setFavoriteMatch(favoriteMatch ? false : true);
 
-  const platePlus = () => setCountPlate(previousState => Math.min(previousState + 1, 99)) 
-  const plateMinus = () => setCountPlate(previousState => Math.max(previousState - 1, 1)) 
+  const toFavorite = () => setFavoriteMatch(favoriteMatch ? false : true);
+  const platePlus = () => setCountPlate(previousState => Math.min(previousState + 1, 99));
+  const plateMinus = () => setCountPlate(previousState => Math.max(previousState - 1, 1));
+  
+  const imageURL = `${API.defaults.baseURL}/images/${image}`;
   
   return (
     <Container>
@@ -29,7 +32,7 @@ export function FoodPlate({image, name, price}: FoodPlateType) {
         }
       </button>
       
-      <img src={image} alt="image-plate" className="imagePlate"/>
+      <img src={imageURL} alt="image-plate" className="imagePlate"/>
       <h3 className="name">{name} &gt;</h3>
       <p className="price">R$ {price}</p>
       
