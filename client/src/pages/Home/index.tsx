@@ -2,24 +2,12 @@ import { Container } from "./style"
 import { Slogan } from "../../components/Slogan"
 import { FoodPlate } from "../../components/FoodPlate"
 import { useSystem } from "../../hooks/system"
-import { API } from "../../services/api";
-import { useQuery } from "@tanstack/react-query";
 import { ImSpinner2 } from "react-icons/im";
+import { useFetchFoodPlates } from "../../hooks/fetchFoodPlates";
 
 export function Home() {
   const { menuActive } = useSystem();
-
-  type FoodPlates = {
-    data: {
-      id: string;
-      name: string;
-      price: string;
-      image: string;
-    }[];
-  }
-
-  const fetchFoodPlates = async() => await API.get('/plates');
-  const { data, isLoading, error } = useQuery<FoodPlates>(['myQueryKey'], fetchFoodPlates);  
+  const { data, isLoading, error } = useFetchFoodPlates("/plates");
 
   return (
     <Container>
