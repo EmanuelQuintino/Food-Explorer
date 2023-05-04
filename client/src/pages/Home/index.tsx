@@ -22,15 +22,17 @@ export function Home() {
           <section className="boxPlates">
             <h2>Refeições</h2>
             <div className="plates">
-              {data?.data.map(plate => {
-                return (
-                  <FoodPlate
-                    key={plate.id}
-                    image={plate.image}
-                    name={plate.name}
-                    price={plate.price}
-                  />
-                )
+              {data?.data
+                .filter(plate => plate.category == "Refeições")
+                .map(plate => {
+                  return (
+                    <FoodPlate
+                      key={plate.id}
+                      image={plate.image}
+                      name={plate.name}
+                      price={plate.price}
+                    />
+                  )
               })}
             </div>
           </section>
@@ -38,46 +40,36 @@ export function Home() {
           <section className="boxPlates">
             <h2>Sobremesas</h2>
             <div className="plates">
-              <FoodPlate
-                image={"food-plate-pictures/peachy-pastrie.png"}
-                name="Salada Ravanello"
-                price="49.97"
-              />
-
-              <FoodPlate
-                image={"food-plate-pictures/peachy-pastrie.png"}
-                name="Salada Ravanello"
-                price="49.97"
-              />
-
-              <FoodPlate
-                image={"food-plate-pictures/peachy-pastrie.png"}
-                name="Salada Ravanello"
-                price="49.97"
-              />
+              {data?.data
+                .filter(plate => plate.category == "Sobremesas")
+                .map(plate => {
+                  return (
+                    <FoodPlate
+                      key={plate.id}
+                      image={plate.image}
+                      name={plate.name}
+                      price={plate.price}
+                    />
+                  )
+              })}
             </div>
           </section>
 
           <section className="boxPlates">
             <h2>Bebidas</h2>
             <div className="plates">
-              <FoodPlate
-                image={"food-plate-pictures/cocktail-de-maca.png"}
-                name="Salada Ravanello"
-                price="49.97"
-              />
-
-              <FoodPlate
-                image={"food-plate-pictures/cocktail-de-maca.png"}
-                name="Salada Ravanello"
-                price="49.97"
-              />
-
-              <FoodPlate
-                image={"food-plate-pictures/cocktail-de-maca.png"}
-                name="Salada Ravanello"
-                price="49.97"
-              />
+              {data?.data
+                .filter(plate => plate.category == "Bebidas")
+                .map(plate => {
+                  return (
+                    <FoodPlate
+                      key={plate.id}
+                      image={plate.image}
+                      name={plate.name}
+                      price={plate.price}
+                    />
+                  )
+              })}
             </div>
           </section>
         </>
