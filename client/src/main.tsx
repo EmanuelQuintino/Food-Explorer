@@ -6,16 +6,19 @@ import { GlobalStyles } from './styles/global'
 import { SystemProvider } from './hooks/system'
 import { Routes } from "./routes"
 import { AuthProvider } from './hooks/auth'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <SystemProvider>
-      <AuthProvider>
-        <ThemeProvider theme={Theme}>
-          <Routes />
-          <GlobalStyles />
-        </ThemeProvider>
-      </AuthProvider>
-    </SystemProvider>
+    <QueryClientProvider client={new QueryClient()}>
+      <SystemProvider>
+        <AuthProvider>
+          <ThemeProvider theme={Theme}>
+            <Routes />
+            <GlobalStyles />
+          </ThemeProvider>
+        </AuthProvider>
+      </SystemProvider>
+    </QueryClientProvider>
   </React.StrictMode>,
 )

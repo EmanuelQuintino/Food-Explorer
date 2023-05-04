@@ -8,10 +8,10 @@ import { MULTER } from "../configs/upload";
 const plateRoutes = Router();
 const upload = multer(MULTER);
 
-plateRoutes.use(authMiddleware, isAdmin);
+plateRoutes.get("/plates", authMiddleware, plateControllers.read);
 
+plateRoutes.use(authMiddleware, isAdmin);
 plateRoutes.post("/plates", plateControllers.create);
-plateRoutes.get("/plates", plateControllers.read);
 plateRoutes.put("/plates/:id", plateControllers.update);
 plateRoutes.delete("/plates/:id", plateControllers.delete);
 plateRoutes.patch("/plates/image/:id", upload.single("image"), plateControllers.patch);
