@@ -12,6 +12,12 @@ export const Container = styled.section`
     color: lightgray;
   }
 
+  @keyframes spinnerRotate {
+    to {
+        transform: rotate(360deg);
+    }
+  }
+
   .plateContainer {
     text-align: center;
   }
@@ -55,30 +61,28 @@ export const Container = styled.section`
     border-radius: .5rem;
   }
 
-  @keyframes spinnerRotate {
-    to {
-        transform: rotate(360deg);
-    }
-  }
-  
-  .boxPlates {
-    margin: 2.4rem 0;
+  .box {
+    width: 100%;
   }
 
-  .boxPlates h2 {
-    font-size: 1.8rem;
-    font-weight: 500;
-    font-family: 'Poppins', sans-serif;
-    margin: 0 0 0 2.4rem;
-  }
-
-  .plates {
+  .boxMinusPlus {
     display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
+    align-items: center;
+    justify-content: center;
+    gap: 1.4rem;
   }
 
-  .plates::-webkit-scrollbar {
-    display: none;
-}
+  .boxMinusPlus button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .box > button {
+   margin-top: 2.0rem;
+   border-radius: .5rem;
+   height: 3.2rem;
+   display: grid;
+   place-content: center;
+  }
 `;
