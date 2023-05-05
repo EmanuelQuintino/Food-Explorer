@@ -1,6 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { API } from "../services/api";
 
+type IngredientsType = {
+  id: string;
+  name: string;
+}
+
 type FoodPlates = {
   data: {
     id: string;
@@ -9,6 +14,7 @@ type FoodPlates = {
     price: string;
     category: string;
     image: string;
+    ingredients: IngredientsType[]
   }[];
 }
 
