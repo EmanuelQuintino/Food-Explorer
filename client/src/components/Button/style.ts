@@ -4,7 +4,6 @@ export const ButtonContainer = styled.button`
   width: 100%;
   height: 4.8rem;
   border-radius: .4rem;
-  padding: 1.2rem 3.2rem;
   background: ${({theme}) => theme.colors.tomato100};
   
   font-family: 'Poppins', sans-serif;
@@ -13,6 +12,11 @@ export const ButtonContainer = styled.button`
   font-size: 1.4rem;
   text-align: center;
   color: ${({theme}) => theme.colors.light100};
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .6rem;
   
   &:hover {
     background: ${({theme}) => theme.colors.tomato200};
@@ -22,5 +26,10 @@ export const ButtonContainer = styled.button`
     opacity: 0.5;
     cursor: auto;
     background: ${({theme}) => theme.colors.tomato100};
+  }
+
+  .icon {
+    width: 1.8rem;
+    height: 1.4rem;
   }
 `;

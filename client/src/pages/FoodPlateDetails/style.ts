@@ -4,6 +4,8 @@ export const Container = styled.section`
   width: 32.0rem;
   margin: 1.6rem auto;
 
+  padding: 0 2.4rem;
+
   .spinner {
     animation: spinnerRotate 1s linear infinite;
     font-size: 7.2rem;
@@ -23,28 +25,26 @@ export const Container = styled.section`
   }
 
   .backPageButton {
-    font-size: 2.0rem;
+    font-size: 1.8rem;
     font-weight: 500;
   }
 
   .imagePlate {
-    width: 22.0rem;
+    width: 21.0rem;
     margin: 1.6rem 2.6rem;
   }
 
   .name {
     font-family: 'Poppins', sans-serif;
-    font-size: 2.4rem;
+    font-size: 2.0rem;
     width: 500;
   }
 
   .description {
+    margin: 2.0rem 0;
     font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16.224.7rem;
+    font-size: 1.4rem;
     line-height: 140%;
-    margin: 2.4rem 0;
   }
 
   .ingredients {
@@ -62,6 +62,7 @@ export const Container = styled.section`
   }
 
   .box {
+    margin-top: 3.6rem;
     width: 100%;
     display: flex;
     align-items: center;
@@ -70,10 +71,8 @@ export const Container = styled.section`
   }
 
   .box > button {
-   margin-top: 2.0rem;
-   border-radius: .5rem;
-   height: 3.2rem;
-   display: grid;
-   place-content: center;
+    border-radius: .5rem;
+    height: 3.8rem;
+    font-size: 1.0rem;
   }
 `;

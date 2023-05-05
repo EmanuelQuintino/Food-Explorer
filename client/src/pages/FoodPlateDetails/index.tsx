@@ -7,6 +7,7 @@ import { ImSpinner2 } from "react-icons/im";
 import { API } from "../../services/api";
 import { Button } from "../../components/Button";
 import { CountPlateDetails } from "../../components/CountPlateDetails";
+import orderIcon from "../../assets/order.svg";
 
 export function FoodPlateDetails() {
   const { menuActive } = useSystem();
@@ -40,7 +41,7 @@ export function FoodPlateDetails() {
 
           <section className="box">
             <CountPlateDetails/> 
-            <Button name="Incluir"/>
+            <Button icon={orderIcon} name={`pedir - R$ ${plateData.price}`}/>
           </section>
         </>
       }
