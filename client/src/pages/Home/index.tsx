@@ -7,7 +7,7 @@ import { useFetchFoodPlates } from "../../hooks/fetchFoodPlates";
 
 export function Home() {
   const { menuActive } = useSystem();
-  const { data, isLoading, error } = useFetchFoodPlates("/plates");
+  const { data, isLoading, error } = useFetchFoodPlates();
 
   return (
     <Container>
@@ -17,7 +17,6 @@ export function Home() {
           
           {isLoading && <p><ImSpinner2 className="spinner"/></p>}
           {error && <p>Algo deu errado!</p>}
-          {console.log(data)}
 
           <section className="boxPlates">
             <h2>Refeições</h2>
@@ -28,9 +27,7 @@ export function Home() {
                   return (
                     <FoodPlate
                       key={plate.id}
-                      image={plate.image}
-                      name={plate.name}
-                      price={plate.price}
+                      plate={plate}
                     />
                   )
               })}
@@ -46,9 +43,7 @@ export function Home() {
                   return (
                     <FoodPlate
                       key={plate.id}
-                      image={plate.image}
-                      name={plate.name}
-                      price={plate.price}
+                      plate={plate}
                     />
                   )
               })}
@@ -64,9 +59,7 @@ export function Home() {
                   return (
                     <FoodPlate
                       key={plate.id}
-                      image={plate.image}
-                      name={plate.name}
-                      price={plate.price}
+                      plate={plate}
                     />
                   )
               })}

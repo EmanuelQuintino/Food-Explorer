@@ -6,22 +6,28 @@ import plus from "../../assets/plus.svg"
 import { Button } from "../Button";
 import { useState } from "react";
 import { API } from "../../services/api";
+import { useNavigate } from "react-router-dom";
 
 type FoodPlateType = {
-  name: string;
-  price: string;
-  image: string;
+  plate: {
+    id: string;
+    name: string;
+    price: string;
+    image: string;
+  }
 };
 
-export function FoodPlate({ name, price, image }: FoodPlateType) {
+export function FoodPlate({ plate }: FoodPlateType) {
   const [countPlate, setCountPlate] = useState(1);
   const [favoriteMatch, setFavoriteMatch] = useState(false);
+  const navigate = useNavigate();
 
   const toFavorite = () => setFavoriteMatch(favoriteMatch ? false : true);
   const platePlus = () => setCountPlate(previousState => Math.min(previousState + 1, 99));
   const plateMinus = () => setCountPlate(previousState => Math.max(previousState - 1, 1));
+  const plateDetails = () => navigate(`/details/${plate.id}`);
   
-  const imageURL = `${API.defaults.baseURL}/images/${image}`;
+  const imageURL = `${API.defaults.baseURL}/images/${plate.image}`;
   
   return (
     <Container>
@@ -33,8 +39,8 @@ export function FoodPlate({ name, price, image }: FoodPlateType) {
       </button>
       
       <img src={imageURL} alt="image-plate" className="imagePlate"/>
-      <h3 className="name">{name} &gt;</h3>
-      <p className="price">R$ {price}</p>
+      <h3 className="name" onClick={plateDetails}>{plate.name} &gt;</h3>
+      <p className="price">R$ {plate.price}</p>
       
       <div className="box">
         <div className="boxMinusPlus">  

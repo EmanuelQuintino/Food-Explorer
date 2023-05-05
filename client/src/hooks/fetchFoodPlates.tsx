@@ -12,10 +12,10 @@ type FoodPlates = {
   }[];
 }
 
-export const useFetchFoodPlates = (endPoint: string) => {
+export const useFetchFoodPlates = () => {
   const { data, isLoading, error } = useQuery({
     queryKey: ['foodPlates'], 
-    queryFn: async () => await API.get(endPoint) as FoodPlates
+    queryFn: async () => await API.get("/plates") as FoodPlates
   });
 
   return { data, isLoading, error }
