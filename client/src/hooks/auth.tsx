@@ -51,7 +51,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
 
   function handleLogout() {
       localStorage.removeItem("@FoodExplorer:token");
-      setUserAuth({});
+      setUserAuth({});  
   };
 
   return (
