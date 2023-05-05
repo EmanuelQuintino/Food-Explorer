@@ -16,7 +16,7 @@ export function Home() {
           <Slogan />
           
           {isLoading && <p><ImSpinner2 className="spinner"/></p>}
-          {error && <p>Algo deu errado!</p>}
+          {error && <p className="queryError">Algo deu errado!</p>}
 
           <section className="boxPlates">
             <h2>Refeições</h2>

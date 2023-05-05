@@ -6,20 +6,6 @@ export const Container = styled.section`
 
   padding: 0 2.4rem;
 
-  .spinner {
-    animation: spinnerRotate 1s linear infinite;
-    font-size: 7.2rem;
-    display: block;
-    margin: 25% auto 100%;
-    color: lightgray;
-  }
-
-  @keyframes spinnerRotate {
-    to {
-        transform: rotate(360deg);
-    }
-  }
-
   .plateContainer {
     text-align: center;
   }

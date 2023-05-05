@@ -22,10 +22,10 @@ export function FoodPlateDetails() {
     <Container>
       {!menuActive && plateData &&
         <>
-          {isLoading && <p><ImSpinner2 className="spinner"/></p>}
-          {error && <p>Algo deu errado!</p>}
-          
           <button className="backPageButton" onClick={() => navigate(-1)}>&lt; Voltar</button>      
+          
+          {isLoading && <p><ImSpinner2 className="spinner"/></p>}
+          {error && <p className="queryError">Algo deu errado!</p>}
           
           <section className="plateContainer">
             <img src={imageURL} alt="image-plate" className="imagePlate"/>
