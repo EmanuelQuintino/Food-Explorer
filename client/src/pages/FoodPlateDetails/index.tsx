@@ -5,9 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { useFetchFoodPlates } from "../../hooks/fetchFoodPlates";
 import { ImSpinner2 } from "react-icons/im";
 import { API } from "../../services/api";
-import minus from "../../assets/minus.svg"
-import plus from "../../assets/plus.svg"
 import { Button } from "../../components/Button";
+import { CountPlateDetails } from "../../components/CountPlateDetails";
 
 export function FoodPlateDetails() {
   const { menuActive } = useSystem();
@@ -40,17 +39,7 @@ export function FoodPlateDetails() {
           </section>
 
           <section className="box">
-            <div className="boxMinusPlus">  
-              <button onClick={plateMinus}>
-                <img src={minus} alt="minus"/>
-              </button>
-              
-              <p>{String(countPlate).padStart(2, "0")}</p>
-              
-              <button onClick={platePlus}>
-                <img src={plus} alt="plus"/>
-              </button>
-            </div> 
+            <CountPlateDetails/> 
             <Button name="Incluir"/>
           </section>
         </>

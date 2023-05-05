@@ -63,19 +63,10 @@ export const Container = styled.section`
 
   .box {
     width: 100%;
-  }
-
-  .boxMinusPlus {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 1.4rem;
-  }
-
-  .boxMinusPlus button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    gap: 1.6rem;
   }
 
   .box > button {
