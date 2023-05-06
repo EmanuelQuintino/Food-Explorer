@@ -68,7 +68,7 @@ export const Container = styled.section`
     gap: 1.6rem;
   }
 
-  .box img {
+  .boxMinusPlus img {
     width: 2.0rem;
     height: 2.0rem;
   }

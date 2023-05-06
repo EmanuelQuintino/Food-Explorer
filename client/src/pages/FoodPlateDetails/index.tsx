@@ -6,9 +6,8 @@ import { useFetchFoodPlates } from "../../hooks/fetchFoodPlates";
 import { ImSpinner2 } from "react-icons/im";
 import { API } from "../../services/api";
 import { Button } from "../../components/Button";
-import { CountPlateDetails } from "../../components/CountPlateDetails";
-import orderIcon from "../../assets/order.svg";
 import { CountPlate } from "../../components/CountPlate";
+import orderIcon from "../../assets/order.svg";
 
 export function FoodPlateDetails() {
   const { menuActive } = useSystem();
