@@ -8,6 +8,7 @@ import { API } from "../../services/api";
 import { Button } from "../../components/Button";
 import { CountPlateDetails } from "../../components/CountPlateDetails";
 import orderIcon from "../../assets/order.svg";
+import { CountPlate } from "../../components/CountPlate";
 
 export function FoodPlateDetails() {
   const { menuActive } = useSystem();
@@ -40,7 +41,7 @@ export function FoodPlateDetails() {
           </section>
 
           <section className="box">
-            <CountPlateDetails/> 
+            <CountPlate/> 
             <Button icon={orderIcon} name={`pedir - R$ ${plateData.price}`}/>
           </section>
         </>

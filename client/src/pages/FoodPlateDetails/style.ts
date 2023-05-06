@@ -61,4 +61,15 @@ export const Container = styled.section`
     height: 3.8rem;
     font-size: 1.0rem;
   }
+
+  .boxMinusPlus {
+    font-size: 2.2rem;
+    font-weight: 500;
+    gap: 1.6rem;
+  }
+
+  .box img {
+    width: 2.0rem;
+    height: 2.0rem;
+  }
 `;
