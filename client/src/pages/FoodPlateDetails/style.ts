@@ -59,7 +59,7 @@ export const Container = styled.section`
   .box > button {
     border-radius: .5rem;
     height: 3.8rem;
-    font-size: 1.0rem;
+    font-size: 1.2rem;
   }
 
   .boxMinusPlus {
