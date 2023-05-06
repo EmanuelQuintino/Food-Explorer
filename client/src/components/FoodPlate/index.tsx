@@ -35,7 +35,11 @@ export function FoodPlate({ plate }: FoodPlateType) {
       </button>
       
       <img src={imageURL} alt="image-plate" className="imagePlate"/>
-      <h3 className="name" onClick={plateDetails}>{plate.name} &gt;</h3>
+      
+      <button className="nameButton">
+        <h3 onClick={plateDetails}>{plate.name} &gt;</h3>
+      </button>
+      
       <p className="price">R$ {plate.price}</p>
       
       <div className="box">

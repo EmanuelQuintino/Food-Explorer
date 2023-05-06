@@ -26,7 +26,7 @@ export const Container = styled.div`
     width: 9.2rem;
   }
 
-  .name {
+  .nameButton h3 {
     font-family: 'Poppins', sans-serif;
     font-size: 1.4rem;
     width: 21.0rem;
