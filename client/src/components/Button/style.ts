@@ -16,7 +16,7 @@ export const ButtonContainer = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: .6rem;
+  gap: .8rem;
   
   &:hover {
     background: ${({theme}) => theme.colors.tomato200};
