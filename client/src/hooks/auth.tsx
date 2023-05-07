@@ -31,6 +31,11 @@ export function AuthProvider({ children }: PropsWithChildren) {
     .catch((error) => alert(error.response.data.error));
   };
 
+  function handleLogout() {
+    localStorage.removeItem("@FoodExplorer:token");
+    setUserAuth({});  
+  };
+
   useEffect(() => {
     try {
       const token = localStorage.getItem("@FoodExplorer:token");    
@@ -48,11 +53,6 @@ export function AuthProvider({ children }: PropsWithChildren) {
       return handleLogout();
     }
   }, []);
-
-  function handleLogout() {
-      localStorage.removeItem("@FoodExplorer:token");
-      setUserAuth({});  
-  };
 
   return (
     <AuthContext.Provider value={{handleLogin, userAuth, handleLogout}}>
