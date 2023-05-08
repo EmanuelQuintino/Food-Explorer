@@ -5,6 +5,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { auth } from "../configs/auth";
 import { newAppError } from "../utils/newAppError";
+import { excludeFields } from "../utils/excludeFields";
 
 export const authControllers = {
   login: async (req: Request, res: Response, next: NextFunction) => {
@@ -31,7 +32,7 @@ export const authControllers = {
         {expiresIn: String(auth.expiresIn)}
       );
       
-      return res.status(200).json({token, user});
+      return res.status(200).json({token, user: excludeFields(user, ["password"])});
     } catch (error: any) {
       if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
       return next(error);
