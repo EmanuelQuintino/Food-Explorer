@@ -7,9 +7,16 @@ export type HandleLoginTypes = {
   password: string;
 }
 
+type UserAuth = {
+  id?: string;
+  name?: string;
+  email?: string;
+  is_admin?: string;
+}
+
 type AuthContextTypes = {
   handleLogin: (params: HandleLoginTypes) => void;
-  userAuth: {id?: string};
+  userAuth: UserAuth;
   handleLogout: () => void;
 }
 

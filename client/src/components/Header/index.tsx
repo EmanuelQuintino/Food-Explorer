@@ -3,14 +3,14 @@ import menuOpen from "../../assets/menuOpen.svg"
 import menuClose from "../../assets/menuClose.svg"
 import logoExplorer from "../../assets/logoExplorer.svg"
 import orderIcon from "../../assets/order.svg"
-import { useState } from "react";
 import { InputSearch } from "../InputSearch";
 import { Menu } from "../Menu";
 import { useSystem } from "../../hooks/system";
+import { useAuth } from "../../hooks/auth";
 
 export function Header() {
   const { menuActive, toggleMenu } = useSystem();
-  const [isAdmin, setIsAdmin] = useState(false);
+  const { userAuth }  = useAuth();
 
   return (
     <HeaderContainer menuActive={menuActive}>
@@ -28,14 +28,14 @@ export function Header() {
             <div className="logo">
               <img src={logoExplorer} alt="logo-explorer" />
               <h1>food explorer</h1>
-              {isAdmin &&
+              {userAuth.is_admin &&
                 <p className="paragraphAdmin">admin</p>
               }
             </div>
 
             {/* <InputSearch /> */}
 
-            {!isAdmin &&
+            {!userAuth.is_admin &&
               <div className="orderContainer">
                 <button>
                   <img src={orderIcon} className="orderIcon" alt="order-icon" />

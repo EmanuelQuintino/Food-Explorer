@@ -5,7 +5,6 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { auth } from "../configs/auth";
 import { newAppError } from "../utils/newAppError";
-import { excludeFields } from "../utils/excludeFields";
 
 export const authControllers = {
   login: async (req: Request, res: Response, next: NextFunction) => {
@@ -26,13 +25,15 @@ export const authControllers = {
       const passwordMatch = await bcrypt.compare(password, user.password);
       if (!passwordMatch) throw newAppError('Email ou Senha inválida', 401);
       
-      const token = jwt.sign(
-        {id: String(user.id)},
+      const token = jwt.sign({
+          id: String(user.id), 
+          isAdmin: user.is_admin
+        },
         String(auth.secret),
         {expiresIn: String(auth.expiresIn)}
       );
       
-      return res.status(200).json({token, user: excludeFields(user, ["password"])});
+      return res.status(200).json({token});
     } catch (error: any) {
       if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
       return next(error);
