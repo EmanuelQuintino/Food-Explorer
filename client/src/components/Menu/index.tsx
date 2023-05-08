@@ -8,7 +8,12 @@ export function Menu() {
   const { handleLogout } = useAuth();
   const { toggleMenu } = useSystem();
   const navigate = useNavigate();
+  const { userAuth } = useAuth();
   
+  function addPlate() {
+    alert("Adicionar novo prato");
+  }
+
   function logout() {
     const isConfirmLogout = confirm('Deseja sair da aplicação?');
     if (isConfirmLogout) {
@@ -21,7 +26,10 @@ export function Menu() {
   return (
     <Container>
       <InputSearch/>
-      <button onClick={logout}>Sair</button>
+      <div className="boxButtons">
+        {userAuth.isAdmin && <button onClick={addPlate}>Novo Prato</button>}
+        <button onClick={logout}>Sair</button>
+      </div>
     </Container>
   )
 }
