@@ -9,8 +9,6 @@ export type HandleLoginTypes = {
 
 type UserAuth = {
   id?: string;
-  name?: string;
-  email?: string;
   is_admin?: string;
 }
 
@@ -31,9 +29,10 @@ export function AuthProvider({ children }: PropsWithChildren) {
     .then((res) => {
       if (res.data.token) {
         API.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;
-        localStorage.setItem("@FoodExplorer:token", res.data.token);        
-        localStorage.setItem("@FoodExplorer:user", JSON.stringify(res.data.user));        
-        setUserAuth(res.data.user);
+        localStorage.setItem("@FoodExplorer:token", `Bearer ${res.data.token}`);        
+        
+        const userDecodedToken = jwt_decode(res.data.token) as string;
+        setUserAuth(userDecodedToken);
       }    
     })
     .catch((error) => alert(error.response.data.error));
@@ -41,23 +40,21 @@ export function AuthProvider({ children }: PropsWithChildren) {
 
   function handleLogout() {
     localStorage.removeItem("@FoodExplorer:token");
-    localStorage.removeItem("@FoodExplorer:user");
     setUserAuth({});  
   };
 
   useEffect(() => {
     try {
       const token = localStorage.getItem("@FoodExplorer:token");    
-      const user = localStorage.getItem("@FoodExplorer:user");    
       
       if (token) {  
-        const decodedToken = jwt_decode(token) as { exp: number };      
-        const expirationTime = decodedToken.exp * 1000;        
+        const userDecodedToken = jwt_decode(token) as { exp: number };      
+        const expirationTime = userDecodedToken.exp * 1000;        
 
         if (Date.now() > expirationTime) return handleLogout();
       
-        API.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-        setUserAuth(JSON.parse(user as string));                    
+        API.defaults.headers.common['Authorization'] = token;
+        setUserAuth(userDecodedToken);                
       }
     } catch (error) {
       console.error(error);
