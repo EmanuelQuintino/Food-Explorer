@@ -4,10 +4,10 @@ import { AuthRoutes } from "./auth";
 import { useAuth } from "../hooks/auth";
 
 export function Routes(){ 
-  const { userAuth } = useAuth();
+  const { userAuth } = useAuth();  
   return (
     <BrowserRouter>
-      {userAuth.token ? <AppRoutes/> : <AuthRoutes/>}
+      {userAuth.id ? <AppRoutes/> : <AuthRoutes/>}
     </BrowserRouter>
   )
 };

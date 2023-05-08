@@ -7,13 +7,13 @@ export type HandleLoginTypes = {
   password: string;
 }
 
-type AuthContextType = {
+type AuthContextTypes = {
   handleLogin: (params: HandleLoginTypes) => void;
-  userAuth: {token?: string};
+  userAuth: {id?: string};
   handleLogout: () => void;
 }
 
-const AuthContext = createContext<AuthContextType>({} as AuthContextType);
+const AuthContext = createContext<AuthContextTypes>({} as AuthContextTypes);
 
 export function AuthProvider({ children }: PropsWithChildren) {
   const [ userAuth, setUserAuth ] = useState({});
@@ -24,8 +24,9 @@ export function AuthProvider({ children }: PropsWithChildren) {
     .then((res) => {
       if (res.data.token) {
         API.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;
-        localStorage.setItem("@FoodExplorer:token", res.data.token);
-        setUserAuth(res.data);
+        localStorage.setItem("@FoodExplorer:token", res.data.token);        
+        localStorage.setItem("@FoodExplorer:user", JSON.stringify(res.data.user));        
+        setUserAuth(res.data.user);
       }    
     })
     .catch((error) => alert(error.response.data.error));
@@ -39,14 +40,16 @@ export function AuthProvider({ children }: PropsWithChildren) {
   useEffect(() => {
     try {
       const token = localStorage.getItem("@FoodExplorer:token");    
+      const user = localStorage.getItem("@FoodExplorer:user");    
+      
       if (token) {  
         const decodedToken = jwt_decode(token) as { exp: number };      
-        const expirationTime = decodedToken.exp * 1000;
+        const expirationTime = decodedToken.exp * 1000;        
 
         if (Date.now() > expirationTime) return handleLogout();
       
         API.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-        setUserAuth({token});                    
+        setUserAuth(JSON.parse(user as string));                    
       }
     } catch (error) {
       console.error(error);
