@@ -8,12 +8,18 @@ import { API } from "../../services/api";
 import { Button } from "../../components/Button";
 import { CountPlate } from "../../components/CountPlate";
 import orderIcon from "../../assets/order.svg";
+import { useAuth } from "../../hooks/auth";
 
 export function FoodPlateDetails() {
   const { menuActive } = useSystem();
   const { data, isLoading, error } = useFetchFoodPlates();
+  const { userAuth } = useAuth();
   const params = useParams();
   const navigate = useNavigate();
+
+  function editPlate(id: string) {
+    alert(`Editar prato ${id}`);
+  }
 
   const plateData = data?.data.find(plate => plate.id == params.id);
   const imageURL = `${API.defaults.baseURL}/images/${plateData?.image}`;
@@ -39,10 +45,16 @@ export function FoodPlateDetails() {
             </div>
           </section>
 
-          <section className="box">
-            <CountPlate/> 
-            <Button icon={orderIcon} name={`pedir - R$ ${plateData.price}`}/>
-          </section>
+          {userAuth.isAdmin?
+            <section className="box">
+              <Button name={`Editar prato`} onClick={() => editPlate(params.id as string)}/>
+            </section> 
+            :
+            <section className="box">
+              <CountPlate/> 
+              <Button icon={orderIcon} name={`pedir - R$ ${plateData.price}`}/>
+            </section>
+          }
         </>
       }
     </Container>
