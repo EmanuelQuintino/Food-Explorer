@@ -15,6 +15,13 @@ export const Container = styled.div`
   position: relative;
   scroll-snap-align: start;
 
+  .editIcon {
+    position: absolute;
+    top: 2.0rem;
+    right: 2.0rem;
+    width: 2.4rem;
+  }
+
   .favoriteIcon {
     position: absolute;
     top: 2.0rem;
