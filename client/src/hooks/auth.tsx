@@ -9,7 +9,7 @@ export type HandleLoginTypes = {
 
 type UserAuth = {
   id?: string;
-  is_admin?: string;
+  isAdmin?: string;
 }
 
 type AuthContextTypes = {

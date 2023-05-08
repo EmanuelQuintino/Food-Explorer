@@ -10,7 +10,7 @@ import { useAuth } from "../../hooks/auth";
 
 export function Header() {
   const { menuActive, toggleMenu } = useSystem();
-  const { userAuth }  = useAuth();
+  const { userAuth }  = useAuth();  
 
   return (
     <HeaderContainer menuActive={menuActive}>
@@ -28,14 +28,14 @@ export function Header() {
             <div className="logo">
               <img src={logoExplorer} alt="logo-explorer" />
               <h1>food explorer</h1>
-              {userAuth.is_admin &&
+              {userAuth.isAdmin &&
                 <p className="paragraphAdmin">admin</p>
               }
             </div>
 
             {/* <InputSearch /> */}
 
-            {!userAuth.is_admin &&
+            {!userAuth.isAdmin &&
               <div className="orderContainer">
                 <button>
                   <img src={orderIcon} className="orderIcon" alt="order-icon" />
