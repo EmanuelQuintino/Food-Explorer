@@ -7,10 +7,10 @@ export const Container = styled.section`
   
   form {
     margin-top: 4.2rem;
-    width: 32.0rem;
-    padding: 0 1.0rem;
+    width: 30.0rem;
     display: grid;
     gap: 3.2rem;
+    position: relative;
   }
   
   label {

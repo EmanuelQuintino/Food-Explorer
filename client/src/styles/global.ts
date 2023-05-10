@@ -56,6 +56,7 @@ export const GlobalStyles = createGlobalStyle`
     position: absolute;
     font-size: 1.0rem;
     margin-top: .4rem;
+    right: 0;
   }
 
   .spinner {
