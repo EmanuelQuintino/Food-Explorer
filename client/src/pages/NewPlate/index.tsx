@@ -5,10 +5,12 @@ import { Input } from "../../components/Input";
 import { useForm } from "react-hook-form";
 import { ButtonSave } from "../../components/ButtonSave";
 import { ButtonDelete } from "../../components/ButtonDelete";
+import { Select } from "../../components/Select";
 
 type PlateDataTypes = {
   name: string;
   price: string;
+  category: string;
 }
 
 export function NewPlate() {
@@ -17,8 +19,8 @@ export function NewPlate() {
   
   const { register, handleSubmit, formState: { errors } } = useForm<PlateDataTypes>();
 
-  const createPlate = ({ name, price }: PlateDataTypes) => {
-    console.log({name, price});
+  const createPlate = ({ name, category, price }: PlateDataTypes) => {
+    console.log({name, category, price});
   }
 
   return (
@@ -39,6 +41,18 @@ export function NewPlate() {
               register={register("name", { 
                 required: "Campo obrigatório",
                 pattern: {value: /^[^0-9]+$/, message: "Somente texto é permitido"},
+                maxLength: {value: 255, message: "Número máximo de caracteres é 255"}
+              })}
+            />
+
+            <Select 
+              id="category" 
+              label="Categoria"
+              options={["Refeições", "Sobremesas", "Bebidas"]}
+              error={errors.category?.message}
+              register={register("category", { 
+                required: "Campo obrigatório",
+                pattern: {value: /^(Refeições|Sobremesas|Bebidas)$/, message: "Somente uma das opções é permitido"},
                 maxLength: {value: 255, message: "Número máximo de caracteres é 255"}
               })}
             />
