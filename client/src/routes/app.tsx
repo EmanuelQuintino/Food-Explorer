@@ -5,12 +5,13 @@ import { FoodPlateDetails } from "../pages/FoodPlateDetails";
 import { NewPlate } from "../pages/NewPlate";
 import { useAuth } from "../hooks/auth";
 import { EditPlate } from "../pages/EditPlate";
+import { PageError } from "../pages/PageError";
 
 export function AppRoutes() {
   const { userAuth } = useAuth();
   return (
     <Routes>
-      <Route path="/" element={<App/>}>
+      <Route path="/" element={<App/>} errorElement={<PageError/>}>
         <Route path='/' element={<Home/>} />
         <Route path='/details/:id' element={<FoodPlateDetails/>} />
 
