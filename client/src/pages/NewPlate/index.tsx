@@ -6,11 +6,13 @@ import { useForm } from "react-hook-form";
 import { ButtonSave } from "../../components/ButtonSave";
 import { ButtonDelete } from "../../components/ButtonDelete";
 import { Select } from "../../components/Select";
+import { Textarea } from "../../components/Textarea";
 
 type PlateDataTypes = {
   name: string;
   price: string;
   category: string;
+  description: string;
 }
 
 export function NewPlate() {
@@ -19,8 +21,8 @@ export function NewPlate() {
   
   const { register, handleSubmit, formState: { errors } } = useForm<PlateDataTypes>();
 
-  const createPlate = ({ name, category, price }: PlateDataTypes) => {
-    console.log({name, category, price});
+  const createPlate = ({ name, category, price, description }: PlateDataTypes) => {
+    console.log({name, category, price, description});
   }
 
   return (
@@ -67,6 +69,17 @@ export function NewPlate() {
                 required: "Campo obrigatório",
                 pattern: {value: /^[0-9]+([,][0-9]+)?$/, message: "Insira um valor válido. Ex: 10,25"},
                 maxLength: {value: 255, message: "Número máximo de caracteres é 255"}
+              })}
+            />
+
+            <Textarea 
+              id="description"
+              label="Descrição"
+              placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
+              error={errors.description?.message}
+              register={register("description", { 
+                required: "Campo obrigatório",
+                maxLength: {value: 255, message: "Número máximo de caracteres é 255"}  
               })}
             />
           </form>
