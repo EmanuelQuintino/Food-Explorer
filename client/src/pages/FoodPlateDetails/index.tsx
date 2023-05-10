@@ -17,9 +17,7 @@ export function FoodPlateDetails() {
   const params = useParams();
   const navigate = useNavigate();
 
-  function editPlate(id: string) {
-    alert(`Editar prato ${id}`);
-  }
+  const pageUpdatePlate = () => navigate(`/editplate/${params.id}`);
 
   const plateData = data?.data.find(plate => plate.id == params.id);
   const imageURL = `${API.defaults.baseURL}/images/${plateData?.image}`;
@@ -47,7 +45,7 @@ export function FoodPlateDetails() {
 
           {userAuth.isAdmin?
             <section className="box">
-              <Button name={`Editar prato`} onClick={() => editPlate(params.id as string)}/>
+              <Button name={"Editar prato"} onClick={pageUpdatePlate}/>
             </section> 
             :
             <section className="box">

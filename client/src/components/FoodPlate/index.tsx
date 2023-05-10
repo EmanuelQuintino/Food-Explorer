@@ -25,17 +25,14 @@ export function FoodPlate({ plate }: FoodPlateType) {
 
   const toFavorite = () => setFavoriteMatch(favoriteMatch ? false : true);
   const plateDetails = () => navigate(`/details/${plate.id}`);
-
-  function editPlate(id: string) {
-    alert(`editar prato ${id}`);
-  }
+  const pageUpdatePlate = () => navigate(`/editplate/${plate.id}`);
   
   const imageURL = `${API.defaults.baseURL}/images/${plate.image}`;
   
   return (
     <Container>
       {userAuth.isAdmin?
-        <button onClick={() => editPlate(plate.id)}>
+        <button onClick={pageUpdatePlate}>
           <img src={editIcon} alt="edit-icon" className="editIcon" />
         </button>:
         <button onClick={toFavorite}>

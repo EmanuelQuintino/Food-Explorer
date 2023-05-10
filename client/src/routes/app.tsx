@@ -2,8 +2,9 @@ import { Routes, Route } from "react-router-dom";
 import { App } from "../pages/App";
 import { Home } from "../pages/Home"
 import { FoodPlateDetails } from "../pages/FoodPlateDetails";
-import { FormPlate } from "../pages/FormPlate";
+import { NewPlate } from "../pages/NewPlate";
 import { useAuth } from "../hooks/auth";
+import { EditPlate } from "../pages/EditPlate";
 
 export function AppRoutes() {
   const { userAuth } = useAuth();
@@ -15,8 +16,8 @@ export function AppRoutes() {
 
         {userAuth.isAdmin && 
           <>
-            <Route path='/newplate' element={<FormPlate/>}/>
-            <Route path='/updateplate/:id' element={<FormPlate/>}/>
+            <Route path='/newplate' element={<NewPlate/>}/>
+            <Route path='/editplate/:id' element={<EditPlate/>}/>
           </>
         }
       </Route>
