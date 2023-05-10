@@ -16,7 +16,11 @@ export const Container = styled.section`
     margin: 2.4rem 0;
   }
 
-  form button {
+  .formButtons {
     margin-top: 2.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2.4rem;
   }
 `;

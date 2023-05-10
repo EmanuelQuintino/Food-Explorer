@@ -4,11 +4,10 @@ export type ButtonType = {
   icon?: string;
   name: string;
   disabled?: boolean;
-  form: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-export function ButtonSave({ icon, name, disabled = false, ...rest }: ButtonType) {
+export function ButtonDelete({ icon, name, disabled = false, ...rest }: ButtonType) {
   return (
     <ButtonContainer 
       disabled={disabled} 
