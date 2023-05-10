@@ -16,7 +16,7 @@ export const Container = styled.section`
     margin: 2.4rem 0;
   }
 
-  .sendButton {
+  form button {
     margin-top: 2.4rem;
   }
 `;

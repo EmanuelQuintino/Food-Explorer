@@ -4,7 +4,7 @@ export const ButtonContainer = styled.button`
   width: 100%;
   height: 4.8rem;
   border-radius: .4rem;
-  background: ${({theme}) => theme.colors.tomato100};
+  background: ${({theme}) => theme.colors.tomato400};
   
   font-family: 'Poppins', sans-serif;
   font-style: normal;

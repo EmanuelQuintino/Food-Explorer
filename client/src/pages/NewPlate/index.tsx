@@ -3,6 +3,7 @@ import { useSystem } from "../../hooks/system"
 import { useNavigate } from "react-router-dom";
 import { Input } from "../../components/Input";
 import { useForm } from "react-hook-form";
+import { ButtonSave } from "../../components/ButtonSave";
 
 type PlateDataTypes = {
   name: string;
@@ -15,7 +16,7 @@ export function NewPlate() {
   const { register, handleSubmit, formState: { errors } } = useForm<PlateDataTypes>();
 
   const createPlate = ({ name }: PlateDataTypes) => {
-    console.log(name);
+    console.log({name});
   }
 
   return (
@@ -38,7 +39,7 @@ export function NewPlate() {
               })}
             />
 
-            <button className="sendButton">Salvar alterações</button>
+            <ButtonSave name="Salvar alterações"/>
           </form>
         </>
       }
