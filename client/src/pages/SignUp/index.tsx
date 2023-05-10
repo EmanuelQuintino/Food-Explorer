@@ -1,21 +1,21 @@
 import { Container } from "./style"
 import { Logo } from "../../components/Logo"
-import { useForm, SubmitHandler } from "react-hook-form"
+import { useForm } from "react-hook-form"
 import { Button } from "../../components/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { API } from "../../services/api";
 
-type FormDataType = {
+type UserDataType = {
   name: string
   email: string;
   password: string;
 }
 
 export function SignUp() {
-  const { register, handleSubmit, formState: { errors } } = useForm<FormDataType>();
+  const { register, handleSubmit, formState: { errors } } = useForm<UserDataType>();
   const navigate = useNavigate();
 
-  const createUser: SubmitHandler<FormDataType> = ({ name, email, password }) => {
+  const createUser = ({ name, email, password }: UserDataType) => {
     if (!name || !email || !password) return alert("Por favor preencha todos os campos");
     
     API.post("/users", {name, email, password})

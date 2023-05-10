@@ -4,14 +4,18 @@ import { useNavigate } from "react-router-dom";
 import { Input } from "../../components/Input";
 import { useForm } from "react-hook-form";
 
+type PlateDataTypes = {
+  name: string;
+}
+
 export function NewPlate() {
   const { menuActive } = useSystem();
   const navigate = useNavigate();
+  
+  const { register, handleSubmit, formState: { errors } } = useForm<PlateDataTypes>();
 
-  const { register, handleSubmit, formState: { errors } } = useForm();
-
-  const onSubmit = (data: any) => {
-    console.log(data);
+  const createPlate = ({ name }: PlateDataTypes) => {
+    console.log(name);
   }
 
   return (
@@ -20,7 +24,7 @@ export function NewPlate() {
         <>
           <button className="backPageButton" onClick={() => navigate(-1)}>&lt; Voltar</button>
           <h2>Novo prato</h2>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(createPlate)}>
             <Input
               id="name"
               label="Nome"
