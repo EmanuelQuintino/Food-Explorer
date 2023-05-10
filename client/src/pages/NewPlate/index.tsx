@@ -8,6 +8,7 @@ import { ButtonDelete } from "../../components/ButtonDelete";
 
 type PlateDataTypes = {
   name: string;
+  price: string;
 }
 
 export function NewPlate() {
@@ -16,8 +17,8 @@ export function NewPlate() {
   
   const { register, handleSubmit, formState: { errors } } = useForm<PlateDataTypes>();
 
-  const createPlate = ({ name }: PlateDataTypes) => {
-    console.log({name});
+  const createPlate = ({ name, price }: PlateDataTypes) => {
+    console.log({name, price});
   }
 
   return (
@@ -25,7 +26,9 @@ export function NewPlate() {
       {!menuActive &&
         <>
           <button className="backPageButton" onClick={() => navigate(-1)}>&lt; Voltar</button>
+          
           <h2>Novo prato</h2>
+          
           <form onSubmit={handleSubmit(createPlate)} id="formCreatePlate">
             <Input
               id="name"
@@ -39,7 +42,21 @@ export function NewPlate() {
                 maxLength: {value: 255, message: "Número máximo de caracteres é 255"}
               })}
             />
+
+            <Input
+              id="price"
+              label="Preço"
+              type="text"
+              placeholder="R$ 00,00"
+              error={errors.price?.message}
+              register={register("price", { 
+                required: "Campo obrigatório",
+                pattern: {value: /^[0-9]+([,][0-9]+)?$/, message: "Insira um valor válido"},
+                maxLength: {value: 255, message: "Número máximo de caracteres é 255"}
+              })}
+            />
           </form>
+          
           <div className="formButtons">
             <ButtonDelete name="Excluir prato"/>
             <ButtonSave name="Salvar alterações" form="formCreatePlate"/>
