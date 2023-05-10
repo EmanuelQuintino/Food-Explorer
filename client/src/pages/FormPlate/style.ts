@@ -6,13 +6,13 @@ export const Container = styled.section`
 
   padding: 0 2.4rem;
 
+  .plateContainer {
+    text-align: center;
+  }
+
   .backPageButton {
     font-size: 1.8rem;
     font-weight: 500;
-  }
-  
-  .plateContainer {
-    text-align: center;
   }
 
   .imagePlate {

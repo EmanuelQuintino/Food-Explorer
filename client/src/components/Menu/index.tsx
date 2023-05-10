@@ -11,7 +11,8 @@ export function Menu() {
   const { userAuth } = useAuth();
   
   function addPlate() {
-    alert("Adicionar novo prato");
+    navigate('/newplate');
+    toggleMenu();
   }
 
   function logout() {
