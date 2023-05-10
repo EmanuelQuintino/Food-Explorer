@@ -2,9 +2,8 @@ import styled from "styled-components"
 
 export const Container = styled.section`
   label {
-    margin-top: 13.2rem;
     color: ${({ theme }) => theme.colors.light400};
-    line-height: 3.2rem;
+    line-height: 5.6rem;
   }
   
   input {

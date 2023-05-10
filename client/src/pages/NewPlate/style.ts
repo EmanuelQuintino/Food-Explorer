@@ -15,4 +15,8 @@ export const Container = styled.section`
     font-size: 2.8rem;
     margin: 2.4rem 0;
   }
+
+  .sendButton {
+    margin-top: 2.4rem;
+  }
 `;
