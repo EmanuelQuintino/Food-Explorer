@@ -65,7 +65,7 @@ export function NewPlate() {
               error={errors.price?.message}
               register={register("price", { 
                 required: "Campo obrigatório",
-                pattern: {value: /^[0-9]+([,][0-9]+)?$/, message: "Insira um valor válido"},
+                pattern: {value: /^[0-9]+([,][0-9]+)?$/, message: "Insira um valor válido. Ex: 10,25"},
                 maxLength: {value: 255, message: "Número máximo de caracteres é 255"}
               })}
             />
