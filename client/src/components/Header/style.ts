@@ -70,4 +70,10 @@ export const HeaderContainer = styled.header<HeaderContainerType>`
     bottom: 1.4rem;
     left: 1.4rem;
   }
+
+  @media(max-width: 42.0rem) {
+    .toggleMenu {
+      border: none;
+    }  
+  }
 `;
