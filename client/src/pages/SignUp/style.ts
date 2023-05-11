@@ -31,5 +31,7 @@ export const Container = styled.section`
     margin-top: 3.2rem;
     font-size: 1.4rem;
     text-align: center;
+    color: ${({ theme }) => theme.colors.light300};
+    font-family: 'Poppins', sans-serif;
   }
 `;

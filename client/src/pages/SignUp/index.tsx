@@ -85,7 +85,7 @@ export function SignUp() {
       </form>
       
       <Link to="/" className="buttonSignIn">
-        <button>Já tenho uma conta</button>
+        Já tenho uma conta
       </Link>  
    </Container>
   )

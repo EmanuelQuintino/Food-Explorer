@@ -22,7 +22,6 @@ export const GlobalStyles = createGlobalStyle`
   input, select, textarea, button {
     font-family: 'Roboto', sans-serif;
     font-size: 1.6rem;
-    outline: none;
     border: none;
     color: ${({ theme }) => theme.colors.light300};
   } 

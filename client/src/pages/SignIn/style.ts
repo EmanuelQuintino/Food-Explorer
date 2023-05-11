@@ -25,11 +25,18 @@ export const Container = styled.section`
     padding: 1.2rem 1.4rem;
     font-size: 1.6rem;
     background: ${({theme}) => theme.colors.dark900};
+    border: 1px solid ${({theme}) => theme.colors.dark900};
+  }
+
+  input:focus {
+    border: 1px solid ${({ theme }) => theme.colors.light100};
   }
 
   .buttonSignUp{
     margin-top: 3.2rem;
     font-size: 1.4rem;
     text-align: center;
+    color: ${({ theme }) => theme.colors.light300};
+    font-family: 'Poppins', sans-serif;
   }
 `;

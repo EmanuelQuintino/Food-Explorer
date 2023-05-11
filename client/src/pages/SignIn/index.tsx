@@ -51,7 +51,7 @@ export function SignIn() {
       </form>
       
       <Link to="/signup" className="buttonSignUp">
-        <button>Criar uma conta</button>
+        Criar uma conta
       </Link>
    </Container>
   )
