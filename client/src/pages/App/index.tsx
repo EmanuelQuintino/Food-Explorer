@@ -5,17 +5,19 @@ import { Footer } from "../../components/Footer";
 
 export function App() {
   return (
-    <Container>
+    <Container>      
       <header>
         <Header />
       </header>
+  
       <article className="content">
         <main>
           <Outlet />
         </main>
+      
         <footer>
           <Footer />
-        </footer>
+        </footer> 
       </article>
     </Container>
   )
