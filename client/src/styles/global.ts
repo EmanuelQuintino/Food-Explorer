@@ -25,11 +25,8 @@ export const GlobalStyles = createGlobalStyle`
     border: none;
     outline: none;
     color: ${({ theme }) => theme.colors.light300};
+    border: 1px solid ${({theme}) => theme.colors.dark900};
   } 
-
-  input:focus, select:focus, textarea:focus, button:focus, a:focus {
-    border: 1px solid ${({theme}) => theme.colors.light300};
-  }
   
   button {
     font-family: 'Poppins', sans-serif;
@@ -45,6 +42,11 @@ export const GlobalStyles = createGlobalStyle`
     border: none;
     outline: none;
     color: ${({ theme }) => theme.colors.light300};
+    border: 1px solid ${({theme}) => theme.colors.dark900};
+  }
+
+  input:focus, select:focus, textarea:focus, button:focus, a:focus {
+    border: 1px solid ${({theme}) => theme.colors.light300};
   }
 
   .srOnly {
