@@ -11,7 +11,7 @@ export const ButtonContainer = styled.button`
   font-weight: 500;
   font-size: 1.4rem;
   text-align: center;
-  color: ${({theme}) => theme.colors.light100};
+  color: ${({theme}) => theme.colors.light300};
 
   display: flex;
   align-items: center;

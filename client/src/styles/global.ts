@@ -23,13 +23,16 @@ export const GlobalStyles = createGlobalStyle`
     font-family: 'Roboto', sans-serif;
     font-size: 1.6rem;
     border: none;
+    outline: none;
     color: ${({ theme }) => theme.colors.light300};
   } 
+
+  input:focus, select:focus, textarea:focus, button:focus, a:focus {
+    border: 1px solid ${({theme}) => theme.colors.light300};
+  }
   
   button {
-    font-size: 1.6rem;
     font-family: 'Poppins', sans-serif;
-    border: none;
     background: none;
   }
 
@@ -39,6 +42,9 @@ export const GlobalStyles = createGlobalStyle`
 
   a {
     text-decoration: none;
+    border: none;
+    outline: none;
+    color: ${({ theme }) => theme.colors.light300};
   }
 
   .srOnly {
