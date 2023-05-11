@@ -8,9 +8,10 @@ type InputTypes = {
   isNew?: boolean;
   register: UseFormRegisterReturn;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
 }
 
-export function InputItems({value, isNew=false, register, onClick, ...rest}: InputTypes) {
+export function InputList({ value, isNew=false, register, onClick, ...rest }: InputTypes) {
   return (
     <Container isNew={isNew}>      
       <input 
@@ -21,7 +22,7 @@ export function InputItems({value, isNew=false, register, onClick, ...rest}: Inp
         {...rest}
       />
 
-      <button onClick={onClick}>
+      <button type="button" onClick={onClick}>
         {isNew ? <FiPlus/> : <FiX/>}
       </button>
    </Container>

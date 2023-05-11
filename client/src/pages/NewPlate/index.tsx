@@ -8,23 +8,36 @@ import { ButtonDelete } from "../../components/ButtonDelete";
 import { Select } from "../../components/Form/Select";
 import { Textarea } from "../../components/Form/Textarea";
 import { useState } from "react";
-import { InputItems } from "../../components/Form/InputItems";
+import { InputList } from "../../components/Form/InputList";
 
 type PlateDataTypes = {
   name: string;
   category: string;
-  ingredients: string[];
   price: string;
   description: string;
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  event: React.ChangeEvent<HTMLInputElement>;
 }
 
 export function NewPlate() {
   const { menuActive } = useSystem();
   const navigate = useNavigate();
-  const [price, setPrice] = useState("");  
+  const [price, setPrice] = useState(""); 
+  const [ingredients, setIngredients] = useState<string[]>([]); 
+  const [newIngredient, setNewIngredient] = useState("");
+  // console.log({newIngredient, ingredients});
   
   const { register, handleSubmit, formState: { errors } } = useForm<PlateDataTypes>();
+
+  function addIngredient() {
+    if (newIngredient != "") {
+      setIngredients(prevState => [...prevState, newIngredient]);
+      setNewIngredient("");
+    } else {
+      alert("Adicionar nome do ingrediente")
+    }
+  }
 
   function formatCurrency(value: string) {
     if (value != "R$ 0,0") { 
@@ -40,7 +53,7 @@ export function NewPlate() {
   }
 
   const createPlate = ({ name, category, price, description }: PlateDataTypes) => {
-    console.log({name, category, price, description});
+    console.log({name, category, price, description, ingredients});
   }
 
   return (
@@ -77,35 +90,34 @@ export function NewPlate() {
               })}
             />
 
-            <div className="containerIngredients">
+            <article className="containerIngredients">
               <label htmlFor="boxIngredients">Ingredientes</label>
-                <div id="boxIngredients">
-                  <InputItems
-                    value="Pão Naan"
-                    register={register("ingredients", { 
+              <div id="boxIngredients">
+                {ingredients?.map((ingredient) => (
+                  <InputList
+                    key={ingredient}
+                    value={ingredient}
+                    onClick={() => {}}
+                    register={register(`${ingredient}`, { 
                       required: "Campo obrigatório",
                       maxLength: {value: 255, message: "Número máximo de caracteres é 255"}
                     })}              
                   />
+                ))}
 
-                  <InputItems
-                    value="Pão Naan"
-                    register={register("ingredients", { 
-                      required: "Campo obrigatório",
-                      maxLength: {value: 255, message: "Número máximo de caracteres é 255"}
-                    })}              
-                  />
-
-                  <InputItems
-                    placeholder="adicionar"
-                    isNew
-                    register={register("ingredients", { 
-                      required: "Campo obrigatório",
-                      maxLength: {value: 255, message: "Número máximo de caracteres é 255"}
-                    })}              
-                  />
-                </div>
-            </div>
+                <InputList
+                  isNew
+                  placeholder="Adicionar"
+                  value={newIngredient}
+                  onChange={(event) => setNewIngredient(event.target.value)}
+                  onClick={addIngredient}
+                  register={register("ingredients", { 
+                    required: "Campo obrigatório",
+                    maxLength: {value: 255, message: "Número máximo de caracteres é 255"}
+                  })}              
+                />
+              </div>
+            </article>
 
             <Input
               id="price"
@@ -113,7 +125,7 @@ export function NewPlate() {
               type="text"
               placeholder="R$ 0,00"
               value={price}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => formatCurrency(event.target.value)}
+              onChange={(event) => formatCurrency(event.target.value)}
               error={errors.price?.message}
               register={register("price", { 
                 required: "Campo obrigatório",
