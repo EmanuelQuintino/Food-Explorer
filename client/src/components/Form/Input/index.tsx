@@ -1,6 +1,5 @@
 import { Container } from "./style";
 import { UseFormRegisterReturn } from 'react-hook-form';
-import { FormEventHandler } from "react";
 
 type InputTypes = {
   label: string;
@@ -10,7 +9,7 @@ type InputTypes = {
   placeholder?: string;
   register: UseFormRegisterReturn;
   error?: string;
-  onChange?: FormEventHandler;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
 }
 
 export function Input({label, id, type, placeholder, register, error, ...rest}: InputTypes) {

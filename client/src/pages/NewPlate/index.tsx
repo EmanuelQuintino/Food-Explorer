@@ -1,19 +1,22 @@
 import { Container } from "./style"
 import { useSystem } from "../../hooks/system"
 import { useNavigate } from "react-router-dom";
-import { Input } from "../../components/Input";
+import { Input } from "../../components/Form/Input";
 import { useForm } from "react-hook-form";
 import { ButtonSave } from "../../components/ButtonSave";
 import { ButtonDelete } from "../../components/ButtonDelete";
-import { Select } from "../../components/Select";
-import { Textarea } from "../../components/Textarea";
+import { Select } from "../../components/Form/Select";
+import { Textarea } from "../../components/Form/Textarea";
 import { useState } from "react";
+import { InputItems } from "../../components/Form/InputItems";
 
 type PlateDataTypes = {
   name: string;
-  price: string;
   category: string;
+  ingredients: string[];
+  price: string;
   description: string;
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 export function NewPlate() {
@@ -25,7 +28,6 @@ export function NewPlate() {
 
   function formatCurrency(value: string) {
     if (value != "R$ 0,0") { 
-      console.log(value);
       const currency = parseFloat(value.replace(/\D/g, "")) / 100;
       const formatted = currency.toLocaleString("pt-BR", {
         style: "currency",
@@ -74,6 +76,36 @@ export function NewPlate() {
                 maxLength: {value: 255, message: "Número máximo de caracteres é 255"}
               })}
             />
+
+            <div className="containerIngredients">
+              <label htmlFor="boxIngredients">Ingredientes</label>
+                <div id="boxIngredients">
+                  <InputItems
+                    value="Pão Naan"
+                    register={register("ingredients", { 
+                      required: "Campo obrigatório",
+                      maxLength: {value: 255, message: "Número máximo de caracteres é 255"}
+                    })}              
+                  />
+
+                  <InputItems
+                    value="Pão Naan"
+                    register={register("ingredients", { 
+                      required: "Campo obrigatório",
+                      maxLength: {value: 255, message: "Número máximo de caracteres é 255"}
+                    })}              
+                  />
+
+                  <InputItems
+                    placeholder="adicionar"
+                    isNew
+                    register={register("ingredients", { 
+                      required: "Campo obrigatório",
+                      maxLength: {value: 255, message: "Número máximo de caracteres é 255"}
+                    })}              
+                  />
+                </div>
+            </div>
 
             <Input
               id="price"

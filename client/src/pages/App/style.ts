@@ -7,4 +7,8 @@ export const Container = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  .content {
+    overflow-y: scroll;
+  }
 `;
