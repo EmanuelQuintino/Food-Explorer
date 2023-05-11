@@ -24,12 +24,17 @@ export function NewPlate() {
   const { register, handleSubmit, formState: { errors } } = useForm<PlateDataTypes>();
 
   function formatCurrency(value: string) {
-    const currency = parseFloat(value.replace(/\D/g, "")) / 100;
-    const formatted = currency.toLocaleString("pt-BR", {
-      style: "currency",
-      currency: "BRL",
-    });
-    return setPrice(formatted);
+    if (value != "R$ 0,0") { 
+      console.log(value);
+      const currency = parseFloat(value.replace(/\D/g, "")) / 100;
+      const formatted = currency.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+      });
+      return setPrice(formatted);
+    } else {
+      return setPrice("");
+    }
   }
 
   const createPlate = ({ name, category, price, description }: PlateDataTypes) => {
