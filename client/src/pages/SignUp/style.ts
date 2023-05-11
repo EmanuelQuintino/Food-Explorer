@@ -33,5 +33,11 @@ export const Container = styled.section`
     text-align: center;
     color: ${({ theme }) => theme.colors.light300};
     font-family: 'Poppins', sans-serif;
+    border: 1px solid transparent;
+    border-radius: .4rem;
+  }
+
+  .buttonSignIn:focus {
+      border: 1px solid ${({theme}) => theme.colors.light300};
   }
 `;

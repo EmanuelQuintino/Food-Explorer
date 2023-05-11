@@ -42,5 +42,9 @@ export const Container = styled.section`
     align-items: center;
     justify-content: center;
     gap: 2.4rem;
+
+    > button:focus {
+      border: 1px solid ${({theme}) => theme.colors.light300};
+    }
   }
 `;

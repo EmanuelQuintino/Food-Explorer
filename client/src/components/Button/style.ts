@@ -27,6 +27,10 @@ export const ButtonContainer = styled.button`
     pointer-events: none;
   }
 
+  &:focus {
+    border: 1px solid ${({theme}) => theme.colors.light300};
+  }
+
   .icon {
     width: 1.8rem;
     height: 1.4rem;
