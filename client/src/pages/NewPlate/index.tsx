@@ -7,6 +7,7 @@ import { ButtonSave } from "../../components/ButtonSave";
 import { ButtonDelete } from "../../components/ButtonDelete";
 import { Select } from "../../components/Select";
 import { Textarea } from "../../components/Textarea";
+import { useState } from "react";
 
 type PlateDataTypes = {
   name: string;
@@ -18,8 +19,18 @@ type PlateDataTypes = {
 export function NewPlate() {
   const { menuActive } = useSystem();
   const navigate = useNavigate();
+  const [price, setPrice] = useState("");  
   
   const { register, handleSubmit, formState: { errors } } = useForm<PlateDataTypes>();
+
+  function formatCurrency(value: string) {
+    const currency = parseFloat(value.replace(/\D/g, "")) / 100;
+    const formatted = currency.toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    });
+    return setPrice(formatted);
+  }
 
   const createPlate = ({ name, category, price, description }: PlateDataTypes) => {
     console.log({name, category, price, description});
@@ -63,11 +74,13 @@ export function NewPlate() {
               id="price"
               label="Preço"
               type="text"
-              placeholder="R$ 00,00"
+              placeholder="R$ 0,00"
+              value={price}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => formatCurrency(event.target.value)}
               error={errors.price?.message}
               register={register("price", { 
                 required: "Campo obrigatório",
-                pattern: {value: /^[0-9]+([,][0-9]+)?$/, message: "Insira um valor válido. Ex: 10,25"},
+                pattern: {value: /^R\$\s[0-9]+([.][0-9]+)?([,][0-9]+)?$/, message: "Insira um valor válido. Ex: R$ 10,25"},
                 maxLength: {value: 255, message: "Número máximo de caracteres é 255"}
               })}
             />

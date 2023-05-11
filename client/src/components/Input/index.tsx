@@ -1,24 +1,28 @@
 import { Container } from "./style";
 import { UseFormRegisterReturn } from 'react-hook-form';
+import { FormEventHandler } from "react";
 
 type InputTypes = {
   label: string;
   id: string;
+  value?: string;
   type: string;
-  placeholder: string;
+  placeholder?: string;
   register: UseFormRegisterReturn;
   error?: string;
+  onChange?: FormEventHandler;
 }
 
-export function Input({label, id, type, placeholder, register, error}: InputTypes) {
+export function Input({label, id, type, placeholder, register, error, ...rest}: InputTypes) {
   return (
     <Container>
       <label htmlFor={id}>{label}</label>
       <input 
-        type={type} 
         id={id}
+        type={type} 
         placeholder={placeholder}
         {...register}
+        {...rest}
       />
       {error && <span className='inputError'>{error}</span>}
    </Container>

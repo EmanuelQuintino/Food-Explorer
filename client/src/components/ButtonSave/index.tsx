@@ -1,11 +1,12 @@
 import { ButtonContainer } from "./style";
+import { MouseEventHandler } from "react";
 
 export type ButtonType = {
   icon?: string;
   name: string;
   disabled?: boolean;
   form: string;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  onClick?: MouseEventHandler;
 }
 
 export function ButtonSave({ icon, name, disabled = false, ...rest }: ButtonType) {
