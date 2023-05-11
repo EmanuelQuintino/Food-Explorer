@@ -9,16 +9,13 @@ export function App() {
       <header>
         <Header />
       </header>
-  
-      <article className="content">
-        <main>
-          <Outlet />
-        </main>
-      
-        <footer>
-          <Footer />
-        </footer> 
-      </article>
+      <main>
+        <Outlet />
+      </main>
+    
+      <footer>
+        <Footer />
+      </footer> 
     </Container>
   )
 }

@@ -9,9 +9,8 @@ export const Container = styled.section`
   justify-content: space-between;
 
   @media(min-width: 42.0rem) {
-    .content {
-      overflow-y: scroll;
-
+      overflow-y: auto;
+      
       ::-webkit-scrollbar {
         width: .75rem;
       }
@@ -28,6 +27,5 @@ export const Container = styled.section`
       ::-webkit-scrollbar-thumb:hover {
         background: ${({theme}) => theme.colors.light650}; 
       }
-    }  
   }
 `;
