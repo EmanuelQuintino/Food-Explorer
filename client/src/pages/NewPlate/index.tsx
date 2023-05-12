@@ -30,7 +30,6 @@ export function NewPlate() {
   const { register, handleSubmit, formState: { errors } } = useForm<PlateDataTypes>();
   
   function handleAddIngredient() {
-    console.log(newIngredient.length);
     if (newIngredient.length == 0) {
       alert("Adicionar nome do ingrediente");
       return;

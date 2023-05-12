@@ -12,12 +12,19 @@ type InputTypes = {
 }
 
 export function InputList({ value, isNew=false, register, onClick, ...rest }: InputTypes) {
+  function handleAddItem(event) {
+    if (event.key == "Enter") {
+      onClick();
+    }
+  }
+  
   return (
     <Container isNew={isNew}>      
       <input 
         type={"text"}
         value={value}
         readOnly={!isNew}
+        onKeyDown={handleAddItem}
         {...register}
         {...rest}
       />
