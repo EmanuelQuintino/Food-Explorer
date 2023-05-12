@@ -19,9 +19,9 @@ export const HeaderContainer = styled.header<HeaderContainerType>`
     background: ${({ theme }) => theme.colors.dark700};
   }
   
-  .toggleMenu img {
+  .toggleMenu svg {
+    width: 2.2rem;
     height: 1.8rem;
-    width: 1.8rem;
   }
 
   h3 {
@@ -37,7 +37,7 @@ export const HeaderContainer = styled.header<HeaderContainerType>`
     padding: 0 0 .4rem;
   }
   
-  .logo img {
+  .logo svg {
     width: 2.4rem;
   }
 
@@ -55,7 +55,7 @@ export const HeaderContainer = styled.header<HeaderContainerType>`
     position: relative;
   }
 
-  .orderIcon {
+  .orderContainer svg {
     width: 2.4rem;
   }
 

@@ -1,8 +1,8 @@
 import { HeaderContainer } from "./style";
-import menuOpen from "../../assets/menuOpen.svg"
-import menuClose from "../../assets/menuClose.svg"
-import logoExplorer from "../../assets/logoExplorer.svg"
-import orderIcon from "../../assets/order.svg"
+import { MenuOpen } from "../../assets/MenuOpen";
+import { MenuClose } from "../../assets/MenuClose";
+import { LogoExplorer } from "../../assets/LogoExplorer";
+import { OrderIcon } from "../../assets/OrderIcon";
 import { InputSearch } from "../InputSearch";
 import { Menu } from "../Menu";
 import { useSystem } from "../../hooks/system";
@@ -17,8 +17,8 @@ export function Header() {
       <div className="boxHeader">
         <button className="toggleMenu" onClick={toggleMenu}>
           {menuActive ?
-            <img src={menuClose} className="menuClose" alt="menu-close" /> :
-            <img src={menuOpen} className="menuOpen" alt="menu-open" />
+            <MenuClose /> :
+            <MenuOpen />
           }
         </button>
 
@@ -26,7 +26,7 @@ export function Header() {
           <h3>Menu</h3> :
           <>
             <div className="logo">
-              <img src={logoExplorer} alt="logo-explorer" />
+              <LogoExplorer />
               <h1>food explorer</h1>
               {userAuth.isAdmin &&
                 <p className="paragraphAdmin">admin</p>
@@ -38,7 +38,7 @@ export function Header() {
             {!userAuth.isAdmin &&
               <div className="orderContainer">
                 <button>
-                  <img src={orderIcon} className="orderIcon" alt="order-icon" />
+                  <OrderIcon />
                 </button>
                 <div className="orderTotal">0</div>
               </div>
