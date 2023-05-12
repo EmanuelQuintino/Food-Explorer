@@ -1,7 +1,7 @@
 import { Container } from "./style";
-import favoriteIcon from "../../assets/favorite.svg";
-import favoriteIconMatch from "../../assets/favoriteMatch.svg";
-import editIcon from "../../assets/edit.svg";
+import { FavoriteIcon } from "../../assets/FavoriteIcon";
+import { FavoriteIconMatch } from "../../assets/FavoriteIconMatch";
+import { EditIcon } from "../../assets/EditIcon";
 import { Button } from "../Button";
 import { useState } from "react";
 import { API } from "../../services/api";
@@ -32,14 +32,11 @@ export function FoodPlate({ plate }: FoodPlateType) {
   return (
     <Container>
       {userAuth.isAdmin?
-        <button onClick={pageUpdatePlate}>
-          <img src={editIcon} alt="edit-icon" className="editIcon" />
+        <button onClick={pageUpdatePlate} className="editIcon">
+          <EditIcon />
         </button>:
-        <button onClick={toFavorite}>
-          {favoriteMatch ?
-            <img src={favoriteIconMatch} alt="favorite" className="favoriteIcon"/>:
-            <img src={favoriteIcon} alt="favorite" className="favoriteIcon"/>
-          }
+        <button onClick={toFavorite} className="favoriteIcon">
+          {favoriteMatch ? <FavoriteIconMatch /> : <FavoriteIcon />}
         </button>
       }
       

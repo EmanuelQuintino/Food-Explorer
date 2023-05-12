@@ -1,10 +1,10 @@
 import { Container } from "./style";
-import logoExplorer from "../../assets/logoExplorer.svg"
+import { LogoExplorer } from "../../assets/LogoExplorer"
 
 export function Logo() {
   return (
     <Container>
-      <img src={logoExplorer} alt="Logo-Explorer" />
+      <LogoExplorer />
       <h1>food explorer</h1>
     </Container>
   )

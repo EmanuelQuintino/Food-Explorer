@@ -6,7 +6,7 @@ export const Container = styled.div`
   gap: 1.2rem;
   justify-content: center;
 
-  img {
+  svg {
     width: 4.2rem;
   }
 
