@@ -22,11 +22,15 @@ export const Container = styled.div`
     width: 2.4rem;
   }
 
-  .favoriteIcon {
+  .favoriteIcon, .favoriteIconMatch {
     position: absolute;
     top: 2.0rem;
     right: 2.0rem;
     width: 2.4rem;
+  }
+
+  .favoriteIconMatch svg path {
+    fill: ${({ theme }) => theme.colors.light300};
   }
   
   .imagePlate {
