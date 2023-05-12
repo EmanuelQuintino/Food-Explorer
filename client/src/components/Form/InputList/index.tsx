@@ -3,18 +3,19 @@ import { UseFormRegisterReturn } from 'react-hook-form';
 import { FiPlus, FiX } from "react-icons/fi"
 
 type InputTypes = {
-  value?: string;
+  value: string;
   placeholder?: string;
   isNew?: boolean;
   register: UseFormRegisterReturn;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  onClick?: () => {};
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
 }
 
 export function InputList({ value, isNew=false, register, onClick, ...rest }: InputTypes) {
-  function handleAddItem(event) {
+  function handleAddItem(event: React.KeyboardEvent<HTMLInputElement>) {
     if (event.key == "Enter") {
-      onClick();
+      event.preventDefault();
+      onClick?.();
     }
   }
   
