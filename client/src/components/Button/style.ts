@@ -31,7 +31,7 @@ export const ButtonContainer = styled.button`
     border: 1px solid ${({theme}) => theme.colors.light300};
   }
 
-  .icon {
+  svg {
     width: 1.8rem;
     height: 1.4rem;
   }

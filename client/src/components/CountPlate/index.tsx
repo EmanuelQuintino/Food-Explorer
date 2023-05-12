@@ -1,6 +1,6 @@
 import { Container } from "./style";
-import minus from "../../assets/minus.svg";
-import plus from "../../assets/plus.svg";
+import { MinusIcon } from "../../assets/MinusIcon";
+import { PlusIcon } from "../../assets/PlusIcon";
 import { useState } from "react";
 
 export function CountPlate() {
@@ -12,13 +12,13 @@ export function CountPlate() {
     <Container>      
       <div className="boxMinusPlus">  
         <button onClick={plateMinus}>
-          <img src={minus} alt="minus"/>
+          <MinusIcon />
         </button>
         
         <p>{String(countPlate).padStart(2, "0")}</p>
         
         <button onClick={platePlus}>
-          <img src={plus} alt="plus"/>
+          <PlusIcon />
         </button>
       </div> 
     </Container>
