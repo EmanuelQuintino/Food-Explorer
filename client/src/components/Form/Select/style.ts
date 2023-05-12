@@ -9,11 +9,16 @@ export const Container = styled.section`
   select {
     width: 100%;
     border-radius: .8rem;
+    border: 1px solid transparent;
     padding: 1.2rem 1.4rem;
     font-size: 1.6rem;
     background-color: ${({theme}) => theme.colors.dark900};
     cursor: pointer;
 
+    &:focus {
+      border: 1px solid ${({theme}) => theme.colors.light300};
+    }
+    
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;

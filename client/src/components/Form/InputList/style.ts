@@ -19,10 +19,9 @@ export const Container = styled.section<SectionTypes>`
     border: none;
     padding: .8rem 1.6rem;
     color: ${({theme, isNew}) => isNew ? theme.colors.light500: theme.colors.light100};
-
     border-radius: .8rem;
     font-size: 1.6rem;
-
+    
     &::placeholder {
       color: ${({theme, isNew}) => isNew ? theme.colors.light500: theme.colors.light100};
     }
@@ -31,6 +30,10 @@ export const Container = styled.section<SectionTypes>`
   button {
     border: none;
     background: none;
-    color: ${({theme, isNew}) => isNew ? theme.colors.light500: theme.colors.light100};
+    color: ${({theme, isNew}) => isNew ? theme.colors.light500: theme.colors.light300};
+    
+    &:focus {
+      color: ${({theme, isNew}) => isNew ? theme.colors.light300: theme.colors.light100};
+    }
   }
 `;
