@@ -1,11 +1,11 @@
 import { FooterContainer } from "./style";
-import logoExplorerFooter from "../../assets/logoExplorerFooter.svg"
+import { LogoExplorer } from "../../assets/LogoExplorer";
 
 export function Footer() {
   return (
     <FooterContainer>
-      <div className="logo">
-        <img src={logoExplorerFooter} alt="logo-explorer-footer" />
+      <div className="logoBox">
+        <LogoExplorer />
         <h1>food explorer</h1>
       </div>
 

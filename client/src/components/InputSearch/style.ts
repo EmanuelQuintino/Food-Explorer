@@ -8,7 +8,7 @@ export const Container = styled.section`
     width: 100%;
   }
 
-  .searchIcon {
+  svg {
     width: 2.4rem;
     position: absolute;
     top: 1.2rem;

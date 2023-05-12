@@ -10,15 +10,19 @@ export const FooterContainer = styled.footer`
 
   background: ${({ theme }) => theme.colors.dark600};
 
-  .logo {
+  .logoBox {
     display: flex;
     align-items: center;
     gap: .8rem;
     padding: 0 0 .4rem;
   }
   
-  .logo img {
+  .logoBox svg {
     width: 1.6rem;
+    fill: ${({ theme }) => theme.colors.light700};
+  }
+
+  .logoBox svg path {
     fill: ${({ theme }) => theme.colors.light700};
   }
   

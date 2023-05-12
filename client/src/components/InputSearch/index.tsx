@@ -1,5 +1,5 @@
 import { Container } from "./style";
-import searchIcon from "../../assets/search.svg"
+import { SearchIcon } from "../../assets/SearchIcon"
 import { useSystem } from "../../hooks/system";
 
 export function InputSearch() {
@@ -14,7 +14,7 @@ export function InputSearch() {
     <Container>
       <form onSubmit={handleSubmit}>
         <label htmlFor="inputSearch" className="srOnly">Input Search</label>
-        <img src={searchIcon} alt="search-input" className="searchIcon" />
+        <SearchIcon />
         <input
           type="text"
           name="inputSearch"
