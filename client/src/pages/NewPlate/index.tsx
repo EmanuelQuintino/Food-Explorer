@@ -17,7 +17,7 @@ type PlateDataTypes = {
   category: string;
   price: string;
   description: string;
-  image: File;
+  image: file;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   event: React.ChangeEvent<HTMLInputElement>;
@@ -29,8 +29,22 @@ export function NewPlate() {
   const [price, setPrice] = useState(""); 
   const [ingredients, setIngredients] = useState<string[]>([]); 
   const [newIngredient, setNewIngredient] = useState("");
+  const [inputFileError, setInputFileError] = useState("");
   
   const { register, handleSubmit, formState: { errors } } = useForm<PlateDataTypes>();
+
+  function handleInputFile(event) {
+    if (event.target.files.length != 1) {
+      return setInputFileError("Escolha somente uma imagem");
+    };
+
+    const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+    if (!allowedExtensions.test(event.target.files[0].name)) {
+      return setInputFileError("Somente imagens são permitidas");
+    };
+
+    return setInputFileError("");
+  };
   
   function handleAddIngredient() {
     if (newIngredient.length == 0) {
@@ -64,6 +78,11 @@ export function NewPlate() {
   }
 
   const createPlate = ({ name, category, price, description, image }: PlateDataTypes) => {
+    const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+    if (!allowedExtensions.test(image.name)) {
+      alert("Error: Apenas imagens são permitidas!");
+      return;
+    }
     console.log({name, category, price, description, ingredients, image});
   }
 
@@ -83,10 +102,11 @@ export function NewPlate() {
               label="Imagem do prato"
               placeholder="Selecione imagem"
               icon={UploadIcon}
-              error={errors.image?.message}
+              onChange={handleInputFile}
+              error={inputFileError.length > 0 ? inputFileError : null}
               register={register("image", { 
-                pattern: { value: /(\.jpg|\.jpeg|\.png|\.gif)$/i, message: "Somente imagens são permitidas"},
-                maxLength: {value: 255, message: "Número máximo de caracteres é 255"}
+                pattern: {value: /(\.jpg|\.jpeg|\.png|\.gif)$/i, message: "Somente imagens são permitidas"},
+                maxLength: {value: 2, message: "Número máximo de caracteres é 255"}
               })}
             />
 
