@@ -26,17 +26,26 @@ export function NewPlate() {
   const [price, setPrice] = useState(""); 
   const [ingredients, setIngredients] = useState<string[]>([]); 
   const [newIngredient, setNewIngredient] = useState("");
-  // console.log({newIngredient, ingredients});
   
   const { register, handleSubmit, formState: { errors } } = useForm<PlateDataTypes>();
-
-  function addIngredient() {
-    if (newIngredient != "") {
+  
+  function handleAddIngredient() {
+    console.log(newIngredient.length);
+    if (newIngredient.length == 0) {
+      alert("Adicionar nome do ingrediente");
+      return;
+    } else if (newIngredient.length > 0 && newIngredient.length <= 255) {
       setIngredients(prevState => [...prevState, newIngredient]);
       setNewIngredient("");
+      return;
     } else {
-      alert("Adicionar nome do ingrediente")
+      alert("Ingrediente excediu número de caracteres");
+      return;
     }
+  }
+
+  function handleRemoveIngredient(nameIngredient) {
+    setIngredients(prevState => prevState.filter((ingredient) => ingredient != nameIngredient));
   }
 
   function formatCurrency(value: string) {
@@ -93,15 +102,11 @@ export function NewPlate() {
             <article className="containerIngredients">
               <label htmlFor="boxIngredients">Ingredientes</label>
               <div id="boxIngredients">
-                {ingredients?.map((ingredient) => (
+                {ingredients?.map((ingredient, index) => (
                   <InputList
-                    key={ingredient}
+                    key={index}
                     value={ingredient}
-                    onClick={() => {}}
-                    register={register(`${ingredient}`, { 
-                      required: "Campo obrigatório",
-                      maxLength: {value: 255, message: "Número máximo de caracteres é 255"}
-                    })}              
+                    onClick={() => handleRemoveIngredient(ingredient)}              
                   />
                 ))}
 
@@ -110,11 +115,7 @@ export function NewPlate() {
                   placeholder="Adicionar"
                   value={newIngredient}
                   onChange={(event) => setNewIngredient(event.target.value)}
-                  onClick={addIngredient}
-                  register={register("ingredients", { 
-                    required: "Campo obrigatório",
-                    maxLength: {value: 255, message: "Número máximo de caracteres é 255"}
-                  })}              
+                  onClick={handleAddIngredient}              
                 />
               </div>
             </article>
