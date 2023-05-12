@@ -15,7 +15,7 @@ export const Container = styled.section`
     border: 1px solid transparent;
 
     &:focus {
-    border: 1px solid ${({theme}) => theme.colors.light300};
-  }
+      border: 1px solid ${({theme}) => theme.colors.light300};
+    }
   }
 `;

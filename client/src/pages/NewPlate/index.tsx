@@ -1,6 +1,7 @@
 import { Container } from "./style"
 import { useSystem } from "../../hooks/system"
 import { useNavigate } from "react-router-dom";
+import { InputFile } from "../../components/Form/InputFile";
 import { Input } from "../../components/Form/Input";
 import { useForm } from "react-hook-form";
 import { ButtonSave } from "../../components/ButtonSave";
@@ -9,12 +10,14 @@ import { Select } from "../../components/Form/Select";
 import { Textarea } from "../../components/Form/Textarea";
 import { useState } from "react";
 import { InputList } from "../../components/Form/InputList";
+import { UploadIcon } from "../../assets/UploadIcon";
 
 type PlateDataTypes = {
   name: string;
   category: string;
   price: string;
   description: string;
+  image: File;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   event: React.ChangeEvent<HTMLInputElement>;
@@ -43,7 +46,7 @@ export function NewPlate() {
     }
   }
 
-  function handleRemoveIngredient(nameIngredient) {
+  function handleRemoveIngredient(nameIngredient: string) {
     setIngredients(prevState => prevState.filter((ingredient) => ingredient != nameIngredient));
   }
 
@@ -60,9 +63,11 @@ export function NewPlate() {
     }
   }
 
-  const createPlate = ({ name, category, price, description }: PlateDataTypes) => {
-    console.log({name, category, price, description, ingredients});
+  const createPlate = ({ name, category, price, description, image }: PlateDataTypes) => {
+    console.log({name, category, price, description, ingredients, image});
   }
+
+  console.log(errors);
 
   return (
     <Container>
@@ -73,6 +78,18 @@ export function NewPlate() {
           <h2>Novo prato</h2>
           
           <form onSubmit={handleSubmit(createPlate)} id="formCreatePlate">
+            <InputFile
+              id="uploadImagePlate"
+              label="Imagem do prato"
+              placeholder="Selecione imagem"
+              icon={UploadIcon}
+              error={errors.image?.message}
+              register={register("image", { 
+                pattern: { value: /(\.jpg|\.jpeg|\.png|\.gif)$/i, message: "Somente imagens são permitidas"},
+                maxLength: {value: 255, message: "Número máximo de caracteres é 255"}
+              })}
+            />
+
             <Input
               id="name"
               label="Nome"
