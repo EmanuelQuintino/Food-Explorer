@@ -26,8 +26,7 @@ export function InputFile({icon: Icon, label, placeholder, id, register, error, 
           id={id}
           type="file" 
           className="srOnly"
-          // accept="image/*"
-          multiple="multiple"
+          accept="image/*"
           {...register}
           {...rest}
         />

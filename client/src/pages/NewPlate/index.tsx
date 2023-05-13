@@ -27,7 +27,7 @@ export function NewPlate() {
   const [price, setPrice] = useState(""); 
   const [ingredients, setIngredients] = useState<string[]>([]); 
   const [newIngredient, setNewIngredient] = useState("");
-  const [IngredientsError, setIngredientsError] = useState("");
+  const [ingredientsError, setIngredientsError] = useState("");
   const [inputFileError, setInputFileError] = useState("");
 
   const { menuActive } = useSystem();
@@ -44,20 +44,27 @@ export function NewPlate() {
       return setInputFileError("Permitido somente imagem");
     };
 
-    return setInputFileError("");
+    setInputFileError("");
   };
   
-  function handleAddIngredient() {
+  function handleAddIngredient() {    
     if (newIngredient.length == 0) {
       return setIngredientsError("Adicionar nome do ingrediente");
-    } else if (newIngredient.length > 0 && newIngredient.length <= 255) {
+    } 
+    
+    if (newIngredient.length > 255) {
+      return setIngredientsError("Ingrediente excediu número de caracteres");
+    }
+
+    if (newIngredient.length > 0 && newIngredient.length <= 255) {
       setIngredients(prevState => [...prevState, newIngredient]);
       setNewIngredient("");
-      return;
-    } else {
-      alert("Ingrediente excediu número de caracteres");
-      return;
+      setIngredientsError("");
     }
+  }
+
+  function handleVerifyIngredients() {
+    if (ingredients.length == 0) return setIngredientsError("Campo obrigatório");
   }
 
   function handleRemoveIngredient(nameIngredient: string) {
@@ -78,7 +85,11 @@ export function NewPlate() {
   }
 
   const createPlate = ({ name, category, price, description, image }: PlateDataTypes) => {
-    if (inputFileError) return alert("Por favor preencher imagem válida");
+    handleVerifyIngredients();
+    if (inputFileError) return;
+    if (ingredientsError) return;
+     
+    console.log(ingredients.length);
     console.log({name, category, price, description, ingredients, image});
   }
   
@@ -148,6 +159,7 @@ export function NewPlate() {
                   onClick={handleAddIngredient}              
                 />
               </div>
+              {ingredientsError && <span className='inputError'>{ingredientsError}</span>}
             </article>
 
             <Input
