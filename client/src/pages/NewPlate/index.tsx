@@ -24,23 +24,24 @@ type PlateDataTypes = {
 }
 
 export function NewPlate() {
-  const { menuActive } = useSystem();
-  const navigate = useNavigate();
   const [price, setPrice] = useState(""); 
   const [ingredients, setIngredients] = useState<string[]>([]); 
   const [newIngredient, setNewIngredient] = useState("");
+  const [IngredientsError, setIngredientsError] = useState("");
   const [inputFileError, setInputFileError] = useState("");
-  
+
+  const { menuActive } = useSystem();
+  const navigate = useNavigate();
   const { register, handleSubmit, formState: { errors } } = useForm<PlateDataTypes>();
 
   function handleInputFile(event) {
     if (event.target.files.length != 1) {
-      return setInputFileError("Escolha somente uma imagem");
+      return setInputFileError("Campo apenas para um arquivo");
     };
 
     const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
     if (!allowedExtensions.test(event.target.files[0].name)) {
-      return setInputFileError("Somente imagens são permitidas");
+      return setInputFileError("Permitido somente imagem");
     };
 
     return setInputFileError("");
@@ -48,8 +49,7 @@ export function NewPlate() {
   
   function handleAddIngredient() {
     if (newIngredient.length == 0) {
-      alert("Adicionar nome do ingrediente");
-      return;
+      return setIngredientsError("Adicionar nome do ingrediente");
     } else if (newIngredient.length > 0 && newIngredient.length <= 255) {
       setIngredients(prevState => [...prevState, newIngredient]);
       setNewIngredient("");
@@ -78,16 +78,10 @@ export function NewPlate() {
   }
 
   const createPlate = ({ name, category, price, description, image }: PlateDataTypes) => {
-    const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
-    if (!allowedExtensions.test(image.name)) {
-      alert("Error: Apenas imagens são permitidas!");
-      return;
-    }
+    if (inputFileError) return alert("Por favor preencher imagem válida");
     console.log({name, category, price, description, ingredients, image});
   }
-
-  console.log(errors);
-
+  
   return (
     <Container>
       {!menuActive &&
