@@ -47,8 +47,11 @@ export const GlobalStyles = createGlobalStyle`
     position: absolute;
     width: 0.1rem;
     height: 0.1rem;
+    margin: -0.1rem;
+    border-width: 0;
     overflow: hidden;
-    color: transparent;
+    color: transparent;    
+    clip: rect(0, 0, 0, 0);
   }
 
   .inputError {

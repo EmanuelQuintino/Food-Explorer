@@ -3,7 +3,7 @@ import { useSystem } from "../../hooks/system"
 import { useNavigate } from "react-router-dom";
 import { InputFile } from "../../components/Form/InputFile";
 import { Input } from "../../components/Form/Input";
-import { useForm } from "react-hook-form";
+import { useForm, useFieldArray } from "react-hook-form";
 import { ButtonSave } from "../../components/ButtonSave";
 import { ButtonDelete } from "../../components/ButtonDelete";
 import { Select } from "../../components/Form/Select";
@@ -25,16 +25,19 @@ type PlateDataTypes = {
 
 export function NewPlate() {
   const [ price, setPrice ] = useState(""); 
-  const [ ingredients, setIngredients ] = useState<string[]>([]); 
   const [ newIngredient, setNewIngredient ] = useState("");
-  const [ ingredientsError, setIngredientsError ] = useState("");
   const [ inputFileName, setInputFileName ] = useState("");
   const [ inputFileError, setInputFileError ] = useState("");
-
+  
   const { menuActive } = useSystem();
   const navigate = useNavigate();
-  const { register, handleSubmit, formState: { errors } } = useForm<PlateDataTypes>();
 
+  const { control, register, handleSubmit, formState: { errors }, watch } = useForm<PlateDataTypes>();
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "ingredients",
+  });
+  
   function handleInputFile(event) {
     if (event.target.files.length != 1) {
       return setInputFileError("Campo apenas para um arquivo");
@@ -59,18 +62,9 @@ export function NewPlate() {
     }
 
     if (newIngredient.length > 0 && newIngredient.length <= 255) {
-      setIngredients(prevState => [...prevState, newIngredient]);
+      append({name: newIngredient});
       setNewIngredient("");
-      setIngredientsError("");
     }
-  }
-
-  function handleVerifyIngredients() {
-    if (ingredients.length == 0) return setIngredientsError("Campo obrigatório");
-  }
-
-  function handleRemoveIngredient(nameIngredient: string) {
-    setIngredients(prevState => prevState.filter((ingredient) => ingredient != nameIngredient));
   }
 
   function formatCurrency(value: string) {
@@ -86,15 +80,11 @@ export function NewPlate() {
     }
   }
 
-  const createPlate = ({ name, category, price, description, image }: PlateDataTypes) => {
-    handleVerifyIngredients();
-    if (inputFileError) return;
-    if (ingredientsError) return;
-     
-    console.log(ingredients.length);
-    console.log({name, category, price, description, ingredients, image});
+  const onSubmitCreatePlate = (data: PlateDataTypes) => {
+    if (inputFileError) return;     
+    console.log(data, data.ingredients);
   }
-  
+
   return (
     <Container>
       {!menuActive &&
@@ -103,7 +93,7 @@ export function NewPlate() {
           
           <h2>Novo prato</h2>
           
-          <form onSubmit={handleSubmit(createPlate)} id="formCreatePlate">
+          <form onSubmit={handleSubmit(onSubmitCreatePlate)} id="formCreatePlate">
             <InputFile
               id="uploadImagePlate"
               label="Imagem do prato"
@@ -145,11 +135,11 @@ export function NewPlate() {
             <article className="containerIngredients">
               <label htmlFor="boxIngredients">Ingredientes</label>
               <div id="boxIngredients">
-                {ingredients?.map((ingredient, index) => (
+                {fields?.map((ingredient, index) => (
                   <InputList
-                    key={index}
-                    value={ingredient}
-                    onClick={() => handleRemoveIngredient(ingredient)}              
+                    key={ingredient.id}
+                    value={ingredient.name}
+                    onClick={() => remove(ingredient.id)}              
                   />
                 ))}
 
@@ -158,10 +148,13 @@ export function NewPlate() {
                   placeholder="Adicionar"
                   value={newIngredient}
                   onChange={(event) => setNewIngredient(event.target.value)}
-                  onClick={handleAddIngredient}              
-                />
-              </div>
-              {ingredientsError && <span className='inputError'>{ingredientsError}</span>}
+                  onClick={handleAddIngredient}
+                  />
+              </div>  
+              {console.log(fields)}
+              {console.log(errors)}
+              {console.log(watch())}
+              {errors.ingredients && <span className='inputError'>{errors.ingredients.message}</span>}
             </article>
 
             <Input
