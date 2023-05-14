@@ -25,6 +25,11 @@ export const Container = styled.section`
     padding: 1.2rem 1.4rem;
     font-size: 1.6rem;
     background: ${({theme}) => theme.colors.dark900};
+    border: 1px solid transparent;
+  }
+
+  input:focus {
+    border: 1px solid ${({theme}) => theme.colors.light300};
   }
 
   .buttonSignUp{
@@ -38,6 +43,6 @@ export const Container = styled.section`
   }
 
   .buttonSignUp:focus {
-      border: 1px solid ${({theme}) => theme.colors.light300};
+    border: 1px solid ${({theme}) => theme.colors.light300};
   }
 `;

@@ -56,12 +56,10 @@ export function NewPlate() {
   };
   
   function handleAddIngredient() {    
-    if (newIngredient.length == 0) {
-      return setIngredientsError("Adicionar nome do ingrediente");
-    } 
+    if (newIngredient.length == 0) return;
     
     if (newIngredient.length > 255) {
-      return setIngredientsError("Ingrediente excediu número de caracteres");
+      return alert("Ingrediente excediu número de caracteres");
     }
 
     if (newIngredient.length > 0 && newIngredient.length <= 255) {
