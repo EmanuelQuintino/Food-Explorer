@@ -24,11 +24,12 @@ type PlateDataTypes = {
 }
 
 export function NewPlate() {
-  const [price, setPrice] = useState(""); 
-  const [ingredients, setIngredients] = useState<string[]>([]); 
-  const [newIngredient, setNewIngredient] = useState("");
-  const [ingredientsError, setIngredientsError] = useState("");
-  const [inputFileError, setInputFileError] = useState("");
+  const [ price, setPrice ] = useState(""); 
+  const [ ingredients, setIngredients ] = useState<string[]>([]); 
+  const [ newIngredient, setNewIngredient ] = useState("");
+  const [ ingredientsError, setIngredientsError ] = useState("");
+  const [ inputFileName, setInputFileName ] = useState("");
+  const [ inputFileError, setInputFileError ] = useState("");
 
   const { menuActive } = useSystem();
   const navigate = useNavigate();
@@ -44,6 +45,7 @@ export function NewPlate() {
       return setInputFileError("Permitido somente imagem");
     };
 
+    setInputFileName(event.target.files[0].name);
     setInputFileError("");
   };
   
@@ -105,7 +107,7 @@ export function NewPlate() {
             <InputFile
               id="uploadImagePlate"
               label="Imagem do prato"
-              placeholder="Selecione imagem"
+              placeholder={inputFileName ? inputFileName : "Selecione imagem"}
               icon={UploadIcon}
               onChange={handleInputFile}
               error={inputFileError.length > 0 ? inputFileError : null}
