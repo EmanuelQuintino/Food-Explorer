@@ -15,6 +15,7 @@ import { UploadIcon } from "../../assets/UploadIcon";
 type PlateDataTypes = {
   name: string;
   category: string;
+  ingredients: string[];
   price: string;
   description: string;
   image: file;
@@ -24,10 +25,11 @@ type PlateDataTypes = {
 }
 
 export function NewPlate() {
-  const [ price, setPrice ] = useState(""); 
-  const [ newIngredient, setNewIngredient ] = useState("");
   const [ inputFileName, setInputFileName ] = useState("");
   const [ inputFileError, setInputFileError ] = useState("");
+  const [ newIngredient, setNewIngredient ] = useState("");
+  const [ ingredientsError, setIngredientsError ] = useState("");
+  const [ price, setPrice ] = useState(""); 
   
   const { menuActive } = useSystem();
   const navigate = useNavigate();
@@ -36,6 +38,7 @@ export function NewPlate() {
   const { fields, append, remove } = useFieldArray({
     control,
     name: "ingredients",
+    rules: { required: "Campo obrigatório" },
   });
   
   function handleInputFile(event) {
@@ -64,6 +67,7 @@ export function NewPlate() {
     if (newIngredient.length > 0 && newIngredient.length <= 255) {
       append({name: newIngredient});
       setNewIngredient("");
+      setIngredientsError("");
     }
   }
 
@@ -139,7 +143,7 @@ export function NewPlate() {
                   <InputList
                     key={ingredient.id}
                     value={ingredient.name}
-                    onClick={() => remove(ingredient.id)}              
+                    onClick={() => remove(ingredient.id)}
                   />
                 ))}
 
@@ -151,10 +155,10 @@ export function NewPlate() {
                   onClick={handleAddIngredient}
                   />
               </div>  
-              {console.log(fields)}
+              {/* {console.log(fields)} */}
               {console.log(errors)}
-              {console.log(watch())}
-              {errors.ingredients && <span className='inputError'>{errors.ingredients.message}</span>}
+              {/* {console.log(watch())}               */}
+              {errors.ingredients && <span className='inputError'>{errors.ingredients.root.message}</span>}
             </article>
 
             <Input
