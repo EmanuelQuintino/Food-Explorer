@@ -28,21 +28,23 @@ export function NewPlate() {
   const [ inputFileName, setInputFileName ] = useState("");
   const [ inputFileError, setInputFileError ] = useState("");
   const [ newIngredient, setNewIngredient ] = useState("");
-  const [ ingredientsError, setIngredientsError ] = useState("");
   const [ price, setPrice ] = useState(""); 
   
   const { menuActive } = useSystem();
   const navigate = useNavigate();
 
-  const { control, register, handleSubmit, formState: { errors }, watch } = useForm<PlateDataTypes>();
+  const { control, register, handleSubmit, formState: { errors }, watch, setError } = useForm<PlateDataTypes>();
   const { fields, append, remove } = useFieldArray({
     control,
     name: "ingredients",
-    rules: { required: "Campo obrigatório" },
+    rules: {
+      required: "Campo obrigatório",
+      maxLength: {value: 20, message: "Número máximo de ingredientes é 20"},
+    }
   });
   
   function handleInputFile(event) {
-    if (event.target.files.length != 1) {
+    if (event.target.files.length == 1) {
       return setInputFileError("Campo apenas para um arquivo");
     };
 
@@ -56,16 +58,17 @@ export function NewPlate() {
   };
   
   function handleAddIngredient() {    
-    if (newIngredient.length == 0) return;
+    if (newIngredient.length == 0) {
+      return setError('ingredients', { message: 'Adicionar nome do ingrediente' });
+    };
     
     if (newIngredient.length > 255) {
-      return alert("Ingrediente excediu número de caracteres");
+      return setError('ingredients', { message: 'Ingrediente excediu número de 255 caracteres' });
     }
 
     if (newIngredient.length > 0 && newIngredient.length <= 255) {
       append({name: newIngredient});
       setNewIngredient("");
-      setIngredientsError("");
     }
   }
 
@@ -104,8 +107,8 @@ export function NewPlate() {
               onChange={handleInputFile}
               error={inputFileError.length > 0 ? inputFileError : null}
               register={register("image", { 
-                pattern: {value: /(\.jpg|\.jpeg|\.png|\.gif)$/i, message: "Somente imagens são permitidas"},
-                maxLength: {value: 2, message: "Número máximo de caracteres é 255"}
+                // pattern: {value: /(\.jpg|\.jpeg|\.png|\.gif)$/i, message: "Somente imagens são permitidas"},
+                // maxLength: {value: 2, message: "Número máximo de caracteres é 255"}
               })}
             />
 
@@ -153,10 +156,12 @@ export function NewPlate() {
                   onClick={handleAddIngredient}
                   />
               </div>  
-              {/* {console.log(fields)} */}
-              {console.log(errors)}
-              {/* {console.log(watch())}               */}
-              {errors.ingredients && <span className='inputError'>{errors.ingredients.root.message}</span>}
+              {errors.ingredients &&
+                (errors.ingredients.root ?
+                  <span className='inputError'>{errors.ingredients.root.message}</span>:
+                  <span className='inputError'>{errors.ingredients.message}</span>
+                )
+              }
             </article>
 
             <Input
