@@ -1,14 +1,14 @@
 import { Container } from "./style"
 import { useSystem } from "../../hooks/system"
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useForm, useFieldArray } from "react-hook-form";
 import { InputFile } from "../../components/Form/InputFile";
 import { Input } from "../../components/Form/Input";
-import { useForm, useFieldArray } from "react-hook-form";
 import { ButtonSave } from "../../components/ButtonSave";
 import { ButtonDelete } from "../../components/ButtonDelete";
 import { Select } from "../../components/Form/Select";
 import { Textarea } from "../../components/Form/Textarea";
-import { useState } from "react";
 import { InputList } from "../../components/Form/InputList";
 import { UploadIcon } from "../../assets/UploadIcon";
 
@@ -45,11 +45,11 @@ export function NewPlate() {
   
   function handleAddIngredient() {    
     if (newIngredient.length == 0) {
-      return setError('ingredients', { message: 'Adicionar nome do ingrediente' });
+      return setError('ingredients', {message: 'Adicionar nome do ingrediente'});
     };
     
     if (newIngredient.length > 255) {
-      return setError('ingredients', { message: 'Ingrediente excediu número de 255 caracteres' });
+      return setError('ingredients', {message: 'Ingrediente excediu número de 255 caracteres'});
     }
 
     if (newIngredient.length > 0 && newIngredient.length <= 255) {

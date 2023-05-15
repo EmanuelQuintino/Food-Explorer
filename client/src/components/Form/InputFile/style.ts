@@ -13,10 +13,6 @@ export const Container = styled.section`
     background: ${({theme}) => theme.colors.dark800};
     border: .1rem solid transparent;
 
-    &:focus {
-      border: .1rem solid ${({theme}) => theme.colors.light300};
-    }
-
     > label {
       font-family: 'Poppins';
       font-weight: 500;
@@ -32,5 +28,9 @@ export const Container = styled.section`
         height: 2.0rem;
       }
     }
+  }
+
+  .boxInputFile:focus-within {
+    border: .1rem solid ${({theme}) => theme.colors.light300};
   }
 `;
