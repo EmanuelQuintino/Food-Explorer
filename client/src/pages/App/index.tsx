@@ -8,11 +8,12 @@ export function App() {
     <Container>      
       <header>
         <Header />
-      </header>
+      </header>    
+
       <main>
         <Outlet />
       </main>
-    
+
       <footer>
         <Footer />
       </footer> 
