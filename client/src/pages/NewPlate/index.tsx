@@ -26,7 +26,6 @@ type PlateDataTypes = {
 
 export function NewPlate() {
   const [ inputFileName, setInputFileName ] = useState("");
-  const [ inputFileError, setInputFileError ] = useState("");
   const [ newIngredient, setNewIngredient ] = useState("");
   const [ price, setPrice ] = useState(""); 
   
@@ -34,6 +33,7 @@ export function NewPlate() {
   const navigate = useNavigate();
 
   const { control, register, handleSubmit, formState: { errors }, watch, setError } = useForm<PlateDataTypes>();
+  
   const { fields, append, remove } = useFieldArray({
     control,
     name: "ingredients",
@@ -42,20 +42,6 @@ export function NewPlate() {
       maxLength: {value: 20, message: "Número máximo de ingredientes é 20"},
     }
   });
-  
-  function handleInputFile(event) {
-    if (event.target.files.length == 1) {
-      return setInputFileError("Campo apenas para um arquivo");
-    };
-
-    const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
-    if (!allowedExtensions.test(event.target.files[0].name)) {
-      return setInputFileError("Permitido somente imagem");
-    };
-
-    setInputFileName(event.target.files[0].name);
-    setInputFileError("");
-  };
   
   function handleAddIngredient() {    
     if (newIngredient.length == 0) {
@@ -84,9 +70,8 @@ export function NewPlate() {
       return setPrice("");
     }
   }
-
+  
   const onSubmitCreatePlate = (data: PlateDataTypes) => {
-    if (inputFileError) return;     
     console.log(data, data.ingredients);
   }
 
@@ -104,11 +89,15 @@ export function NewPlate() {
               label="Imagem do prato"
               placeholder={inputFileName ? inputFileName : "Selecione imagem"}
               icon={UploadIcon}
-              onChange={handleInputFile}
-              error={inputFileError.length > 0 ? inputFileError : null}
-              register={register("image", { 
-                // pattern: {value: /(\.jpg|\.jpeg|\.png|\.gif)$/i, message: "Somente imagens são permitidas"},
-                // maxLength: {value: 2, message: "Número máximo de caracteres é 255"}
+              onChange={(event) => setInputFileName(event.target.files[0].name)}
+              error={errors.image?.message}
+              register={register("image", {
+                maxLength: {value: 255, message: "Número máximo de caracteres é 255"},
+                validate: {
+                  fileFormat: (file) => /\.(jpg|jpeg|png|gif)$/i.test(file[0].name) || "Permitido somente tipo imagem",  
+                  fileCount: (file) => file.length === 1 || "Por favor adicionar apenas uma imagem",
+                  fileSize: (file) => file[0].size <= 2 * 2 ** 20 || "O tamanho máximo permitido é de 2MB",
+                }
               })}
             />
 
