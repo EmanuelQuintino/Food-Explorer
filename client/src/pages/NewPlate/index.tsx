@@ -25,41 +25,41 @@ type PlateDataTypes = {
 }
 
 export function NewPlate() {
-  const [ inputFileName, setInputFileName ] = useState("");
-  const [ newIngredient, setNewIngredient ] = useState("");
-  const [ price, setPrice ] = useState(""); 
-  
+  const [inputFileName, setInputFileName] = useState("");
+  const [newIngredient, setNewIngredient] = useState("");
+  const [price, setPrice] = useState("");
+
   const { menuActive } = useSystem();
   const navigate = useNavigate();
 
   const { control, register, handleSubmit, formState: { errors }, watch, setError } = useForm<PlateDataTypes>();
-  
+
   const { fields, append, remove } = useFieldArray({
     control,
     name: "ingredients",
     rules: {
       required: "Campo obrigatório",
-      maxLength: {value: 20, message: "Número máximo de ingredientes é 20"},
+      maxLength: { value: 20, message: "Número máximo de ingredientes é 20" },
     }
   });
-  
-  function handleAddIngredient() {    
+
+  function handleAddIngredient() {
     if (newIngredient.length == 0) {
-      return setError('ingredients', {message: 'Adicionar nome do ingrediente'});
+      return setError('ingredients', { message: 'Adicionar nome do ingrediente' });
     };
-    
+
     if (newIngredient.length > 255) {
-      return setError('ingredients', {message: 'Ingrediente excediu número de 255 caracteres'});
+      return setError('ingredients', { message: 'Ingrediente excediu número de 255 caracteres' });
     }
 
     if (newIngredient.length > 0 && newIngredient.length <= 255) {
-      append({name: newIngredient});
+      append({ name: newIngredient });
       setNewIngredient("");
     }
   }
 
   function formatCurrency(value: string) {
-    if (value != "R$ 0,0") { 
+    if (value != "R$ 0,0") {
       const currency = parseFloat(value.replace(/\D/g, "")) / 100;
       const formatted = currency.toLocaleString("pt-BR", {
         style: "currency",
@@ -70,7 +70,7 @@ export function NewPlate() {
       return setPrice("");
     }
   }
-  
+
   const onSubmitCreatePlate = (data: PlateDataTypes) => {
     console.log(data, data.ingredients);
   }
@@ -80,9 +80,9 @@ export function NewPlate() {
       {!menuActive &&
         <>
           <button className="backPageButton" onClick={() => navigate(-1)}>&lt; Voltar</button>
-          
+
           <h2>Novo prato</h2>
-          
+
           <form onSubmit={handleSubmit(onSubmitCreatePlate)} id="formCreatePlate">
             <InputFile
               id="uploadImagePlate"
@@ -92,9 +92,9 @@ export function NewPlate() {
               onChange={(event) => setInputFileName(event.target.files[0].name)}
               error={errors.image?.message}
               register={register("image", {
-                maxLength: {value: 255, message: "Número máximo de caracteres é 255"},
+                maxLength: { value: 255, message: "Número máximo de caracteres é 255" },
                 validate: {
-                  fileFormat: (file) => /\.(jpg|jpeg|png|gif)$/i.test(file[0].name) || "Permitido somente tipo imagem",  
+                  fileFormat: (file) => /\.(jpg|jpeg|png|gif)$/i.test(file[0].name) || "Permitido somente tipo imagem",
                   fileCount: (file) => file.length === 1 || "Por favor adicionar apenas uma imagem",
                   fileSize: (file) => file[0].size <= 2 * 2 ** 20 || "O tamanho máximo permitido é de 2MB",
                 }
@@ -107,22 +107,22 @@ export function NewPlate() {
               type="text"
               placeholder="Ex.: Salada Ceasar"
               error={errors.name?.message}
-              register={register("name", { 
+              register={register("name", {
                 required: "Campo obrigatório",
-                pattern: {value: /^[^0-9]+$/, message: "Somente texto é permitido"},
-                maxLength: {value: 255, message: "Número máximo de caracteres é 255"}
+                pattern: { value: /^[^0-9]+$/, message: "Somente texto é permitido" },
+                maxLength: { value: 255, message: "Número máximo de caracteres é 255" }
               })}
             />
 
-            <Select 
-              id="category" 
+            <Select
+              id="category"
               label="Categoria"
               options={["Refeições", "Sobremesas", "Bebidas"]}
               error={errors.category?.message}
-              register={register("category", { 
+              register={register("category", {
                 required: "Campo obrigatório",
-                pattern: {value: /^(Refeições|Sobremesas|Bebidas)$/, message: "Somente uma das opções é permitido"},
-                maxLength: {value: 255, message: "Número máximo de caracteres é 255"}
+                pattern: { value: /^(Refeições|Sobremesas|Bebidas)$/, message: "Somente uma das opções é permitido" },
+                maxLength: { value: 255, message: "Número máximo de caracteres é 255" }
               })}
             />
 
@@ -143,11 +143,11 @@ export function NewPlate() {
                   value={newIngredient}
                   onChange={(event) => setNewIngredient(event.target.value)}
                   onClick={handleAddIngredient}
-                  />
-              </div>  
+                />
+              </div>
               {errors.ingredients &&
                 (errors.ingredients.root ?
-                  <span className='inputError'>{errors.ingredients.root.message}</span>:
+                  <span className='inputError'>{errors.ingredients.root.message}</span> :
                   <span className='inputError'>{errors.ingredients.message}</span>
                 )
               }
@@ -161,28 +161,28 @@ export function NewPlate() {
               value={price}
               onChange={(event) => formatCurrency(event.target.value)}
               error={errors.price?.message}
-              register={register("price", { 
+              register={register("price", {
                 required: "Campo obrigatório",
-                pattern: {value: /^R\$\s[0-9]+([.][0-9]+)?([,][0-9]+)?$/, message: "Insira um valor válido. Ex: R$ 10,25"},
-                maxLength: {value: 255, message: "Número máximo de caracteres é 255"}
+                pattern: { value: /^R\$\s[0-9]+([.][0-9]+)?([,][0-9]+)?$/, message: "Insira um valor válido. Ex: R$ 10,25" },
+                maxLength: { value: 255, message: "Número máximo de caracteres é 255" }
               })}
             />
 
-            <Textarea 
+            <Textarea
               id="description"
               label="Descrição"
               placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
               error={errors.description?.message}
-              register={register("description", { 
+              register={register("description", {
                 required: "Campo obrigatório",
-                maxLength: {value: 255, message: "Número máximo de caracteres é 255"}  
+                maxLength: { value: 255, message: "Número máximo de caracteres é 255" }
               })}
             />
           </form>
-          
+
           <div className="formButtons">
-            <ButtonDelete name="Excluir prato"/>
-            <ButtonSave name="Salvar alterações" form="formCreatePlate"/>
+            <ButtonDelete name="Excluir prato" />
+            <ButtonSave name="Salvar alterações" form="formCreatePlate" />
           </div>
         </>
       }
