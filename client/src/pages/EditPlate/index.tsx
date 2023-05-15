@@ -3,13 +3,13 @@ import { useSystem } from "../../hooks/system"
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
-import { InputFile } from "../../components/Form/InputFile";
-import { Input } from "../../components/Form/Input";
+import { InputFile } from "../../components/InputFile";
+import { Input } from "../../components/Input";
 import { ButtonSave } from "../../components/ButtonSave";
 import { ButtonDelete } from "../../components/ButtonDelete";
-import { Select } from "../../components/Form/Select";
-import { Textarea } from "../../components/Form/Textarea";
-import { InputList } from "../../components/Form/InputList";
+import { Select } from "../../components/Select";
+import { Textarea } from "../../components/Textarea";
+import { InputList } from "../../components/InputList";
 import { UploadIcon } from "../../assets/UploadIcon";
 
 type PlateDataTypes = {

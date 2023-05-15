@@ -9,7 +9,7 @@ export const Container = styled.section`
   .boxInputFile {
     width: 100%;
     border-radius: .8rem;
-    padding: 1.2rem 1.4rem 1.2rem 3.2rem;
+    padding: 1.2rem 1.4rem 1.2rem 2.4rem;
     background: ${({theme}) => theme.colors.dark800};
     border: .1rem solid transparent;
 
