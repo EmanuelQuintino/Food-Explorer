@@ -17,7 +17,7 @@ export function FoodPlateDetails() {
   const params = useParams();
   const navigate = useNavigate();
 
-  const pageUpdatePlate = () => navigate(`/updateplate/${params.id}`);
+  const pageUpdatePlate = () => navigate(`/editplate/${params.id}`);
 
   const plateData = data?.data.find(plate => plate.id == params.id);
   const imageURL = `${API.defaults.baseURL}/images/${plateData?.image}`;

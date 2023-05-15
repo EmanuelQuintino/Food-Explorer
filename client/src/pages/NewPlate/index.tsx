@@ -6,7 +6,6 @@ import { useForm, useFieldArray } from "react-hook-form";
 import { InputFile } from "../../components/Form/InputFile";
 import { Input } from "../../components/Form/Input";
 import { ButtonSave } from "../../components/ButtonSave";
-import { ButtonDelete } from "../../components/ButtonDelete";
 import { Select } from "../../components/Form/Select";
 import { Textarea } from "../../components/Form/Textarea";
 import { InputList } from "../../components/Form/InputList";
@@ -181,7 +180,6 @@ export function NewPlate() {
           </form>
 
           <div className="formButtons">
-            <ButtonDelete name="Excluir prato" />
             <ButtonSave name="Salvar alterações" form="formCreatePlate" />
           </div>
         </>

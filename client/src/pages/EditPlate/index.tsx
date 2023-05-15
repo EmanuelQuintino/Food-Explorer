@@ -24,7 +24,7 @@ type PlateDataTypes = {
   event: React.ChangeEvent<HTMLInputElement>;
 }
 
-export function UpdatePlate() {
+export function EditPlate() {
   const [inputFileName, setInputFileName] = useState("");
   const [newIngredient, setNewIngredient] = useState("");
   const [price, setPrice] = useState("");
@@ -81,13 +81,13 @@ export function UpdatePlate() {
         <>
           <button className="backPageButton" onClick={() => navigate(-1)}>&lt; Voltar</button>
 
-          <h2>Novo prato</h2>
+          <h2>Editar prato</h2>
 
           <form onSubmit={handleSubmit(onSubmitCreatePlate)} id="formCreatePlate">
             <InputFile
               id="uploadImagePlate"
               label="Imagem do prato"
-              placeholder={inputFileName ? inputFileName : "Selecione imagem"}
+              placeholder={inputFileName ? inputFileName : "Selecione imagem para alterá-la"}
               icon={UploadIcon}
               onChange={(event) => setInputFileName(event.target.files[0].name)}
               error={errors.image?.message}
