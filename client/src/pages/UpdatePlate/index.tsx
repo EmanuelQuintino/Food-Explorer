@@ -24,7 +24,7 @@ type PlateDataTypes = {
   event: React.ChangeEvent<HTMLInputElement>;
 }
 
-export function NewPlate() {
+export function UpdatePlate() {
   const [inputFileName, setInputFileName] = useState("");
   const [newIngredient, setNewIngredient] = useState("");
   const [price, setPrice] = useState("");
