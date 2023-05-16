@@ -20,24 +20,29 @@ export const plateControllers = {
         category: z.string()
           .min(3, "Categoria com mínimo de 3 carácteres")
           .max(255, "Campo com tamanho máximo de 255 caracteres"),
-        image: z.string()
-          .min(3, "Imagem com mínimo de 3 carácteres")
-          .max(255, "Campo com tamanho máximo de 255 caracteres").nullable(),
-        ingredients: z.array(z.string())
+        ingredients: z.string()
+          .min(3, "Categoria com mínimo de 3 carácteres")
+          .max(255, "Campo com tamanho máximo de 255 caracteres"),
       }).strict();
 
-      const { name, description, price, category, image, ingredients } = plateSchema.parse(req.body);
+      const { name, description, price, category, ingredients } = plateSchema.parse(req.body);
 
       const plate = await prisma.plates.findFirst({where: {name: String(name)}});
       if (plate) throw newAppError("Prato já cadastrado", 409);
+
+      const arrayIngredients = ingredients.split(",");
+      if (ingredients[0].length == 0) throw newAppError("Por favor inserir ingredientes", 400);
+
+      const imageFileName = req.file?.filename;
+      if (!imageFileName) throw newAppError("Por favor insirar imagem", 400);
       
-      if (ingredients.length == 0) throw newAppError("Por favor inserir ingredientes", 400);
+      const plateFileName = await diskStorage.saveFile(imageFileName);
       
       await prisma.plates.create({ 
         data: {
-          name, description, price, category, image,
+          name, description, price, category, image: imageFileName,
           ingredients: {
-            create: ingredients.map((ingredient: string) => ({name: ingredient}))
+            create: arrayIngredients.map((ingredient: string) => ({name: ingredient}))
           }
         }
       });

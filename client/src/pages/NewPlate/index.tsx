@@ -72,17 +72,7 @@ export function NewPlate() {
     }
   }
 
-  const onSubmitCreatePlate = (data: PlateDataTypes) => {
-    console.log({
-      ...data,
-      ingredients: data.ingredients.map(ingredient => ingredient.name)
-    });
-    
-    // mutate({
-    //   ...data,
-    //   ingredients: data.ingredients.map(ingredient => ingredient.name)
-    // });
-  }
+  const onSubmitCreatePlate = (data: PlateDataTypes) => mutate(data);
 
   return (
     <Container>
