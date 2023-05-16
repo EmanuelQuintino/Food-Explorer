@@ -1,13 +1,13 @@
 import { Container } from "./style"
 import { Slogan } from "../../components/Slogan"
 import { FoodPlate } from "../../components/FoodPlate"
-import { useSystem } from "../../hooks/system"
+import { useSystem } from "../../hooks/useSystem"
 import { ImSpinner2 } from "react-icons/im";
-import { useFetchFoodPlates } from "../../hooks/fetchFoodPlates";
+import { usePlateQuery } from "../../hooks/usePlateQuery";
 
 export function Home() {
   const { menuActive } = useSystem();
-  const { data, isLoading, error } = useFetchFoodPlates();
+  const { data, isLoading, error } = usePlateQuery();
 
   return (
     <Container>

@@ -1,5 +1,6 @@
-import { Container } from "./style"
-import { useSystem } from "../../hooks/system"
+import { Container } from "./style";
+import { useSystem } from "../../hooks/useSystem";
+import { usePlateMutate } from "../../hooks/usePlateMutate";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
@@ -27,6 +28,7 @@ export function NewPlate() {
   const [inputFileName, setInputFileName] = useState("");
   const [newIngredient, setNewIngredient] = useState("");
   const [price, setPrice] = useState("");
+  const { mutate } = usePlateMutate();
 
   const { menuActive } = useSystem();
   const navigate = useNavigate();
@@ -71,7 +73,15 @@ export function NewPlate() {
   }
 
   const onSubmitCreatePlate = (data: PlateDataTypes) => {
-    console.log(data, data.ingredients);
+    console.log({
+      ...data,
+      ingredients: data.ingredients.map(ingredient => ingredient.name)
+    });
+    
+    // mutate({
+    //   ...data,
+    //   ingredients: data.ingredients.map(ingredient => ingredient.name)
+    // });
   }
 
   return (

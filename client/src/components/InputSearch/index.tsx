@@ -1,6 +1,6 @@
 import { Container } from "./style";
 import { SearchIcon } from "../../assets/SearchIcon"
-import { useSystem } from "../../hooks/system";
+import { useSystem } from "../../hooks/useSystem";
 
 export function InputSearch() {
   const { menuActive, toggleMenu } = useSystem();

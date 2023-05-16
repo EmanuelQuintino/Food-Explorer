@@ -18,11 +18,11 @@ type FoodPlates = {
   }[];
 }
 
-export const useFetchFoodPlates = () => {
-  const { data, isLoading, error } = useQuery({
+export const usePlateQuery = () => {
+  const query = useQuery({
     queryKey: ['foodPlates'], 
     queryFn: async () => await API.get("/plates") as FoodPlates
   });
 
-  return { data, isLoading, error }
+  return query;
 } 

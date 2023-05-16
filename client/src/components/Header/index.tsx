@@ -5,12 +5,12 @@ import { LogoExplorer } from "../../assets/LogoExplorer";
 import { OrderIcon } from "../../assets/OrderIcon";
 import { InputSearch } from "../InputSearch";
 import { Menu } from "../Menu";
-import { useSystem } from "../../hooks/system";
-import { useAuth } from "../../hooks/auth";
+import { useSystem } from "../../hooks/useSystem";
+import { useAuth } from "../../hooks/useAuth";
 
 export function Header() {
   const { menuActive, toggleMenu } = useSystem();
-  const { userAuth }  = useAuth();  
+  const { userAuth } = useAuth();
 
   return (
     <HeaderContainer menuActive={menuActive}>

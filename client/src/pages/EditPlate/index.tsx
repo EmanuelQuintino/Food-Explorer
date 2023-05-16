@@ -1,5 +1,5 @@
 import { Container } from "./style"
-import { useSystem } from "../../hooks/system"
+import { useSystem } from "../../hooks/useSystem"
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
@@ -13,7 +13,7 @@ import { InputList } from "../../components/InputList";
 import { UploadIcon } from "../../assets/UploadIcon";
 import { ImSpinner2 } from "react-icons/im";
 import { useParams } from "react-router-dom";
-import { useFetchFoodPlates } from "../../hooks/fetchFoodPlates";
+import { usePlateQuery } from "../../hooks/usePlateQuery";
 
 type PlateDataTypes = {
   name: string;
@@ -31,12 +31,12 @@ export function EditPlate() {
   const [inputFileName, setInputFileName] = useState("");
   const [newIngredient, setNewIngredient] = useState("");
   const [price, setPrice] = useState("");
-  
+
   const { menuActive } = useSystem();
   const navigate = useNavigate();
   const params = useParams();
-  
-  const { data, isLoading, error } = useFetchFoodPlates();
+
+  const { data, isLoading, error } = usePlateQuery();
   const plateData = data?.data.find(plate => plate.id == params.id);
   console.log(plateData);
 
@@ -91,9 +91,9 @@ export function EditPlate() {
 
           <h2>Editar prato</h2>
 
-          {isLoading && <p><ImSpinner2 className="spinner"/></p>}
+          {isLoading && <p><ImSpinner2 className="spinner" /></p>}
           {error && <p className="queryError">Algo deu errado!</p>}
-          
+
           <form onSubmit={handleSubmit(onSubmitCreatePlate)} id="formCreatePlate">
             <InputFile
               id="uploadImagePlate"
