@@ -10,7 +10,7 @@ import { CountPlate } from "../../components/CountPlate";
 import { OrderIcon } from "../../assets/OrderIcon";
 import { useAuth } from "../../hooks/useAuth";
 
-export function FoodPlateDetails() {
+export function PlateDetails() {
   const { menuActive } = useSystem();
   const { userAuth } = useAuth();
   const { data, isLoading, error } = usePlateQuery();
