@@ -12,8 +12,9 @@ import { useAuth } from "../../hooks/auth";
 
 export function FoodPlateDetails() {
   const { menuActive } = useSystem();
-  const { data, isLoading, error } = useFetchFoodPlates();
   const { userAuth } = useAuth();
+  const { data, isLoading, error } = useFetchFoodPlates();
+  
   const params = useParams();
   const navigate = useNavigate();
 
@@ -26,10 +27,10 @@ export function FoodPlateDetails() {
     <Container>
       {!menuActive && plateData &&
         <>
+          <button className="backPageButton" onClick={() => navigate(-1)}>&lt; Voltar</button>      
+          
           {isLoading && <p><ImSpinner2 className="spinner"/></p>}
           {error && <p className="queryError">Algo deu errado!</p>}
-          
-          <button className="backPageButton" onClick={() => navigate(-1)}>&lt; Voltar</button>      
           
           <section className="plateContainer">
             <img src={imageURL} alt="image-plate" className="imagePlate"/>

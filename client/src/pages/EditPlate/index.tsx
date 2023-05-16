@@ -11,6 +11,9 @@ import { Select } from "../../components/Select";
 import { Textarea } from "../../components/Textarea";
 import { InputList } from "../../components/InputList";
 import { UploadIcon } from "../../assets/UploadIcon";
+import { ImSpinner2 } from "react-icons/im";
+import { useParams } from "react-router-dom";
+import { useFetchFoodPlates } from "../../hooks/fetchFoodPlates";
 
 type PlateDataTypes = {
   name: string;
@@ -28,9 +31,14 @@ export function EditPlate() {
   const [inputFileName, setInputFileName] = useState("");
   const [newIngredient, setNewIngredient] = useState("");
   const [price, setPrice] = useState("");
-
+  
   const { menuActive } = useSystem();
   const navigate = useNavigate();
+  const params = useParams();
+  
+  const { data, isLoading, error } = useFetchFoodPlates();
+  const plateData = data?.data.find(plate => plate.id == params.id);
+  console.log(plateData);
 
   const { control, register, handleSubmit, formState: { errors }, watch, setError } = useForm<PlateDataTypes>();
 
@@ -83,6 +91,9 @@ export function EditPlate() {
 
           <h2>Editar prato</h2>
 
+          {isLoading && <p><ImSpinner2 className="spinner"/></p>}
+          {error && <p className="queryError">Algo deu errado!</p>}
+          
           <form onSubmit={handleSubmit(onSubmitCreatePlate)} id="formCreatePlate">
             <InputFile
               id="uploadImagePlate"
@@ -105,6 +116,7 @@ export function EditPlate() {
               id="name"
               label="Nome"
               type="text"
+              value={plateData.name}
               placeholder="Ex.: Salada Ceasar"
               error={errors.name?.message}
               register={register("name", {
@@ -117,6 +129,7 @@ export function EditPlate() {
             <Select
               id="category"
               label="Categoria"
+              value={plateData.category}
               options={["Refeições", "Sobremesas", "Bebidas"]}
               error={errors.category?.message}
               register={register("category", {
