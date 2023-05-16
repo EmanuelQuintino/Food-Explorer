@@ -38,7 +38,6 @@ export function EditPlate() {
 
   const { data, isLoading, error } = usePlateQuery();
   const plateData = data?.data.find(plate => plate.id == params.id);
-  console.log(plateData);
 
   const { control, register, handleSubmit, formState: { errors }, watch, setError } = useForm<PlateDataTypes>();
 
@@ -116,7 +115,7 @@ export function EditPlate() {
               id="name"
               label="Nome"
               type="text"
-              value={plateData.name}
+              value={plateData?.name}
               placeholder="Ex.: Salada Ceasar"
               error={errors.name?.message}
               register={register("name", {
@@ -129,7 +128,7 @@ export function EditPlate() {
             <Select
               id="category"
               label="Categoria"
-              value={plateData.category}
+              value={plateData?.category}
               options={["Refeições", "Sobremesas", "Bebidas"]}
               error={errors.category?.message}
               register={register("category", {
