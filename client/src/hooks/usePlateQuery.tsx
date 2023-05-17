@@ -20,7 +20,7 @@ type FoodPlates = {
 
 export const usePlateQuery = () => {
   const query = useQuery({
-    queryKey: ['foodPlates'], 
+    queryKey: ['foodPlates'],
     queryFn: async () => await API.get("/plates") as FoodPlates
   });
 

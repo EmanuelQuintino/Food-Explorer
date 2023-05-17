@@ -28,12 +28,12 @@ export function NewPlate() {
   const [inputFileName, setInputFileName] = useState("");
   const [newIngredient, setNewIngredient] = useState("");
   const [price, setPrice] = useState("");
-  const { mutate } = usePlateMutate();
+  const { mutate, isSuccess } = usePlateMutate();
 
   const { menuActive } = useSystem();
   const navigate = useNavigate();
 
-  const { control, register, handleSubmit, formState: { errors }, watch, setError } = useForm<PlateDataTypes>();
+  const { control, register, handleSubmit, formState: { errors }, watch, setError, reset } = useForm<PlateDataTypes>();
 
   const { fields, append, remove } = useFieldArray({
     control,

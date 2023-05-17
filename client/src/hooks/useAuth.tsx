@@ -21,40 +21,40 @@ type AuthContextTypes = {
 const AuthContext = createContext<AuthContextTypes>({} as AuthContextTypes);
 
 export function AuthProvider({ children }: PropsWithChildren) {
-  const [ userAuth, setUserAuth ] = useState({});
+  const [userAuth, setUserAuth] = useState({});
 
-  function handleLogin({email, password}: HandleLoginTypes) {
+  function handleLogin({ email, password }: HandleLoginTypes) {
     if (!email || !password) return alert("Por favor preencha todos os campos");
-    API.post("/login", {email, password})
-    .then((res) => {
-      if (res.data.token) {
-        API.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;
-        localStorage.setItem("@FoodExplorer:token", `Bearer ${res.data.token}`);        
-        
-        const userDecodedToken = jwt_decode(res.data.token) as string;
-        setUserAuth(userDecodedToken);
-      }    
-    })
-    .catch((error) => alert(error.response.data.error));
+    API.post("/login", { email, password })
+      .then((res) => {
+        if (res.data.token) {
+          API.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;
+          localStorage.setItem("@FoodExplorer:token", `Bearer ${res.data.token}`);
+
+          const userDecodedToken = jwt_decode(res.data.token) as string;
+          setUserAuth(userDecodedToken);
+        }
+      })
+      .catch((error) => alert(error.response.data.error));
   };
 
   function handleLogout() {
     localStorage.removeItem("@FoodExplorer:token");
-    setUserAuth({});  
+    setUserAuth({});
   };
 
   useEffect(() => {
     try {
-      const token = localStorage.getItem("@FoodExplorer:token");    
-      
-      if (token) {  
-        const userDecodedToken = jwt_decode(token) as { exp: number };      
-        const expirationTime = userDecodedToken.exp * 1000;        
+      const token = localStorage.getItem("@FoodExplorer:token");
+
+      if (token) {
+        const userDecodedToken = jwt_decode(token) as { exp: number };
+        const expirationTime = userDecodedToken.exp * 1000;
 
         if (Date.now() > expirationTime) return handleLogout();
-      
+
         API.defaults.headers.common['Authorization'] = token;
-        setUserAuth(userDecodedToken);                
+        setUserAuth(userDecodedToken);
       }
     } catch (error) {
       console.error(error);
@@ -63,7 +63,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{handleLogin, userAuth, handleLogout}}>
+    <AuthContext.Provider value={{ handleLogin, userAuth, handleLogout }}>
       {children}
     </AuthContext.Provider>
   )

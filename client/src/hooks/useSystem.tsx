@@ -12,8 +12,8 @@ export function SystemProvider({ children }: PropsWithChildren) {
   const toggleMenu = () => setMenuActive(menuActive ? false : true);
 
   return (
-    <SystemContext.Provider value={{ 
-      menuActive, toggleMenu    
+    <SystemContext.Provider value={{
+      menuActive, toggleMenu
     }}>
       {children}
     </SystemContext.Provider>
