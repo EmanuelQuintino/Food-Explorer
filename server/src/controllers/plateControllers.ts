@@ -124,6 +124,7 @@ export const plateControllers = {
       const plate = await prisma.plates.findUnique({ where: { id: String(id) } });
       if (!plate) throw newAppError('Prato não encontrado', 404);
 
+      if (plate.image) await diskStorage.deleteFile(plate.image);
       await prisma.plates.delete({ where: { id: String(id) } });
 
       return res.status(200).json('Prato deletado com sucesso');
