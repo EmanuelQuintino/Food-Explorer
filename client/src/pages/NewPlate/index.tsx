@@ -91,6 +91,7 @@ export function NewPlate() {
               onChange={(event) => setInputFileName(event.target.files[0].name)}
               error={errors.image?.message}
               register={register("image", {
+                required: "Campo obrigatório",
                 maxLength: { value: 255, message: "Número máximo de caracteres é 255" },
                 validate: {
                   fileFormat: (file) => /\.(jpg|jpeg|png|gif)$/i.test(file[0].name) || "Permitido somente tipo imagem",

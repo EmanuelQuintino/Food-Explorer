@@ -1,5 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { API } from "../services/api";
+import { toast } from 'react-toastify';
 
 type Ingredient = {
   name: string;
@@ -30,9 +31,9 @@ async function createPlate(data: FoodPlates) {
   formData.append('ingredients', JSON.stringify(plateData.ingredients));
   formData.append('description', plateData.description);
 
-  const response = await API.post("/plates", formData) as {data: FoodPlates};
-
-  console.log(response.data);
+  await API.post("/plates", formData)
+    .then((response) => toast.success(response.data, {theme: "dark"}))
+    .catch((error) => toast.error(error.response.data.error, {theme: "dark"}))  
 };
 
 export const usePlateMutate = () => {
