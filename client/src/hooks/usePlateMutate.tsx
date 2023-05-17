@@ -32,8 +32,8 @@ async function createPlate(data: FoodPlates) {
   formData.append('description', plateData.description);
 
   await API.post("/plates", formData)
-    .then((response) => toast.success(response.data, { theme: "dark" }))
-    .catch((error) => toast.error(error.response.data.error, { theme: "dark" }))
+    .then((response) => toast.success(response.data || "Prato cadastrado com sucesso", { theme: "dark" }))
+    .catch((error) => toast.error(error.response.data.error || "Erro ao cadastrar prato", { theme: "dark" }))
 };
 
 export const usePlateMutate = () => {
