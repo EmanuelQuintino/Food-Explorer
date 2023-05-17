@@ -14,6 +14,8 @@ import { UploadIcon } from "../../assets/UploadIcon";
 import { ImSpinner2 } from "react-icons/im";
 import { useParams } from "react-router-dom";
 import { usePlateQuery } from "../../hooks/usePlateQuery";
+import { API } from "../../services/api";
+import { toast } from 'react-toastify';
 
 type PlateDataTypes = {
   name: string;
@@ -81,6 +83,15 @@ export function EditPlate() {
   const onSubmitCreatePlate = (data: PlateDataTypes) => {
     console.log(data, data.ingredients);
   }
+
+  const onDeletePlate = async () => {
+    const confirmDelete = confirm("Deseja excluir prato?")
+    if (confirmDelete) {
+      await API.delete(`/plates/${plateData.id}`)
+        .then((response) => toast.success(response.data, { theme: "dark" }))
+        .catch((error) => toast.error(error.response.data.error, { theme: "dark" }));
+    };
+  };
 
   return (
     <Container>
@@ -193,7 +204,7 @@ export function EditPlate() {
           </form>
 
           <div className="formButtons">
-            <ButtonDelete name="Excluir prato" />
+            <ButtonDelete name="Excluir prato" onClick={onDeletePlate} />
             <ButtonSave name="Salvar alterações" form="formCreatePlate" />
           </div>
         </>
