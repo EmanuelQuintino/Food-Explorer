@@ -89,10 +89,10 @@ export function EditPlate() {
     if (confirmDelete) {
       await API.delete(`/plates/${plateData.id}`)
         .then((response) => {
-          toast.success(response.data || "Prato excluído com sucesso", { theme: "dark" });
+          toast.success(response.data || "Prato excluído com sucesso");
           navigate("/");
         })
-        .catch((error) => toast.error(error.response.data.error || "Erro ao excluir prato", { theme: "dark" }));
+        .catch((error) => toast.error(error.response.data.error || "Erro ao excluir prato"));
     };
   };
 

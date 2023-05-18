@@ -12,7 +12,7 @@ export function App() {
         <Header />
       </header>    
 
-      <ToastContainer />      
+      <ToastContainer autoClose={3000} theme={"dark"} />      
       
       <main>
         <Outlet />
