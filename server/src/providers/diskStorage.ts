@@ -3,7 +3,7 @@ import path from "path";
 import { TMP_FOLDER, UPLOADS_FOLDER } from "../configs/upload";
 
 export const diskStorage = {
-  saveFile: async (file: any) => {
+  saveFile: async (file: string) => {
     try {
       await fs.promises.rename(
         path.resolve(TMP_FOLDER, file),
@@ -15,7 +15,7 @@ export const diskStorage = {
     };
   },
 
-  deleteFile: async (file: any) => {
+  deleteFile: async (file: string) => {
     try {
       const filePath = path.resolve(UPLOADS_FOLDER, file);
       await fs.promises.stat(filePath);
@@ -25,7 +25,7 @@ export const diskStorage = {
     };
   },
 
-  deleteTempFile: async (file: any) => {
+  deleteTempFile: async (file: string) => {
     try {
       const filePath = path.resolve(TMP_FOLDER, file);
       await fs.promises.stat(filePath);
