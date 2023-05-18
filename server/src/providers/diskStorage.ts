@@ -24,4 +24,14 @@ export const diskStorage = {
       return;
     };
   },
+
+  deleteTempFile: async (file: any) => {
+    try {
+      const filePath = path.resolve(TMP_FOLDER, file);
+      await fs.promises.stat(filePath);
+      await fs.promises.unlink(filePath);
+    } catch (error) {
+      return;
+    };
+  },
 };

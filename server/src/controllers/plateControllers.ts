@@ -49,6 +49,7 @@ export const plateControllers = {
 
       return res.status(201).json("Prato cadastrado com sucesso");
     } catch (error: any) {
+      await diskStorage.deleteTempFile(req.file?.filename);
       if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
       return next(error);
     };
