@@ -26,12 +26,12 @@ export const plateControllers = {
       }).strict();
 
       const { name, description, price, category, ingredients } = plateSchema.parse(req.body);
-
+      
       const plate = await prisma.plates.findFirst({ where: { name: String(name) } });
       if (plate) throw newAppError("Prato já cadastrado", 409);
-
-      const arrayIngredients = ingredients.split(",");
-      if (ingredients[0].length == 0) throw newAppError("Por favor inserir ingredientes", 400);
+      
+      const arrayIngredients = JSON.parse(ingredients);
+      if (arrayIngredients.length == 0) throw newAppError("Por favor inserir ingredientes", 400);
 
       const imageFileName = req.file?.filename;
       if (!imageFileName) throw newAppError("Por favor insirar imagem", 400);
