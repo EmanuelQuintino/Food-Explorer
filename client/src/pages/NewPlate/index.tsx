@@ -62,10 +62,7 @@ export function NewPlate() {
   function formatCurrency(value: string) {
     if (value != "R$ 0,0") {
       const currency = parseFloat(value.replace(/\D/g, "")) / 100;
-      const formatted = currency.toLocaleString("pt-BR", {
-        style: "currency",
-        currency: "BRL",
-      });
+      const formatted = currency.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
       return setPrice(formatted);
     } else {
       return setPrice("");

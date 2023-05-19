@@ -47,11 +47,12 @@ export function EditPlate() {
       name: plateData.name,
       category: plateData.category,
       ingredients: plateData.ingredients,
-      price: plateData.price,
+      price: `R$ ${plateData.price.replace(".", ",")}`,
+      // price: plateData.price.toLocaleString('pt-br', { style: 'currency', currency: 'brl' }),
       description: plateData.description,
       image: plateData.image,
     });
-  }, [data])
+  }, [])
 
   console.log(plateDataForm);
 
@@ -84,10 +85,7 @@ export function EditPlate() {
   function formatCurrency(value: string) {
     if (value != "R$ 0,0") {
       const currency = parseFloat(value.replace(/\D/g, "")) / 100;
-      const formatted = currency.toLocaleString("pt-BR", {
-        style: "currency",
-        currency: "BRL",
-      });
+      const formatted = currency.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
       return setPlateDataForm({
         ...plateDataForm,
         price: formatted,
