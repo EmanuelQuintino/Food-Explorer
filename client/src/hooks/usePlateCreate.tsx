@@ -36,7 +36,7 @@ async function createPlate(data: FoodPlates) {
     .catch((error) => toast.error(error.response.data.error || "Erro ao cadastrar prato"))
 };
 
-export const usePlateMutate = () => {
+export const usePlateCreate = () => {
   const mutate = useMutation({
     mutationFn: createPlate
   });
