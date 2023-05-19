@@ -59,7 +59,7 @@ export function NewPlate() {
     }
   }
 
-  function formatCurrency(value: string) {
+  function handleFormatPrice(value: string) {
     if (value != "R$ 0,0") {
       const currency = parseFloat(value.replace(/\D/g, "")) / 100;
       const formatted = currency.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
@@ -156,7 +156,7 @@ export function NewPlate() {
               type="text"
               placeholder="R$ 0,00"
               value={price}
-              onChange={(event) => formatCurrency(event.target.value)}
+              onChange={(event) => handleFormatPrice(event.target.value)}
               error={errors.price?.message}
               register={register("price", {
                 required: "Campo obrigatório",

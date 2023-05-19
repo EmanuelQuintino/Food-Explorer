@@ -61,7 +61,7 @@ export function EditPlate() {
     control,
     name: "ingredients",
     rules: {
-      required: "Campo obrigatório",
+      required: plateDataForm.ingredients ? false : "Campo obrigatório",
       maxLength: { value: 20, message: "Número máximo de ingredientes é 20" },
     },
   });
@@ -69,6 +69,16 @@ export function EditPlate() {
   useEffect(() => {
     append(plateDataForm?.ingredients);
   }, [plateDataForm.ingredients]);
+
+  function handleInputChange(event: React.ChangeEventHandler<HTMLInputElement>) {
+    const { name, value } = event.target;
+      setPlateDataForm({
+        ...plateDataForm,
+        [name]: value
+      });
+  };
+
+  console.log(plateDataForm);
   
   function handleAddIngredient() {
     if (newIngredient.length == 0) {
@@ -77,15 +87,15 @@ export function EditPlate() {
 
     if (newIngredient.length > 255) {
       return setError('ingredients', { message: 'Ingrediente excediu número de 255 caracteres' });
-    }
+    };
 
     if (newIngredient.length > 0 && newIngredient.length <= 255) {
       append({ name: newIngredient });
       setNewIngredient("");
-    }
-  }
+    };
+  };
 
-  function formatCurrency(value: string) {
+  function handleFormatPrice(value: string) {
     if (value != "R$ 0,0") {
       const currency = parseFloat(value.replace(/\D/g, "")) / 100;
       const formatted = currency.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
@@ -98,12 +108,12 @@ export function EditPlate() {
         ...plateDataForm,
         price: "",
       });
-    }
-  }
+    };
+  };
 
   const onSubmitCreatePlate = (data: PlateDataTypes) => {
-    console.log(data, data.ingredients);
-  }
+    console.log(data);
+  };
 
   const onDeletePlate = async () => {
     const confirmDelete = confirm("Deseja excluir prato?")
@@ -139,9 +149,18 @@ export function EditPlate() {
               register={register("image", {
                 maxLength: { value: 255, message: "Número máximo de caracteres é 255" },
                 validate: {
-                  fileFormat: (file) => /\.(jpg|jpeg|png|gif)$/i.test(file[0].name) || "Permitido somente tipo imagem",
-                  fileCount: (file) => file.length === 1 || "Por favor adicionar apenas uma imagem",
-                  fileSize: (file) => file[0].size <= 2 * 2 ** 20 || "O tamanho máximo permitido é de 2MB",
+                  fileFormat: (file) => {
+                    if (!file || file.lenght === 0) return;
+                    /\.(jpg|jpeg|png|gif)$/i.test(file[0]?.name) || "Permitido somente tipo imagem"
+                  },
+                  fileCount: (file) => {
+                    if (!file || file.lenght === 0) return;
+                    file.length === 1 || "Por favor adicionar apenas uma imagem"
+                  },
+                  fileSize: (file) => {
+                    if (!file || file.lenght === 0) return;
+                    file[0]?.size <= 2 * 2 ** 20 || "O tamanho máximo permitido é de 2MB"
+                  },
                 }
               })}
             />
@@ -152,9 +171,11 @@ export function EditPlate() {
               type="text"
               value={plateDataForm.name}
               placeholder="Ex.: Salada Ceasar"
+              onChange={handleInputChange}
               error={errors.name?.message}
               register={register("name", {
-                required: "Campo obrigatório",
+                shouldUnregister: true,
+                required: plateDataForm.name ? false : "Campo obrigatório",
                 pattern: { value: /^[^0-9]+$/, message: "Somente texto é permitido" },
                 maxLength: { value: 255, message: "Número máximo de caracteres é 255" }
               })}
@@ -165,6 +186,7 @@ export function EditPlate() {
               label="Categoria"
               value={plateDataForm.category}
               options={["Refeições", "Sobremesas", "Bebidas"]}
+              onChange={handleInputChange}
               error={errors.category?.message}
               register={register("category", {
                 required: "Campo obrigatório",
@@ -206,10 +228,10 @@ export function EditPlate() {
               type="text"
               placeholder="R$ 0,00"
               value={plateDataForm.price}
-              onChange={(event) => formatCurrency(event.target.value)}
+              onChange={(event) => handleFormatPrice(event.target.value)}
               error={errors.price?.message}
               register={register("price", {
-                required: "Campo obrigatório",
+                required: plateDataForm.price ? false : "Campo obrigatório",
                 pattern: { value: /^R\$\s[0-9]+([.][0-9]+)?([,][0-9]+)?$/, message: "Insira um valor válido. Ex: R$ 10,25" },
                 maxLength: { value: 255, message: "Número máximo de caracteres é 255" }
               })}
@@ -219,10 +241,11 @@ export function EditPlate() {
               id="description"
               label="Descrição"
               value={plateDataForm.description}
+              onChange={handleInputChange}
               placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
               error={errors.description?.message}
               register={register("description", {
-                required: "Campo obrigatório",
+                required: plateDataForm.description ? false : "Campo obrigatório",
                 maxLength: { value: 255, message: "Número máximo de caracteres é 255" }
               })}
             />
