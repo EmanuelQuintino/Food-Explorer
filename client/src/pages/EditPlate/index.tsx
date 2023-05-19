@@ -1,7 +1,7 @@
 import { Container } from "./style"
 import { useSystem } from "../../hooks/useSystem"
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { InputFile } from "../../components/InputFile";
 import { Input } from "../../components/Input";
@@ -33,6 +33,7 @@ export function EditPlate() {
   const [inputFileName, setInputFileName] = useState("");
   const [newIngredient, setNewIngredient] = useState("");
   const [price, setPrice] = useState("");
+  const [plateDataForm, setPlateDataForm] = useState({});
 
   const { menuActive } = useSystem();
   const navigate = useNavigate();
@@ -40,6 +41,19 @@ export function EditPlate() {
 
   const { data, isLoading, error } = usePlateQuery();
   const plateData = data?.data.find(plate => plate.id == params.id);
+
+  useEffect(() => {
+    setPlateDataForm({
+      name: plateData.name,
+      category: plateData.category,
+      ingredients: plateData.ingredients,
+      price: plateData.price,
+      description: plateData.description,
+      image: plateData.image,
+    });
+  }, [data])
+
+  console.log(plateDataForm);
 
   const { control, register, handleSubmit, formState: { errors }, watch, setError } = useForm<PlateDataTypes>();
 
@@ -74,9 +88,15 @@ export function EditPlate() {
         style: "currency",
         currency: "BRL",
       });
-      return setPrice(formatted);
+      return setPlateDataForm({
+        ...plateDataForm,
+        price: formatted,
+      });
     } else {
-      return setPrice("");
+      return setPlateDataForm({
+        ...plateDataForm,
+        price: "",
+      });
     }
   }
 
@@ -129,7 +149,7 @@ export function EditPlate() {
               id="name"
               label="Nome"
               type="text"
-              value={plateData?.name}
+              value={plateDataForm.name}
               placeholder="Ex.: Salada Ceasar"
               error={errors.name?.message}
               register={register("name", {
@@ -142,7 +162,7 @@ export function EditPlate() {
             <Select
               id="category"
               label="Categoria"
-              value={plateData?.category}
+              value={plateDataForm.category}
               options={["Refeições", "Sobremesas", "Bebidas"]}
               error={errors.category?.message}
               register={register("category", {
@@ -184,7 +204,7 @@ export function EditPlate() {
               label="Preço"
               type="text"
               placeholder="R$ 0,00"
-              value={price}
+              value={plateDataForm.price}
               onChange={(event) => formatCurrency(event.target.value)}
               error={errors.price?.message}
               register={register("price", {
@@ -197,6 +217,7 @@ export function EditPlate() {
             <Textarea
               id="description"
               label="Descrição"
+              value={plateDataForm.description}
               placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
               error={errors.description?.message}
               register={register("description", {
