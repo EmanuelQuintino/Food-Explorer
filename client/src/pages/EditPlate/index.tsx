@@ -32,6 +32,7 @@ type PlateDataTypes = {
 export function EditPlate() {
   const [inputFileName, setInputFileName] = useState("");
   const [newIngredient, setNewIngredient] = useState("");
+  const [plateID, setPlateID] = useState("");
   const [price, setPrice] = useState("");
   const [plateDataForm, setPlateDataForm] = useState({});
 
@@ -54,8 +55,6 @@ export function EditPlate() {
     });
   }, [])
 
-  console.log(plateDataForm);
-
   const { control, register, handleSubmit, formState: { errors }, watch, setError } = useForm<PlateDataTypes>();
 
   const { fields, append, remove } = useFieldArray({
@@ -64,9 +63,13 @@ export function EditPlate() {
     rules: {
       required: "Campo obrigatório",
       maxLength: { value: 20, message: "Número máximo de ingredientes é 20" },
-    }
+    },
   });
 
+  useEffect(() => {
+    append(plateDataForm?.ingredients);
+  }, [plateDataForm.ingredients]);
+  
   function handleAddIngredient() {
     if (newIngredient.length == 0) {
       return setError('ingredients', { message: 'Adicionar nome do ingrediente' });
