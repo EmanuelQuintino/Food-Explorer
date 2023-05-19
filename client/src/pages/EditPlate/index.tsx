@@ -3,6 +3,7 @@ import { useSystem } from "../../hooks/useSystem"
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
+import { usePlateUpdate } from "../../hooks/usePlateUpdate";
 import { InputFile } from "../../components/InputFile";
 import { Input } from "../../components/Input";
 import { ButtonSave } from "../../components/ButtonSave";
@@ -43,6 +44,7 @@ export function EditPlate() {
     image: null,
   });
 
+  const { mutate, isSuccess } = usePlateUpdate();
   const { menuActive } = useSystem();
   const navigate = useNavigate();
   const params = useParams();
@@ -51,16 +53,18 @@ export function EditPlate() {
   const plateData = data?.data.find(plate => plate.id == params.id);
 
   useEffect(() => {
-    setPlateDataForm({
-      name: plateData.name,
-      category: plateData.category,
-      ingredients: plateData.ingredients,
-      price: `R$ ${plateData.price.replace(".", ",")}`,
-      // price: plateData.price.toLocaleString('pt-br', { style: 'currency', currency: 'brl' }),
-      description: plateData.description,
-      image: plateData.image,
-    });
-  }, [])
+    if (plateData) {
+      setPlateDataForm({
+        name: plateData.name,
+        category: plateData.category,
+        ingredients: plateData.ingredients,
+        price: `R$ ${plateData.price.replace(".", ",")}`,
+        // price: plateData.price.toLocaleString('pt-br', { style: 'currency', currency: 'brl' }),
+        description: plateData.description,
+        image: plateData.image,
+      });
+    }
+  }, [plateData])
 
   const { control, register, handleSubmit, formState: { errors }, watch, setError } = useForm<PlateDataTypes>();
 
@@ -116,9 +120,7 @@ export function EditPlate() {
     };
   };
 
-  const onSubmitCreatePlate = (data: PlateDataTypes) => {
-    console.log(data);
-  };
+  const onSubmitUpdatePlate = (data: PlateDataTypes) => mutate({...data, id: plateData.id});
 
   const onDeletePlate = async () => {
     const confirmDelete = confirm("Deseja excluir prato?")
@@ -143,7 +145,7 @@ export function EditPlate() {
           {isLoading && <p><ImSpinner2 className="spinner" /></p>}
           {error && <p className="queryError">Algo deu errado!</p>}
 
-          <form onSubmit={handleSubmit(onSubmitCreatePlate)} id="formCreatePlate">
+          <form onSubmit={handleSubmit(onSubmitUpdatePlate)} id="formCreatePlate">
             <InputFile
               id="uploadImagePlate"
               label="Imagem do prato"

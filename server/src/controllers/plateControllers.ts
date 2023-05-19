@@ -78,37 +78,44 @@ export const plateControllers = {
 
   update: async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const plateSchema = z.object({
-        name: z.string()
-          .min(3, "Nome com mínimo de 3 caracteres")
-          .max(255, "Campo com tamanho máximo de 255 caracteres"),
-        description: z.string()
-          .min(3, "Descrição com mínimo de 3 caracteres")
-          .max(255, "Campo com tamanho máximo de 255 caracteres"),
-        price: z.string()
-          .min(3, "Preço com mínimo de 3 carácteres")
-          .max(255, "Campo com tamanho máximo de 255 caracteres"),
-        category: z.string()
-          .min(3, "Categoria com mínimo de 3 carácteres")
-          .max(255, "Campo com tamanho máximo de 255 caracteres"),
-        ingredients: z.array(z.string())
-      }).strict();
+      // const plateSchema = z.object({
+      //   name: z.string()
+      //     .min(3, "Nome com mínimo de 3 caracteres")
+      //     .max(255, "Campo com tamanho máximo de 255 caracteres")
+      //     .nullable(),
+      //   description: z.string()
+      //     .min(3, "Descrição com mínimo de 3 caracteres")
+      //     .max(255, "Campo com tamanho máximo de 255 caracteres")
+      //     .nullable(),
+      //   price: z.string()
+      //     .min(3, "Preço com mínimo de 3 carácteres")
+      //     .max(255, "Campo com tamanho máximo de 255 caracteres")
+      //     .nullable(),
+      //   category: z.string()
+      //     .min(3, "Categoria com mínimo de 3 carácteres")
+      //     .max(255, "Campo com tamanho máximo de 255 caracteres")
+      //     .nullable(),
+      //   ingredients: z.array(z.string()).nullable(),
+      // }).strict();
 
-      const { id } = req.params;
-      const { name, description, price, category } = plateSchema.parse(req.body);
+      // const { id } = req.params;
+      // const { name, description, price, category } = plateSchema.parse(req.body);
 
-      if (!id) throw newAppError("Por favor insirar o ID do Prato", 400);
+      console.log(req.body)
+      console.log(req.params)
 
-      const plate = await prisma.plates.findUnique({ where: { id: String(id) } });
-      if (!plate) throw newAppError('Prato não encontrado', 404);
+      // if (!id) throw newAppError("Por favor insirar o ID do Prato", 400);
 
-      const plateName = await prisma.plates.findFirst({ where: { name: String(name) } });
-      if (plateName && (plateName.name != plate.name)) throw newAppError("Prato já cadastrado", 409);
+      // const plate = await prisma.plates.findUnique({ where: { id: String(id) } });
+      // if (!plate) throw newAppError('Prato não encontrado', 404);
 
-      await prisma.plates.update({
-        data: { name, description, price, category },
-        where: { id: String(id) }
-      });
+      // const plateName = await prisma.plates.findFirst({ where: { name: String(name) } });
+      // if (plateName && (plateName.name != plate.name)) throw newAppError("Prato já cadastrado", 409);
+
+      // await prisma.plates.update({
+      //   data: { name, description, price, category },
+      //   where: { id: String(id) }
+      // });
 
       return res.status(200).json("Prato atualizado com sucesso");
     } catch (error: any) {
