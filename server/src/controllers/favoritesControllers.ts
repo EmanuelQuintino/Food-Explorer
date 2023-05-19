@@ -20,8 +20,8 @@ export const favoritesControllers = {
 
       return res.status(201).json("Prato listado em favoritos");
     } catch (error: any) {
-      if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
-      if (error.code == "P2002") return res.status(400).json("Prato já favoritado");
+      if (error.code === "P2021") return res.status(500).json("Tabela não encontrada");
+      if (error.code === "P2002") return res.status(400).json("Prato já favoritado");
       return next(error);
     };
   },
@@ -57,8 +57,8 @@ export const favoritesControllers = {
 
       return res.status(200).json('Prato removido de favoritos');
     } catch (error: any) {
-      if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
-      if (error.code == "P2003") return res.status(404).json({error: "Prato não encontrado"});
+      if (error.code === "P2021") return res.status(500).json("Tabela não encontrada");
+      if (error.code === "P2003") return res.status(404).json({error: "Prato não encontrado"});
       return next(error);
     };
   },

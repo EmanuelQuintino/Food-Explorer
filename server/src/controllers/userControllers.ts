@@ -30,7 +30,7 @@ export const userControllers = {
 
       return res.status(201).json("Usuário cadastrado com sucesso");
     } catch (error: any) {
-      if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
+      if (error.code === "P2021") return res.status(500).json("Tabela não encontrada");
       return next(error);
     };
   },
@@ -60,7 +60,7 @@ export const userControllers = {
 
       return res.status(200).json(usersExcludeFields);
     } catch (error: any) {
-      if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
+      if (error.code === "P2021") return res.status(500).json("Tabela não encontrada");
       return next(error);
     };
   },
@@ -86,7 +86,7 @@ export const userControllers = {
 
       return res.status(200).json(excludeFields(user, ["password", "is_admin"]));
     } catch (error: any) {
-      if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
+      if (error.code === "P2021") return res.status(500).json("Tabela não encontrada");
       return next(error);
     };
   },
@@ -124,7 +124,7 @@ export const userControllers = {
 
       return res.status(200).json("Usuário atualizado com sucesso");
     } catch (error: any) {
-      if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
+      if (error.code === "P2021") return res.status(500).json("Tabela não encontrada");
       return next(error);
     };
   },
@@ -141,7 +141,7 @@ export const userControllers = {
 
       return res.status(200).json('Usuário deletado com sucesso');
     } catch (error: any) {
-      if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
+      if (error.code === "P2021") return res.status(500).json("Tabela não encontrada");
       return next(error);
     };
   },

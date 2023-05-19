@@ -27,8 +27,8 @@ export const orderControllers = {
 
       return res.status(201).json("Pedido realizado com sucesso");
     } catch (error: any) {
-      if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
-      if (error.code == "P2003") return res.status(404).json({error: "Prato não encontrado"});
+      if (error.code === "P2021") return res.status(500).json("Tabela não encontrada");
+      if (error.code === "P2003") return res.status(404).json({error: "Prato não encontrado"});
       return next(error);
     };
   },
@@ -55,7 +55,7 @@ export const orderControllers = {
         return res.status(200).json(orders);
       };
     } catch (error: any) {
-      if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
+      if (error.code === "P2021") return res.status(500).json("Tabela não encontrada");
       return next(error);
     };
   },
@@ -83,7 +83,7 @@ export const orderControllers = {
 
       return res.status(200).json("Pedido atualizado com sucesso");
     } catch (error: any) {
-      if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
+      if (error.code === "P2021") return res.status(500).json("Tabela não encontrada");
       return next(error);
     };
   },
@@ -107,8 +107,8 @@ export const orderControllers = {
 
       return res.status(200).json('Pedido deletado com sucesso');
     } catch (error: any) {
-      if (error.code == "P2021") return res.status(500).json("Tabela não encontrada");
-      if (error.code == "P2003") return res.status(404).json({error: "Prato não encontrado"});
+      if (error.code === "P2021") return res.status(500).json("Tabela não encontrada");
+      if (error.code === "P2003") return res.status(404).json({error: "Prato não encontrado"});
       return next(error);
     };
   },
