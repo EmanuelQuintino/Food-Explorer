@@ -34,7 +34,14 @@ export function EditPlate() {
   const [newIngredient, setNewIngredient] = useState("");
   const [plateID, setPlateID] = useState("");
   const [price, setPrice] = useState("");
-  const [plateDataForm, setPlateDataForm] = useState({});
+  const [plateDataForm, setPlateDataForm] = useState({
+    name: "",
+    category: "",
+    ingredients: [],
+    price: "",
+    description: "",
+    image: null,
+  });
 
   const { menuActive } = useSystem();
   const navigate = useNavigate();
@@ -77,8 +84,6 @@ export function EditPlate() {
         [name]: value
       });
   };
-
-  console.log(plateDataForm);
   
   function handleAddIngredient() {
     if (newIngredient.length == 0) {
@@ -189,7 +194,7 @@ export function EditPlate() {
               onChange={handleInputChange}
               error={errors.category?.message}
               register={register("category", {
-                required: "Campo obrigatório",
+                required: plateDataForm.category ? false : "Campo obrigatório",
                 pattern: { value: /^(Refeições|Sobremesas|Bebidas)$/, message: "Somente uma das opções é permitido" },
                 maxLength: { value: 255, message: "Número máximo de caracteres é 255" }
               })}
