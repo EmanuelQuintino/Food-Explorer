@@ -19,6 +19,7 @@ type FoodPlates = {
 async function updatePlate(data: FoodPlates) {
   const plateData = {
     ...data,
+    price: data.price.replace("R$ ", ""),
     ingredients: data.ingredients.map(ingredient => ingredient.name),
     image: data.image[0],
   };
