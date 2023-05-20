@@ -34,7 +34,7 @@ export function PlateDetails() {
 
           <section className="plateContainer">
             <img src={imageURL} alt="image-plate" className="imagePlate" />
-            <h3 className="name">{plateData.name}</h3>
+            <h3 className="namePlate">{plateData.name}</h3>
             <p className="description">{plateData.description}</p>
 
             <div className="ingredients">
