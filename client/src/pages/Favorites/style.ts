@@ -1,7 +1,6 @@
 import styled from "styled-components"
 
 export const Container = styled.section`
-  width: 32.0rem;
   margin: 1.6rem auto;
 
   padding: 0 2.4rem;
@@ -10,34 +9,49 @@ export const Container = styled.section`
     font-size: 1.8rem;
     font-weight: 500;
   }
+
+  h2 {
+    margin-top: 2.8rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 3.2rem;
+    font-weight: 500;
+    line-height: 3.2rem;
+  }
   
   .plateContainer {
-    text-align: center;
+    width: 26.0rem;
+    margin-top: 2.8rem;
+    padding: 1.6rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
   }
 
   .imagePlate {
-    width: 21.0rem;
-    margin: 1.6rem 2.6rem;
+    width: 9.2rem;
+  }
+
+  .box {
+    /* width: 100%; */
+    /* display: flex; */
+    /* align-items: center; */
+    /* justify-content: center; */
+    /* gap: 1.6rem; */
+
   }
 
   .namePlate {
     font-family: 'Poppins', sans-serif;
     font-size: 2.0rem;
-    width: 500;
-  }
-
-  .box {
-    margin-top: 3.6rem;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1.6rem;
+    font-weight: 500;
+    line-height: 3.2rem;
+    color: ${({ theme }) => theme.colors.light300};
   }
 
   .box > button {
-    border-radius: .5rem;
-    height: 3.8rem;
     font-size: 1.2rem;
+    font-family: 'Roboto';
+    color: ${({ theme }) => theme.colors.tomato400};
   }
 `;

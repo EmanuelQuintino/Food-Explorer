@@ -23,7 +23,7 @@ export const Container = styled.section`
   .namePlate {
     font-family: 'Poppins', sans-serif;
     font-size: 2.0rem;
-    width: 500;
+    font-weight: 500;
   }
 
   .description {
@@ -31,6 +31,7 @@ export const Container = styled.section`
     font-family: 'Poppins';
     font-size: 1.4rem;
     line-height: 140%;
+    color: ${({ theme }) => theme.colors.light300};
   }
 
   .ingredients {

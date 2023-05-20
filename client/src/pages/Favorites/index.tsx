@@ -18,17 +18,36 @@ export function Favorites() {
         <>
           <button className="backPageButton" onClick={() => navigate(-1)}>&lt; Voltar</button>
 
+          <h2>Meus Favoritos</h2>
+
           {/* {isLoading && <p><ImSpinner2 className="spinner" /></p>} */}
           {/* {error && <p className="queryError">Algo deu errado!</p>} */}
 
           <section className="plateContainer">
             {/* <img src={imageURL} alt="image-plate" className="imagePlate" /> */}
-            <img src={"#"} alt="image-plate" className="imagePlate" />
+            <img src={"images/salada-molla.png"} alt="image-plate" className="imagePlate" />
             <div className="box">
-              <h3 className="namePlate">{"Nome do prato"}</h3>
+              <h3 className="namePlate">{"Salada Radish"}</h3>
               <button className="removeFavoriteButton">remover dos favoritos</button>
-            </div>
-            
+            </div>  
+          </section>
+
+          <section className="plateContainer">
+            {/* <img src={imageURL} alt="image-plate" className="imagePlate" /> */}
+            <img src={"images/salada-molla.png"} alt="image-plate" className="imagePlate" />
+            <div className="box">
+              <h3 className="namePlate">{"Salada Radish"}</h3>
+              <button className="removeFavoriteButton">remover dos favoritos</button>
+            </div>  
+          </section>
+
+          <section className="plateContainer">
+            {/* <img src={imageURL} alt="image-plate" className="imagePlate" /> */}
+            <img src={"images/salada-molla.png"} alt="image-plate" className="imagePlate" />
+            <div className="box">
+              <h3 className="namePlate">{"Salada Radish"}</h3>
+              <button className="removeFavoriteButton">remover dos favoritos</button>
+            </div>  
           </section>
         </>
       }

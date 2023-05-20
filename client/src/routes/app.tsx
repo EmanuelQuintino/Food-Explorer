@@ -6,6 +6,7 @@ import { NewPlate } from "../pages/NewPlate";
 import { useAuth } from "../hooks/useAuth";
 import { EditPlate } from "../pages/EditPlate";
 import { PageError } from "../pages/PageError";
+import { Favorites } from "../pages/Favorites";
 
 export function AppRoutes() {
   const { userAuth } = useAuth();
@@ -14,6 +15,7 @@ export function AppRoutes() {
       <Route path="/" element={<App />} errorElement={<PageError />}>
         <Route path='/' element={<Home />} />
         <Route path='/details/:id' element={<PlateDetails />} />
+        <Route path='/favorites' element={<Favorites />} />
 
         {userAuth.isAdmin &&
           <>
