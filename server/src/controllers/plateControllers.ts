@@ -89,6 +89,7 @@ export const plateControllers = {
           .max(255, "Campo com tamanho máximo de 255 caracteres"),
         ingredients: z.string()
           .max(255, "Campo com tamanho máximo de 255 caracteres"),
+        image: z.string().optional(),
       }).strict();
 
       const { name, description, price, category, ingredients } = plateSchema.parse(req.body);
