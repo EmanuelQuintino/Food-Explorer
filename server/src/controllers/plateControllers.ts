@@ -103,6 +103,9 @@ export const plateControllers = {
 
       console.log(req.body)
       console.log(req.params)
+      console.log(req.file)
+      // console.log({ name, description, price, category })
+      // console.log(id)
 
       // if (!id) throw newAppError("Por favor insirar o ID do Prato", 400);
 

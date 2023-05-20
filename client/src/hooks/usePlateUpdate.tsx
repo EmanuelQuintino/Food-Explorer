@@ -22,11 +22,12 @@ async function updatePlate(data: FoodPlates) {
     ingredients: data.ingredients.map(ingredient => ingredient.name),
     image: data.image[0],
   };
-
+  
+  console.log(data)
   console.log(plateData)
-  
+    
   const formData = new FormData();
-  
+
   formData.append('name', plateData.name);
   formData.append('image', plateData.image);
   formData.append('price', plateData.price);
