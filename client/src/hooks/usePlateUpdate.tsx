@@ -22,10 +22,7 @@ async function updatePlate(data: FoodPlates) {
     ingredients: data.ingredients.map(ingredient => ingredient.name),
     image: data.image[0],
   };
-  
-  console.log(data)
-  console.log(plateData)
-    
+      
   const formData = new FormData();
 
   formData.append('name', plateData.name);
@@ -34,12 +31,10 @@ async function updatePlate(data: FoodPlates) {
   formData.append('category', plateData.category);
   formData.append('ingredients', JSON.stringify(plateData.ingredients));
   formData.append('description', plateData.description);
-  
-  console.log(formData)
-  
+    
   await API.put(`/plates/${plateData.id}`, formData)
-    .then((response) => toast.success(response.data || "Prato cadastrado com sucesso"))
-    .catch((error) => toast.error(error.response?.data?.error || "Erro ao cadastrar prato"))
+    .then((response) => toast.success(response.data || "Prato atualizado com sucesso"))
+    .catch((error) => toast.error(error.response?.data?.error || "Erro ao atualizar prato"))
 };
 
 export const usePlateUpdate = () => {
