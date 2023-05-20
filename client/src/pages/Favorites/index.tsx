@@ -28,6 +28,10 @@ export function Favorites() {
             <FavoritePlate name="Salada Radish" />
             <FavoritePlate name="Salada Radish" />
             <FavoritePlate name="Salada Radish" />
+            <FavoritePlate name="Salada Radish" />
+            <FavoritePlate name="Salada Radish" />
+            <FavoritePlate name="Salada Radish" />
+            <FavoritePlate name="Salada Radish" />
           </article>
         </>
       }
