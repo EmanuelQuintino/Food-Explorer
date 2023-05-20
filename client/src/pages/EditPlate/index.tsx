@@ -209,7 +209,7 @@ export function EditPlate() {
                   <InputList
                     key={ingredient.id}
                     value={ingredient.name}
-                    onClick={() => remove(ingredient.id)}
+                    onClick={() => remove(index)}
                   />
                 ))}
 

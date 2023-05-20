@@ -40,7 +40,7 @@ export function NewPlate() {
     name: "ingredients",
     rules: {
       required: "Campo obrigatório",
-      maxLength: { value: 20, message: "Número máximo de ingredientes é 20" },
+      maxLength: { value: 9, message: "Número máximo de ingredientes é 9" },
     }
   });
 
@@ -130,7 +130,7 @@ export function NewPlate() {
                   <InputList
                     key={ingredient.id}
                     value={ingredient.name}
-                    onClick={() => remove(ingredient.id)}
+                    onClick={() => remove(index)}
                   />
                 ))}
 
