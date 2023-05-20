@@ -10,8 +10,13 @@ export function Menu() {
   const navigate = useNavigate();
   const { userAuth } = useAuth();
 
-  function addPlate() {
+  function goToNewPlate() {
     navigate('/newplate');
+    toggleMenu();
+  }
+
+  function goToFovorites() {
+    navigate('/favorites');
     toggleMenu();
   }
 
@@ -28,7 +33,10 @@ export function Menu() {
     <Container>
       <InputSearch />
       <div className="boxButtons">
-        {userAuth.isAdmin && <button onClick={addPlate}>Novo Prato</button>}
+        {userAuth.isAdmin
+          ? <button onClick={goToNewPlate}>Novo Prato</button>
+          : <button onClick={goToFovorites}>Meus favoritos</button> 
+        }
         <button onClick={logout}>Sair</button>
       </div>
     </Container>
