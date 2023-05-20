@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { prisma } from "../databases";
-import { array, z } from "zod";
+import { z } from "zod";
 import { newAppError } from "../utils/newAppError";
 import { diskStorage } from "../providers/diskStorage";
 
@@ -9,27 +9,27 @@ export const plateControllers = {
     try {
       const plateSchema = z.object({
         name: z.string()
-          .min(3, "Nome com mínimo de 3 caracteres")
+          .nonempty("O nome é obrigatório")
           .max(255, "Campo com tamanho máximo de 255 caracteres"),
         description: z.string()
-          .min(3, "Descrição com mínimo de 3 caracteres")
+          .nonempty("A descrição é obrigatória")
           .max(255, "Campo com tamanho máximo de 255 caracteres"),
         price: z.string()
-          .min(3, "Preço com mínimo de 3 carácteres")
+          .nonempty("O preço é obrigatório")
           .max(255, "Campo com tamanho máximo de 255 caracteres"),
         category: z.string()
-          .min(3, "Categoria com mínimo de 3 carácteres")
+          .nonempty("A categoria é obrigatória")
           .max(255, "Campo com tamanho máximo de 255 caracteres"),
         ingredients: z.string()
-          .min(3, "Categoria com mínimo de 3 carácteres")
+          .nonempty("Pelo menos um ingrediente é obrigatório")
           .max(255, "Campo com tamanho máximo de 255 caracteres"),
       }).strict();
 
       const { name, description, price, category, ingredients } = plateSchema.parse(req.body);
-      
+
       const plate = await prisma.plates.findFirst({ where: { name: String(name) } });
-      if (plate) throw newAppError("Prato já cadastrado", 409);
-      
+      if (plate) throw newAppError("Nome já cadastrado", 409);
+
       const arrayIngredients = JSON.parse(ingredients);
       if (arrayIngredients.length == 0) throw newAppError("Por favor inserir ingredientes", 400);
 
@@ -78,50 +78,57 @@ export const plateControllers = {
 
   update: async (req: Request, res: Response, next: NextFunction) => {
     try {
-      // const plateSchema = z.object({
-      //   name: z.string()
-      //     .min(3, "Nome com mínimo de 3 caracteres")
-      //     .max(255, "Campo com tamanho máximo de 255 caracteres")
-      //     .nullable(),
-      //   description: z.string()
-      //     .min(3, "Descrição com mínimo de 3 caracteres")
-      //     .max(255, "Campo com tamanho máximo de 255 caracteres")
-      //     .nullable(),
-      //   price: z.string()
-      //     .min(3, "Preço com mínimo de 3 carácteres")
-      //     .max(255, "Campo com tamanho máximo de 255 caracteres")
-      //     .nullable(),
-      //   category: z.string()
-      //     .min(3, "Categoria com mínimo de 3 carácteres")
-      //     .max(255, "Campo com tamanho máximo de 255 caracteres")
-      //     .nullable(),
-      //   ingredients: z.array(z.string()).nullable(),
-      // }).strict();
+      const plateSchema = z.object({
+        name: z.string()
+          .max(255, "Campo com tamanho máximo de 255 caracteres"),
+        description: z.string()
+          .max(255, "Campo com tamanho máximo de 255 caracteres"),
+        price: z.string()
+          .max(255, "Campo com tamanho máximo de 255 caracteres"),
+        category: z.string()
+          .max(255, "Campo com tamanho máximo de 255 caracteres"),
+        ingredients: z.string()
+          .max(255, "Campo com tamanho máximo de 255 caracteres"),
+      }).strict();
 
-      // const { id } = req.params;
-      // const { name, description, price, category } = plateSchema.parse(req.body);
+      const { name, description, price, category, ingredients } = plateSchema.parse(req.body);
+      
+      const { id } = req.params;
+      if (!id) throw newAppError("Por favor insirar o ID do Prato", 400);
 
-      console.log(req.body)
-      console.log(req.params)
-      console.log(req.file)
-      // console.log({ name, description, price, category })
-      // console.log(id)
+      const plate = await prisma.plates.findUnique({ where: { id: String(id) } });
+      if (!plate) throw newAppError('Prato não encontrado', 404);
 
-      // if (!id) throw newAppError("Por favor insirar o ID do Prato", 400);
+      const plateName = await prisma.plates.findFirst({ where: { name: String(name) } });
+      if (plateName && (plateName.name != plate.name)) throw newAppError("Nome já cadastrado", 409);
 
-      // const plate = await prisma.plates.findUnique({ where: { id: String(id) } });
-      // if (!plate) throw newAppError('Prato não encontrado', 404);
+      const arrayIngredients = JSON.parse(ingredients);
+      if (arrayIngredients.length == 0) throw newAppError("Por favor inserir ingredientes", 400);
 
-      // const plateName = await prisma.plates.findFirst({ where: { name: String(name) } });
-      // if (plateName && (plateName.name != plate.name)) throw newAppError("Prato já cadastrado", 409);
+      const imageFileName = req.file?.filename;
+      if (imageFileName) {
+        await diskStorage.deleteFile(plate.image as string);
+        await diskStorage.saveFile(imageFileName);
+      };
 
-      // await prisma.plates.update({
-      //   data: { name, description, price, category },
-      //   where: { id: String(id) }
-      // });
+      await prisma.plates.update({
+        data: {
+          ...(name !== "" && { name }),
+          ...(description !== "" && { description }),
+          ...(price !== "" && { price }),
+          ...(category !== "" && { category }),
+          ...(imageFileName && { image: imageFileName }),
+          ingredients: {
+            deleteMany: {plate_id: String(id)},
+            create: arrayIngredients.map((ingredient: string) => ({ name: ingredient }))
+          }
+        },
+        where: { id: String(id) }
+      });
 
       return res.status(200).json("Prato atualizado com sucesso");
     } catch (error: any) {
+      await diskStorage.deleteTempFile(req.file?.filename as string);
       if (error.code === "P2021") return res.status(500).json("Tabela não encontrada");
       return next(error);
     };
@@ -157,7 +164,6 @@ export const plateControllers = {
       if (!plate) throw newAppError('Prato não encontrado', 404);
 
       if (plate.image) await diskStorage.deleteFile(plate.image);
-
       await diskStorage.saveFile(imageFileName);
 
       await prisma.plates.update({
