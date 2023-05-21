@@ -15,11 +15,27 @@ export const Container = styled.div`
   position: relative;
   scroll-snap-align: start;
 
-  .editIcon, .favoriteIcon {
+  .editIcon, .favoriteIcon, .FavoriteIconMatch {
     position: absolute;
     top: 2.0rem;
     right: 2.0rem;
     width: 2.4rem;
+  }
+
+  .FavoriteIconMatch {
+    animation: heartBeat .7s;
+  }
+
+  @keyframes heartBeat {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
   }
   
   .imagePlate {

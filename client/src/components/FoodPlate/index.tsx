@@ -23,10 +23,7 @@ type FoodPlateType = {
 export function FoodPlate({ plate, isFavorite = false }: FoodPlateType) {
   const [favoriteMatch, setFavoriteMatch] = useState(isFavorite);
   const { userAuth } = useAuth();
-  const navigate = useNavigate();
-
-  console.log(favoriteMatch);
-  
+  const navigate = useNavigate();  
 
   const plateDetails = () => navigate(`/details/${plate.id}`);
   const goToPageEditPlate = () => navigate(`/editplate/${plate.id}`);
@@ -58,7 +55,7 @@ export function FoodPlate({ plate, isFavorite = false }: FoodPlateType) {
             <EditIcon />
           </button> 
         : (favoriteMatch 
-            ? <button onClick={unFavorite} className={"favoriteIcon"}>
+            ? <button onClick={unFavorite} className={"FavoriteIconMatch"}>
                 <FavoriteIconMatch />
               </button>
             : <button onClick={toFavorite} className={"favoriteIcon"}>
