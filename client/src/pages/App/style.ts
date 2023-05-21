@@ -8,6 +8,10 @@ export const Container = styled.section`
   flex-direction: column;
   justify-content: space-between;
 
+  main {
+    flex: 1;
+  }
+
   @media(min-width: 42.0rem) {
       overflow-y: auto;
       

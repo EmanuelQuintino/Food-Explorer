@@ -10,7 +10,7 @@ export const Container = styled.section`
   }
 
   h2 {
-    margin-top: 4.2rem;
+    margin-top: 3.2rem;
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
     font-size: 2.8rem;
