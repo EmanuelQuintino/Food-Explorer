@@ -1,5 +1,6 @@
 import { Container } from "./style";
 import { FavoriteIcon } from "../../assets/FavoriteIcon";
+import { FavoriteIconMatch } from "../../assets/FavoriteIconMatch";
 import { EditIcon } from "../../assets/EditIcon";
 import { Button } from "../Button";
 import { useState } from "react";
@@ -27,15 +28,19 @@ export function FoodPlate({ plate }: FoodPlateType) {
   
   async function toFavorite(): Promise<void> {
     try {
-      if (favoriteMatch) {
-        // const response = await API.delete(`/favorites/${plate.id}`)
-        // console.log(response.data || "Prato removido dos favoritos")
-        setFavoriteMatch(false) 
-      } else {
-        // const response = await API.post(`/favorites/${plate.id}`)
-        // console.log(response.data || "Prato favoritado com sucesso")
-        setFavoriteMatch(true)
-      } 
+      const response = await API.post(`/favorites/${plate.id}`)
+      console.log(response)
+      setFavoriteMatch(true)
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async function unFavorite(): Promise<void> {
+    try {
+      const response = await API.delete(`/favorites/${plate.id}`)
+      console.log(response)
+      setFavoriteMatch(false)
     } catch (error) {
       console.error(error);
     }
@@ -50,8 +55,8 @@ export function FoodPlate({ plate }: FoodPlateType) {
             <EditIcon />
           </button> 
         : (favoriteMatch 
-            ? <button onClick={toFavorite} className={"favoriteIconMatch"}>
-                <FavoriteIcon />
+            ? <button onClick={unFavorite} className={"favoriteIcon"}>
+                <FavoriteIconMatch />
               </button>
             : <button onClick={toFavorite} className={"favoriteIcon"}>
                 <FavoriteIcon />

@@ -15,22 +15,11 @@ export const Container = styled.div`
   position: relative;
   scroll-snap-align: start;
 
-  .editIcon {
+  .editIcon, .favoriteIcon {
     position: absolute;
     top: 2.0rem;
     right: 2.0rem;
     width: 2.4rem;
-  }
-
-  .favoriteIcon, .favoriteIconMatch {
-    position: absolute;
-    top: 2.0rem;
-    right: 2.0rem;
-    width: 2.4rem;
-  }
-
-  .favoriteIconMatch svg path {
-    fill: ${({ theme }) => theme.colors.light300};
   }
   
   .imagePlate {
