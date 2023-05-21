@@ -11,6 +11,7 @@ import { useAuth } from "../../hooks/useAuth";
 import { toast } from "react-toastify";
 
 type FoodPlateType = {
+  isFavorite?: boolean;
   plate: {
     id: string;
     name: string;
@@ -19,10 +20,13 @@ type FoodPlateType = {
   }
 };
 
-export function FoodPlate({ plate }: FoodPlateType) {
-  const [favoriteMatch, setFavoriteMatch] = useState(false);
+export function FoodPlate({ plate, isFavorite = false }: FoodPlateType) {
+  const [favoriteMatch, setFavoriteMatch] = useState(isFavorite);
   const { userAuth } = useAuth();
   const navigate = useNavigate();
+
+  console.log(favoriteMatch);
+  
 
   const plateDetails = () => navigate(`/details/${plate.id}`);
   const goToPageEditPlate = () => navigate(`/editplate/${plate.id}`);

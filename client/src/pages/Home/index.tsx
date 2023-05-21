@@ -4,10 +4,12 @@ import { FoodPlate } from "../../components/FoodPlate"
 import { useSystem } from "../../hooks/useSystem"
 import { ImSpinner2 } from "react-icons/im";
 import { usePlateQuery } from "../../hooks/usePlateQuery";
+import { useQueryUser } from "../../hooks/useQueryUser";
 
 export function Home() {
   const { menuActive } = useSystem();
   const { data, isLoading, error } = usePlateQuery();
+  const userData = useQueryUser();
 
   return (
     <Container>
@@ -28,6 +30,7 @@ export function Home() {
                     <FoodPlate
                       key={plate.id}
                       plate={plate}
+                      isFavorite={userData.data?.favorites.map(plate => plate.plate_id).includes(plate.id)}
                     />
                   )
               })}
@@ -44,6 +47,7 @@ export function Home() {
                     <FoodPlate
                       key={plate.id}
                       plate={plate}
+                      isFavorite={userData.data?.favorites.map(plate => plate.plate_id).includes(plate.id)}
                     />
                   )
               })}
@@ -60,6 +64,7 @@ export function Home() {
                     <FoodPlate
                       key={plate.id}
                       plate={plate}
+                      isFavorite={userData.data?.favorites.map(plate => plate.plate_id).includes(plate.id)}
                     />
                   )
               })}

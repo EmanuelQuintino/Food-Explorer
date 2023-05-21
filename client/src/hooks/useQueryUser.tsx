@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { API } from "../services/api";
+import { AxiosPromise } from "axios";
 
 type OrderPlateTypes = {
   id: string;
@@ -36,8 +37,12 @@ type UserDataTypes = {
 export const useQueryUser = () => {
   const query = useQuery({
     queryKey: ['userData'],
-    queryFn: async () => await API.get("/users") as UserDataTypes
+    queryFn: async (): AxiosPromise<UserDataTypes> => await API.get<UserDataTypes>("/users")
   });
 
-  return query;
+  return {
+    ...query,
+    data: query.data?.data
+
+  } 
 } 
