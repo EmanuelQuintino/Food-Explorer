@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { CountPlate } from "../CountPlate";
 import { useAuth } from "../../hooks/useAuth";
 import { toast } from "react-toastify";
+import { useQueryUser } from "../../hooks/useQueryUser";
 
 type FoodPlateType = {
   isFavorite?: boolean;
@@ -23,10 +24,15 @@ type FoodPlateType = {
 export function FoodPlate({ plate, isFavorite = false }: FoodPlateType) {
   const [favoriteMatch, setFavoriteMatch] = useState(isFavorite);
   const { userAuth } = useAuth();
-  const navigate = useNavigate();  
+  const navigate = useNavigate();
+  const { refetchQueryUser } = useQueryUser();
 
-  const goToPlateDetails = () => navigate(`/details/${plate.id}`);
   const goToPageEditPlate = () => navigate(`/editplate/${plate.id}`);
+  
+  async function goToPlateDetails() {
+    navigate(`/details/${plate.id}`);
+    await refetchQueryUser();
+  };
   
   async function toFavorite(): Promise<void> {
     try {
@@ -50,17 +56,17 @@ export function FoodPlate({ plate, isFavorite = false }: FoodPlateType) {
 
   return (
     <Container>
-      {userAuth.isAdmin 
+      {userAuth.isAdmin
         ? <button onClick={goToPageEditPlate} className="editIcon">
-            <EditIcon />
-          </button> 
-        : (favoriteMatch 
-            ? <button onClick={unFavorite} className={"FavoriteIconMatch"}>
-                <FavoriteIconMatch />
-              </button>
-            : <button onClick={toFavorite} className={"favoriteIcon"}>
-                <FavoriteIcon />
-              </button>
+          <EditIcon />
+        </button>
+        : (favoriteMatch
+          ? <button onClick={unFavorite} className={"FavoriteIconMatch"}>
+            <FavoriteIconMatch />
+          </button>
+          : <button onClick={toFavorite} className={"favoriteIcon"}>
+            <FavoriteIcon />
+          </button>
         )
       }
 
