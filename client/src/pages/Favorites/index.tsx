@@ -16,7 +16,7 @@ export function Favorites() {
   const favoritePlateIDs = userData.data?.favorites.map((plate) => plate.plate_id);
   const favoritePlates = favoritePlateIDs?.map((favoritePlateID) => {
     return data?.data.find((plate) => plate.id === favoritePlateID);
-  });
+  });  
   
   return (
     <Container>
