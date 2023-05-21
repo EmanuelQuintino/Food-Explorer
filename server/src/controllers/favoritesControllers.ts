@@ -64,7 +64,7 @@ export const favoritesControllers = {
         }}
       });
 
-      return res.status(200).json('Prato removido de favoritos');
+      return res.status(200).json('Prato removido dos favoritos');
     } catch (error: any) {
       if (error.code === "P2021") return res.status(500).json("Tabela não encontrada");
       if (error.code === "P2003") return res.status(404).json({error: "Prato não encontrado"});

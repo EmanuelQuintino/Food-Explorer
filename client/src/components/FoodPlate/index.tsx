@@ -8,6 +8,7 @@ import { API } from "../../services/api";
 import { useNavigate } from "react-router-dom";
 import { CountPlate } from "../CountPlate";
 import { useAuth } from "../../hooks/useAuth";
+import { toast } from "react-toastify";
 
 type FoodPlateType = {
   plate: {
@@ -28,21 +29,19 @@ export function FoodPlate({ plate }: FoodPlateType) {
   
   async function toFavorite(): Promise<void> {
     try {
-      const response = await API.post(`/favorites/${plate.id}`)
-      console.log(response)
+      await API.post(`/favorites/${plate.id}`)
       setFavoriteMatch(true)
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      toast.error(error.response?.data?.error || "Erro ao favoritar prato")
     }
   }
 
   async function unFavorite(): Promise<void> {
     try {
-      const response = await API.delete(`/favorites/${plate.id}`)
-      console.log(response)
+      await API.delete(`/favorites/${plate.id}`)
       setFavoriteMatch(false)
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      toast.error(error.response.data.error || "Erro ao remover prato dos favoritos")
     }
   }
 
