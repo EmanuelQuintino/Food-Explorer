@@ -15,6 +15,15 @@ export const favoritesControllers = {
 
       const plate = await prisma.plates.findUnique({where: {id: String(plateID)}});
       if (!plate) throw newAppError('Prato não encontrado', 404);
+
+      const favorite = await prisma.favorites.findUnique({
+        where: {user_id_plate_id: {
+          user_id: userID,
+          plate_id: plateID,
+        }}
+      });
+      
+      if (favorite) throw newAppError('Prato já favoritado', 404);
             
       await prisma.favorites.create({data: {user_id: userID, plate_id: plateID}});
 

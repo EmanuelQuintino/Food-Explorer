@@ -22,9 +22,15 @@ export function FoodPlate({ plate }: FoodPlateType) {
   const { userAuth } = useAuth();
   const navigate = useNavigate();
 
-  const toFavorite = () => setFavoriteMatch(favoriteMatch ? false : true);
   const plateDetails = () => navigate(`/details/${plate.id}`);
   const pageUpdatePlate = () => navigate(`/editplate/${plate.id}`);
+  const toFavorite = () => {
+    if (favoriteMatch) {
+      return setFavoriteMatch(false) 
+    } else {
+      return setFavoriteMatch(true)
+    }
+  };
 
   const imageURL = `${API.defaults.baseURL}/images/${plate.image}`;
 
