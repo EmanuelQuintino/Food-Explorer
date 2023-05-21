@@ -25,7 +25,7 @@ export function FoodPlate({ plate, isFavorite = false }: FoodPlateType) {
   const { userAuth } = useAuth();
   const navigate = useNavigate();  
 
-  const plateDetails = () => navigate(`/details/${plate.id}`);
+  const goToPlateDetails = () => navigate(`/details/${plate.id}`);
   const goToPageEditPlate = () => navigate(`/editplate/${plate.id}`);
   
   async function toFavorite(): Promise<void> {
@@ -67,7 +67,7 @@ export function FoodPlate({ plate, isFavorite = false }: FoodPlateType) {
       <img src={imageURL} alt="image-plate" className="imagePlate" />
 
       <button className="nameButton">
-        <h3 onClick={plateDetails}>{plate.name} &gt;</h3>
+        <h3 onClick={goToPlateDetails}>{plate.name} &gt;</h3>
       </button>
 
       <p className="price">R$ {plate.price}</p>

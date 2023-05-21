@@ -46,6 +46,7 @@ export const Container = styled.div`
     font-family: 'Poppins', sans-serif;
     font-size: 1.4rem;
     width: 21.0rem;
+    color: ${({ theme }) => theme.colors.light200};
   }
 
   .price {

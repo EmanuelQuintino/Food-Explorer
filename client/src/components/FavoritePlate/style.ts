@@ -8,10 +8,10 @@ export const Container = styled.section`
   gap: 1.2rem;
 
   .imagePlate {
-    width: 8.0rem;
+    width: 7.6rem;
   }
 
-  .namePlate {
+  .namePlateButton {
     font-family: 'Poppins', sans-serif;
     font-size: 1.8rem;
     font-weight: 500;
@@ -19,7 +19,7 @@ export const Container = styled.section`
     color: ${({ theme }) => theme.colors.light300};
   }
 
-  .box > button {
+  .removeFavoriteButton {
     font-size: 1.2rem;
     font-family: 'Roboto';
     color: ${({ theme }) => theme.colors.tomato400};

@@ -20,7 +20,7 @@ export const Container = styled.section`
     margin: 1.6rem 2.6rem;
   }
 
-  .namePlate {
+  .namePlateButton {
     font-family: 'Poppins', sans-serif;
     font-size: 2.0rem;
     font-weight: 500;

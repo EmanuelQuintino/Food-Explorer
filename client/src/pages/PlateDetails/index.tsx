@@ -20,7 +20,7 @@ export function PlateDetails() {
 
   const pageUpdatePlate = () => navigate(`/editplate/${params.id}`);
 
-  const plateData = data?.data.find(plate => plate.id == params.id);
+  const plateData = data?.find(plate => plate.id == params.id);
   const imageURL = `${API.defaults.baseURL}/images/${plateData?.image}`;
 
   return (
@@ -34,7 +34,7 @@ export function PlateDetails() {
 
           <section className="plateContainer">
             <img src={imageURL} alt="image-plate" className="imagePlate" />
-            <h3 className="namePlate">{plateData.name}</h3>
+            <h3 className="namePlateButton">{plateData.name}</h3>
             <p className="description">{plateData.description}</p>
 
             <div className="ingredients">

@@ -2,6 +2,7 @@ import { Container } from "./style";
 import { API } from "../../services/api";
 import { toast } from "react-toastify";
 import { useQueryUser } from "../../hooks/useQueryUser";
+import { useNavigate } from "react-router-dom";
 
 type FavoritePlateType = {
   plate?: {
@@ -14,6 +15,7 @@ type FavoritePlateType = {
 export function FavoritePlate({ plate }: FavoritePlateType) {
   const { refetchQueryUser } = useQueryUser();
   const imageURL = `${API.defaults.baseURL}/images/${plate?.image}`;
+  const navigate = useNavigate();
 
   async function unFavorite(plateID: string): Promise<void> {
     try {
@@ -24,12 +26,16 @@ export function FavoritePlate({ plate }: FavoritePlateType) {
       toast.error(error.response.data.error || "Erro ao remover prato dos favoritos")
     }
   }
+  const goToPlateDetails = () => navigate(`/details/${plate?.id}`);
 
   return (
     <Container>
       <img src={imageURL} alt="image-plate" className="imagePlate" />
       <div className="box">
-        <h3 className="namePlate">{plate?.name}</h3>
+        <button className="namePlateButton" onClick={goToPlateDetails}>
+          {plate?.name} &gt;
+        </button>
+        
         <button className="removeFavoriteButton" onClick={() => unFavorite(plate!.id)}>
           remover dos favoritos
         </button>
