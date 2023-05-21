@@ -22,9 +22,9 @@ export const Container = styled.div`
     width: 2.4rem;
   }
 
-  .FavoriteIconMatch {
+  /* .FavoriteIconMatch {
     animation: heartBeat .7s;
-  }
+  } */
 
   @keyframes heartBeat {
     0% {
