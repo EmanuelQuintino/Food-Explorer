@@ -30,14 +30,10 @@ export function Favorites() {
           {error && <p className="queryError">Algo deu errado!</p>}
 
           <article className="plateContainer">
-            {favoritePlates?.map(plate => {
-              return (
-                <FavoritePlate
-                  key={plate?.id}
-                  plate={plate}
-                />
-              )
-            })}
+            {favoritePlates && favoritePlates?.length > 0 ?
+              (favoritePlates?.map(plate => <FavoritePlate key={plate?.id} plate={plate} />)):
+              (<p className="messageEmptyFavorites">Lista vazia</p>)
+          }
           </article>
         </>
       }
