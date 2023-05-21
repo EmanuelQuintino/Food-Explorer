@@ -12,14 +12,14 @@ type FavoritePlateType = {
 };
 
 export function FavoritePlate({ plate }: FavoritePlateType) {
-  const { refetchUser } = useQueryUser();
+  const { refetchQueryUser } = useQueryUser();
   const imageURL = `${API.defaults.baseURL}/images/${plate?.image}`;
 
   async function unFavorite(plateID: string): Promise<void> {
     try {
       const isConfirm = confirm("Deseja remover prato dos favoritos?");
       if (isConfirm) await API.delete(`/favorites/${plateID}`);
-      await refetchUser();
+      await refetchQueryUser();
     } catch (error: any) {
       toast.error(error.response.data.error || "Erro ao remover prato dos favoritos")
     }

@@ -40,11 +40,11 @@ export const useQueryUser = () => {
     queryFn: async (): AxiosPromise<UserDataTypes> => await API.get<UserDataTypes>("/users")
   });
 
-  const refetchUser = async () => await query.refetch();
+  const refetchQueryUser = async () => await query.refetch();
 
   return {
     ...query,
     data: query.data?.data,
-    refetchUser
+    refetchQueryUser
   } 
 } 

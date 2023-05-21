@@ -24,5 +24,11 @@ export const usePlateQuery = () => {
     queryFn: async () => await API.get("/plates") as FoodPlates
   });
 
-  return query;
+  const refetchPlateQuery = async () => await query.refetch();
+
+  return {
+    ...query,
+    data: query.data?.data,
+    refetchPlateQuery
+  }
 } 

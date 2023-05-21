@@ -23,8 +23,7 @@ export function Home() {
           <section className="boxPlates">
             <h2>Refeições</h2>
             <div className="plates">
-              {data?.data
-                .filter(plate => plate.category == "Refeições")
+              {data?.filter(plate => plate.category == "Refeições")
                 .map(plate => {
                   return (
                     <FoodPlate
@@ -40,8 +39,7 @@ export function Home() {
           <section className="boxPlates">
             <h2>Sobremesas</h2>
             <div className="plates">
-              {data?.data
-                .filter(plate => plate.category == "Sobremesas")
+              {data?.filter(plate => plate.category == "Sobremesas")
                 .map(plate => {
                   return (
                     <FoodPlate
@@ -57,8 +55,7 @@ export function Home() {
           <section className="boxPlates">
             <h2>Bebidas</h2>
             <div className="plates">
-              {data?.data
-                .filter(plate => plate.category == "Bebidas")
+              {data?.filter(plate => plate.category == "Bebidas")
                 .map(plate => {
                   return (
                     <FoodPlate
