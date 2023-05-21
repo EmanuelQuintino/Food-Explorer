@@ -23,26 +23,40 @@ export function FoodPlate({ plate }: FoodPlateType) {
   const navigate = useNavigate();
 
   const plateDetails = () => navigate(`/details/${plate.id}`);
-  const pageUpdatePlate = () => navigate(`/editplate/${plate.id}`);
-  const toFavorite = () => {
-    if (favoriteMatch) {
-      return setFavoriteMatch(false) 
-    } else {
-      return setFavoriteMatch(true)
+  const goToPageEditPlate = () => navigate(`/editplate/${plate.id}`);
+  
+  async function toFavorite(): Promise<void> {
+    try {
+      if (favoriteMatch) {
+        // const response = await API.delete(`/favorites/${plate.id}`)
+        // console.log(response.data || "Prato removido dos favoritos")
+        setFavoriteMatch(false) 
+      } else {
+        // const response = await API.post(`/favorites/${plate.id}`)
+        // console.log(response.data || "Prato favoritado com sucesso")
+        setFavoriteMatch(true)
+      } 
+    } catch (error) {
+      console.error(error);
     }
-  };
+  }
 
   const imageURL = `${API.defaults.baseURL}/images/${plate.image}`;
 
   return (
     <Container>
-      {userAuth.isAdmin ?
-        <button onClick={pageUpdatePlate} className="editIcon">
-          <EditIcon />
-        </button> :
-        <button onClick={toFavorite} className={favoriteMatch ? "favoriteIconMatch" : "favoriteIcon"}>
-          <FavoriteIcon />
-        </button>
+      {userAuth.isAdmin 
+        ? <button onClick={goToPageEditPlate} className="editIcon">
+            <EditIcon />
+          </button> 
+        : (favoriteMatch 
+            ? <button onClick={toFavorite} className={"favoriteIconMatch"}>
+                <FavoriteIcon />
+              </button>
+            : <button onClick={toFavorite} className={"favoriteIcon"}>
+                <FavoriteIcon />
+              </button>
+        )
       }
 
       <img src={imageURL} alt="image-plate" className="imagePlate" />
