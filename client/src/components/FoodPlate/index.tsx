@@ -76,7 +76,7 @@ export function FoodPlate({ plate, isFavorite = false }: FoodPlateType) {
         <h3 onClick={goToPlateDetails}>{plate.name} &gt;</h3>
       </button>
 
-      <p className="price">R$ {plate.price}</p>
+      <p className="price">{Number(plate.price).toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</p>
 
       {!userAuth.isAdmin &&
         <div className="box">

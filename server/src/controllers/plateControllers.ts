@@ -116,7 +116,7 @@ export const plateControllers = {
         data: {
           ...(name !== "" && { name }),
           ...(description !== "" && { description }),
-          ...(price !== "" && { price }),
+          ...(price !== "" && { price: parseFloat(price.replace(",", "."))}),
           ...(category !== "" && { category }),
           ...(imageFileName && { image: imageFileName }),
           ingredients: {
