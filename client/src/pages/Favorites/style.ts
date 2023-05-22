@@ -27,7 +27,7 @@ export const Container = styled.section`
   .messageEmptyFavorites {
     color: ${({ theme }) => theme.colors.light500};
     font-weight: 700;
-    font-size: 2.4rem;
+    font-size: 2.0rem;
     margin-top: 9.2rem;
     text-align: center;
     width: 100%;
