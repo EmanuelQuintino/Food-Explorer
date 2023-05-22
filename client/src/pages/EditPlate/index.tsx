@@ -50,7 +50,7 @@ export function EditPlate() {
   const params = useParams();
 
   const { data, isLoading, error } = usePlateQuery();
-  const plateData = data?.data.find(plate => plate.id == params.id);
+  const plateData = data?.find(plate => plate.id == params.id);
 
   useEffect(() => {
     if (plateData) {
