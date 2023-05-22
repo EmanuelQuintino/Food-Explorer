@@ -34,7 +34,7 @@ model Orders {
   created_at DateTime @default(now())
   updated_at DateTime @default(now()) @updatedAt
 
-  user         Users @relation(fields: [users_id], references: [id])
+  user         Users         @relation(fields: [users_id], references: [id])
   order_plates OrderPlates[]
 
   @@map("orders")
@@ -44,7 +44,7 @@ model Plates {
   id          String   @id @default(uuid())
   name        String
   description String
-  price       String
+  price       Float
   category    String
   image       String?
   created_at  DateTime @default(now())
@@ -58,15 +58,18 @@ model Plates {
 }
 
 model OrderPlates {
-  id         String   @id @default(uuid())
   order_id   String
   plate_id   String
+  amount     Int      @default(1)
+  price      Float
+  total      Float
   created_at DateTime @default(now())
   updated_at DateTime @default(now()) @updatedAt
 
   order Orders @relation(fields: [order_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
   plate Plates @relation(fields: [plate_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
 
+  @@id([order_id, plate_id])
   @@map("order_plates")
 }
 
@@ -83,8 +86,8 @@ model Ingredients {
 }
 
 model Favorites {
-  user_id  String
-  plate_id String
+  user_id    String
+  plate_id   String
   created_at DateTime @default(now())
   updated_at DateTime @default(now()) @updatedAt
 
