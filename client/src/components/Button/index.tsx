@@ -9,10 +9,10 @@ export type ButtonType = {
 
 export function Button({ icon: Icon, name, disabled = false, ...rest }: ButtonType) {
   return (
-    <ButtonContainer 
-      disabled={disabled} 
+    <ButtonContainer
+      disabled={disabled}
       {...rest}
-    > 
+    >
       {Icon && <Icon />}
       {name}
     </ButtonContainer>

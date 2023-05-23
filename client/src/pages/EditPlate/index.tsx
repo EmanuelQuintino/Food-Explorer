@@ -82,12 +82,12 @@ export function EditPlate() {
 
   function handleInputChange(event: React.ChangeEventHandler<HTMLInputElement>) {
     const { name, value } = event.target;
-      setPlateDataForm({
-        ...plateDataForm,
-        [name]: value
-      });
+    setPlateDataForm({
+      ...plateDataForm,
+      [name]: value
+    });
   };
-  
+
   function handleAddIngredient() {
     if (newIngredient.length == 0) {
       return setError('ingredients', { message: 'Adicionar nome do ingrediente' });
@@ -119,7 +119,7 @@ export function EditPlate() {
     };
   };
 
-  const onSubmitUpdatePlate = (data: PlateDataTypes) => mutate({...data, id: plateData.id});
+  const onSubmitUpdatePlate = (data: PlateDataTypes) => mutate({ ...data, id: plateData.id });
 
   const onDeletePlate = async () => {
     const confirmDelete = confirm("Deseja excluir prato?")

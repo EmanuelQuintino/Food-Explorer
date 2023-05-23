@@ -28,12 +28,12 @@ export function FoodPlate({ plate, isFavorite = false }: FoodPlateType) {
   const { refetchQueryUser } = useQueryUser();
 
   const goToPageEditPlate = () => navigate(`/editplate/${plate.id}`);
-  
+
   async function goToPlateDetails() {
     navigate(`/details/${plate.id}`);
     await refetchQueryUser();
   };
-  
+
   async function toFavorite(): Promise<void> {
     try {
       await API.post(`/favorites/${plate.id}`)
@@ -76,7 +76,7 @@ export function FoodPlate({ plate, isFavorite = false }: FoodPlateType) {
         <h3 onClick={goToPlateDetails}>{plate.name} &gt;</h3>
       </button>
 
-      <p className="price">{Number(plate.price).toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</p>
+      <p className="price">{Number(plate.price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
 
       {!userAuth.isAdmin &&
         <div className="box">

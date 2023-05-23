@@ -10,11 +10,11 @@ type InputTypes = {
   maxLength?: number;
 }
 
-export function Textarea({label, id, placeholder, maxLength, register, error, ...rest}: InputTypes) {
+export function Textarea({ label, id, placeholder, maxLength, register, error, ...rest }: InputTypes) {
   return (
     <Container>
       <label htmlFor={id}>{label}</label>
-      <textarea 
+      <textarea
         id={id}
         placeholder={placeholder}
         maxLength={maxLength || 255}
@@ -22,6 +22,6 @@ export function Textarea({label, id, placeholder, maxLength, register, error, ..
         {...rest}
       />
       {error && <span className='inputError'>{error}</span>}
-   </Container>
+    </Container>
   )
 }

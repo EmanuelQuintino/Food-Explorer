@@ -12,7 +12,7 @@ type InputTypes = {
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
 }
 
-export function InputFile({icon: Icon, label, placeholder, id, register, error, ...rest}: InputTypes) {
+export function InputFile({ icon: Icon, label, placeholder, id, register, error, ...rest }: InputTypes) {
   return (
     <Container>
       <label htmlFor={id} className="labelBoxInputFile">{label}</label>
@@ -21,10 +21,10 @@ export function InputFile({icon: Icon, label, placeholder, id, register, error, 
           {Icon && <Icon />}
           {placeholder}
         </label>
-        
-        <input 
+
+        <input
           id={id}
-          type="file" 
+          type="file"
           className="srOnly"
           accept="image/*"
           {...register}
@@ -32,6 +32,6 @@ export function InputFile({icon: Icon, label, placeholder, id, register, error, 
         />
       </div>
       {error && <span className='inputError'>{error}</span>}
-   </Container>
+    </Container>
   )
 }

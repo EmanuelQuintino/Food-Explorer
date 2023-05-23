@@ -46,5 +46,5 @@ export const useQueryUser = () => {
     ...query,
     data: query.data?.data,
     refetchQueryUser
-  } 
+  }
 } 

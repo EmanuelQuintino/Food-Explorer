@@ -5,7 +5,7 @@ export const ButtonContainer = styled.button`
   font-style: normal;
   font-weight: 500;
   font-size: 1.6rem;
-  color: ${({theme}) => theme.colors.light100};
+  color: ${({ theme }) => theme.colors.light100};
   
   &:disabled {
     opacity: 0.5;

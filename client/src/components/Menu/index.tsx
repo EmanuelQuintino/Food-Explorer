@@ -34,7 +34,7 @@ export function Menu() {
       <InputSearch />
       <div className="boxButtons">
         {userAuth.isAdmin && <button onClick={goToNewPlate}>Novo Prato</button>}
-        <button onClick={goToFovorites}>Meus favoritos</button> 
+        <button onClick={goToFovorites}>Meus favoritos</button>
         <button onClick={logout}>Sair</button>
       </div>
     </Container>

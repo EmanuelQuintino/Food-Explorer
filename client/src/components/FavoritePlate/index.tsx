@@ -17,7 +17,7 @@ export function FavoritePlate({ plate }: FavoritePlateType) {
   const navigate = useNavigate();
 
   const imageURL = `${API.defaults.baseURL}/images/${plate?.image}`;
-  
+
   async function unFavorite(plateID: string): Promise<void> {
     try {
       const isConfirm = confirm("Deseja remover prato dos favoritos?");
@@ -27,7 +27,7 @@ export function FavoritePlate({ plate }: FavoritePlateType) {
       toast.error(error.response.data.error || "Erro ao remover prato dos favoritos")
     }
   }
-  
+
   const goToPlateDetails = () => navigate(`/details/${plate?.id}`);
 
   return (
@@ -37,7 +37,7 @@ export function FavoritePlate({ plate }: FavoritePlateType) {
         <button className="namePlateButton" onClick={goToPlateDetails}>
           {plate?.name} &gt;
         </button>
-        
+
         <button className="removeFavoriteButton" onClick={() => unFavorite(plate!.id)}>
           remover dos favoritos
         </button>

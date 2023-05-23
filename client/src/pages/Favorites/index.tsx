@@ -16,8 +16,8 @@ export function Favorites() {
   const favoritePlateIDs = userData.data?.favorites.map((plate) => plate.plate_id);
   const favoritePlates = favoritePlateIDs?.map((favoritePlateID) => {
     return data?.find((plate) => plate.id === favoritePlateID);
-  });  
-  
+  });
+
   return (
     <Container>
       {!menuActive &&
@@ -31,9 +31,9 @@ export function Favorites() {
 
           <article className="plateContainer">
             {favoritePlates && favoritePlates?.length > 0 ?
-              (favoritePlates?.map(plate => <FavoritePlate key={plate?.id} plate={plate} />)):
+              (favoritePlates?.map(plate => <FavoritePlate key={plate?.id} plate={plate} />)) :
               (<p className="messageEmptyFavorites">Lista vazia</p>)
-          }
+            }
           </article>
         </>
       }

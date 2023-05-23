@@ -10,7 +10,7 @@ export const Container = styled.section`
     width: 100%;
     border-radius: .8rem;
     padding: 1.2rem 1.4rem 1.2rem 2.4rem;
-    background: ${({theme}) => theme.colors.dark800};
+    background: ${({ theme }) => theme.colors.dark800};
     border: .1rem solid transparent;
 
     > label {
@@ -18,7 +18,7 @@ export const Container = styled.section`
       font-weight: 500;
       font-size: 1.4rem;
       line-height: 2.4rem;
-      color: ${({theme}) => theme.colors.light100};
+      color: ${({ theme }) => theme.colors.light100};
       display: flex;
       align-items: center;
       gap: 1.2rem;
@@ -31,6 +31,6 @@ export const Container = styled.section`
   }
 
   .boxInputFile:focus-within {
-    border: .1rem solid ${({theme}) => theme.colors.light300};
+    border: .1rem solid ${({ theme }) => theme.colors.light300};
   }
 `;

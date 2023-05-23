@@ -14,10 +14,10 @@ export const Container = styled.section`
     padding: 1.6rem;
     font-size: 1.6rem;
     resize: none;
-    background: ${({theme}) => theme.colors.dark800};
+    background: ${({ theme }) => theme.colors.dark800};
 
     &:focus {
-      border: 1px solid ${({theme}) => theme.colors.light300};
+      border: 1px solid ${({ theme }) => theme.colors.light300};
     }
   }
 `;

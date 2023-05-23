@@ -3,12 +3,12 @@ import { ButtonType } from "../Button";
 
 export function ButtonBack({ name, disabled = false, ...rest }: ButtonType) {
   return (
-    <ButtonContainer 
-      type="button" 
-      disabled={disabled} 
+    <ButtonContainer
+      type="button"
+      disabled={disabled}
       {...rest}
     >
-     &lt; voltar
+      &lt; voltar
     </ButtonContainer>
   )
 }

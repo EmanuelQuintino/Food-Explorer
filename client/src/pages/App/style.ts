@@ -20,16 +20,16 @@ export const Container = styled.section`
       }
       
       ::-webkit-scrollbar-track {
-        background: ${({theme}) => theme.colors.dark800}; 
+        background: ${({ theme }) => theme.colors.dark800}; 
       }
       
       ::-webkit-scrollbar-thumb {
-        background: ${({theme}) => theme.colors.light750};
+        background: ${({ theme }) => theme.colors.light750};
         border-radius: .8rem;
       }
       
       ::-webkit-scrollbar-thumb:hover {
-        background: ${({theme}) => theme.colors.light650}; 
+        background: ${({ theme }) => theme.colors.light650}; 
       }
   }
 `;

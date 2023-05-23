@@ -33,7 +33,7 @@ export const Container = styled.section`
     width: 100%;
     border-radius: .8rem;
     padding: .8rem;
-    background: ${({theme}) => theme.colors.dark800};
+    background: ${({ theme }) => theme.colors.dark800};
   }
 
   .formButtons {
@@ -44,7 +44,7 @@ export const Container = styled.section`
     gap: 2.4rem;
 
     > button:focus {
-      border: 1px solid ${({theme}) => theme.colors.light300};
+      border: 1px solid ${({ theme }) => theme.colors.light300};
     }
   }
 `;

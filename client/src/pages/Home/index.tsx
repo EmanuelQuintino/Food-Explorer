@@ -16,8 +16,8 @@ export function Home() {
       {!menuActive &&
         <>
           <Slogan />
-          
-          {isLoading && <p><ImSpinner2 className="spinner"/></p>}
+
+          {isLoading && <p><ImSpinner2 className="spinner" /></p>}
           {error && <p className="queryError">Algo deu errado!</p>}
 
           <section className="boxPlates">
@@ -32,7 +32,7 @@ export function Home() {
                       isFavorite={userData.data?.favorites.map(plate => plate.plate_id).includes(plate.id)}
                     />
                   )
-              })}
+                })}
             </div>
           </section>
 
@@ -48,7 +48,7 @@ export function Home() {
                       isFavorite={userData.data?.favorites.map(plate => plate.plate_id).includes(plate.id)}
                     />
                   )
-              })}
+                })}
             </div>
           </section>
 
@@ -64,7 +64,7 @@ export function Home() {
                       isFavorite={userData.data?.favorites.map(plate => plate.plate_id).includes(plate.id)}
                     />
                   )
-              })}
+                })}
             </div>
           </section>
         </>
