@@ -44,7 +44,7 @@ model Plates {
   id          String   @id @default(uuid())
   name        String
   description String
-  price       Float
+  price       Decimal
   category    String
   image       String?
   created_at  DateTime @default(now())
@@ -61,7 +61,7 @@ model OrderPlates {
   order_id   String
   plate_id   String
   amount     Int      @default(1)
-  price      Float
+  price      Decimal
   created_at DateTime @default(now())
   updated_at DateTime @default(now()) @updatedAt
 

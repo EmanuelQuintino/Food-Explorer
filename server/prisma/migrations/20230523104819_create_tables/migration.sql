@@ -24,7 +24,7 @@ CREATE TABLE "plates" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "name" TEXT NOT NULL,
     "description" TEXT NOT NULL,
-    "price" REAL NOT NULL,
+    "price" DECIMAL NOT NULL,
     "category" TEXT NOT NULL,
     "image" TEXT,
     "created_at" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -36,7 +36,7 @@ CREATE TABLE "order_plates" (
     "order_id" TEXT NOT NULL,
     "plate_id" TEXT NOT NULL,
     "amount" INTEGER NOT NULL DEFAULT 1,
-    "price" REAL NOT NULL,
+    "price" DECIMAL NOT NULL,
     "created_at" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 

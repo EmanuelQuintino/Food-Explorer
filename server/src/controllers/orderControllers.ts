@@ -14,13 +14,23 @@ export const orderControllers = {
 
       type Plate = {
         id: string;
+        amount: number;
+        price: number;
       };
+
+      console.log(plates);
+      console.log(userID);
+      
 
       await prisma.orders.create({
         data: {
           users_id: userID,
           order_plates: {
-            create: plates.map((plate: Plate) => ({ plate_id: plate.id }))
+            create: plates.map((plate: Plate) => ({
+              plate_id: plate.id,
+              amount: plate.amount,
+              price: plate.price,
+            }))
           }
         }
       });
