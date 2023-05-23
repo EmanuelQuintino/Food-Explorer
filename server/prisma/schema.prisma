@@ -62,7 +62,6 @@ model OrderPlates {
   plate_id   String
   amount     Int      @default(1)
   price      Float
-  total      Float
   created_at DateTime @default(now())
   updated_at DateTime @default(now()) @updatedAt
 

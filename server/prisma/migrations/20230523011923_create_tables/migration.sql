@@ -37,7 +37,6 @@ CREATE TABLE "order_plates" (
     "plate_id" TEXT NOT NULL,
     "amount" INTEGER NOT NULL DEFAULT 1,
     "price" REAL NOT NULL,
-    "total" REAL NOT NULL,
     "created_at" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
