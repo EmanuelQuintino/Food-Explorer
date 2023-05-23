@@ -34,7 +34,8 @@ model Orders {
   created_at DateTime @default(now())
   updated_at DateTime @default(now()) @updatedAt
 
-  user         Users         @relation(fields: [users_id], references: [id])
+  user Users @relation(fields: [users_id], references: [id])
+
   order_plates OrderPlates[]
 
   @@map("orders")

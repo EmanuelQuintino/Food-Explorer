@@ -78,7 +78,11 @@ export const userControllers = {
               order_plates: true
             }
           },
-          favorites: true
+          favorites: {
+            orderBy: {
+              created_at: 'desc'
+            }
+          }
         }
       });
 
