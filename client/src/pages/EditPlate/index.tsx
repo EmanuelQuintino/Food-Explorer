@@ -51,10 +51,7 @@ export function EditPlate() {
   
   const { data, isLoading, error } = usePlateQuery();
   const plateData = data?.find(plate => plate.id == params.id);
-  
-  // console.log(plateData)
-  // console.log(plateDataForm)
-  
+    
   useEffect(() => {
     if (plateData) {
       setPlateDataForm({

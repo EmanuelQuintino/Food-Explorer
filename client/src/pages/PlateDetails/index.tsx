@@ -51,7 +51,10 @@ export function PlateDetails() {
             :
             <section className="box">
               <CountPlate />
-              <Button icon={OrderIcon} name={`pedir - R$ ${plateData.price}`} />
+              <Button
+                icon={OrderIcon}
+                name={`pedir - ${Number(plateData.price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`}
+              />
             </section>
           }
         </>
