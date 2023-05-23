@@ -48,10 +48,13 @@ export function EditPlate() {
   const { menuActive } = useSystem();
   const navigate = useNavigate();
   const params = useParams();
-
+  
   const { data, isLoading, error } = usePlateQuery();
   const plateData = data?.find(plate => plate.id == params.id);
-
+  
+  // console.log(plateData)
+  // console.log(plateDataForm)
+  
   useEffect(() => {
     if (plateData) {
       setPlateDataForm({
@@ -119,7 +122,11 @@ export function EditPlate() {
     };
   };
 
-  const onSubmitUpdatePlate = (data: PlateDataTypes) => mutate({ ...data, id: plateData.id });
+  const onSubmitUpdatePlate = (data: PlateDataTypes) => mutate({ 
+    ...data, 
+    id: plateData.id,
+    category: plateDataForm.category 
+  });
 
   const onDeletePlate = async () => {
     const confirmDelete = confirm("Deseja excluir prato?")
