@@ -22,11 +22,11 @@ export const userControllers = {
 
       const { name, email, password } = userSchema.parse(req.body);
 
-      const userEmail = await prisma.users.findUnique({where: {email: String(email)}});
+      const userEmail = await prisma.users.findUnique({ where: { email: String(email) } });
       if (userEmail) throw newAppError("Email já cadastrado", 409);
 
       const passwordHash = await bcrypt.hash(password, 10);
-      await prisma.users.create({data: {name, email, password: passwordHash}});
+      await prisma.users.create({ data: { name, email, password: passwordHash } });
 
       return res.status(201).json("Usuário cadastrado com sucesso");
     } catch (error: any) {
@@ -40,7 +40,7 @@ export const userControllers = {
       const id = req.userID;
       if (!id) throw newAppError("Por favor insirar o ID do usuário", 400);
 
-      const user = await prisma.users.findUnique({where: {id: String(id)}});
+      const user = await prisma.users.findUnique({ where: { id: String(id) } });
       if (!user) throw newAppError('Usuário não encontrado', 404);
 
       const users = await prisma.users.findMany({
@@ -53,7 +53,7 @@ export const userControllers = {
           favorites: true
         }
       });
-      
+
       const usersExcludeFields = users.map((user) => {
         return excludeFields(user, ["password", "is_admin"]);
       });
@@ -71,7 +71,7 @@ export const userControllers = {
       if (!id) throw newAppError("Por favor insirar o ID do usuário", 400);
 
       const user = await prisma.users.findUnique({
-        where: {id: String(id)},
+        where: { id: String(id) },
         include: {
           orders: {
             include: {
@@ -108,18 +108,18 @@ export const userControllers = {
       const id = req.userID;
       const { name, email, password } = userSchema.parse(req.body);
 
-      const user = await prisma.users.findUnique({where: {id: String(id)}});
+      const user = await prisma.users.findUnique({ where: { id: String(id) } });
       if (!user) throw newAppError('Usuário não encontrado', 404);
 
-      const userEmail = await prisma.users.findUnique({where: {email: String(email)}});
+      const userEmail = await prisma.users.findUnique({ where: { email: String(email) } });
       if (userEmail && (user.email != userEmail.email)) {
         throw newAppError('Email já cadastrado', 409);
       };
 
       const passwordHash = await bcrypt.hash(password, 10);
       await prisma.users.update({
-        data: {name, email, password: passwordHash},
-        where: {id: String(id)}
+        data: { name, email, password: passwordHash },
+        where: { id: String(id) }
       });
 
       return res.status(200).json("Usuário atualizado com sucesso");
@@ -131,13 +131,13 @@ export const userControllers = {
 
   delete: async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const id = req.userID;      
+      const id = req.userID;
       if (!id) throw newAppError("Por favor insirar o ID do usuário", 400);
 
-      const user = await prisma.users.findUnique({where: {id: String(id)}});
+      const user = await prisma.users.findUnique({ where: { id: String(id) } });
       if (!user) throw newAppError('Usuário não encontrado', 404);
 
-      await prisma.users.delete({where: {id: String(id)}});
+      await prisma.users.delete({ where: { id: String(id) } });
 
       return res.status(200).json('Usuário deletado com sucesso');
     } catch (error: any) {

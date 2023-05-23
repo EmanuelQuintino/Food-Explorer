@@ -93,7 +93,7 @@ export const plateControllers = {
       }).strict();
 
       const { name, description, price, category, ingredients } = plateSchema.parse(req.body);
-      
+
       const { id } = req.params;
       if (!id) throw newAppError("Por favor insirar o ID do Prato", 400);
 
@@ -116,11 +116,11 @@ export const plateControllers = {
         data: {
           ...(name !== "" && { name }),
           ...(description !== "" && { description }),
-          ...(price !== "" && { price: parseFloat(price.replace(",", "."))}),
+          ...(price !== "" && { price: parseFloat(price.replace(",", ".")) }),
           ...(category !== "" && { category }),
           ...(imageFileName && { image: imageFileName }),
           ingredients: {
-            deleteMany: {plate_id: String(id)},
+            deleteMany: { plate_id: String(id) },
             create: arrayIngredients.map((ingredient: string) => ({ name: ingredient }))
           }
         },
