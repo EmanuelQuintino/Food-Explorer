@@ -40,7 +40,7 @@ export const plateControllers = {
 
       await prisma.plates.create({
         data: {
-          name, description, price: parseFloat(price.replace(",", ".")), category, image: imageFileName,
+          name, description, price: Number(price.replace(",", ".")), category, image: imageFileName,
           ingredients: {
             create: arrayIngredients.map((ingredient: string) => ({ name: ingredient }))
           }

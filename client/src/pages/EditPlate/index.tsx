@@ -58,7 +58,7 @@ export function EditPlate() {
         name: plateData.name,
         category: plateData.category,
         ingredients: plateData.ingredients,
-        price: plateData.price.toLocaleString('pt-br', { style: 'currency', currency: 'brl' }),
+        price: Number(plateData.price).toLocaleString('pt-br', { style: 'currency', currency: 'brl' }),
         description: plateData.description,
         image: plateData.image,
       });
