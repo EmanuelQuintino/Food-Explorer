@@ -1,8 +1,8 @@
-import { userAdmin } from "../../src/configs/userAdmin";
-import { prisma } from "../../src/databases";
+import { userAdmin } from "../src/configs/userAdmin";
+import { prisma } from "../src/databases";
 import bcrypt from "bcrypt";
 
-async function main() {
+async function createdAdminUser() {
   try {
 
     if (!userAdmin.email || !userAdmin.password) {
@@ -33,4 +33,4 @@ async function main() {
   }
 }
 
-main();
+createdAdminUser();
