@@ -77,7 +77,7 @@ export const orderControllers = {
           },
         }
       });
-      
+
       return res.status(201).json("Pedido realizado com sucesso");
     } catch (error: any) {
       if (error.code === "P2021") return res.status(500).json("Tabela não encontrada");
@@ -151,7 +151,6 @@ export const orderControllers = {
 
       const order = await prisma.orders.findUnique({ where: { id: String(id) } });
       if (!order) throw newAppError('Pedido não encontrado', 404);
-      if (order?.user_id != userID) throw newAppError('Sem autorização para deletar este pedido', 401);
 
       const user = await prisma.users.findUnique({ where: { id: String(userID) } });
       if (!user) throw newAppError('Usuário não encontrado', 404);
