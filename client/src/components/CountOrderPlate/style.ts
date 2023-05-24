@@ -14,11 +14,12 @@ export const Container = styled.div`
     justify-content: center;
   }
 
-  .box > button {
+  .box {
     margin-top: 1.6rem;
+  }
+
+  .box > button {
     border-radius: .5rem;
     height: 3.2rem;
-    display: grid;
-    place-content: center;
   }
 `;

@@ -27,21 +27,23 @@ export function CountOrderPlate({ plate, iconButton, nameButton }: ButtonType) {
 
   return (
     <Container>
-      <div className="boxMinusPlus">
-        <button onClick={plateMinus}>
-          <MinusIcon />
-        </button>
+      <section className="containerCountOrderPlate">
+        <div className="boxMinusPlus">
+          <button onClick={plateMinus}>
+            <MinusIcon />
+          </button>
 
-        <p>{String(countPlate).padStart(2, "0")}</p>
+          <p>{String(countPlate).padStart(2, "0")}</p>
 
-        <button onClick={platePlus}>
-          <PlusIcon />
-        </button>
-      </div>
+          <button onClick={platePlus}>
+            <PlusIcon />
+          </button>
+        </div>
 
-      <div className="box">
-        <Button name={nameButton} icon={iconButton} onClick={includePlate} />
-      </div>
+        <div className="box">
+          <Button name={nameButton} icon={iconButton} onClick={includePlate} />
+        </div>
+      </section>
     </Container>
   )
 }

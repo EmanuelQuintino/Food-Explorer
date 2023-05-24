@@ -48,19 +48,13 @@ export const Container = styled.section`
     border-radius: .5rem;
   }
 
-  .box {
-    margin-top: 3.6rem;
+  .containerCountOrderPlate {
+    margin-top: 2.4rem;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 1.6rem;
-  }
-
-  .box > button {
-    border-radius: .5rem;
-    height: 3.8rem;
-    font-size: 1.2rem;
   }
 
   .boxMinusPlus {
@@ -72,5 +66,16 @@ export const Container = styled.section`
   .boxMinusPlus img {
     width: 2.0rem;
     height: 2.0rem;
+  }
+
+  .box {
+    margin-top: 0;
+  }
+
+  .box > button {
+    border-radius: .5rem;
+    height: 3.8rem;
+    width: 18.8rem;
+    font-size: 1.2rem;
   }
 `;
