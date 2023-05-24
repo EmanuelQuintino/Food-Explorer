@@ -53,10 +53,21 @@ export const orderControllers = {
         price: number;
       };
 
+      const maxCodeOrder = await prisma.orders.findFirst({
+        select: {
+          code: true,
+        },
+        orderBy: {
+          code: 'desc',
+        },
+      });
+
+      const nextCode = maxCodeOrder ? maxCodeOrder.code + 1 : 1;
+
       await prisma.orders.create({
         data: {
           user_id: userID,
-          code: 4,
+          code: nextCode,
           order_plates: {
             create: orderData.map((order: OrderTypes) => ({
               plate_id: order.plateID,
@@ -66,6 +77,7 @@ export const orderControllers = {
           },
         }
       });
+      
       return res.status(201).json("Pedido realizado com sucesso");
     } catch (error: any) {
       if (error.code === "P2021") return res.status(500).json("Tabela não encontrada");
@@ -85,12 +97,12 @@ export const orderControllers = {
           include: { order_plates: true }
         });
         if (!order) throw newAppError('Pedido não encontrado', 404);
-        if (order?.users_id != userID) throw newAppError('Sem autorização para acessar este pedido', 401);
+        if (order?.user_id != userID) throw newAppError('Sem autorização para acessar este pedido', 401);
 
         return res.status(200).json(order);
       } else {
         const orders = await prisma.orders.findMany({
-          where: { users_id: userID },
+          where: { user_id: userID },
           include: { order_plates: true }
         });
         return res.status(200).json(orders);
@@ -139,7 +151,7 @@ export const orderControllers = {
 
       const order = await prisma.orders.findUnique({ where: { id: String(id) } });
       if (!order) throw newAppError('Pedido não encontrado', 404);
-      if (order?.users_id != userID) throw newAppError('Sem autorização para deletar este pedido', 401);
+      if (order?.user_id != userID) throw newAppError('Sem autorização para deletar este pedido', 401);
 
       const user = await prisma.users.findUnique({ where: { id: String(userID) } });
       if (!user) throw newAppError('Usuário não encontrado', 404);
