@@ -18,7 +18,10 @@ export function Home() {
           <Slogan />
 
           {isLoading && <p><ImSpinner2 className="spinner" /></p>}
-          {error && <p className="queryError">Algo deu errado!</p>}
+          {userData.isLoading && <p><ImSpinner2 className="spinner" /></p>}
+          
+          {error && <p className="queryError">Algo deu errado em carregar os pratos!</p>}
+          {userData.error && <p className="queryError">Algo deu errado em carregar dados do usuário!</p>}
 
           <section className="boxPlates">
             <h2>Refeições</h2>
