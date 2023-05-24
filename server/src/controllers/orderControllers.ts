@@ -45,8 +45,6 @@ export const orderControllers = {
         };
       });
 
-      console.log(orderData);
-
       type OrderTypes = {
         plateID: string;
         amount: number;
@@ -117,8 +115,9 @@ export const orderControllers = {
     try {
       const userSchema = z.object({
         status: z.string()
-          .min(3, "Nome com mínimo de 3 caracteres")
-          .max(255, "Campo com tamanho máximo de 255 caracteres"),
+          .refine(value => ['Pendente', 'Preparando', 'Entregue'].includes(value), {
+            message: 'O status deve ser preenchido com "Pendente", "Preparando" ou "Entregue"',
+          }),
       }).strict();
 
       const { id } = req.params;
@@ -134,7 +133,7 @@ export const orderControllers = {
         where: { id: String(id) },
       });
 
-      return res.status(200).json("Pedido atualizado com sucesso");
+      return res.status(200).json(`Estatos do pedido foi atualizado para '${status}'`);
     } catch (error: any) {
       if (error.code === "P2021") return res.status(500).json("Tabela não encontrada");
       return next(error);
