@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { prisma } from "../databases";
-import { number, z } from "zod";
+import { z } from "zod";
 import { newAppError } from "../utils/newAppError";
 
 export const orderControllers = {
@@ -11,7 +11,9 @@ export const orderControllers = {
           plateID: z.string()
             .min(3, "Nome com mínimo de 3 caracteres")
             .max(255, "Campo com tamanho máximo de 255 caracteres"),
-          amount: z.number().positive(),
+          amount: z.number()
+            .positive("A quantidade deve ser um número positivo")
+            .max(99, "O valor máximo permitido é 99"),
         }).strict()
       );
 
@@ -20,7 +22,7 @@ export const orderControllers = {
 
       const user = await prisma.users.findUnique({ where: { id: String(userID) } });
       if (!user) throw newAppError('Usuário não encontrado', 404);
-      
+
       const platesID = orders.map(order => order.plateID)
       const plates = await prisma.plates.findMany({
         where: {
@@ -29,7 +31,7 @@ export const orderControllers = {
           },
         },
       });
-      
+
       const existingPlateIDs = plates.map(plate => plate.id);
       const missingPlates = platesID.filter(plateID => !existingPlateIDs.includes(plateID));
       if (missingPlates.length > 0) throw newAppError(`Pratos não localizados: ${missingPlates.join(', ')}`, 404);
@@ -39,31 +41,31 @@ export const orderControllers = {
         return {
           plateID: order.plateID,
           amount: order.amount,
-          price: plateMatch?.price,
+          price: Number(plateMatch?.price),
         };
       });
-      
+
       console.log(orderData);
 
-      // type OrderTypes = {
-      //   id: string;
-      //   amount: number;
-      //   price: number;
-      // };      
+      type OrderTypes = {
+        plateID: string;
+        amount: number;
+        price: number;
+      };
 
-      // await prisma.orders.create({
-      //   data: {
-      //     users_id: userID,
-      //     order_plates: {
-      //       create: order.map((plate: OrderTypes) => ({
-      //         plate_id: plate.id,
-      //         amount: plate.amount,
-      //         price: plate.price,
-      //       }))
-      //     }
-      //   }
-      // });
-
+      await prisma.orders.create({
+        data: {
+          user_id: userID,
+          code: 4,
+          order_plates: {
+            create: orderData.map((order: OrderTypes) => ({
+              plate_id: order.plateID,
+              amount: order.amount,
+              price: order.price,
+            })),
+          },
+        }
+      });
       return res.status(201).json("Pedido realizado com sucesso");
     } catch (error: any) {
       if (error.code === "P2021") return res.status(500).json("Tabela não encontrada");

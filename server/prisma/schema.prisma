@@ -31,11 +31,11 @@ model Orders {
   id         String   @id @default(uuid())
   status     String   @default("Pendente")
   code       Int      @unique
-  users_id   String
+  user_id   String
   created_at DateTime @default(now())
   updated_at DateTime @default(now()) @updatedAt
 
-  user Users @relation(fields: [users_id], references: [id])
+  user Users @relation(fields: [user_id], references: [id])
 
   order_plates OrderPlates[]
 
