@@ -1,39 +1,68 @@
 import { NextFunction, Request, Response } from "express";
 import { prisma } from "../databases";
-import { z } from "zod";
+import { number, z } from "zod";
 import { newAppError } from "../utils/newAppError";
 
 export const orderControllers = {
   create: async (req: Request, res: Response, next: NextFunction) => {
     try {
+      const plateSchema = z.array(
+        z.object({
+          plateID: z.string()
+            .min(3, "Nome com mínimo de 3 caracteres")
+            .max(255, "Campo com tamanho máximo de 255 caracteres"),
+          amount: z.number().positive(),
+        }).strict()
+      );
+
+      const orders = plateSchema.parse(req.body);
       const userID = req.userID;
-      const plates = req.body;
 
       const user = await prisma.users.findUnique({ where: { id: String(userID) } });
       if (!user) throw newAppError('Usuário não encontrado', 404);
-
-      type Plate = {
-        id: string;
-        amount: number;
-        price: number;
-      };
-
-      console.log(plates);
-      console.log(userID);
       
-
-      await prisma.orders.create({
-        data: {
-          users_id: userID,
-          order_plates: {
-            create: plates.map((plate: Plate) => ({
-              plate_id: plate.id,
-              amount: plate.amount,
-              price: plate.price,
-            }))
-          }
-        }
+      const platesID = orders.map(order => order.plateID)
+      const plates = await prisma.plates.findMany({
+        where: {
+          id: {
+            in: platesID,
+          },
+        },
       });
+      
+      const existingPlateIDs = plates.map(plate => plate.id);
+      const missingPlates = platesID.filter(plateID => !existingPlateIDs.includes(plateID));
+      if (missingPlates.length > 0) throw newAppError(`Pratos não localizados: ${missingPlates.join(', ')}`, 404);
+
+      const orderData = orders.map(order => {
+        const plateMatch = plates.find(plate => plate.id === order.plateID);
+        return {
+          plateID: order.plateID,
+          amount: order.amount,
+          price: plateMatch?.price,
+        };
+      });
+      
+      console.log(orderData);
+
+      // type OrderTypes = {
+      //   id: string;
+      //   amount: number;
+      //   price: number;
+      // };      
+
+      // await prisma.orders.create({
+      //   data: {
+      //     users_id: userID,
+      //     order_plates: {
+      //       create: order.map((plate: OrderTypes) => ({
+      //         plate_id: plate.id,
+      //         amount: plate.amount,
+      //         price: plate.price,
+      //       }))
+      //     }
+      //   }
+      // });
 
       return res.status(201).json("Pedido realizado com sucesso");
     } catch (error: any) {
