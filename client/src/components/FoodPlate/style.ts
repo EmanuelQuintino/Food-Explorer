@@ -57,12 +57,4 @@ export const Container = styled.div`
   .box {
     width: 100%;
   }
-
-  .box > button {
-    margin-top: 2.0rem;
-    border-radius: .5rem;
-    height: 3.2rem;
-    display: grid;
-    place-content: center;
-  }
 `;

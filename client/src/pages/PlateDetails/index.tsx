@@ -6,7 +6,7 @@ import { usePlateQuery } from "../../hooks/usePlateQuery";
 import { ImSpinner2 } from "react-icons/im";
 import { API } from "../../services/api";
 import { Button } from "../../components/Button";
-import { CountPlate } from "../../components/CountPlate";
+import { CountOrderPlate } from "../../components/CountOrderPlate";
 import { OrderIcon } from "../../assets/OrderIcon";
 import { useAuth } from "../../hooks/useAuth";
 
@@ -50,10 +50,10 @@ export function PlateDetails() {
             </section>
             :
             <section className="box">
-              <CountPlate />
-              <Button
-                icon={OrderIcon}
-                name={`pedir - ${Number(plateData.price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`}
+              <CountOrderPlate
+                plate={{ id: plateData.id, name: plateData.name, price: plateData.price }}
+                iconButton={OrderIcon}
+                nameButton={`pedir - ${Number(plateData.price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`}
               />
             </section>
           }

@@ -2,11 +2,10 @@ import { Container } from "./style";
 import { FavoriteIcon } from "../../assets/FavoriteIcon";
 import { FavoriteIconMatch } from "../../assets/FavoriteIconMatch";
 import { EditIcon } from "../../assets/EditIcon";
-import { Button } from "../Button";
 import { useState } from "react";
 import { API } from "../../services/api";
 import { useNavigate } from "react-router-dom";
-import { CountPlate } from "../CountPlate";
+import { CountOrderPlate } from "../CountOrderPlate";
 import { useAuth } from "../../hooks/useAuth";
 import { toast } from "react-toastify";
 import { useQueryUser } from "../../hooks/useQueryUser";
@@ -80,8 +79,10 @@ export function FoodPlate({ plate, isFavorite = false }: FoodPlateType) {
 
       {!userAuth.isAdmin &&
         <div className="box">
-          <CountPlate />
-          <Button name="Incluir" />
+          <CountOrderPlate
+            plate={{ id: plate.id, name: plate.name, price: plate.price }}
+            nameButton={"Incluir"}
+          />
         </div>
       }
     </Container>

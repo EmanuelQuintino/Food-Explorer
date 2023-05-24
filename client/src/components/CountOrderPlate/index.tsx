@@ -1,12 +1,29 @@
 import { Container } from "./style";
 import { MinusIcon } from "../../assets/MinusIcon";
 import { PlusIcon } from "../../assets/PlusIcon";
+import { Button } from "../Button";
 import { useState } from "react";
 
-export function CountPlate() {
+type PlateTypes = {
+  id: string;
+  name: string;
+  price: string;
+}
+
+export type ButtonType = {
+  plate: PlateTypes;
+  iconButton?: React.FC<React.SVGProps<SVGSVGElement>>;
+  nameButton: string;
+}
+
+export function CountOrderPlate({ plate, iconButton, nameButton }: ButtonType) {
   const [countPlate, setCountPlate] = useState(1);
-  const platePlus = () => setCountPlate(previousState => Math.min(previousState + 1, 99));
+  const platePlus = () => setCountPlate(previousState => Math.min(previousState + 1, 9));
   const plateMinus = () => setCountPlate(previousState => Math.max(previousState - 1, 1));
+
+  function includePlate() {
+    console.log(plate.name);
+  }
 
   return (
     <Container>
@@ -20,6 +37,10 @@ export function CountPlate() {
         <button onClick={platePlus}>
           <PlusIcon />
         </button>
+      </div>
+
+      <div className="box">
+        <Button name={nameButton} icon={iconButton} onClick={includePlate} />
       </div>
     </Container>
   )
