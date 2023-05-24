@@ -18,8 +18,9 @@ export const plateControllers = {
           .nonempty("O preço é obrigatório")
           .max(255, "Campo com tamanho máximo de 255 caracteres"),
         category: z.string()
-          .nonempty("A categoria é obrigatória")
-          .max(255, "Campo com tamanho máximo de 255 caracteres"),
+          .refine(value => ['Refeições', 'Sobremesas', 'Bebidas'].includes(value), {
+            message: 'A categoria deve ser preenchida com "Refeições", "Sobremesas" ou "Bebidas"',
+          }),
         ingredients: z.string()
           .nonempty("Pelo menos um ingrediente é obrigatório")
           .max(255, "Campo com tamanho máximo de 255 caracteres"),
@@ -86,7 +87,9 @@ export const plateControllers = {
         price: z.string()
           .max(255, "Campo com tamanho máximo de 255 caracteres"),
         category: z.string()
-          .max(255, "Campo com tamanho máximo de 255 caracteres"),
+          .refine(value => ['Refeições', 'Sobremesas', 'Bebidas'].includes(value), {
+            message: 'A categoria deve ser preenchida com "Refeições", "Sobremesas" ou "Bebidas"',
+          }),
         ingredients: z.string()
           .max(255, "Campo com tamanho máximo de 255 caracteres"),
         image: z.string().optional(),
