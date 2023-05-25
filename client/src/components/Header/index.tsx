@@ -3,15 +3,21 @@ import { MenuOpen } from "../../assets/MenuOpen";
 import { MenuClose } from "../../assets/MenuClose";
 import { LogoExplorer } from "../../assets/LogoExplorer";
 import { OrderIcon } from "../../assets/OrderIcon";
-import { InputSearch } from "../InputSearch";
+// import { InputSearch } from "../InputSearch";
 import { Menu } from "../Menu";
 import { useSystem } from "../../hooks/useSystem";
 import { useAuth } from "../../hooks/useAuth";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export function Header() {
   const { menuActive, toggleMenu, orderTotal, updateOrderTotal } = useSystem();
   const { userAuth } = useAuth();
+  const navigate = useNavigate();
+
+  function goToShoppingCart() {
+    navigate('/shoppingcart');
+  };
 
   useEffect(() => {
     updateOrderTotal(userAuth.id as string);
@@ -42,7 +48,7 @@ export function Header() {
 
             {!userAuth.isAdmin &&
               <div className="orderContainer">
-                <button>
+                <button onClick={goToShoppingCart}>
                   <OrderIcon />
                 </button>
                 <div className="orderTotal">{orderTotal}</div>
