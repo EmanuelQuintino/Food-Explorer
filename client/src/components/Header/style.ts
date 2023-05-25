@@ -61,11 +61,12 @@ export const HeaderContainer = styled.header<HeaderContainerType>`
 
   .orderTotal {
     background: ${({ theme }) => theme.colors.tomato100};
-    text-align: center;
+    display: grid;
+    place-content: center;
     border-radius: 50%;
-    width: 1.6rem;
-    height: 1.6rem;
-    font-size: 1.4rem;
+    width: 1.8rem;
+    height: 1.7rem;
+    font-size: 1.2rem;
     position: absolute;
     bottom: 1.4rem;
     left: 1.4rem;
