@@ -27,33 +27,28 @@ export function CountOrderPlate({ plate, iconButton, nameButton }: ButtonType) {
   const plateMinus = () => setCountPlate(previousState => Math.max(previousState - 1, 1));
 
   function includeUserOrderPlate() {
-    let newUserOrder = {
+    const newUserOrder = {
       userID: userAuth.id,
       plates: [{ id: plate.id, amount: countPlate }]
     };
 
-    
-    
     const localStorageUserOrder = localStorage.getItem("@FoodExplorer:order");
-    if (localStorageUserOrder) {
-      const userOrder = JSON.parse(localStorageUserOrder);
-      
-      if (userOrder.userID !== userAuth.id) {
-        localStorage.removeItem("@FoodExplorer:order");
-      } else {
-        const newPlates = userOrder.plates.filter((plateOrder: PlateTypes) => plateOrder.id !== plate.id);
-        
-        newUserOrder = {
-          userID: userAuth.id,
-          plates: [
-            ...newPlates,
-            { id: plate.id, amount: countPlate }
-          ]
-        };
-      };
-    };
 
-    localStorage.setItem("@FoodExplorer:order", JSON.stringify(newUserOrder));
+    if (!localStorageUserOrder) {
+      localStorage.setItem("@FoodExplorer:order", JSON.stringify(newUserOrder));
+    } else {
+      const userOrder = JSON.parse(localStorageUserOrder);
+      if (userOrder.userID !== userAuth.id) localStorage.removeItem("@FoodExplorer:order");
+
+      const plateIndex = userOrder.plates.findIndex((plateOrder: PlateTypes) => plateOrder.id === plate.id);
+      if (plateIndex !== -1) {
+        userOrder.plates[plateIndex].amount += countPlate;
+      } else {
+        userOrder.plates.push(newUserOrder.plates[0]);
+      };
+
+      localStorage.setItem("@FoodExplorer:order", JSON.stringify(userOrder));
+    };
     updateOrderTotal(userAuth.id as string);
   };
 
