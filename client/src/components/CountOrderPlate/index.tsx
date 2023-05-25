@@ -4,6 +4,7 @@ import { PlusIcon } from "../../assets/PlusIcon";
 import { Button } from "../Button";
 import { useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
+import { useSystem } from "../../hooks/useSystem";
 
 type PlateTypes = {
   id: string;
@@ -19,9 +20,11 @@ export type ButtonType = {
 
 export function CountOrderPlate({ plate, iconButton, nameButton }: ButtonType) {
   const [countPlate, setCountPlate] = useState(1);
+  const { userAuth } = useAuth();
+  const { setOrderTotal } = useSystem();
+  
   const platePlus = () => setCountPlate(previousState => Math.min(previousState + 1, 9));
   const plateMinus = () => setCountPlate(previousState => Math.max(previousState - 1, 1));
-  const { userAuth } = useAuth();
 
   function includeUserOrderPlate() {
     let newUserOrder = {
@@ -48,6 +51,10 @@ export function CountOrderPlate({ plate, iconButton, nameButton }: ButtonType) {
       };
     };
 
+    const amounts = newUserOrder.plates.map(plate => plate.amount);
+    const sumAmounts = amounts.reduce((a, b) => a + b);
+    setOrderTotal(sumAmounts);
+    
     localStorage.setItem("@FoodExplorer:order", JSON.stringify(newUserOrder));
   }
 

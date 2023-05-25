@@ -1,19 +1,24 @@
 import { PropsWithChildren, createContext, useState, useContext } from "react";
 
 type SystemContextType = {
-  menuActive: boolean;
+  orderTotal: number;
   toggleMenu: () => void;
+  menuActive: boolean;
+  setOrderTotal: React.Dispatch<React.SetStateAction<number>>
 }
 
 const SystemContext = createContext<SystemContextType>({} as SystemContextType);
 
 export function SystemProvider({ children }: PropsWithChildren) {
   const [menuActive, setMenuActive] = useState(false);
+  const [orderTotal, setOrderTotal] = useState(0);
+  
   const toggleMenu = () => setMenuActive(menuActive ? false : true);
 
   return (
     <SystemContext.Provider value={{
-      menuActive, toggleMenu
+      menuActive, toggleMenu,
+      orderTotal, setOrderTotal
     }}>
       {children}
     </SystemContext.Provider>

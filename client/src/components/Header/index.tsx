@@ -9,7 +9,7 @@ import { useSystem } from "../../hooks/useSystem";
 import { useAuth } from "../../hooks/useAuth";
 
 export function Header() {
-  const { menuActive, toggleMenu } = useSystem();
+  const { menuActive, toggleMenu, orderTotal } = useSystem();
   const { userAuth } = useAuth();
 
   return (
@@ -40,7 +40,7 @@ export function Header() {
                 <button>
                   <OrderIcon />
                 </button>
-                <div className="orderTotal">0</div>
+                <div className="orderTotal">{orderTotal}</div>
               </div>
             }
           </>
