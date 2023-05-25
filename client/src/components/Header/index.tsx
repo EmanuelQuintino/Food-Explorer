@@ -7,10 +7,15 @@ import { InputSearch } from "../InputSearch";
 import { Menu } from "../Menu";
 import { useSystem } from "../../hooks/useSystem";
 import { useAuth } from "../../hooks/useAuth";
+import { useEffect } from "react";
 
 export function Header() {
-  const { menuActive, toggleMenu, orderTotal } = useSystem();
+  const { menuActive, toggleMenu, orderTotal, updateOrderTotal } = useSystem();
   const { userAuth } = useAuth();
+
+  useEffect(() => {
+    updateOrderTotal(userAuth.id as string);
+  }, [])
 
   return (
     <HeaderContainer menuActive={menuActive}>
