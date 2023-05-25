@@ -1,21 +1,29 @@
 import { Container } from "./style"
 import { useSystem } from "../../hooks/useSystem"
 import { useNavigate } from 'react-router-dom';
-import { FavoritePlate } from "../../components/FavoritePlate";
-import { ImSpinner2 } from "react-icons/im";
-import { useQueryUser } from "../../hooks/useQueryUser";
-import { usePlateQuery } from "../../hooks/usePlateQuery";
+import { useState, useEffect } from "react";
+
+type PlateTypes = {
+  id: string;
+  amount: number;
+};
+
+type UserOrderTypes = {
+  id: string;
+  plates: PlateTypes[];
+};
 
 export function ShoppingCart() {
+  const [userOrder, setUserOrder] = useState({} as UserOrderTypes);
   const { menuActive } = useSystem();
-  const { data, isLoading, error } = usePlateQuery();
-  const userData = useQueryUser();
   const navigate = useNavigate();
 
-  const favoritePlateIDs = userData.data?.favorites.map((plate) => plate.plate_id);
-  const favoritePlates = favoritePlateIDs?.map((favoritePlateID) => {
-    return data?.find((plate) => plate.id === favoritePlateID);
-  });
+  useEffect(() => {
+    const localStorageUserOrder = localStorage.getItem("@FoodExplorer:order");
+    if (localStorageUserOrder) setUserOrder(JSON.parse(localStorageUserOrder));
+  }, [])
+
+  console.log(userOrder);
 
   return (
     <Container>
@@ -25,12 +33,15 @@ export function ShoppingCart() {
 
           <h2>Meu pedido</h2>
 
-          {isLoading && <p><ImSpinner2 className="spinner" /></p>}
-          {error && <p className="queryError">Algo deu errado!</p>}
-
           <article className="plateContainer">
-            {favoritePlates && favoritePlates?.length > 0 ?
-              (favoritePlates?.map(plate => <FavoritePlate key={plate?.id} plate={plate} />)) :
+            {userOrder && userOrder.plates?.length > 0 ?
+              (userOrder.plates?.map(plate => {
+                return (
+                  <p key={plate?.id}>
+                    {plate.amount}x {plate.id}
+                  </p>
+                )
+              })) :
               (<p className="messageEmptyFavorites">Lista vazia</p>)
             }
           </article>
