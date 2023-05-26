@@ -35,15 +35,14 @@ export function OrderPlate({ orderPlate }: OrderPlateTypes) {
         <h3 className="plateName">
           {orderPlate.amount}x {orderPlate.name}
         </h3>
-        <div className="part2">
-          <span className="platePrice">
-            {Number(orderPlate.price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
-          </span>
 
-          <button className="removeOrderPlate" onClick={() => removeOrderPlate("")}>
-            Excluir
-          </button>
+        <div className="platePrice">
+          {Number(orderPlate.price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
         </div>
+
+        <button className="removeOrderPlate" onClick={() => removeOrderPlate("")}>
+          Excluir
+        </button>
       </div>
     </Container>
   )

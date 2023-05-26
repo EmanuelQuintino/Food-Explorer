@@ -17,6 +17,7 @@ export const Container = styled.section`
     font-weight: 500;
     line-height: 3.2rem;
     color: ${({ theme }) => theme.colors.light300};
+    line-height: 120%;
   }
   
   .platePrice{
@@ -25,14 +26,9 @@ export const Container = styled.section`
     font-size: 1.2rem;
     color: ${({ theme }) => theme.colors.light400};
   }
-
-  .box .part2 {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
+  
   .removeOrderPlate {
+    margin-top: .8rem;
     font-size: 1.2rem;
     font-family: 'Roboto';
     color: ${({ theme }) => theme.colors.tomato400};
