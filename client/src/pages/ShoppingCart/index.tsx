@@ -19,13 +19,17 @@ type UserOrderTypes = {
 export function ShoppingCart() {
   const [userOrder, setUserOrder] = useState<UserOrderTypes>({} as UserOrderTypes);
   const { data, isLoading, error } = usePlateQuery();
-  const { menuActive } = useSystem();
+  const { menuActive, orderTotal } = useSystem();
   const navigate = useNavigate();
 
   useEffect(() => {
     const localStorageUserOrder = localStorage.getItem("@FoodExplorer:order");
-    if (localStorageUserOrder) setUserOrder(JSON.parse(localStorageUserOrder));
-  }, [])
+    if (localStorageUserOrder) {
+      setUserOrder(JSON.parse(localStorageUserOrder));
+    } else {
+      setUserOrder({ id: '', plates: [] })
+    }
+  }, [orderTotal])
 
   const newArrayUserOrder = userOrder.plates?.map((plateOrder) => {
     const matchPlate = data?.find((plateData) => plateData.id === plateOrder.id);
@@ -60,7 +64,7 @@ export function ShoppingCart() {
               }
             </section>
             <p className="orderTotalPrice">
-              Total: {newArrayUserOrder && userOrder.plates &&
+              Total: {newArrayUserOrder && userOrder.plates?.length > 0 &&
                 newArrayUserOrder.map((plate) => plate.amount * Number(plate.price))
                   .reduce((a: number, b: number) => a + b)
                   .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })

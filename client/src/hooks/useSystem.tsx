@@ -26,7 +26,7 @@ export function SystemProvider({ children }: PropsWithChildren) {
     const localStorageUserOrder = localStorage.getItem("@FoodExplorer:order");
     if (localStorageUserOrder) {
       const userOrder = JSON.parse(localStorageUserOrder);
-      if (userOrder.userID !== userID) {
+      if (userOrder.userID !== userID || userOrder.plates.length === 0) {
         localStorage.removeItem("@FoodExplorer:order");
         setOrderTotal(0);
       } else {
@@ -41,22 +41,21 @@ export function SystemProvider({ children }: PropsWithChildren) {
     const localStorageUserOrder = localStorage.getItem("@FoodExplorer:order");
     if (localStorageUserOrder) {
       const userOrder = JSON.parse(localStorageUserOrder);
-      console.log(userOrder);
       const newUserOrder = {
         userID: userOrder.userID,
-        plates: userOrder.plates.filter((plate) => plate.id !== plateID) 
-      } 
-      console.log(newUserOrder);
+        plates: userOrder.plates.filter((plate: PlateOrdersTypes) => plate.id !== plateID)
+      }
+
       localStorage.setItem("@FoodExplorer:order", JSON.stringify(newUserOrder));
       updateOrderTotal(newUserOrder.userID)
-    } 
+    }
   }
 
   return (
     <SystemContext.Provider value={{
       menuActive, toggleMenu,
       orderTotal, setOrderTotal,
-      updateOrderTotal, 
+      updateOrderTotal,
       removeOrderPlate
     }}>
       {children}

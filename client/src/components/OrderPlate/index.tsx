@@ -14,7 +14,7 @@ type OrderPlateTypes = {
 
 export function OrderPlate({ orderPlate }: OrderPlateTypes) {
   const { removeOrderPlate } = useSystem();
-  
+
   const imageURL = `${API.defaults.baseURL}/images/${orderPlate?.image}`;
 
   return (
