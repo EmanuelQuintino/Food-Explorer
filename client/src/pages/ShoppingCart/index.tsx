@@ -37,9 +37,6 @@ export function ShoppingCart() {
     };
   });
 
-  console.log(newArrayUserOrder);
-
-
   return (
     <Container>
       {!menuActive &&

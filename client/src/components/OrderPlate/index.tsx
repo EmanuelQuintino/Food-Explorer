@@ -1,7 +1,6 @@
 import { Container } from "./style";
 import { API } from "../../services/api";
-import { toast } from "react-toastify";
-import { useQueryUser } from "../../hooks/useQueryUser";
+import { useSystem } from "../../hooks/useSystem";
 
 type OrderPlateTypes = {
   orderPlate: {
@@ -14,13 +13,9 @@ type OrderPlateTypes = {
 };
 
 export function OrderPlate({ orderPlate }: OrderPlateTypes) {
-  const { refetchQueryUser } = useQueryUser();
-
+  const { removeOrderPlate } = useSystem();
+  
   const imageURL = `${API.defaults.baseURL}/images/${orderPlate?.image}`;
-
-  async function removeOrderPlate(plateID: string): Promise<void> {
-    console.log(plateID);
-  }
 
   return (
     <Container>

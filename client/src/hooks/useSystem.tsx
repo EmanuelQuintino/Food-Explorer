@@ -11,6 +11,7 @@ type SystemContextType = {
   menuActive: boolean;
   setOrderTotal: React.Dispatch<React.SetStateAction<number>>;
   updateOrderTotal: (userID: string) => void;
+  removeOrderPlate: (userID: string) => void;
 }
 
 const SystemContext = createContext<SystemContextType>({} as SystemContextType);
@@ -36,11 +37,27 @@ export function SystemProvider({ children }: PropsWithChildren) {
     };
   };
 
+  function removeOrderPlate(plateID: string) {
+    const localStorageUserOrder = localStorage.getItem("@FoodExplorer:order");
+    if (localStorageUserOrder) {
+      const userOrder = JSON.parse(localStorageUserOrder);
+      console.log(userOrder);
+      const newUserOrder = {
+        userID: userOrder.userID,
+        plates: userOrder.plates.filter((plate) => plate.id !== plateID) 
+      } 
+      console.log(newUserOrder);
+      localStorage.setItem("@FoodExplorer:order", JSON.stringify(newUserOrder));
+      updateOrderTotal(newUserOrder.userID)
+    } 
+  }
+
   return (
     <SystemContext.Provider value={{
       menuActive, toggleMenu,
       orderTotal, setOrderTotal,
-      updateOrderTotal
+      updateOrderTotal, 
+      removeOrderPlate
     }}>
       {children}
     </SystemContext.Provider>
