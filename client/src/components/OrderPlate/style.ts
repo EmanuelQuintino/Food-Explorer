@@ -11,15 +11,28 @@ export const Container = styled.section`
     width: 7.6rem;
   }
 
-  .namePlateButton {
+  .plateName {
     font-family: 'Poppins', sans-serif;
     font-size: 1.8rem;
     font-weight: 500;
     line-height: 3.2rem;
     color: ${({ theme }) => theme.colors.light300};
   }
+  
+  .platePrice{
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-size: 1.2rem;
+    color: ${({ theme }) => theme.colors.light400};
+  }
 
-  .removeFavoriteButton {
+  .box .part2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .removeOrderPlate {
     font-size: 1.2rem;
     font-family: 'Roboto';
     color: ${({ theme }) => theme.colors.tomato400};
