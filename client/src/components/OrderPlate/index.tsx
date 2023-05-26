@@ -19,13 +19,7 @@ export function OrderPlate({ orderPlate }: OrderPlateTypes) {
   const imageURL = `${API.defaults.baseURL}/images/${orderPlate?.image}`;
 
   async function removeOrderPlate(plateID: string): Promise<void> {
-    try {
-      const isConfirm = confirm("Deseja remover prato dos favoritos?");
-      if (isConfirm) await API.delete(`/favorites/${plateID}`);
-      await refetchQueryUser();
-    } catch (error: any) {
-      toast.error(error.response.data.error || "Erro ao remover prato dos favoritos")
-    }
+    console.log(plateID);
   }
 
   return (
@@ -40,7 +34,7 @@ export function OrderPlate({ orderPlate }: OrderPlateTypes) {
           {Number(orderPlate.price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
         </div>
 
-        <button className="removeOrderPlate" onClick={() => removeOrderPlate("")}>
+        <button className="removeOrderPlate" onClick={() => removeOrderPlate(orderPlate.id)}>
           Excluir
         </button>
       </div>

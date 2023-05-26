@@ -20,8 +20,7 @@ export function FavoritePlate({ plate }: FavoritePlateType) {
 
   async function unFavorite(plateID: string): Promise<void> {
     try {
-      const isConfirm = confirm("Deseja remover prato dos favoritos?");
-      if (isConfirm) await API.delete(`/favorites/${plateID}`);
+      await API.delete(`/favorites/${plateID}`);
       await refetchQueryUser();
     } catch (error: any) {
       toast.error(error.response.data.error || "Erro ao remover prato dos favoritos")

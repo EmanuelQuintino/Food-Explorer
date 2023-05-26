@@ -29,7 +29,7 @@ export function Favorites() {
           {isLoading && <p><ImSpinner2 className="spinner" /></p>}
           {error && <p className="queryError">Algo deu errado!</p>}
 
-          <article className="plateContainer">
+          <article className="platesContainer">
             {favoritePlates && favoritePlates?.length > 0 ?
               (favoritePlates?.map(plate => <FavoritePlate key={plate?.id} plate={plate} />)) :
               (<p className="messageEmptyFavorites">Lista vazia</p>)

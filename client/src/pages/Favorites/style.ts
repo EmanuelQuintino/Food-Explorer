@@ -17,7 +17,7 @@ export const Container = styled.section`
     line-height: 3.2rem;
   }
   
-  .plateContainer {
+  .platesContainer {
     margin-top: 2.8rem;
     display: flex;
     flex-wrap: wrap;
