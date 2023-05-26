@@ -4,19 +4,21 @@ import { toast } from "react-toastify";
 import { useQueryUser } from "../../hooks/useQueryUser";
 import { useNavigate } from "react-router-dom";
 
-type FavoritePlateType = {
-  plate?: {
+type OrderPlateTypes = {
+  orderPlate: {
     id: string;
-    name: string;
-    image: string;
+    name?: string;
+    image?: string;
+    price?: string;
+    amount: number;
   }
 };
 
-export function OrderPlate({ plate }: FavoritePlateType) {
+export function OrderPlate({ orderPlate }: OrderPlateTypes) {
   const { refetchQueryUser } = useQueryUser();
   const navigate = useNavigate();
 
-  const imageURL = `${API.defaults.baseURL}/images/${plate?.image}`;
+  const imageURL = `${API.defaults.baseURL}/images/${orderPlate?.image}`;
 
   async function unFavorite(plateID: string): Promise<void> {
     try {
@@ -28,17 +30,17 @@ export function OrderPlate({ plate }: FavoritePlateType) {
     }
   }
 
-  const goToPlateDetails = () => navigate(`/details/${plate?.id}`);
+  const goToPlateDetails = () => navigate(`/details/${orderPlate?.id}`);
 
   return (
     <Container>
       <img src={imageURL} alt="image-plate" className="imagePlate" />
       <div className="box">
         <button className="namePlateButton" onClick={goToPlateDetails}>
-          {plate?.name} &gt;
+          {orderPlate?.name} &gt;
         </button>
 
-        <button className="removeFavoriteButton" onClick={() => unFavorite(plate!.id)}>
+        <button className="removeFavoriteButton" onClick={() => unFavorite("")}>
           remover dos favoritos
         </button>
       </div>

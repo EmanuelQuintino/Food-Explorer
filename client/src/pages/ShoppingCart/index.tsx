@@ -17,7 +17,7 @@ type UserOrderTypes = {
 };
 
 export function ShoppingCart() {
-  const [userOrder, setUserOrder] = useState({} as UserOrderTypes);
+  const [userOrder, setUserOrder] = useState<UserOrderTypes>({} as UserOrderTypes);
   const { data, isLoading, error } = usePlateQuery();
   const { menuActive } = useSystem();
   const navigate = useNavigate();
@@ -29,8 +29,15 @@ export function ShoppingCart() {
 
   const newArrayUserOrder = userOrder.plates?.map((plateOrder) => {
     const matchPlate = data?.find((plateData) => plateData.id === plateOrder.id);
-    return { ...plateOrder, ...matchPlate };
+    return {
+      ...plateOrder,
+      name: matchPlate?.name,
+      image: matchPlate?.image,
+      price: matchPlate?.price
+    };
   });
+
+  console.log(newArrayUserOrder);
 
   return (
     <Container>
@@ -44,15 +51,14 @@ export function ShoppingCart() {
           {error && <p className="queryError">Algo deu errado!</p>}
 
           <article className="plateContainer">
-            {userOrder && userOrder.plates?.length > 0 ?
-              (userOrder.plates?.map(plate => {
+            {newArrayUserOrder && userOrder.plates?.length > 0 ?
+              (newArrayUserOrder.map(orderPlate => {
                 return (
-                  <OrderPlate key={plate?.id} plate={newArrayUserOrder} />
+                  <OrderPlate key={orderPlate?.id} orderPlate={orderPlate} />
                 )
               })) :
               (<p className="messageEmptyFavorites">Lista vazia</p>)
             }
-
           </article>
         </>
       }
