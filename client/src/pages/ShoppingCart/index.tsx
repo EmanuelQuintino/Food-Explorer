@@ -38,6 +38,7 @@ export function ShoppingCart() {
   });
 
   console.log(newArrayUserOrder);
+  
 
   return (
     <Container>
@@ -60,6 +61,14 @@ export function ShoppingCart() {
               (<p className="messageEmptyFavorites">Lista vazia</p>)
             }
           </article>
+
+          <p>
+            Total: {newArrayUserOrder &&
+              newArrayUserOrder.map((plate) => plate.amount * Number(plate.price))
+                .reduce((a: number, b: number) => a + b)
+                .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+            }
+          </p>
         </>
       }
     </Container>
