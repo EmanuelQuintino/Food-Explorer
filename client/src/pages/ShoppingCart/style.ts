@@ -17,7 +17,7 @@ export const Container = styled.section`
     line-height: 3.2rem;
   }
   
-  .plateContainer {
+  .platesContainer {
     margin-top: 2.8rem;
     display: flex;
     flex-wrap: wrap;
@@ -32,4 +32,13 @@ export const Container = styled.section`
     text-align: center;
     width: 100%;
   }
-`;
+
+  .orderTotalPrice {
+    font-family: 'Poppins';
+    font-weight: 500;
+    font-size: 1.8rem;
+    line-height: 160%;
+    margin-top: 2.8rem;
+    color: ${({ theme }) => theme.colors.light300};
+  }
+`;  
