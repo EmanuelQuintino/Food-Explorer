@@ -2,6 +2,9 @@ import { Container } from "./style"
 import { useSystem } from "../../hooks/useSystem"
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from "react";
+import { OrderPlate } from "../../components/OrderPlate";
+import { usePlateQuery } from "../../hooks/usePlateQuery";
+import { ImSpinner2 } from "react-icons/im";
 
 type PlateTypes = {
   id: string;
@@ -15,6 +18,7 @@ type UserOrderTypes = {
 
 export function ShoppingCart() {
   const [userOrder, setUserOrder] = useState({} as UserOrderTypes);
+  const { data, isLoading, error } = usePlateQuery();
   const { menuActive } = useSystem();
   const navigate = useNavigate();
 
@@ -23,7 +27,10 @@ export function ShoppingCart() {
     if (localStorageUserOrder) setUserOrder(JSON.parse(localStorageUserOrder));
   }, [])
 
-  console.log(userOrder);
+  const newArrayUserOrder = userOrder.plates?.map((plateOrder) => {
+    const matchPlate = data?.find((plateData) => plateData.id === plateOrder.id);
+    return { ...plateOrder, ...matchPlate };
+  });
 
   return (
     <Container>
@@ -33,17 +40,19 @@ export function ShoppingCart() {
 
           <h2>Meu pedido</h2>
 
+          {isLoading && <p><ImSpinner2 className="spinner" /></p>}
+          {error && <p className="queryError">Algo deu errado!</p>}
+
           <article className="plateContainer">
             {userOrder && userOrder.plates?.length > 0 ?
               (userOrder.plates?.map(plate => {
                 return (
-                  <p key={plate?.id}>
-                    {plate.amount}x {plate.id}
-                  </p>
+                  <OrderPlate key={plate?.id} plate={newArrayUserOrder} />
                 )
               })) :
               (<p className="messageEmptyFavorites">Lista vazia</p>)
             }
+
           </article>
         </>
       }
