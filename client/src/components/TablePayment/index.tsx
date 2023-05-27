@@ -7,13 +7,15 @@ export function TablePayment() {
       <table>
         <thead>
           <tr>
-            <th>PIX</th>
-            <th>Crédito</th>
+            <th colSpan={1}>PIX</th>
+            <th colSpan={1}>Crédito</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <QRCodeExplorer />
+            <td>
+              <QRCodeExplorer />
+            </td>
           </tr>
         </tbody>
       </table>

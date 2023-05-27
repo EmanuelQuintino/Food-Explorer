@@ -2,16 +2,34 @@ import styled from "styled-components"
 
 export const Container = styled.section`
   table {
-    border-width: .1rem .1rem .1rem .1rem;
-    border-style: solid;
-    border-color: #76797B;
-    border-radius: .8rem .8rem .8rem .8rem;
+    border-spacing: 0;
+    border-radius: .8rem;
+    border: .15rem solid ${({ theme }) => theme.colors.light600};
+    width: 30.0rem;
+    margin: 3.2rem auto;
   }
 
-  thead, tbody {
-    border-width: .1rem .1rem .1rem .1rem;
-    border-style: solid;
-    border-color: #76797B;
-    border-radius: .8rem .8rem .8rem .8rem;
+  tr {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  th {
+    padding: 2.4rem;
+    width: 50%;
+    border-bottom: solid ${({ theme }) => theme.colors.light600};
+  }
+
+  th:first-child {
+    border-right: .14rem solid ${({ theme }) => theme.colors.light600};
+  }
+
+  th:last-child {
+    border-left: .13rem solid ${({ theme }) => theme.colors.light600};
+  }
+
+  td {
+    padding: 2.4rem;
   }
 `;
