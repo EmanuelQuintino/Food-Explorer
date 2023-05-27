@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { OrderPlate } from "../../components/OrderPlate";
 import { usePlateQuery } from "../../hooks/usePlateQuery";
 import { ImSpinner2 } from "react-icons/im";
+import { TablePayment } from "../../components/TablePayment";
 
 type PlateTypes = {
   id: string;
@@ -49,28 +50,41 @@ export function ShoppingCart() {
 
           <h2>Meu pedido</h2>
 
-          {newArrayUserOrder && userOrder.plates?.length > 0 &&
-            <p className="orderTotalPrice">
-              Total: {newArrayUserOrder.map((plate) => plate.amount * Number(plate.price))
-                .reduce((a: number, b: number) => a + b)
-                .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
-              }
-            </p>
-          }
-
           {isLoading && <p><ImSpinner2 className="spinner" /></p>}
           {error && <p className="queryError">Algo deu errado!</p>}
 
-          <article className="platesContainer">
-            {newArrayUserOrder && userOrder.plates?.length > 0 ?
-              (newArrayUserOrder.map(orderPlate => {
-                return (
-                  <OrderPlate key={orderPlate?.id} orderPlate={orderPlate} />
-                )
-              })) :
-              (<p className="messageEmptyFavorites">Lista vazia</p>)
-            }
-          </article>
+          <div className="containerOrderPayment">
+            <div className="containerOrder">
+              {newArrayUserOrder && userOrder.plates?.length > 0 &&
+                <p className="orderTotalPrice">
+                  Total: {newArrayUserOrder.map((plate) => plate.amount * Number(plate.price))
+                    .reduce((a: number, b: number) => a + b)
+                    .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+                  }
+                </p>
+              }
+
+              <article className="platesContainer">
+                {newArrayUserOrder && userOrder.plates?.length > 0 ?
+                  (newArrayUserOrder.map(orderPlate => {
+                    return (
+                      <OrderPlate key={orderPlate?.id} orderPlate={orderPlate} />
+                    )
+                  })) :
+                  (<p className="messageEmptyFavorites">Lista vazia</p>)
+                }
+              </article>
+            </div>
+
+            <div className="containerPayment">
+              {newArrayUserOrder && userOrder.plates?.length > 0 &&
+                <>
+                  <h2>Pagamento</h2>
+                  <TablePayment />
+                </>
+              }
+            </div>
+          </div>
         </>
       }
     </Container >
