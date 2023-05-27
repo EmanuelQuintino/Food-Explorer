@@ -15,7 +15,7 @@ export const Container = styled.section`
     justify-content: center;
   }
   
-  button {
+  thead button {
     height: 7.2rem;
     width: 50%;
     border-bottom: solid ${({ theme }) => theme.colors.light600};
@@ -36,12 +36,12 @@ export const Container = styled.section`
     color: ${({ theme }) => theme.colors.light100};
   }
 
-  button:first-child {
+  thead button:first-child {
     border-right: .14rem solid ${({ theme }) => theme.colors.light600};
     border-radius: .8rem 0 0 0;
   }
 
-  button:last-child {
+  thead button:last-child {
     border-left: .13rem solid ${({ theme }) => theme.colors.light600};
     border-radius: 0 .8rem 0 0;
   }

@@ -3,6 +3,7 @@ import { CredCardIcon } from "../../assets/CredCardIcon";
 import { PixIcon } from "../../assets/PixIcon";
 import { QRCodeExplorer } from "../../assets/QRCodeExplorer";
 import { useState } from "react";
+import { FormPayment } from "../FormPayment";
 
 export function TablePayment() {
   const [paymentForm, setPaymentForm] = useState("pix");
@@ -38,7 +39,7 @@ export function TablePayment() {
           <tr>
             <td>
               {paymentForm === "pix" && <QRCodeExplorer />}
-              {paymentForm === "credCard" && <h3>Form</h3>}
+              {paymentForm === "credCard" && <FormPayment />}
             </td>
           </tr>
         </tbody>
