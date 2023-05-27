@@ -11,13 +11,15 @@ export function Menu() {
   const { userAuth } = useAuth();
 
   function goToNewPlate() {
-    navigate('/newplate');
     toggleMenu();
+    if (location.pathname === "/newplate") return;
+    navigate('/newplate');
   }
 
   function goToFovorites() {
-    navigate('/favorites');
     toggleMenu();
+    if (location.pathname === "/favorites") return;
+    navigate('/favorites');
   }
 
   function logout() {

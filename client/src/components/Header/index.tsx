@@ -16,6 +16,7 @@ export function Header() {
   const navigate = useNavigate();
 
   function goToShoppingCart() {
+    if (location.pathname === "/shoppingcart") return;
     navigate('/shoppingcart');
   };
 
@@ -50,8 +51,8 @@ export function Header() {
               <div className="orderContainer">
                 <button onClick={goToShoppingCart}>
                   <OrderIcon />
+                  <div className="orderTotal">{orderTotal}</div>
                 </button>
-                <div className="orderTotal">{orderTotal}</div>
               </div>
             }
           </>
