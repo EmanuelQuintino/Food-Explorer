@@ -21,18 +21,14 @@ export function TablePayment() {
       <table>
         <thead>
           <tr>
-            <button className={paymentForm === "pix" ? "buttonActive" : ""} onClick={pixPaymentForm}>
-              <th>
-                <PixIcon />
-                PIX
-              </th>
-            </button>
-            <button className={paymentForm === "credCard" ? "buttonActive" : ""} onClick={credCardPaymentForm}>
-              <th>
-                <CredCardIcon />
-                Crédito
-              </th>
-            </button>
+            <th className={paymentForm === "pix" ? "paymentActive" : ""} onClick={pixPaymentForm}>
+              <PixIcon />
+              PIX
+            </th>
+            <th className={paymentForm === "credCard" ? "paymentActive" : ""} onClick={credCardPaymentForm}>
+              <CredCardIcon />
+              Crédito
+            </th>
           </tr>
         </thead>
         <tbody>

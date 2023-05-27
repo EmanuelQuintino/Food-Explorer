@@ -15,38 +15,35 @@ export const Container = styled.section`
     justify-content: center;
   }
   
-  thead button {
+  th {
     height: 7.2rem;
     width: 50%;
-    border-bottom: solid ${({ theme }) => theme.colors.light600};
-  }
-
-  .buttonActive {
-    background: ${({ theme }) => theme.colors.dark900};
-  }
-
-  th {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: .8rem;
-
     font-family: 'Roboto';
     font-weight: 400;
     color: ${({ theme }) => theme.colors.light100};
+    border-bottom: solid ${({ theme }) => theme.colors.light600};
+    cursor: pointer;
   }
 
-  thead button:first-child {
+  th:first-child {
     border-right: .14rem solid ${({ theme }) => theme.colors.light600};
     border-radius: .8rem 0 0 0;
   }
 
-  thead button:last-child {
+  th:last-child {
     border-left: .13rem solid ${({ theme }) => theme.colors.light600};
     border-radius: 0 .8rem 0 0;
   }
 
+  .paymentActive {
+    background: ${({ theme }) => theme.colors.dark900};
+  }
+
   td {
-    padding: 2.4rem;
+    padding: 2.4rem 1.6rem;
   }
 `;
