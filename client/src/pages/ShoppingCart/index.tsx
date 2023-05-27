@@ -49,11 +49,19 @@ export function ShoppingCart() {
 
           <h2>Meu pedido</h2>
 
+          {newArrayUserOrder && userOrder.plates?.length > 0 &&
+            <p className="orderTotalPrice">
+              Total: {newArrayUserOrder.map((plate) => plate.amount * Number(plate.price))
+                .reduce((a: number, b: number) => a + b)
+                .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+              }
+            </p>
+          }
+
           {isLoading && <p><ImSpinner2 className="spinner" /></p>}
           {error && <p className="queryError">Algo deu errado!</p>}
 
-          <article>
-            <section className="platesContainer">
+          <article className="platesContainer">
               {newArrayUserOrder && userOrder.plates?.length > 0 ?
                 (newArrayUserOrder.map(orderPlate => {
                   return (
@@ -62,14 +70,6 @@ export function ShoppingCart() {
                 })) :
                 (<p className="messageEmptyFavorites">Lista vazia</p>)
               }
-            </section>
-            <p className="orderTotalPrice">
-              Total: {newArrayUserOrder && userOrder.plates?.length > 0 &&
-                newArrayUserOrder.map((plate) => plate.amount * Number(plate.price))
-                  .reduce((a: number, b: number) => a + b)
-                  .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
-              }
-            </p>
           </article>
         </>
       }
