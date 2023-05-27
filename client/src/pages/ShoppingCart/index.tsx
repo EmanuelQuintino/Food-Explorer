@@ -62,14 +62,14 @@ export function ShoppingCart() {
           {error && <p className="queryError">Algo deu errado!</p>}
 
           <article className="platesContainer">
-              {newArrayUserOrder && userOrder.plates?.length > 0 ?
-                (newArrayUserOrder.map(orderPlate => {
-                  return (
-                    <OrderPlate key={orderPlate?.id} orderPlate={orderPlate} />
-                  )
-                })) :
-                (<p className="messageEmptyFavorites">Lista vazia</p>)
-              }
+            {newArrayUserOrder && userOrder.plates?.length > 0 ?
+              (newArrayUserOrder.map(orderPlate => {
+                return (
+                  <OrderPlate key={orderPlate?.id} orderPlate={orderPlate} />
+                )
+              })) :
+              (<p className="messageEmptyFavorites">Lista vazia</p>)
+            }
           </article>
         </>
       }
