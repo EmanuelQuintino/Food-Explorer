@@ -4,9 +4,11 @@ import { PixIcon } from "../../assets/PixIcon";
 import { QRCodeExplorer } from "../../assets/QRCodeExplorer";
 import { useState } from "react";
 import { FormPayment } from "../FormPayment";
+import { ApprovedIcon } from "../../assets/ApprovedIcon";
 
 export function TablePayment() {
   const [paymentForm, setPaymentForm] = useState("pix");
+  const [paymentIsConfirm, setPaymentIsConfirm] = useState(false);
 
   function pixPaymentForm() {
     setPaymentForm("pix");
@@ -35,7 +37,17 @@ export function TablePayment() {
           <tr>
             <td>
               {paymentForm === "pix" && <QRCodeExplorer />}
-              {paymentForm === "credCard" && <FormPayment />}
+              {paymentForm === "credCard" &&
+                <>
+                  {!paymentIsConfirm ?
+                    <FormPayment /> :
+                    <div className="boxPaymentApproved">
+                      <ApprovedIcon />
+                      <p>Pagamento aprovado!</p>
+                    </div>
+                  }
+                </>
+              }
             </td>
           </tr>
         </tbody>

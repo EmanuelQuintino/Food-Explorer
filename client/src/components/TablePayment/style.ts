@@ -45,6 +45,24 @@ export const Container = styled.section`
 
   td {
     padding: 2.4rem;
+    height: 32.0rem;
+    display: grid;
+    place-content: center;
+  }
+
+  .boxPaymentApproved {
+    color: ${({ theme }) => theme.colors.light600};
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.4rem;
+    font-weight: 700;
+    font-size: 2.0rem;
+    line-height: 160%;
+  }
+
+  .boxPaymentApproved svg path{
+    fill: ${({ theme }) => theme.colors.light600};
   }
 
   @media (min-width: 42.0rem) {

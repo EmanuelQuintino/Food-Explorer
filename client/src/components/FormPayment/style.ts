@@ -7,7 +7,7 @@ export const Container = styled.section`
 
   label {
     color: ${({ theme }) => theme.colors.light400};
-    line-height: 5.6rem;
+    line-height: 3.2rem;
   }
   
   input {
@@ -26,6 +26,7 @@ export const Container = styled.section`
   .box {
     display: flex;
     gap: 1.6rem;
+    margin-top: 2.4rem;
   }
 
   form button {
