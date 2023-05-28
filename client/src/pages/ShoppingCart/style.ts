@@ -35,8 +35,19 @@ export const Container = styled.section`
     color: ${({ theme }) => theme.colors.light500};
     font-weight: 700;
     font-size: 2.0rem;
-    margin-top: 9.2rem;
+    margin-top: 12.0rem;
     text-align: center;
     width: 100%;
+  }
+
+  @media (min-width: 42.0rem) {
+    .orderPaymentContainer {
+      display: flex;
+      align-items: first baseline;
+    }
+
+    .orderContainer {
+      width: 48.0rem;
+    }
   }
 `;  

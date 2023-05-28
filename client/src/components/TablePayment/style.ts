@@ -5,7 +5,7 @@ export const Container = styled.section`
     border-spacing: 0;
     border-radius: .8rem;
     border: .15rem solid ${({ theme }) => theme.colors.light600};
-    width: 30.0rem;
+    width: 31.0rem;
     margin: 3.2rem auto;
   }
 
@@ -44,6 +44,12 @@ export const Container = styled.section`
   }
 
   td {
-    padding: 2.4rem 1.6rem;
+    padding: 2.4rem;
+  }
+
+  @media (min-width: 42.0rem) {
+    table {
+      width: 48.0rem;
+    }
   }
 `;

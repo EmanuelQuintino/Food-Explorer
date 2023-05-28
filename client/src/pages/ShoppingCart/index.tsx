@@ -48,43 +48,41 @@ export function ShoppingCart() {
         <>
           <button className="backPageButton" onClick={() => navigate(-1)}>&lt; Voltar</button>
 
-          <h2>Meu pedido</h2>
-
           {isLoading && <p><ImSpinner2 className="spinner" /></p>}
           {error && <p className="queryError">Algo deu errado!</p>}
 
-          <div className="containerOrderPayment">
-            <div className="containerOrder">
-              {newArrayUserOrder && userOrder.plates?.length > 0 &&
+          {newArrayUserOrder && userOrder.plates?.length > 0 ? (
+            <div className="orderPaymentContainer">
+              <div className="orderContainer">
+                <h2>Meu pedido</h2>
                 <p className="orderTotalPrice">
                   Total: {newArrayUserOrder.map((plate) => plate.amount * Number(plate.price))
                     .reduce((a: number, b: number) => a + b)
                     .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
                   }
                 </p>
-              }
 
-              <article className="platesContainer">
-                {newArrayUserOrder && userOrder.plates?.length > 0 ?
-                  (newArrayUserOrder.map(orderPlate => {
-                    return (
-                      <OrderPlate key={orderPlate?.id} orderPlate={orderPlate} />
-                    )
-                  })) :
-                  (<p className="messageEmptyFavorites">Lista vazia</p>)
+                <article className="platesContainer">
+                  {newArrayUserOrder.map(orderPlate => <OrderPlate key={orderPlate?.id} orderPlate={orderPlate} />)}
+                </article>
+              </div>
+
+              <div className="paymentContainer">
+                {newArrayUserOrder && userOrder.plates?.length > 0 &&
+                  <>
+                    <h2>Pagamento</h2>
+                    <TablePayment />
+                  </>
                 }
-              </article>
+              </div>
             </div>
-
-            <div className="containerPayment">
-              {newArrayUserOrder && userOrder.plates?.length > 0 &&
-                <>
-                  <h2>Pagamento</h2>
-                  <TablePayment />
-                </>
-              }
-            </div>
-          </div>
+          ) : (
+            <>
+              <h2>Meu pedido</h2>
+              <p className="messageEmptyFavorites">Lista vazia</p>
+            </>
+          )
+          }
         </>
       }
     </Container >
