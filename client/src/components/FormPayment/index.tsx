@@ -42,7 +42,7 @@ export function FormPayment() {
               placeholder={"04/25"}
               {...register("expirationDate", {
                 required: "Campo obrigatório",
-                maxLength: { value: 255, message: "Número máximo de caracteres é 255" },
+                maxLength: { value: 255, message: "Máximo de 255 caracteres" },
                 minLength: { value: 3, message: "No mínimo 3 caracteres" },
               })}
             />
@@ -57,15 +57,15 @@ export function FormPayment() {
               placeholder={"000"}
               {...register("cvc", {
                 required: "Campo obrigatório",
-                maxLength: { value: 255, message: "Número máximo de caracteres é 255" },
-                minLength: { value: 16, message: "No mínimo 6 caracteres" },
+                maxLength: { value: 3, message: "Máximo de 3 caracteres" },
+                minLength: { value: 3, message: "No mínimo 3 caracteres" },
               })}
             />
             {errors.cvc && <span className='inputError'>{errors.cvc.message}</span>}
           </section>
         </div>
 
-        <Button name="Finalizar pagamento"/>
+        <Button name="Finalizar pagamento" />
       </form>
     </Container>
   )

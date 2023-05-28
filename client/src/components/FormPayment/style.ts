@@ -5,6 +5,11 @@ export const Container = styled.section`
     width: 100%;
   }
 
+  form section {
+    width: 100%;
+    position: relative;
+  }
+
   label {
     color: ${({ theme }) => theme.colors.light400};
     line-height: 3.2rem;
