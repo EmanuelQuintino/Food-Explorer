@@ -23,7 +23,7 @@ export function FavoritePlate({ plate }: FavoritePlateType) {
       await API.delete(`/favorites/${plateID}`);
       await refetchQueryUser();
     } catch (error: any) {
-      toast.error(error.response.data.error || "Erro ao remover prato dos favoritos")
+      toast.error(error.response.data.error || "Erro ao remover prato dos favoritos");
     }
   }
 

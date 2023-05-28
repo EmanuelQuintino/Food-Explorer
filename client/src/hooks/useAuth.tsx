@@ -1,6 +1,7 @@
 import { PropsWithChildren, createContext, useContext, useState, useEffect } from "react";
 import { API } from "../services/api";
 import jwt_decode from "jwt-decode";
+import { toast } from "react-toastify";
 
 export type HandleLoginTypes = {
   email: string;
@@ -35,7 +36,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
           setUserAuth(userDecodedToken);
         }
       })
-      .catch((error) => alert(error.response.data.error));
+      .catch((error) => toast.error(error.response.data.error));
   };
 
   function handleLogout() {

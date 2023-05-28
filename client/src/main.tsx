@@ -7,6 +7,8 @@ import { SystemProvider } from './hooks/useSystem'
 import { Routes } from "./routes"
 import { AuthProvider } from './hooks/useAuth'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
@@ -16,6 +18,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           <ThemeProvider theme={Theme}>
             <Routes />
             <GlobalStyles />
+            <ToastContainer autoClose={3000} theme={"dark"} />
           </ThemeProvider>
         </AuthProvider>
       </SystemProvider>

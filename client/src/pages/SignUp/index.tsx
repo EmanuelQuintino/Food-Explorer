@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form"
 import { Button } from "../../components/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { API } from "../../services/api";
+import { toast } from "react-toastify";
 
 type UserDataType = {
   name: string
@@ -23,13 +24,7 @@ export function SignUp() {
         alert(res.data);
         navigate('/');
       })
-      .catch((error) => {
-        if (error.response) {
-          alert(error.response.data.error);
-        } else {
-          alert("Erro ao cadastrar")
-        };
-      });
+      .catch((error) => toast.error(error.response.data.error || "Erro ao cadastrar usuário"));
   }
 
   return (
