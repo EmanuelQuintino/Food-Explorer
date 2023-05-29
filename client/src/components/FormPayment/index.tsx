@@ -32,8 +32,8 @@ export function FormPayment() {
 
   function formattedExpirationDate(event: React.ChangeEvent<HTMLInputElement>) {
     const formattedDate = event.target.value
-      .replace(/\D/g, '')
-      .replace(/(\d{2})(\d)/, '$1/$2');
+    .replace(/\D/g, '')
+    .replace(/(\d{2})(\d)/, '$1/$2');
 
     if (formattedDate.length > 5) {
       event.preventDefault();
@@ -46,7 +46,7 @@ export function FormPayment() {
     if (event.target.value.length > 3) {
       event.preventDefault();
     } else {
-      setCvcNumber(event.target.value);
+      setCvcNumber(event.target.value.replace(/\D/g, ''));
     };
   };
 
@@ -66,8 +66,7 @@ export function FormPayment() {
             placeholder={"0000 0000 0000 0000"}
             {...register("credCardNumber", {
               required: "Campo obrigatório",
-              maxLength: { value: 255, message: "Número máximo de caracteres é 255" },
-              minLength: { value: 16, message: "No mínimo 16 caracteres" },
+              pattern: { value: /\d{4}\s\d{4}\s\d{4}\s\d{4}/, message: "Insirir um número de cartão válido" },
             })}
             value={credCardNumber}
             onChange={formattedCredCardNumber}
@@ -84,8 +83,7 @@ export function FormPayment() {
               placeholder={"04/25"}
               {...register("expirationDate", {
                 required: "Campo obrigatório",
-                maxLength: { value: 255, message: "Máximo de 255 caracteres" },
-                minLength: { value: 3, message: "No mínimo 3 caracteres" },
+                pattern: { value: /^(0[1-9]|1[0-2])\/[0-9]{2}$/, message: "Insirir uma data válida" },
               })}
               value={expirationDate}
               onChange={formattedExpirationDate}
@@ -101,8 +99,7 @@ export function FormPayment() {
               placeholder={"000"}
               {...register("cvc", {
                 required: "Campo obrigatório",
-                maxLength: { value: 3, message: "Máximo de 3 caracteres" },
-                minLength: { value: 3, message: "No mínimo 3 caracteres" },
+                pattern: { value: /\d{3}/, message: "Insirir CVC válido" },
               })}
               value={cvcNumber}
               onChange={formattedCvcNumber}
