@@ -42,6 +42,14 @@ export function FormPayment() {
     };
   };
 
+  function handleCvcNumber(event: React.ChangeEvent<HTMLInputElement>) {
+    if (event.target.value.length > 3) {
+      event.preventDefault();
+    } else {
+      setCvcNumber(event.target.value);
+    };
+  };
+
   const onSubmit: SubmitHandler<FormData> = (data) => {
     console.log(data);
     setIsPaymentConfirm(true);
