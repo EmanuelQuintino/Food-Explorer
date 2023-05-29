@@ -32,8 +32,8 @@ export function FormPayment() {
 
   function formattedExpirationDate(event: React.ChangeEvent<HTMLInputElement>) {
     const formattedDate = event.target.value
-    .replace(/\D/g, '')
-    .replace(/(\d{2})(\d)/, '$1/$2');
+      .replace(/\D/g, '')
+      .replace(/(\d{2})(\d)/, '$1/$2');
 
     if (formattedDate.length > 5) {
       event.preventDefault();
