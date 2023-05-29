@@ -6,12 +6,14 @@ type PlateOrdersTypes = {
 }
 
 type SystemContextType = {
-  orderTotal: number;
   toggleMenu: () => void;
   menuActive: boolean;
+  orderTotal: number;
   setOrderTotal: React.Dispatch<React.SetStateAction<number>>;
   updateOrderTotal: (userID: string) => void;
   removeOrderPlate: (userID: string) => void;
+  isPaymentConfirm: boolean;
+  setIsPaymentConfirm: React.Dispatch<React.SetStateAction<boolean>>; 
 }
 
 const SystemContext = createContext<SystemContextType>({} as SystemContextType);
@@ -19,6 +21,7 @@ const SystemContext = createContext<SystemContextType>({} as SystemContextType);
 export function SystemProvider({ children }: PropsWithChildren) {
   const [menuActive, setMenuActive] = useState(false);
   const [orderTotal, setOrderTotal] = useState(0);
+  const [isPaymentConfirm, setIsPaymentConfirm] = useState(false);
 
   const toggleMenu = () => setMenuActive(menuActive ? false : true);
 
@@ -56,7 +59,8 @@ export function SystemProvider({ children }: PropsWithChildren) {
       menuActive, toggleMenu,
       orderTotal, setOrderTotal,
       updateOrderTotal,
-      removeOrderPlate
+      removeOrderPlate,
+      isPaymentConfirm, setIsPaymentConfirm
     }}>
       {children}
     </SystemContext.Provider>
