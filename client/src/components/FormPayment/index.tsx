@@ -1,6 +1,7 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Container } from "./style";
 import { Button } from "../Button";
+import { useSystem } from "../../hooks/useSystem";
 
 type FormData = {
   credCardNumber: string;
@@ -10,9 +11,11 @@ type FormData = {
 
 export function FormPayment() {
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
+  const { setIsPaymentConfirm } = useSystem();
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
     console.log(data);
+    setIsPaymentConfirm(true);
   };
 
   return (

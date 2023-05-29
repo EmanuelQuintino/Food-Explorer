@@ -13,7 +13,7 @@ type SystemContextType = {
   updateOrderTotal: (userID: string) => void;
   removeOrderPlate: (userID: string) => void;
   isPaymentConfirm: boolean;
-  setIsPaymentConfirm: React.Dispatch<React.SetStateAction<boolean>>; 
+  setIsPaymentConfirm: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const SystemContext = createContext<SystemContextType>({} as SystemContextType);

@@ -21,12 +21,17 @@ export type ButtonType = {
 export function CountOrderPlate({ plate, iconButton, nameButton }: ButtonType) {
   const [countPlate, setCountPlate] = useState(1);
   const { userAuth } = useAuth();
-  const { updateOrderTotal } = useSystem();
+  const { updateOrderTotal, isPaymentConfirm, setIsPaymentConfirm } = useSystem();
 
   const platePlus = () => setCountPlate(previousState => Math.min(previousState + 1, 9));
   const plateMinus = () => setCountPlate(previousState => Math.max(previousState - 1, 1));
 
   function includeUserOrderPlate() {
+    if (isPaymentConfirm) {
+      localStorage.removeItem("@FoodExplorer:order");
+      setIsPaymentConfirm(false);
+    };
+
     const newUserOrder = {
       userID: userAuth.id,
       plates: [{ id: plate.id, amount: countPlate }]
