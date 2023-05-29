@@ -17,7 +17,7 @@ export function FormPayment() {
   const [expirationDate, setExpirationDate] = useState("");
   const [cvcNumber, setCvcNumber] = useState("");
 
-  function handleCredCardNumber(event: React.ChangeEvent<HTMLInputElement>) {
+  function formattedCredCardNumber(event: React.ChangeEvent<HTMLInputElement>) {
     const formattedNumber = event.target.value
       .replace(/\D/g, '')
       .replace(/(\d{4})/g, '$1 ')
@@ -30,7 +30,7 @@ export function FormPayment() {
     };
   };
 
-  function handleExpirationDate(event: React.ChangeEvent<HTMLInputElement>) {
+  function formattedExpirationDate(event: React.ChangeEvent<HTMLInputElement>) {
     const formattedDate = event.target.value
       .replace(/\D/g, '')
       .replace(/(\d{2})(\d)/, '$1/$2');
@@ -42,7 +42,7 @@ export function FormPayment() {
     };
   };
 
-  function handleCvcNumber(event: React.ChangeEvent<HTMLInputElement>) {
+  function formattedCvcNumber(event: React.ChangeEvent<HTMLInputElement>) {
     if (event.target.value.length > 3) {
       event.preventDefault();
     } else {
@@ -70,7 +70,7 @@ export function FormPayment() {
               minLength: { value: 16, message: "No mínimo 16 caracteres" },
             })}
             value={credCardNumber}
-            onChange={handleCredCardNumber}
+            onChange={formattedCredCardNumber}
           />
           {errors.credCardNumber && <span className='inputError'>{errors.credCardNumber.message}</span>}
         </section>
@@ -88,7 +88,7 @@ export function FormPayment() {
                 minLength: { value: 3, message: "No mínimo 3 caracteres" },
               })}
               value={expirationDate}
-              onChange={handleExpirationDate}
+              onChange={formattedExpirationDate}
             />
             {errors.expirationDate && <span className='inputError'>{errors.expirationDate.message}</span>}
           </section>
@@ -105,7 +105,7 @@ export function FormPayment() {
                 minLength: { value: 3, message: "No mínimo 3 caracteres" },
               })}
               value={cvcNumber}
-              onChange={handleCvcNumber}
+              onChange={formattedCvcNumber}
             />
             {errors.cvc && <span className='inputError'>{errors.cvc.message}</span>}
           </section>
