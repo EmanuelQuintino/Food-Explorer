@@ -10,7 +10,7 @@ import { ClockTimeIcon } from "../../assets/clockTimeIcon";
 
 export function TablePayment() {
   const [paymentForm, setPaymentForm] = useState("pix");
-  const { isWaitPayment, setIsWaitPayment, isPaymentConfirm } = useSystem();
+  const { isWaitPayment, isPaymentConfirm } = useSystem();
 
   function pixPaymentForm() {
     setPaymentForm("pix");

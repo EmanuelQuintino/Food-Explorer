@@ -3,6 +3,7 @@ import { Container } from "./style";
 import { Button } from "../Button";
 import { useSystem } from "../../hooks/useSystem";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 type FormData = {
   credCardNumber: string;
@@ -12,7 +13,7 @@ type FormData = {
 
 export function FormPayment() {
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
-  const { isWaitPayment, setIsWaitPayment, isPaymentConfirm, setIsPaymentConfirm } = useSystem();
+  const { setIsWaitPayment, setIsPaymentConfirm } = useSystem();
   const [credCardNumber, setCredCardNumber] = useState("");
   const [expirationDate, setExpirationDate] = useState("");
   const [cvcNumber, setCvcNumber] = useState("");
@@ -54,11 +55,13 @@ export function FormPayment() {
     console.log(data);
     setIsWaitPayment(true);
 
-    // promise to payment
     setTimeout(() => {
       setIsWaitPayment(false);
+      
+      // promise to payment
       setIsPaymentConfirm(true);
-      console.log("Test");
+      
+      toast.success("Pedido realizado com sucesso!");
     }, 3000);
   };
 
