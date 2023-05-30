@@ -6,10 +6,11 @@ import { useState } from "react";
 import { FormPayment } from "../FormPayment";
 import { ApprovedIcon } from "../../assets/ApprovedIcon";
 import { useSystem } from "../../hooks/useSystem";
+import { ClockTimeIcon } from "../../assets/clockTimeIcon";
 
 export function TablePayment() {
   const [paymentForm, setPaymentForm] = useState("pix");
-  const { isPaymentConfirm } = useSystem();
+  const { isWaitPayment, setIsWaitPayment, isPaymentConfirm } = useSystem();
 
   function pixPaymentForm() {
     setPaymentForm("pix");
@@ -41,7 +42,13 @@ export function TablePayment() {
               {paymentForm === "credCard" &&
                 <>
                   {!isPaymentConfirm ?
-                    <FormPayment /> :
+                    (!isWaitPayment ?
+                      <FormPayment /> :
+                      <div className="boxPaymentApproved">
+                        <ClockTimeIcon />
+                        <p>Aguardando pagamento...</p>
+                      </div>
+                    ) :
                     <div className="boxPaymentApproved">
                       <ApprovedIcon />
                       <p>Pagamento aprovado!</p>

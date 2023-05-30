@@ -12,7 +12,7 @@ type FormData = {
 
 export function FormPayment() {
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
-  const { isPaymentConfirm, setIsPaymentConfirm } = useSystem();
+  const { isWaitPayment, setIsWaitPayment, isPaymentConfirm, setIsPaymentConfirm } = useSystem();
   const [credCardNumber, setCredCardNumber] = useState("");
   const [expirationDate, setExpirationDate] = useState("");
   const [cvcNumber, setCvcNumber] = useState("");
@@ -52,11 +52,14 @@ export function FormPayment() {
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
     console.log(data);
-    setIsPaymentConfirm(true);
-    if (isPaymentConfirm) {
-      console.log();
-      
-    }
+    setIsWaitPayment(true);
+
+    // promise to payment
+    setTimeout(() => {
+      setIsWaitPayment(false);
+      setIsPaymentConfirm(true);
+      console.log("Test");
+    }, 3000);
   };
 
   return (
