@@ -12,37 +12,37 @@ type FormData = {
 
 export function FormPayment() {
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
-  const { setIsPaymentConfirm } = useSystem();
+  const { isPaymentConfirm, setIsPaymentConfirm } = useSystem();
   const [credCardNumber, setCredCardNumber] = useState("");
   const [expirationDate, setExpirationDate] = useState("");
   const [cvcNumber, setCvcNumber] = useState("");
 
-  function formattedCredCardNumber(event: React.ChangeEvent<HTMLInputElement>) {
-    const formattedNumber = event.target.value
+  function formatCredCardNumber(event: React.ChangeEvent<HTMLInputElement>) {
+    const formatNumber = event.target.value
       .replace(/\D/g, '')
       .replace(/(\d{4})/g, '$1 ')
       .trim();
 
-    if (formattedNumber.length > 19) {
+    if (formatNumber.length > 19) {
       event.preventDefault();
     } else {
-      setCredCardNumber(formattedNumber);
+      setCredCardNumber(formatNumber);
     };
   };
 
-  function formattedExpirationDate(event: React.ChangeEvent<HTMLInputElement>) {
-    const formattedDate = event.target.value
+  function formatExpirationDate(event: React.ChangeEvent<HTMLInputElement>) {
+    const formatDate = event.target.value
       .replace(/\D/g, '')
       .replace(/(\d{2})(\d)/, '$1/$2');
 
-    if (formattedDate.length > 5) {
+    if (formatDate.length > 5) {
       event.preventDefault();
     } else {
-      setExpirationDate(formattedDate);
+      setExpirationDate(formatDate);
     };
   };
 
-  function formattedCvcNumber(event: React.ChangeEvent<HTMLInputElement>) {
+  function formatCvcNumber(event: React.ChangeEvent<HTMLInputElement>) {
     if (event.target.value.length > 3) {
       event.preventDefault();
     } else {
@@ -53,6 +53,10 @@ export function FormPayment() {
   const onSubmit: SubmitHandler<FormData> = (data) => {
     console.log(data);
     setIsPaymentConfirm(true);
+    if (isPaymentConfirm) {
+      console.log();
+      
+    }
   };
 
   return (
@@ -69,7 +73,7 @@ export function FormPayment() {
               pattern: { value: /\d{4}\s\d{4}\s\d{4}\s\d{4}/, message: "Insirir um número de cartão válido" },
             })}
             value={credCardNumber}
-            onChange={formattedCredCardNumber}
+            onChange={formatCredCardNumber}
           />
           {errors.credCardNumber && <span className='inputError'>{errors.credCardNumber.message}</span>}
         </section>
@@ -86,7 +90,7 @@ export function FormPayment() {
                 pattern: { value: /^(0[1-9]|1[0-2])\/[0-9]{2}$/, message: "Insirir uma data válida" },
               })}
               value={expirationDate}
-              onChange={formattedExpirationDate}
+              onChange={formatExpirationDate}
             />
             {errors.expirationDate && <span className='inputError'>{errors.expirationDate.message}</span>}
           </section>
@@ -102,7 +106,7 @@ export function FormPayment() {
                 pattern: { value: /\d{3}/, message: "Insirir CVC válido" },
               })}
               value={cvcNumber}
-              onChange={formattedCvcNumber}
+              onChange={formatCvcNumber}
             />
             {errors.cvc && <span className='inputError'>{errors.cvc.message}</span>}
           </section>
