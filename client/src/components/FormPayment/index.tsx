@@ -3,7 +3,7 @@ import { Container } from "./style";
 import { Button } from "../Button";
 import { useSystem } from "../../hooks/useSystem";
 import { useState } from "react";
-import { toast } from "react-toastify";
+import { useOrderCreate } from "../../hooks/useOrderCreate";
 
 type FormData = {
   credCardNumber: string;
@@ -17,6 +17,7 @@ export function FormPayment() {
   const [credCardNumber, setCredCardNumber] = useState("");
   const [expirationDate, setExpirationDate] = useState("");
   const [cvcNumber, setCvcNumber] = useState("");
+  const { mutate } = useOrderCreate();
 
   function formatCredCardNumber(event: React.ChangeEvent<HTMLInputElement>) {
     const formatNumber = event.target.value
@@ -52,16 +53,19 @@ export function FormPayment() {
   };
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
-    console.log(data);
     setIsWaitPayment(true);
 
     setTimeout(() => {
       setIsWaitPayment(false);
-      
+
       // promise to payment
+      console.log(data);
       setIsPaymentConfirm(true);
-      
-      toast.success("Pedido realizado com sucesso!");
+      // promise to payment
+
+      // if(promise to payment is success)
+      const localStorageUserOrder = localStorage.getItem("@FoodExplorer:order");
+      if (localStorageUserOrder) mutate(JSON.parse(localStorageUserOrder));
     }, 3000);
   };
 
