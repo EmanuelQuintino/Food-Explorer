@@ -30,10 +30,10 @@ export function OrderHistory() {
         <>
           <button className="backPageButton" onClick={() => navigate(-1)}>&lt; Voltar</button>
 
-          <h2>Pedidos</h2>
+          <h2>Histórico de Pedidos</h2>
 
-          {ordersQuery.isLoading && <p><ImSpinner2 className="spinner" /></p>}
           {ordersQuery.error && <p className="queryError">Algo deu errado!</p>}
+          {ordersQuery.isLoading && <p><ImSpinner2 className="spinner" /></p>}
 
           <article className="OrdersContainer">
             {ordersQuery.data && ordersQuery.data.length > 0 ?

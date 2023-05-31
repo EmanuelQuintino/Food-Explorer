@@ -78,7 +78,8 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   .queryError {
-    color: orange;
+    color: ${({ theme }) => theme.colors.carrot100};
     text-align: center;
+    margin-top: 1.6rem;
   }
 `;
