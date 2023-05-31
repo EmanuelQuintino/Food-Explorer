@@ -14,12 +14,12 @@ type OrderPlateTypes = {
 
 export function OrderPlate({ orderPlate }: OrderPlateTypes) {
   const { removeOrderPlate } = useSystem();
-
-  const imageURL = `${API.defaults.baseURL}/images/${orderPlate?.image}`;
+  
+  const imageURL = `${API.defaults.baseURL}/images/${orderPlate.image}`;
 
   return (
     <Container>
-      <img src={imageURL} alt="image-plate" className="imagePlate" />
+      <img src={orderPlate.image && imageURL} alt="image-plate" className="imagePlate" />
       <div className="box">
         <h3 className="plateName">
           {orderPlate.amount}x {orderPlate.name}
