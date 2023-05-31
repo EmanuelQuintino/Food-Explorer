@@ -8,7 +8,7 @@ import { useQueryUser } from "../../hooks/useQueryUser";
 
 export function Home() {
   const { menuActive } = useSystem();
-  const { data, isLoading, error } = usePlateQuery();
+  const plateQuery = usePlateQuery();
   const userData = useQueryUser();
 
   return (
@@ -17,16 +17,16 @@ export function Home() {
         <>
           <Slogan />
 
-          {isLoading && <p><ImSpinner2 className="spinner" /></p>}
+          {plateQuery.isLoading && <p><ImSpinner2 className="spinner" /></p>}
           {userData.isLoading && <p><ImSpinner2 className="spinner" /></p>}
           
-          {error && <p className="queryError">Erro em carregar os pratos!</p>}
+          {plateQuery.error && <p className="queryError">Erro em carregar os pratos!</p>}
           {userData.error && <p className="queryError">Erro em carregar dados do usuário!</p>}
 
           <section className="boxPlates">
             <h2>Refeições</h2>
             <div className="plates">
-              {data?.filter(plate => plate.category == "Refeições")
+              {plateQuery.data?.filter(plate => plate.category == "Refeições")
                 .map(plate => {
                   return (
                     <FoodPlate
@@ -42,7 +42,7 @@ export function Home() {
           <section className="boxPlates">
             <h2>Sobremesas</h2>
             <div className="plates">
-              {data?.filter(plate => plate.category == "Sobremesas")
+              {plateQuery.data?.filter(plate => plate.category == "Sobremesas")
                 .map(plate => {
                   return (
                     <FoodPlate
@@ -58,7 +58,7 @@ export function Home() {
           <section className="boxPlates">
             <h2>Bebidas</h2>
             <div className="plates">
-              {data?.filter(plate => plate.category == "Bebidas")
+              {plateQuery.data?.filter(plate => plate.category == "Bebidas")
                 .map(plate => {
                   return (
                     <FoodPlate

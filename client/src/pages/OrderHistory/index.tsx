@@ -13,6 +13,11 @@ export function OrderHistory() {
 
   console.log(ordersQuery.data);
 
+  const favoritePlateIDs = userData.data?.favorites.map((plate) => plate.plate_id);
+  const favoritePlates = favoritePlateIDs?.map((favoritePlateID) => {
+    return data?.find((plate) => plate.id === favoritePlateID);
+  });
+
   return (
     <Container>
       {!menuActive &&
