@@ -17,16 +17,14 @@ export function CardHistoryOrderPlate({ code, status, date, plates }: UserOrderT
   const stringPlates = arrayPlates.join(", ");
 
   const orderDataTime = new Date(date);
-  
-  const formatOptions = {
+
+  const formatDate = orderDataTime.toLocaleString('pt-BR', {
     day: "numeric",
     month: "numeric",
     hour: "numeric",
     minute: "numeric"
-  };
-  
-  const formatDate = orderDataTime.toLocaleString('pt-BR', formatOptions).split(",").join(" às");  
-  
+  }).split(",").join(" às");
+
   return (
     <Container>
       <div className="headerCard">

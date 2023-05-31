@@ -15,6 +15,7 @@ type UserOrdersTypes = {
     code: number;
     user_id: string;
     order_plates: OrderPlatesTypes[]
+    created_at: string;
   }[];
 }
 

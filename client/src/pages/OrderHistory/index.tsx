@@ -24,8 +24,6 @@ export function OrderHistory() {
     };
   });
 
-  console.log(newOrdersData);
-
   return (
     <Container>
       {!menuActive &&
