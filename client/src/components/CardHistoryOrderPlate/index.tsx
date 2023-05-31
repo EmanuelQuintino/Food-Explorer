@@ -13,15 +13,13 @@ type UserOrderTypes = {
 }
 
 export function CardHistoryOrderPlate({ code, status, date, plates }: UserOrderTypes) {
-  const arrayPlates = plates.map((plate) => `${plate.amount}x ${"Nome"}`);
+  const arrayPlates = plates.map((plate) => `${plate.amount} x ${plate.name}`);
   const stringPlates = arrayPlates.join(", ");
-
-  console.log(stringPlates);
   
   return (
     <Container>
       <div className="headerCard">
-        <div className="cod">{code}</div>
+        <div className="cod">{String(code).padStart(6, "0")}</div>
 
         <div className="status">
           <span>o </span>

@@ -18,5 +18,6 @@ export const Container = styled.div`
       margin-top: 1.6rem;
       font-size: 1.4rem;
       color: ${({ theme }) => theme.colors.light400};
+      line-height: 160%;
     }
 `;
