@@ -8,6 +8,7 @@ import { EditPlate } from "../pages/EditPlate";
 import { PageError } from "../pages/PageError";
 import { Favorites } from "../pages/Favorites";
 import { ShoppingCart } from "../pages/ShoppingCart";
+import { OrderHistory } from "../pages/OrderHistory";
 
 export function AppRoutes() {
   const { userAuth } = useAuth();
@@ -18,6 +19,7 @@ export function AppRoutes() {
         <Route path='/details/:id' element={<PlateDetails />} />
         <Route path='/favorites' element={<Favorites />} />
         <Route path='/shoppingcart' element={<ShoppingCart />} />
+        <Route path='/orderhistory' element={<OrderHistory />} />
 
         {userAuth.isAdmin &&
           <>
