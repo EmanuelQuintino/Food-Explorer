@@ -17,11 +17,12 @@ export const Container = styled.section`
     line-height: 3.2rem;
   }
   
-  .platesContainer {
+  .OrdersContainer {
     margin-top: 2.8rem;
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
-    gap: 0 4.8rem;
+    gap: 1.6rem;
   }
 
   .messageEmptyFavorites {

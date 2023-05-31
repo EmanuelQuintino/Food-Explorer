@@ -3,6 +3,7 @@ import { useSystem } from "../../hooks/useSystem"
 import { useNavigate } from 'react-router-dom';
 import { ImSpinner2 } from "react-icons/im";
 import { useOrdersQuery } from "../../hooks/useOrdersQuery";
+import { CardHistoryOrderPlate } from "../../components/CardHistoryOrderPlate";
 
 export function OrderHistory() {
   const { menuActive } = useSystem();
@@ -23,9 +24,21 @@ export function OrderHistory() {
           {ordersQuery.isLoading && <p><ImSpinner2 className="spinner" /></p>}
           {ordersQuery.error && <p className="queryError">Algo deu errado!</p>}
 
-          <article className="platesContainer">
+          <article className="OrdersContainer">
             {ordersQuery.data && ordersQuery.data?.length > 0 ?
-              (ordersQuery.data?.map(order => <CardHistoryOrderPlate key={order?.id} plate={order} />)) :
+              (ordersQuery.data?.map(order => {
+                return (
+                  <CardHistoryOrderPlate
+                    key={order?.id}
+                    // code={order.code}
+                    code={"00004"}
+                    status={order.status}
+                    // date={order.created_at}
+                    date={"20/05 às 18h00"}
+                    plates={order.order_plates}
+                  />
+                );
+              })) :
               (<p className="messageEmptyFavorites">Lista de pedidos vazia</p>)
             }
           </article>
