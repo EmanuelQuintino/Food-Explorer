@@ -101,7 +101,8 @@ export const orderControllers = {
       } else {
         const orders = await prisma.orders.findMany({
           where: { user_id: userID },
-          include: { order_plates: true }
+          include: { order_plates: true },
+          orderBy: { code: 'desc' }
         });
         return res.status(200).json(orders);
       };
