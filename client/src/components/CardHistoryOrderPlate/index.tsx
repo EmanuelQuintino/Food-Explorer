@@ -1,12 +1,12 @@
 import { Container } from "./style";
 
 type OrderPlatesTypes = {
-  name: string;
-  amount: number;
+  name?: string;
+  amount?: number;
 }
 
 type UserOrderTypes = {
-  code: string;
+  code: number;
   status: string;
   date: string;
   plates: OrderPlatesTypes[];
@@ -15,6 +15,17 @@ type UserOrderTypes = {
 export function CardHistoryOrderPlate({ code, status, date, plates }: UserOrderTypes) {
   const arrayPlates = plates.map((plate) => `${plate.amount} x ${plate.name}`);
   const stringPlates = arrayPlates.join(", ");
+
+  const orderDataTime = new Date(date);
+  
+  const formatOptions = {
+    day: "numeric",
+    month: "numeric",
+    hour: "numeric",
+    minute: "numeric"
+  };
+  
+  const formatDate = orderDataTime.toLocaleString('pt-BR', formatOptions).split(",").join(" às");  
   
   return (
     <Container>
@@ -26,7 +37,7 @@ export function CardHistoryOrderPlate({ code, status, date, plates }: UserOrderT
           {status}
         </div>
 
-        <div className="date">{date}</div>
+        <div className="date">{formatDate}</div>
       </div>
 
       <div className="bodyCard">

@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { ImSpinner2 } from "react-icons/im";
 import { useOrdersQuery } from "../../hooks/useOrdersQuery";
 import { CardHistoryOrderPlate } from "../../components/CardHistoryOrderPlate";
-import { OrderPlate } from "../../components/OrderPlate";
 import { usePlateQuery } from "../../hooks/usePlateQuery";
 
 export function OrderHistory() {
@@ -39,16 +38,14 @@ export function OrderHistory() {
           {ordersQuery.error && <p className="queryError">Algo deu errado!</p>}
 
           <article className="OrdersContainer">
-            {ordersQuery.data && ordersQuery.data?.length > 0 ?
+            {ordersQuery.data && ordersQuery.data.length > 0 ?
               (newOrdersData?.map(order => {
                 return (
                   <CardHistoryOrderPlate
-                    key={order?.id}
-                    // code={order.code}
-                    code={order?.code}
+                    key={order.id}
+                    code={order.code}
                     status={order.status}
-                    // date={order.created_at}
-                    date={"20/05 às 18h00"}
+                    date={order.created_at}
                     plates={order.order_plates}
                   />
                 );
