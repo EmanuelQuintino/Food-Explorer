@@ -25,12 +25,13 @@ declare module 'styled-components' {
       light650: string,
       light700: string,
       light750: string,
-      carrot: string,
       tomato100: string,
       tomato200: string,
       tomato300: string,
       tomato400: string,
       cake200: string,
+      carrot100: string,
+      mint100: string,
     }
   }
 }

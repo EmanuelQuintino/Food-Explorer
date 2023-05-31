@@ -22,11 +22,12 @@ export default {
     light650: "#76797B88",
     light700: "#4D585E",
     light750: "#4D585E88",
-    carrot: "#FBA94C",
     tomato100: "#750310",
     tomato200: "#92000E",
     tomato300: "#AB222E",
     tomato400: "#AB4D55",
     cake200: "#82F3FF",
+    carrot100: "#FBA94C",
+    mint100: "#04D361",
   }
 }

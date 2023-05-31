@@ -31,7 +31,7 @@ export function CardHistoryOrderPlate({ code, status, date, plates }: UserOrderT
         <div className="cod">{String(code).padStart(6, "0")}</div>
 
         <div className="status">
-          <span>o </span>
+          <div className={`statusIcon ${status}`}></div>
           {status}
         </div>
 
