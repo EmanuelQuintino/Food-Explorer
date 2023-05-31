@@ -16,6 +16,12 @@ export function Menu() {
     navigate('/newplate');
   };
 
+  function goToHome() {
+    toggleMenu();
+    if (location.pathname === "/") return;
+    navigate('/');
+  };
+
   function goToFovorites() {
     toggleMenu();
     if (location.pathname === "/favorites") return;
@@ -42,6 +48,7 @@ export function Menu() {
       <InputSearch />
       <div className="boxButtons">
         {userAuth.isAdmin && <button onClick={goToNewPlate}>Novo Prato</button>}
+        <button onClick={goToHome}>Home</button>
         <button onClick={goToFovorites}>Meus favoritos</button>
         <button onClick={goToOrderHistory}>Histórico de pedidos</button>
         <button onClick={logout}>Sair</button>

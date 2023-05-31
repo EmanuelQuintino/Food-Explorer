@@ -15,6 +15,11 @@ export function Header() {
   const { userAuth } = useAuth();
   const navigate = useNavigate();
 
+  function goToHome() {
+    if (location.pathname === "/") return;
+    navigate('/');
+  };
+
   function goToShoppingCart() {
     if (location.pathname === "/shoppingcart") return;
     navigate('/shoppingcart');
@@ -37,7 +42,7 @@ export function Header() {
         {menuActive ?
           <h3>Menu</h3> :
           <>
-            <div className="logo">
+            <div className="logo" onClick={goToHome}>
               <LogoExplorer />
               <h1>food explorer</h1>
               {userAuth.isAdmin &&
