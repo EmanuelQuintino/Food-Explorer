@@ -81,8 +81,7 @@ export function ShoppingCart() {
               <h2>Meu pedido</h2>
               <p className="messageEmptyFavorites">Carrinho vazio</p>
             </>
-          )
-          }
+          )}
         </>
       }
     </Container >

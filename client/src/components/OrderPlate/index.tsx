@@ -9,7 +9,7 @@ type OrderPlateTypes = {
     image?: string;
     price?: string;
     amount: number;
-  }
+  };
 };
 
 export function OrderPlate({ orderPlate }: OrderPlateTypes) {
