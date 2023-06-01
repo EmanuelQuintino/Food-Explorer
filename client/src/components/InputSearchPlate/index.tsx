@@ -2,13 +2,13 @@ import { Container } from "./style";
 import { SearchIcon } from "../../assets/SearchIcon"
 import { useSystem } from "../../hooks/useSystem";
 
-export function InputSearch() {
+export function InputSearchPlate() {
   const { menuActive, toggleMenu } = useSystem();
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     menuActive ? toggleMenu() : "";
-  }
+  };
 
   return (
     <Container>

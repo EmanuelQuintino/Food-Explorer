@@ -1,5 +1,5 @@
 import { Container } from "./style";
-import { InputSearch } from "../InputSearch";
+import { InputSearchPlate } from "../InputSearchPlate";
 import { useAuth } from "../../hooks/useAuth";
 import { useSystem } from "../../hooks/useSystem";
 import { useNavigate } from "react-router-dom";
@@ -45,7 +45,7 @@ export function Menu() {
 
   return (
     <Container>
-      <InputSearch />
+      <InputSearchPlate />
       <div className="boxButtons">
         <button onClick={goToHome}>Home</button>
         {userAuth.isAdmin && <button onClick={goToNewPlate}>Novo Prato</button>}
