@@ -1,6 +1,10 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
-export const Container = styled.div`  
+type ContainerProps = {
+  isAdmin: boolean;
+};
+
+export const Container = styled.div<ContainerProps>`  
     width: 100%;
     padding: 1.6rem 2.4rem;
     border: .2rem solid ${({ theme }) => theme.colors.dark1000};
@@ -9,7 +13,8 @@ export const Container = styled.div`
     .headerCard {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: ${({ isAdmin }) => !isAdmin && "space-between"};
+      gap: ${({ isAdmin }) => isAdmin && "3.2rem"};
       font-size: 1.4rem;
       color: ${({ theme }) => theme.colors.light400};
     }

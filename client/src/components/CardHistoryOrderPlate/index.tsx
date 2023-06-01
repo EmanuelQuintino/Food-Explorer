@@ -30,7 +30,7 @@ export function CardHistoryOrderPlate({ id, code, status, date, plates }: UserOr
   }).split(",").join(" às");
 
   return (
-    <Container>
+    <Container isAdmin={Boolean(userAuth.isAdmin)}>
       <div className="headerCard">
         <div className="cod">{String(code).padStart(6, "0")}</div>
 
@@ -48,7 +48,7 @@ export function CardHistoryOrderPlate({ id, code, status, date, plates }: UserOr
         {stringPlates}
       </div>
 
-      {!userAuth.isAdmin && <SelectOrderStatus id={id} status={status} />}
+      {userAuth.isAdmin && <SelectOrderStatus id={id} status={status} />}
     </Container >
   )
 }
