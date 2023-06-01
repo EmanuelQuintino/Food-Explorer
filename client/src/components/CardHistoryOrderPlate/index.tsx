@@ -1,4 +1,6 @@
 import { Container } from "./style";
+import { useAuth } from "../../hooks/useAuth";
+import { SelectOrderStatus } from "../SelectOrderStatus";
 
 type OrderPlatesTypes = {
   name?: string;
@@ -13,6 +15,7 @@ type UserOrderTypes = {
 }
 
 export function CardHistoryOrderPlate({ code, status, date, plates }: UserOrderTypes) {
+  const { userAuth } = useAuth();
   const arrayPlates = plates.map((plate) => `${plate.amount} x ${plate.name}`);
   const stringPlates = arrayPlates.join(", ");
 
@@ -41,6 +44,8 @@ export function CardHistoryOrderPlate({ code, status, date, plates }: UserOrderT
       <div className="bodyCard">
         {stringPlates}
       </div>
+
+      {!userAuth.isAdmin && <SelectOrderStatus/>}
     </Container >
   )
 }
