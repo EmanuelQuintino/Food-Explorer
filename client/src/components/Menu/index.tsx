@@ -10,16 +10,16 @@ export function Menu() {
   const navigate = useNavigate();
   const { userAuth } = useAuth();
 
-  function goToNewPlate() {
-    toggleMenu();
-    if (location.pathname === "/newplate") return;
-    navigate('/newplate');
-  };
-
   function goToHome() {
     toggleMenu();
     if (location.pathname === "/") return;
     navigate('/');
+  };
+
+  function goToNewPlate() {
+    toggleMenu();
+    if (location.pathname === "/newplate") return;
+    navigate('/newplate');
   };
 
   function goToFovorites() {
@@ -47,8 +47,8 @@ export function Menu() {
     <Container>
       <InputSearch />
       <div className="boxButtons">
-        {userAuth.isAdmin && <button onClick={goToNewPlate}>Novo Prato</button>}
         <button onClick={goToHome}>Home</button>
+        {userAuth.isAdmin && <button onClick={goToNewPlate}>Novo Prato</button>}
         <button onClick={goToFovorites}>Meus favoritos</button>
         <button onClick={goToOrderHistory}>Histórico de pedidos</button>
         <button onClick={logout}>Sair</button>
