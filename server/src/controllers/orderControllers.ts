@@ -89,6 +89,11 @@ export const orderControllers = {
       const { id } = req.query;
       const userID = req.userID;
 
+      if (!userID) throw newAppError("Por favor insirar o ID do usuário", 400);
+
+      const user = await prisma.users.findUnique({ where: { id: String(userID) } });
+      if (!user) throw newAppError('Usuário não encontrado', 404);
+
       if (id) {
         const order = await prisma.orders.findUnique({
           where: { id: String(id) },
@@ -134,7 +139,7 @@ export const orderControllers = {
         where: { id: String(id) },
       });
 
-      return res.status(200).json(`Estatos do pedido foi atualizado para '${status}'`);
+      return res.status(200).json(`Status do pedido atualizado para '${status}'`);
     } catch (error: any) {
       if (error.code === "P2021") return res.status(500).json("Tabela não encontrada");
       return next(error);
@@ -144,16 +149,10 @@ export const orderControllers = {
   delete: async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { id } = req.params;
-      const userID = req.userID;
-
       if (!id) throw newAppError("Por favor insirar o ID do pedido", 400);
-      if (!userID) throw newAppError("Por favor insirar o ID do usuário", 400);
 
       const order = await prisma.orders.findUnique({ where: { id: String(id) } });
       if (!order) throw newAppError('Pedido não encontrado', 404);
-
-      const user = await prisma.users.findUnique({ where: { id: String(userID) } });
-      if (!user) throw newAppError('Usuário não encontrado', 404);
 
       await prisma.orders.delete({ where: { id: String(id) } });
 
