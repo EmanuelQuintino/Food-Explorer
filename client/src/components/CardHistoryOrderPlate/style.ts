@@ -9,7 +9,7 @@ export const Container = styled.div`
     .headerCard {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      gap: 1.2rem;
       font-size: 1.4rem;
       color: ${({ theme }) => theme.colors.light400};
     }

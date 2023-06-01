@@ -34,7 +34,7 @@ export function CardHistoryOrderPlate({ id, code, status, date, plates }: UserOr
       <div className="headerCard">
         <div className="cod">{String(code).padStart(6, "0")}</div>
 
-        {userAuth.isAdmin &&
+        {!userAuth.isAdmin &&
           <div className="status">
             <i className={`statusIcon ${status}`}></i>
             {status}
