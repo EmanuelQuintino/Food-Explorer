@@ -25,11 +25,11 @@ export const useOrdersQuery = () => {
     queryFn: async () => await API.get("/orders") as UserOrdersTypes
   });
 
-  const refetchPlateQuery = async () => await query.refetch();
+  const refetchOrdersQuery = async () => await query.refetch();
 
   return {
     ...query,
     data: query.data?.data,
-    refetchPlateQuery
+    refetchOrdersQuery
   }
 } 
