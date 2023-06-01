@@ -5,11 +5,14 @@ import { ImSpinner2 } from "react-icons/im";
 import { useOrdersQuery } from "../../hooks/useOrdersQuery";
 import { CardHistoryOrderPlate } from "../../components/CardHistoryOrderPlate";
 import { usePlateQuery } from "../../hooks/usePlateQuery";
+import { SearchIcon } from "../../assets/SearchIcon";
+import { useState } from "react";
 
 export function OrderHistory() {
   const { menuActive } = useSystem();
   const ordersQuery = useOrdersQuery();
   const plateQuery = usePlateQuery();
+  const [searchOrders, setSearchOrders] = useState("");
 
   const navigate = useNavigate();
 
@@ -24,6 +27,17 @@ export function OrderHistory() {
     };
   });
 
+  const filterOrders = newOrdersData?.filter((order) => {
+    return (
+      String(order.code).toLowerCase().includes(searchOrders.toLowerCase()) ||
+      order.status.toLowerCase().includes(searchOrders.toLowerCase())
+    );
+  });
+
+  function handleChangeInputSearch(event: React.ChangeEvent) {
+    event.preventDefault();
+  };
+
   return (
     <Container>
       {!menuActive &&
@@ -32,12 +46,24 @@ export function OrderHistory() {
 
           <h2>Histórico de Pedidos</h2>
 
+          <form className="inputSearchForm" onSubmit={(event) => event.preventDefault()}>
+            <label htmlFor="inputSearch" className="srOnly">Input Search</label>
+            <SearchIcon />
+            <input
+              type="text"
+              name="inputSearch"
+              id="inputSearch"
+              placeholder="Buscar por código ou status"
+              onChange={(event) => setSearchOrders(event.target.value)}
+            />
+          </form>
+
           {ordersQuery.error && <p className="queryError">Algo deu errado!</p>}
           {ordersQuery.isLoading && <p><ImSpinner2 className="spinner" /></p>}
 
           <article className="OrdersContainer">
             {ordersQuery.data && ordersQuery.data.length > 0 ?
-              (newOrdersData?.map(order => {
+              (filterOrders?.map(order => {
                 return (
                   <CardHistoryOrderPlate
                     key={order.id}

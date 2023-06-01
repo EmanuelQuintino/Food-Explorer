@@ -16,6 +16,31 @@ export const Container = styled.section`
     font-size: 2.8rem;
     line-height: 3.2rem;
   }
+
+  .inputSearchForm {
+    position: relative;
+    width: 100%;
+    margin-top: 2.0rem;
+  }
+  
+  .inputSearchForm label {
+    width: 100%;
+  }
+
+  .inputSearchForm svg {
+    width: 2.4rem;
+    position: absolute;
+    top: 1.2rem;
+    left: 1.2rem;
+  }
+  
+  .inputSearchForm input {
+    width: 100%;
+    border-radius: .8rem;
+    padding: 1.2rem 1.4rem 1.4rem 4.2rem;
+    font-size: 1.6rem;
+    background: ${({ theme }) => theme.colors.dark900};
+  }
   
   .OrdersContainer {
     margin-top: 2.8rem;
