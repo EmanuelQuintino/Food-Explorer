@@ -84,6 +84,22 @@ export const orderControllers = {
     };
   },
 
+  index: async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const id = req.userID;
+      if (!id) throw newAppError("Por favor insirar o ID do usuário", 400);
+
+      const orders = await prisma.orders.findMany({
+        include: { order_plates: true },
+        orderBy: { code: 'desc' }
+      });
+      return res.status(200).json(orders);
+    } catch (error: any) {
+      if (error.code === "P2021") return res.status(500).json("Tabela não encontrada");
+      return next(error);
+    };
+  },
+
   read: async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { id } = req.query;

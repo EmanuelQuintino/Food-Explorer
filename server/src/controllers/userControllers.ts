@@ -40,9 +40,6 @@ export const userControllers = {
       const id = req.userID;
       if (!id) throw newAppError("Por favor insirar o ID do usuário", 400);
 
-      const user = await prisma.users.findUnique({ where: { id: String(id) } });
-      if (!user) throw newAppError('Usuário não encontrado', 404);
-
       const users = await prisma.users.findMany({
         include: {
           orders: {
