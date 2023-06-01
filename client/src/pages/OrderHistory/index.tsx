@@ -16,18 +16,17 @@ export function OrderHistory() {
 
   const navigate = useNavigate();
 
-  const newOrdersData = ordersQuery.data?.map(order => {
+  const newOrdersDataPlateName = ordersQuery.data?.map(order => {
     return {
       ...order,
       order_plates: order.order_plates.map(orderPlate => {
         const plate = plateQuery.data?.find(plate => plate.id === orderPlate.plate_id);
-        const name = plate?.name;
-        return { ...orderPlate, name };
+        return { ...orderPlate, name: plate?.name};
       })
     };
   });
 
-  const filterOrders = newOrdersData?.filter((order) => {
+  const filterOrders = newOrdersDataPlateName?.filter((order) => {
     return (
       String(order.code).toLowerCase().includes(searchOrders.toLowerCase()) ||
       order.status.toLowerCase().includes(searchOrders.toLowerCase())
