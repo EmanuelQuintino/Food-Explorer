@@ -34,10 +34,6 @@ export function OrderHistory() {
     );
   });
 
-  function handleChangeInputSearch(event: React.ChangeEvent) {
-    event.preventDefault();
-  };
-
   return (
     <Container>
       {!menuActive &&
