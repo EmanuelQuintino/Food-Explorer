@@ -8,13 +8,14 @@ type OrderPlatesTypes = {
 }
 
 type UserOrderTypes = {
+  id: string;
   code: number;
   status: string;
   date: string;
   plates: OrderPlatesTypes[];
 }
 
-export function CardHistoryOrderPlate({ code, status, date, plates }: UserOrderTypes) {
+export function CardHistoryOrderPlate({ id, code, status, date, plates }: UserOrderTypes) {
   const { userAuth } = useAuth();
   const arrayPlates = plates.map((plate) => `${plate.amount} x ${plate.name}`);
   const stringPlates = arrayPlates.join(", ");
@@ -33,10 +34,12 @@ export function CardHistoryOrderPlate({ code, status, date, plates }: UserOrderT
       <div className="headerCard">
         <div className="cod">{String(code).padStart(6, "0")}</div>
 
-        <div className="status">
-          <div className={`statusIcon ${status}`}></div>
-          {status}
-        </div>
+        {userAuth.isAdmin &&
+          <div className="status">
+            <i className={`statusIcon ${status}`}></i>
+            {status}
+          </div>
+        }
 
         <div className="date">{formatDate}</div>
       </div>
@@ -45,7 +48,7 @@ export function CardHistoryOrderPlate({ code, status, date, plates }: UserOrderT
         {stringPlates}
       </div>
 
-      {!userAuth.isAdmin && <SelectOrderStatus/>}
+      {!userAuth.isAdmin && <SelectOrderStatus id={id} status={status} />}
     </Container >
   )
 }

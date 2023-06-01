@@ -8,7 +8,8 @@ type SelectTypes = {
 export function SelectOrderStatus({ id, status, ...rest }: SelectTypes) {
   return (
     <Container>
-      <label htmlFor="OrderStatus">Status do pedido</label>
+      <label htmlFor="OrderStatus" className="srOnly">Status do pedido</label>
+      <i className={`statusIcon ${status}`}></i>
       <select id="OrderStatus" {...rest} value={status}>
         <option value="Pendente">Pendente</option>
         <option value="Preparando">Preparando</option>

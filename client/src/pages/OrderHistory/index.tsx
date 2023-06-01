@@ -41,6 +41,7 @@ export function OrderHistory() {
                 return (
                   <CardHistoryOrderPlate
                     key={order.id}
+                    id={order.id}
                     code={order.code}
                     status={order.status}
                     date={order.created_at}

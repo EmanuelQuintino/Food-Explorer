@@ -1,17 +1,42 @@
 import styled from "styled-components"
 
 export const Container = styled.section`
+  position: relative;
+  
   label {
     color: ${({ theme }) => theme.colors.light400};
     line-height: 5.6rem;
   }
+
+  .statusIcon {
+    width: .8rem;
+    height: .8rem;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+    top: 55%;
+    left: 1.6rem;
+  }
   
+  .Pendente {
+    background: ${({ theme }) => theme.colors.tomato300};
+  }
+
+  .Preparando {
+    background: ${({ theme }) => theme.colors.carrot100};
+  }
+
+  .Entregue {
+    background: ${({ theme }) => theme.colors.mint100};
+  }
+
   select {
     width: 100%;
     border-radius: .8rem;
     border: 1px solid transparent;
-    padding: 1.2rem 1.4rem;
-    font-size: 1.6rem;
+    padding: 1.2rem 1.4rem 1.2rem 3.2rem;
+    font-size: 1.4rem;
+    margin-top: 1.2rem;
     background-color: ${({ theme }) => theme.colors.dark900};
     cursor: pointer;
 
