@@ -51,4 +51,8 @@ export const Container = styled.div<ContainerProps>`
       color: ${({ theme }) => theme.colors.light400};
       line-height: 160%;
     }
+
+    .selectOrderStatus {
+      margin-top: 1.2rem;
+    }
 `;

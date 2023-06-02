@@ -48,7 +48,11 @@ export function CardHistoryOrderPlate({ id, code, status, date, plates }: UserOr
         {stringPlates}
       </div>
 
-      {userAuth.isAdmin && <SelectOrderStatus id={id} status={status} />}
+      {userAuth.isAdmin &&
+        <div className="selectOrderStatus">
+          <SelectOrderStatus id={id} status={status} />
+        </div>
+      }
     </Container >
   )
 }
