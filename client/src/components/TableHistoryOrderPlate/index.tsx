@@ -30,8 +30,8 @@ export function TableHistoryOrderPlate({ id, code, status, date, plates }: UserO
   }).split(",").join(" às");
 
   return (
-    <Container isAdmin={Boolean(userAuth.isAdmin)}>
-      {!userAuth.isAdmin ?
+    <Container isAdmin={Boolean(!userAuth.isAdmin)}>
+      {userAuth.isAdmin ?
         <td className="status">
           <i className={`statusIcon ${status}`}></i>
           {status}
@@ -43,7 +43,7 @@ export function TableHistoryOrderPlate({ id, code, status, date, plates }: UserO
       
       <td className="cod">{String(code).padStart(6, "0")}</td>
 
-      <td className="bodyCard">
+      <td className="plateDetails">
         {stringPlates}
       </td>
 

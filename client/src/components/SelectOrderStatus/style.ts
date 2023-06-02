@@ -2,11 +2,6 @@ import styled from "styled-components"
 
 export const Container = styled.section`
   position: relative;
-  
-  label {
-    color: ${({ theme }) => theme.colors.light400};
-    line-height: 5.6rem;
-  }
 
   .statusIcon {
     width: .8rem;
