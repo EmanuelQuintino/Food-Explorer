@@ -61,35 +61,48 @@ export const Container = styled.section`
 
   .tableOrderPlates {
     border-spacing: 0;
-    border-radius: .8rem;
+    border-radius: .8rem .8rem 0 0;
     border: .1rem solid ${({ theme }) => theme.colors.light600};
     margin: .8rem auto;
-  }
-  
-  th {
-    text-align: left;
-    height: 6.4rem;
-    padding: 2.4rem;
-    font-family: 'Roboto';
-    font-weight: 400;
-    font-size: 1.4rem;
-    color: ${({ theme }) => theme.colors.light100};
-    border-bottom: .1rem solid ${({ theme }) => theme.colors.light600};
-  }
+    width: 100%;
+    
+    th {
+      text-align: left;
+      height: 6.4rem;
+      padding: 2.4rem;
+      font-family: 'Roboto';
+      font-weight: 400;
+      font-size: 1.4rem;
+      color: ${({ theme }) => theme.colors.light100};
+      border-right: .1rem solid ${({ theme }) => theme.colors.light600};
+    }
+    
+    th:first-child {
+      border-radius: .8rem 0 0 0;
+      width: 22.0rem;
+    }
+    
+    th:nth-child(2) {
+      width: 10.0rem; 
+    }
 
-  th:first-child {
-    border-right: .1rem solid ${({ theme }) => theme.colors.light600};
-    border-radius: .8rem 0 0 0;
-    width: 22.0rem;
-  }
-  
-  th:nth-child(2) {
-    width: 10.0rem; 
-  }
+    th:nth-child(3) {
+      flex: 1;
+    }
+    
+    th:last-child {
+      border-right: 0;
+      border-radius: 0 .8rem 0 0;
+      width: 16.0rem;
+    }
 
-  th:last-child {
-    border-left: .1rem solid ${({ theme }) => theme.colors.light600};
-    border-radius: 0 .8rem 0 0;
-    width: 16.0rem;
+    td {
+      border-top: .1rem solid ${({ theme }) => theme.colors.light600};
+      border-right: .1rem solid ${({ theme }) => theme.colors.light600};
+    }
+
+    td:last-child {
+      border-right: 0;
+    }
   }
 `;

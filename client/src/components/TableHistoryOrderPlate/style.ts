@@ -12,10 +12,6 @@ export const Container = styled.tr<ContainerProps>`
     padding: 1.6rem 2.4rem;
   }
 
-  td {
-    border: .1rem solid ${({ theme }) => theme.colors.light600};
-  }
-
   td:first-child {
     padding: ${({ isAdmin }) => isAdmin ? "0 2.4rem" : ""};
   }
