@@ -81,7 +81,7 @@ export function OrderHistory() {
                     />
                   );
                 }) :
-                <table>
+                <table className="tableOrderPlates">
                   <thead>
                     <tr>
                       <th>Status</th>

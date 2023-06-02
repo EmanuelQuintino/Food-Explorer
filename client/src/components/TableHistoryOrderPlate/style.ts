@@ -8,17 +8,16 @@ export const Container = styled.tr<ContainerProps>`
   font-size: 1.4rem;
   color: ${({ theme }) => theme.colors.light400};
 
-  td {
+  td, tr {
     padding: 1.6rem 2.4rem;
   }
 
-  td:first-child {
-    padding: ${({ isAdmin }) => isAdmin ? 0 : ""};
-    width: 16.0rem;
+  td {
+    border: .1rem solid ${({ theme }) => theme.colors.light600};
   }
 
-  td:last-child {
-    width: 16.0rem;
+  td:first-child {
+    padding: ${({ isAdmin }) => isAdmin ? "0 2.4rem" : ""};
   }
   
   .status {

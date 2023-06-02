@@ -6,7 +6,7 @@ import { useState } from "react";
 import { FormPayment } from "../FormPayment";
 import { ApprovedIcon } from "../../assets/ApprovedIcon";
 import { useSystem } from "../../hooks/useSystem";
-import { ClockTimeIcon } from "../../assets/clockTimeIcon";
+import { ClockTimeIcon } from "../../assets/ClockTimeIcon";
 
 export function TablePayment() {
   const [paymentForm, setPaymentForm] = useState("pix");
