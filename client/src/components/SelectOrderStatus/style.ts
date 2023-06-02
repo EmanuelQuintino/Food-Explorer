@@ -9,7 +9,7 @@ export const Container = styled.section`
     border-radius: 50%;
     display: inline-block;
     position: absolute;
-    top: 55%;
+    top: 41%;
     left: 1.6rem;
   }
   
@@ -25,13 +25,12 @@ export const Container = styled.section`
     background: ${({ theme }) => theme.colors.mint100};
   }
 
-  select {
+  #OrderStatus {
     width: 100%;
     border-radius: .8rem;
     border: 1px solid transparent;
     padding: 1.2rem 1.4rem 1.2rem 3.2rem;
     font-size: 1.4rem;
-    margin-top: 1.2rem;
     background-color: ${({ theme }) => theme.colors.dark900};
     cursor: pointer;
 

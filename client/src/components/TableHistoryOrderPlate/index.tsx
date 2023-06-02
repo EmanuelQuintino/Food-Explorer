@@ -40,7 +40,7 @@ export function TableHistoryOrderPlate({ id, code, status, date, plates }: UserO
           <SelectOrderStatus id={id} status={status} />
         </td>
       }
-      
+
       <td className="cod">{String(code).padStart(6, "0")}</td>
 
       <td className="plateDetails">

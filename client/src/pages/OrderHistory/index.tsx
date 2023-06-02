@@ -40,8 +40,6 @@ export function OrderHistory() {
     });
   }, []);
 
-  console.log(windowWidth);
-
   return (
     <Container>
       {!menuActive &&
@@ -68,7 +66,7 @@ export function OrderHistory() {
           <article className="OrdersContainer">
             {ordersQuery.data && ordersQuery.data.length == 0 ?
               (<p className="messageEmptyFavorites">Lista de pedidos vazia</p>) :
-              (windowWidth < 640 ?
+              (windowWidth < 680 ?
                 filterOrders?.map(order => {
                   return (
                     <CardHistoryOrderPlate

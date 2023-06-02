@@ -11,22 +11,13 @@ export const Container = styled.tr<ContainerProps>`
   td, tr {
     padding: 1.6rem 2.4rem;
   }
-
-  td:first-child {
-    padding: ${({ isAdmin }) => isAdmin ? "0 2.4rem" : ""};
-  }
   
-  .status {
-    display: flex;
-    align-items: center;
-    gap: .8rem;
-  }
-
   .statusIcon {
     width: .8rem;
     height: .8rem;
     border-radius: 50%;
     display: inline-block;
+    margin-right: .8rem;
   }
   
   .Pendente {
