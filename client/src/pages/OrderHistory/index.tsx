@@ -6,14 +6,15 @@ import { useOrdersQuery } from "../../hooks/useOrdersQuery";
 import { CardHistoryOrderPlate } from "../../components/CardHistoryOrderPlate";
 import { usePlateQuery } from "../../hooks/usePlateQuery";
 import { SearchIcon } from "../../assets/SearchIcon";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { TableHistoryOrderPlate } from "../../components/TableHistoryOrderPlate";
 
 export function OrderHistory() {
   const { menuActive } = useSystem();
   const ordersQuery = useOrdersQuery();
   const plateQuery = usePlateQuery();
   const [searchOrders, setSearchOrders] = useState("");
-
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const navigate = useNavigate();
 
   const newOrdersDataPlateName = ordersQuery.data?.map(order => {
@@ -21,7 +22,7 @@ export function OrderHistory() {
       ...order,
       order_plates: order.order_plates.map(orderPlate => {
         const plate = plateQuery.data?.find(plate => plate.id === orderPlate.plate_id);
-        return { ...orderPlate, name: plate?.name};
+        return { ...orderPlate, name: plate?.name };
       })
     };
   });
@@ -32,6 +33,14 @@ export function OrderHistory() {
       order.status.toLowerCase().includes(searchOrders.toLowerCase())
     );
   });
+
+  useEffect(() => {
+    window.addEventListener('resize', () => {
+      setWindowWidth(window.innerWidth);
+    });
+  }, []);
+
+  console.log(windowWidth);
 
   return (
     <Container>
@@ -57,20 +66,46 @@ export function OrderHistory() {
           {ordersQuery.isLoading && <p><ImSpinner2 className="spinner" /></p>}
 
           <article className="OrdersContainer">
-            {ordersQuery.data && ordersQuery.data.length > 0 ?
-              (filterOrders?.map(order => {
-                return (
-                  <CardHistoryOrderPlate
-                    key={order.id}
-                    id={order.id}
-                    code={order.code}
-                    status={order.status}
-                    date={order.created_at}
-                    plates={order.order_plates}
-                  />
-                );
-              })) :
-              (<p className="messageEmptyFavorites">Lista de pedidos vazia</p>)
+            {ordersQuery.data && ordersQuery.data.length == 0 ?
+              (<p className="messageEmptyFavorites">Lista de pedidos vazia</p>) :
+              (windowWidth < 640 ?
+                filterOrders?.map(order => {
+                  return (
+                    <CardHistoryOrderPlate
+                      key={order.id}
+                      id={order.id}
+                      code={order.code}
+                      status={order.status}
+                      date={order.created_at}
+                      plates={order.order_plates}
+                    />
+                  );
+                }) :
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Status</th>
+                      <th>Código</th>
+                      <th>Detalhamento</th>
+                      <th>Data e hora</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filterOrders?.map(order => {
+                      return (
+                        <TableHistoryOrderPlate
+                          key={order.id}
+                          id={order.id}
+                          code={order.code}
+                          status={order.status}
+                          date={order.created_at}
+                          plates={order.order_plates}
+                        />
+                      );
+                    })}
+                  </tbody>
+                </table>
+              )
             }
           </article>
         </>
