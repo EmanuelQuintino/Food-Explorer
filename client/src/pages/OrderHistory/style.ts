@@ -58,14 +58,14 @@ export const Container = styled.section`
     text-align: center;
     width: 100%;
   }
-
+  
   .tableOrderPlates {
     border-spacing: 0;
     border-radius: .8rem .8rem 0 0;
-    border: .1rem solid ${({ theme }) => theme.colors.light600};
+    border: .1rem solid ${({ theme }) => theme.colors.dark1000};
     margin: .8rem auto;
     width: 100%;
-    
+
     th {
       text-align: left;
       height: 6.4rem;
@@ -73,8 +73,8 @@ export const Container = styled.section`
       font-family: 'Roboto';
       font-weight: 400;
       font-size: 1.4rem;
-      color: ${({ theme }) => theme.colors.light100};
-      border-right: .1rem solid ${({ theme }) => theme.colors.light600};
+      color: ${({ theme }) => theme.colors.light200};
+      border-right: .1rem solid ${({ theme }) => theme.colors.dark1000};
     }
     
     th:first-child {
@@ -97,8 +97,8 @@ export const Container = styled.section`
     }
 
     td {
-      border-top: .1rem solid ${({ theme }) => theme.colors.light600};
-      border-right: .1rem solid ${({ theme }) => theme.colors.light600};
+      border-top: .1rem solid ${({ theme }) => theme.colors.dark1000};
+      border-right: .1rem solid ${({ theme }) => theme.colors.dark1000};
     }
 
     td:last-child {
