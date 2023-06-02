@@ -83,7 +83,7 @@ export const Container = styled.section`
     }
     
     th:nth-child(2) {
-      width: 10.0rem; 
+      width: 11.5rem; 
     }
 
     th:nth-child(3) {
