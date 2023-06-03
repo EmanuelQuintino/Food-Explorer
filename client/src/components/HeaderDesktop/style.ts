@@ -46,11 +46,18 @@ export const HeaderContainer = styled.header`
   .boxButtons {
     display: flex;
     gap: 1.6rem;
+    
+    button {
+      white-space: nowrap;
+      padding: 1.2rem;
+      border-radius: .8rem;
+    }
+
+    button:hover {
+      background-color: ${({ theme }) => theme.colors.dark900};
+    }
   }
 
-  .boxButtons button {
-    white-space: nowrap;
-  }
 
   .orderContainer {
     position: relative;
