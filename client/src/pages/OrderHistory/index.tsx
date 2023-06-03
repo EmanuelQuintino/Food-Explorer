@@ -10,11 +10,10 @@ import { useEffect, useState } from "react";
 import { TableHistoryOrderPlate } from "../../components/TableHistoryOrderPlate";
 
 export function OrderHistory() {
-  const { menuActive } = useSystem();
+  const { menuActive, windowWidth, setWindowWidth } = useSystem();
   const ordersQuery = useOrdersQuery();
   const plateQuery = usePlateQuery();
   const [searchOrders, setSearchOrders] = useState("");
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const navigate = useNavigate();
 
   const newOrdersDataPlateName = ordersQuery.data?.map(order => {

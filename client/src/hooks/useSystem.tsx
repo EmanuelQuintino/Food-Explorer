@@ -16,6 +16,8 @@ type SystemContextType = {
   setIsWaitPayment: React.Dispatch<React.SetStateAction<boolean>>;
   isPaymentConfirm: boolean;
   setIsPaymentConfirm: React.Dispatch<React.SetStateAction<boolean>>;
+  windowWidth: number;
+  setWindowWidth: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const SystemContext = createContext<SystemContextType>({} as SystemContextType);
@@ -25,6 +27,7 @@ export function SystemProvider({ children }: PropsWithChildren) {
   const [orderTotal, setOrderTotal] = useState(0);
   const [isWaitPayment, setIsWaitPayment] = useState(false);
   const [isPaymentConfirm, setIsPaymentConfirm] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const toggleMenu = () => setMenuActive(menuActive ? false : true);
 
@@ -64,7 +67,8 @@ export function SystemProvider({ children }: PropsWithChildren) {
       updateOrderTotal,
       removeOrderPlate,
       isWaitPayment, setIsWaitPayment,
-      isPaymentConfirm, setIsPaymentConfirm
+      isPaymentConfirm, setIsPaymentConfirm,
+      windowWidth, setWindowWidth
     }}>
       {children}
     </SystemContext.Provider>
