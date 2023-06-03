@@ -24,4 +24,20 @@ export const Container = styled.section`
     font-family: 'Roboto';
     color: ${({ theme }) => theme.colors.tomato400};
   }
+
+  @media (min-width: 930px) {
+    width: 36.0rem;
+
+    .imagePlate {
+      width: 9.6rem;
+    }
+
+    .namePlateButton {
+      font-size: 2.0rem;
+    }
+
+    .removeFavoriteButton {
+      font-size: 1.4rem;
+    }
+  }
 `;
