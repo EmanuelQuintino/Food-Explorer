@@ -36,10 +36,26 @@ export const Container = styled.section`
 
   @media (min-width: 930px) {
     .plateNamePrice {
-      width: 24.0rem;
+      width: 28.0rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
+    }
+
+    .imagePlate {
+      width: 9.6rem;
+    }
+
+    .plateName {
+      font-size: 2.0rem;
+    }
+  
+    .platePrice{
+      font-size: 1.4rem;
+    }
+    
+    .removeOrderPlate {
+      font-size: 1.4rem;
     }
   }
 `;

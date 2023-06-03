@@ -63,7 +63,7 @@ export const Container = styled.section`
     width: 100%;
   }
   
-  @media (min-width: 42.0rem) {
+  @media (min-width: 640px) {
     .orderPaymentContainer {
       display: flex;
       align-items: first baseline;
