@@ -1,5 +1,5 @@
 import { Container } from "./style"
-import { Logo } from "../../components/Logo"
+import { Logo } from "../../components/LogoExplorer"
 import { useForm } from "react-hook-form"
 import { Button } from "../../components/Button";
 import { Link, useNavigate } from "react-router-dom";

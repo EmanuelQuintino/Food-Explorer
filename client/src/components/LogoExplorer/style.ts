@@ -10,7 +10,7 @@ export const Container = styled.div`
     width: 4.2rem;
   }
 
-  h1 {
+  .foodExplorerTitle {
     font-size: 3.6rem;
   }
 `;

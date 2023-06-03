@@ -1,7 +1,7 @@
 import { HeaderContainer } from "./style";
 import { MenuOpen } from "../../assets/MenuOpen";
 import { MenuClose } from "../../assets/MenuClose";
-import { LogoExplorer } from "../../assets/LogoExplorer";
+import { LogoExplorer } from "../../assets/IconExplorer";
 import { OrderIcon } from "../../assets/OrderIcon";
 // import { InputSearch } from "../InputSearch";
 import { Menu } from "../Menu";

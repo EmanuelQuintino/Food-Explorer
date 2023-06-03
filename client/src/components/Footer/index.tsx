@@ -1,5 +1,5 @@
 import { FooterContainer } from "./style";
-import { LogoExplorer } from "../../assets/LogoExplorer";
+import { LogoExplorer } from "../../assets/IconExplorer";
 
 export function Footer() {
   return (
