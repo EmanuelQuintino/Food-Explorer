@@ -1,11 +1,11 @@
 import { FooterContainer } from "./style";
-import { LogoExplorer } from "../../assets/IconExplorer";
+import { IconExplorer } from "../../assets/IconExplorer";
 
 export function Footer() {
   return (
     <FooterContainer>
       <div className="logoBox">
-        <LogoExplorer />
+        <IconExplorer />
         <h1>food explorer</h1>
       </div>
 

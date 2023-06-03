@@ -1,7 +1,7 @@
 import { HeaderContainer } from "./style";
 import { MenuOpen } from "../../assets/MenuOpen";
 import { MenuClose } from "../../assets/MenuClose";
-import { LogoExplorer } from "../../assets/IconExplorer";
+import { IconExplorer } from "../../assets/IconExplorer";
 import { OrderIcon } from "../../assets/OrderIcon";
 // import { InputSearch } from "../InputSearch";
 import { Menu } from "../Menu";
@@ -43,7 +43,7 @@ export function Header() {
           <h3>Menu</h3> :
           <>
             <div className="logo" onClick={goToHome}>
-              <LogoExplorer />
+              <IconExplorer />
               <h1>food explorer</h1>
               {userAuth.isAdmin &&
                 <p className="paragraphAdmin">admin</p>

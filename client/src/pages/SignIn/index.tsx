@@ -25,8 +25,7 @@ export function SignIn() {
   return (
     <Container>
       <LogoExplorer />
-      <div className="formSignIn">
-
+      <div className="formBox">
         {windowWidth > 640 && <h2>Faça Login</h2>}
 
         <form onSubmit={handleSubmit(onSubmit)}>

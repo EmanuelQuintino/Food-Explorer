@@ -5,7 +5,7 @@ export const Container = styled.section`
   display: grid;
   place-content: center;
   
-  .formSignIn {
+  .formBox {
     display: grid;
     place-content: center;
 
@@ -42,6 +42,10 @@ export const Container = styled.section`
     input:focus {
       border: .1rem solid ${({ theme }) => theme.colors.light300};
     }
+
+    button {
+      margin-top: 1.2rem;
+    }
   }
     
   .buttonSignUp{
@@ -63,7 +67,7 @@ export const Container = styled.section`
     align-items: center;
     gap: 2.0rem;
     
-    .formSignIn {
+    .formBox {
       background: ${({ theme }) => theme.colors.dark700};
       padding: 4.8rem;
     }
