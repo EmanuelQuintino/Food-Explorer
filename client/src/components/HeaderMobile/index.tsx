@@ -3,14 +3,13 @@ import { MenuOpen } from "../../assets/MenuOpen";
 import { MenuClose } from "../../assets/MenuClose";
 import { IconExplorer } from "../../assets/IconExplorer";
 import { OrderIcon } from "../../assets/OrderIcon";
-// import { InputSearch } from "../InputSearch";
 import { Menu } from "../Menu";
 import { useSystem } from "../../hooks/useSystem";
 import { useAuth } from "../../hooks/useAuth";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-export function Header() {
+export function HeaderMobile() {
   const { menuActive, toggleMenu, orderTotal, updateOrderTotal } = useSystem();
   const { userAuth } = useAuth();
   const navigate = useNavigate();
@@ -49,8 +48,6 @@ export function Header() {
                 <p className="paragraphAdmin">admin</p>
               }
             </div>
-
-            {/* <InputSearch /> */}
 
             {!userAuth.isAdmin &&
               <div className="orderContainer">
