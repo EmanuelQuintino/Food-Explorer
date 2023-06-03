@@ -4,7 +4,7 @@ import { useAuth } from "../../hooks/useAuth";
 import { useSystem } from "../../hooks/useSystem";
 import { useNavigate } from "react-router-dom";
 
-export function Menu() {
+export function MenuMobile() {
   const { handleLogout } = useAuth();
   const { toggleMenu } = useSystem();
   const navigate = useNavigate();

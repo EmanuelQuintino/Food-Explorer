@@ -3,13 +3,14 @@ import { MenuOpen } from "../../assets/MenuOpen";
 import { MenuClose } from "../../assets/MenuClose";
 import { IconExplorer } from "../../assets/IconExplorer";
 import { OrderIcon } from "../../assets/OrderIcon";
-import { MenuMobile } from "../MenuMobile";
+import { InputSearchPlate } from "../InputSearchPlate";
+import { Menu } from "../MenuMobile";
 import { useSystem } from "../../hooks/useSystem";
 import { useAuth } from "../../hooks/useAuth";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-export function HeaderMobile() {
+export function Header() {
   const { menuActive, toggleMenu, orderTotal, updateOrderTotal } = useSystem();
   const { userAuth } = useAuth();
   const navigate = useNavigate();
@@ -49,6 +50,8 @@ export function HeaderMobile() {
               }
             </div>
 
+            <InputSearchPlate />
+
             {!userAuth.isAdmin &&
               <div className="orderContainer">
                 <button onClick={goToShoppingCart}>
@@ -61,7 +64,7 @@ export function HeaderMobile() {
         }
       </div>
       {menuActive &&
-        <MenuMobile />
+        <Menu />
       }
     </HeaderContainer>
   )

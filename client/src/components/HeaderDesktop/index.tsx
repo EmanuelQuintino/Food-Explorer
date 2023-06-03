@@ -1,23 +1,44 @@
 import { HeaderContainer } from "./style";
-import { MenuOpen } from "../../assets/MenuOpen";
-import { MenuClose } from "../../assets/MenuClose";
 import { IconExplorer } from "../../assets/IconExplorer";
 import { OrderIcon } from "../../assets/OrderIcon";
 import { InputSearchPlate } from "../InputSearchPlate";
-import { Menu } from "../Menu";
 import { useSystem } from "../../hooks/useSystem";
 import { useAuth } from "../../hooks/useAuth";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 export function HeaderDesktop() {
-  const { menuActive, toggleMenu, orderTotal, updateOrderTotal } = useSystem();
+  const { orderTotal, updateOrderTotal } = useSystem();
   const { userAuth } = useAuth();
   const navigate = useNavigate();
+  const { handleLogout } = useAuth();
 
   function goToHome() {
     if (location.pathname === "/") return;
     navigate('/');
+  };
+
+  function goToNewPlate() {
+    if (location.pathname === "/newplate") return;
+    navigate('/newplate');
+  };
+
+  function goToFovorites() {
+    if (location.pathname === "/favorites") return;
+    navigate('/favorites');
+  };
+
+  function goToOrderHistory() {
+    if (location.pathname === "/orderhistory") return;
+    navigate('/orderhistory');
+  };
+
+  function logout() {
+    const isConfirmLogout = confirm('Deseja sair da aplicação?');
+    if (isConfirmLogout) {
+      navigate('/');
+      handleLogout()
+    };
   };
 
   function goToShoppingCart() {
@@ -30,42 +51,34 @@ export function HeaderDesktop() {
   }, [])
 
   return (
-    <HeaderContainer menuActive={menuActive}>
+    <HeaderContainer>
       <div className="boxHeader">
-        <button className="toggleMenu" onClick={toggleMenu}>
-          {menuActive ?
-            <MenuClose /> :
-            <MenuOpen />
+        <div className="logo" onClick={goToHome}>
+          <IconExplorer />
+          <h1>food explorer</h1>
+          {userAuth.isAdmin &&
+            <p className="paragraphAdmin">admin</p>
           }
-        </button>
+        </div>
 
-        {menuActive ?
-          <h3>Menu</h3> :
-          <>
-            <div className="logo" onClick={goToHome}>
-              <IconExplorer />
-              <h1>food explorer</h1>
-              {userAuth.isAdmin &&
-                <p className="paragraphAdmin">admin</p>
-              }
-            </div>
+        <InputSearchPlate />
 
-            <InputSearchPlate />
+        <div className="boxButtons">
+          {userAuth.isAdmin && <button onClick={goToNewPlate}>Novo Prato</button>}
+          <button onClick={goToFovorites}>Meus favoritos</button>
+          <button onClick={goToOrderHistory}>Histórico de pedidos</button>
+        </div>
 
-            {!userAuth.isAdmin &&
-              <div className="orderContainer">
-                <button onClick={goToShoppingCart}>
-                  <OrderIcon />
-                  <div className="orderTotal">{orderTotal}</div>
-                </button>
-              </div>
-            }
-          </>
+        {!userAuth.isAdmin &&
+          <div className="orderContainer">
+            <button onClick={goToShoppingCart}>
+              <OrderIcon />
+              <div className="orderTotal">{orderTotal}</div>
+            </button>
+          </div>
         }
+        <button onClick={logout}>Sair</button>
       </div>
-      {menuActive &&
-        <Menu />
-      }
     </HeaderContainer>
   )
 }

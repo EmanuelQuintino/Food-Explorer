@@ -1,14 +1,10 @@
 import styled from "styled-components";
 
-type HeaderContainerType = {
-  menuActive: boolean;
-}
-
-export const HeaderContainer = styled.header<HeaderContainerType>`
+export const HeaderContainer = styled.header`
   .boxHeader {
     display: flex;
     align-items: center;
-    justify-content: ${({ menuActive }) => menuActive ? "flex-start" : "space-between"};
+    justify-content: center;
     gap: 1.6rem;
   
     width: 100%;
@@ -19,22 +15,13 @@ export const HeaderContainer = styled.header<HeaderContainerType>`
     background: ${({ theme }) => theme.colors.dark700};
   }
   
-  .toggleMenu svg {
-    width: 2.2rem;
-    height: 1.8rem;
-  }
-
-  h3 {
-    font-size: 2.2rem;
-    font-weight: 400;
-    padding-bottom: .6rem;
-  }
-  
   .logo {
+    width: 32.0rem;
     display: flex;
     align-items: center;
     gap: .8rem;
     padding: 0 0 .4rem;
+    cursor: pointer;
   }
   
   .logo svg {
@@ -49,6 +36,15 @@ export const HeaderContainer = styled.header<HeaderContainerType>`
     font-size: 1.2rem;
     line-height: 160%;
     color: ${({ theme }) => theme.colors.cake200};
+  }
+
+  .boxButtons {
+    display: flex;
+    gap: 1.6rem;
+  }
+
+  .boxButtons button {
+    white-space: nowrap;
   }
 
   .orderContainer {
