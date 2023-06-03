@@ -55,13 +55,6 @@ export function ShoppingCart() {
             <div className="orderPaymentContainer">
               <div className="orderContainer">
                 <h2>Meu pedido</h2>
-                <p className="orderTotalPrice">
-                  Total: {newArrayUserOrder.map((plate) => plate.amount * Number(plate.price))
-                    .reduce((a: number, b: number) => a + b)
-                    .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
-                  }
-                </p>
-
                 <article className="platesContainer">
                   {newArrayUserOrder.map(orderPlate => <OrderPlate key={orderPlate?.id} orderPlate={orderPlate} />)}
                 </article>
@@ -70,7 +63,15 @@ export function ShoppingCart() {
               <div className="paymentContainer">
                 {newArrayUserOrder && userOrder.plates?.length > 0 &&
                   <>
-                    <h2>Pagamento</h2>
+                    <div className="titlePayment">
+                      <h2>Pagamento</h2>
+                      <p className="orderTotalPrice">
+                        Total: {newArrayUserOrder.map((plate) => plate.amount * Number(plate.price))
+                          .reduce((a: number, b: number) => a + b)
+                          .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+                        }
+                      </p>
+                    </div>
                     <TablePayment />
                   </>
                 }
@@ -78,8 +79,8 @@ export function ShoppingCart() {
             </div>
           ) : (
             <>
-              <h2>Meu pedido</h2>
-              <p className="messageEmptyFavorites">Carrinho vazio</p>
+              <h2 className="titleH2Empty">Meu pedido</h2>
+              <p className="messageEmpty">Carrinho vazio</p>
             </>
           )}
         </>
