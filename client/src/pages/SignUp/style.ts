@@ -67,6 +67,16 @@ export const Container = styled.section`
     align-items: center;
     gap: 2.0rem;
     
+    .foodExplorerLogo {
+      h1 {
+        font-size: 4.8rem;
+      }
+
+      svg {
+        width: 4.8rem;
+      }
+    }
+
     .formBox {
       background: ${({ theme }) => theme.colors.dark700};
       padding: 3.2rem 4.8rem;
@@ -76,9 +86,6 @@ export const Container = styled.section`
       margin-top: 3.2rem;
     }
 
-    .foodExplorerTitle {
-      font-size: 4.2rem;
-    }
   }
 
   @media(min-width: 840px) {

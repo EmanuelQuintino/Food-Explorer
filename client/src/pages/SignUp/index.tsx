@@ -39,7 +39,10 @@ export function SignUp() {
 
   return (
     <Container>
-      <LogoExplorer />
+      <div className="foodExplorerLogo">
+        <LogoExplorer />
+      </div>
+      
       <div className="formBox">
         {windowWidth > 640 && <h2>Crie sua conta</h2>}
 

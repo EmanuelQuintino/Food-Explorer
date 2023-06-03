@@ -26,7 +26,7 @@ export const HeaderContainer = styled.header`
     }
     
     h1 {
-      font-size: 2.4rem;
+      font-size: 2.8rem;
       white-space: nowrap;
     }
   }
