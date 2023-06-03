@@ -33,4 +33,13 @@ export const Container = styled.section`
     font-family: 'Roboto';
     color: ${({ theme }) => theme.colors.tomato400};
   }
+
+  @media (min-width: 930px) {
+    .plateNamePrice {
+      width: 24.0rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
 `;
