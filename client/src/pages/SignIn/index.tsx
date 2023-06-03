@@ -27,7 +27,7 @@ export function SignIn() {
       <div className="foodExplorerLogo">
         <LogoExplorer />
       </div>
-      
+
       <div className="formBox">
         {windowWidth > 640 && <h2>Faça Login</h2>}
 
