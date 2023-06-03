@@ -54,10 +54,17 @@ export const HeaderContainer = styled.header`
 
   .orderContainer {
     position: relative;
-  }
+    
+    svg {
+      width: 2.2rem;
+      height: 2.2rem;
+    }
 
-  .orderContainer svg {
-    width: 2.4rem;
+    button {
+      padding: 2.4rem;
+      font-size: 1.2rem;
+      white-space: nowrap;
+    }
   }
 
   .orderTotal {
@@ -71,6 +78,12 @@ export const HeaderContainer = styled.header`
     position: absolute;
     bottom: 1.4rem;
     left: 1.4rem;
+  }
+
+  .logoutIconButton {
+    svg {
+      width: 2.4rem;
+    }
   }
 
   @media(max-width: 42.0rem) {

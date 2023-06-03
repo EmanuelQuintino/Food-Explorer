@@ -6,6 +6,8 @@ import { useSystem } from "../../hooks/useSystem";
 import { useAuth } from "../../hooks/useAuth";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Button } from "../Button";
+import { LogoutIcon } from "../../assets/LogoutIcon";
 
 export function HeaderDesktop() {
   const { orderTotal, updateOrderTotal } = useSystem();
@@ -69,15 +71,16 @@ export function HeaderDesktop() {
           <button onClick={goToOrderHistory}>Histórico de pedidos</button>
         </div>
 
-        {!userAuth.isAdmin &&
-          <div className="orderContainer">
-            <button onClick={goToShoppingCart}>
-              <OrderIcon />
-              <div className="orderTotal">{orderTotal}</div>
-            </button>
-          </div>
-        }
-        <button onClick={logout}>Sair</button>
+        <div className="orderContainer" onClick={goToShoppingCart}>
+          <Button
+            icon={OrderIcon}
+            name={`Pedido (${orderTotal})`}
+          />
+        </div>
+
+        <button className="logoutIconButton" onClick={logout}>
+          <LogoutIcon />
+        </button>
       </div>
     </HeaderContainer>
   )
