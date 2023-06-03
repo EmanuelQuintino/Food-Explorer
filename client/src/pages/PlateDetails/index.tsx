@@ -33,30 +33,35 @@ export function PlateDetails() {
           {error && <p className="queryError">Algo deu errado!</p>}
 
           <section className="plateContainer">
-            <img src={imageURL} alt="image-plate" className="imagePlate" />
-            <h3 className="namePlateButton">{plateData.name}</h3>
-            <p className="description">{plateData.description}</p>
+            <div className="plateContainerPart1">
+              <img src={imageURL} alt="image-plate" className="imagePlate" />
+            </div>
 
-            <div className="ingredients">
-              {plateData.ingredients.map(ingredient => {
-                return <span className="ingredient" key={ingredient.id}>{ingredient.name}</span>
-              })}
+            <div className="plateContainerPart2">
+              <h3 className="namePlateButton">{plateData.name}</h3>
+              <p className="description">{plateData.description}</p>
+
+              <div className="ingredients">
+                {plateData.ingredients.map(ingredient => {
+                  return <span className="ingredient" key={ingredient.id}>{ingredient.name}</span>
+                })}
+              </div>
+
+              {userAuth.isAdmin ?
+                <section className="box">
+                  <Button name={"Editar prato"} onClick={pageUpdatePlate} />
+                </section>
+                :
+                <section className="box">
+                  <CountOrderPlate
+                    plate={{ id: plateData.id, name: plateData.name, price: plateData.price }}
+                    iconButton={OrderIcon}
+                    nameButton={`pedir - ${Number(plateData.price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`}
+                  />
+                </section>
+              }
             </div>
           </section>
-
-          {userAuth.isAdmin ?
-            <section className="box">
-              <Button name={"Editar prato"} onClick={pageUpdatePlate} />
-            </section>
-            :
-            <section className="box">
-              <CountOrderPlate
-                plate={{ id: plateData.id, name: plateData.name, price: plateData.price }}
-                iconButton={OrderIcon}
-                nameButton={`pedir - ${Number(plateData.price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`}
-              />
-            </section>
-          }
         </>
       }
     </Container>

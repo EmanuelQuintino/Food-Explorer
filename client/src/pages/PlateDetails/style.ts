@@ -1,14 +1,13 @@
 import styled from "styled-components"
 
 export const Container = styled.section`
-  width: 32.0rem;
-  margin: 1.6rem auto;
-
-  padding: 0 2.4rem;
+  width: 100%;
+  padding: 0 3.2rem 2.8rem;
 
   .backPageButton {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     font-weight: 500;
+    margin-top: 3.2rem;
   }
   
   .plateContainer {
@@ -77,5 +76,42 @@ export const Container = styled.section`
     height: 3.8rem;
     width: 18.8rem;
     font-size: 1.2rem;
+  }
+
+  @media(min-width: 640px) { 
+    .plateContainer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3.2rem;
+      margin-top: 2.0rem;
+    }
+
+    .imagePlate {
+      width: 32.0rem;
+      border-radius: 100%;
+    }
+
+    .plateContainerPart2 {
+      width: 64.0rem;
+      text-align: left;
+    }
+
+    .namePlateButton {
+      font-size: 3.6rem;
+    }
+
+    .description {
+      font-size: 2.0rem;
+    }
+
+    .ingredients {
+      justify-content: flex-start;
+    }
+
+    .containerCountOrderPlate {
+      justify-content: flex-start;
+      margin-top: 3.6rem;
+    }
   }
 `;
