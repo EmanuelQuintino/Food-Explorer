@@ -16,26 +16,31 @@ export const HeaderContainer = styled.header`
   }
   
   .logo {
-    width: 32.0rem;
+    width: 36.0rem;
     display: flex;
     align-items: center;
     gap: .8rem;
     padding: 0 0 .4rem;
     cursor: pointer;
-  }
-  
-  .logo svg {
-    width: 2.4rem;
-  }
-
-  h1 {
-    font-size: 2.2rem;
+    position: relative;
+    
+    svg {
+      width: 3.0rem;
+    }
+    
+    h1 {
+      font-size: 2.4rem;
+      white-space: nowrap;
+    }
   }
   
   .paragraphAdmin {
     font-size: 1.2rem;
-    line-height: 160%;
+    text-align: right;
     color: ${({ theme }) => theme.colors.cake200};
+    position: absolute;
+    bottom: 0;
+    right: 0;
   }
 
   .boxButtons {
