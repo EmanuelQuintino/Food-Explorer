@@ -10,12 +10,9 @@ export const HeaderContainer = styled.header<HeaderContainerType>`
     align-items: center;
     justify-content: ${({ menuActive }) => menuActive ? "flex-start" : "space-between"};
     gap: 1.6rem;
-  
     width: 100%;
     height: 4.2rem;
-  
-    padding: 5.6rem 3.2rem 3.2rem;
-  
+    padding: 5.6rem 3.2rem 4.2rem;
     background: ${({ theme }) => theme.colors.dark700};
   }
   

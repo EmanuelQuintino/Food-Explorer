@@ -6,12 +6,9 @@ export const HeaderContainer = styled.header`
     align-items: center;
     justify-content: center;
     gap: 1.6rem;
-  
     width: 100%;
     height: 4.2rem;
-  
-    padding: 5.6rem 3.2rem 3.2rem;
-  
+    padding: 5.6rem 3.2rem 4.2rem;
     background: ${({ theme }) => theme.colors.dark700};
   }
   
@@ -45,7 +42,7 @@ export const HeaderContainer = styled.header`
 
   .boxButtons {
     display: flex;
-    gap: 1.6rem;
+    gap: .8rem;
     
     button {
       white-space: nowrap;
