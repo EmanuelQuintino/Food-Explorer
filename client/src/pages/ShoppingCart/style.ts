@@ -70,7 +70,7 @@ export const Container = styled.section`
     }
 
     .orderContainer {
-      width: 48.0rem;
+      width: 54.0rem;
     }
   }
 `;  

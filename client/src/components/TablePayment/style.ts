@@ -69,5 +69,12 @@ export const Container = styled.section`
     table {
       width: 48.0rem;
     }
+
+    .qrCodeExplorerIcon {
+      svg {
+        width: 20.0rem;
+        height: 20.0rem;
+      }
+    }
   }
 `;
