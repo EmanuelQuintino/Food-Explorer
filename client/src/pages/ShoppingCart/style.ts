@@ -2,12 +2,6 @@ import styled from "styled-components"
 
 export const Container = styled.section`
   padding: 0 3.2rem 2.8rem;
-
-  .backPageButton {
-    font-size: 1.6rem;
-    font-weight: 500;
-    margin-top: 3.2rem;
-  }
   
   .orderContainer h2 {
     font-family: 'Poppins', sans-serif;

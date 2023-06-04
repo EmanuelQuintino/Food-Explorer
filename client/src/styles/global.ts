@@ -82,4 +82,14 @@ export const GlobalStyles = createGlobalStyle`
     text-align: center;
     margin-top: 1.6rem;
   }
+
+  .backPageButton {
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin-top: 3.2rem;
+
+    :hover {
+      text-decoration: underline;
+    }
+  }
 `;
