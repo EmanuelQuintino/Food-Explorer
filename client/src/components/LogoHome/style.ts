@@ -2,14 +2,14 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   .box {
-    margin-top: 8%;
+    margin-top: 5%;
     padding: 2.4rem;
     position: relative;
   }
   
   .rectangle {
     width: 100%;
-    height: 9.3rem;
+    height: 12.0rem;
     transform: translateX(2%);
   }
 
@@ -40,6 +40,7 @@ export const Container = styled.div`
 
   @media (min-width: 640px) {
     .box {
+      margin-top: 8%;
       padding: 2.4rem;
       position: relative;
     }
@@ -57,7 +58,7 @@ export const Container = styled.div`
     
     .slogan {
       width: auto;
-      top: 35%;
+      top: 37%;
       left: 50%;
       
       h2 {
