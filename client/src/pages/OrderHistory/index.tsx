@@ -7,7 +7,7 @@ import { CardHistoryOrderPlate } from "../../components/CardHistoryOrderPlate";
 import { usePlateQuery } from "../../hooks/usePlateQuery";
 import { SearchIcon } from "../../assets/SearchIcon";
 import { useState } from "react";
-import { TableHistoryOrderPlate } from "../../components/TableHistoryOrderPlate";
+import { TableRowHistoryOrders } from "../../components/TableRowHistoryOrders";
 
 export function OrderHistory() {
   const { menuActive, windowWidth } = useSystem();
@@ -84,7 +84,7 @@ export function OrderHistory() {
                   <tbody>
                     {filterOrders?.map(order => {
                       return (
-                        <TableHistoryOrderPlate
+                        <TableRowHistoryOrders
                           key={order.id}
                           id={order.id}
                           code={order.code}

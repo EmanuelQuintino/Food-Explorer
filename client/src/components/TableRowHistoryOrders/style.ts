@@ -8,6 +8,10 @@ export const Container = styled.tr<ContainerProps>`
   font-size: 1.4rem;
   color: ${({ theme }) => theme.colors.light400};
 
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.dark900};
+  }
+
   td, tr {
     padding: 1.6rem 2.4rem;
   }

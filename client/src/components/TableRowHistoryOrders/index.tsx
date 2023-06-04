@@ -15,7 +15,7 @@ type UserOrderTypes = {
   plates: OrderPlatesTypes[];
 }
 
-export function TableHistoryOrderPlate({ id, code, status, date, plates }: UserOrderTypes) {
+export function TableRowHistoryOrders({ id, code, status, date, plates }: UserOrderTypes) {
   const { userAuth } = useAuth();
   const arrayPlates = plates.map((plate) => `${plate.amount} x ${plate.name}`);
   const stringPlates = arrayPlates.join(", ");
