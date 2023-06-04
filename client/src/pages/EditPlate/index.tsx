@@ -48,10 +48,10 @@ export function EditPlate() {
   const { menuActive } = useSystem();
   const navigate = useNavigate();
   const params = useParams();
-  
+
   const { data, isLoading, error } = usePlateQuery();
   const plateData = data?.find(plate => plate.id == params.id);
-    
+
   useEffect(() => {
     if (plateData) {
       setPlateDataForm({
@@ -119,10 +119,10 @@ export function EditPlate() {
     };
   };
 
-  const onSubmitUpdatePlate = (data: PlateDataTypes) => mutate({ 
-    ...data, 
+  const onSubmitUpdatePlate = (data: PlateDataTypes) => mutate({
+    ...data,
     id: plateData.id,
-    category: plateDataForm.category 
+    category: plateDataForm.category
   });
 
   const onDeletePlate = async () => {
@@ -148,104 +148,108 @@ export function EditPlate() {
           {isLoading && <p><ImSpinner2 className="spinner" /></p>}
           {error && <p className="queryError">Algo deu errado!</p>}
 
-          <form onSubmit={handleSubmit(onSubmitUpdatePlate)} id="formCreatePlate">
-            <InputFile
-              id="uploadImagePlate"
-              label="Imagem do prato"
-              placeholder={inputFileName ? inputFileName : "Selecione imagem para alterá-la"}
-              icon={UploadIcon}
-              onChange={(event) => setInputFileName(event.target.files[0].name)}
-              error={errors.image?.message}
-              register={register("image", {
-                maxLength: { value: 255, message: "Número máximo de caracteres é 255" },
-                validate: {
-                  fileFormat: (file) => {
-                    if (!file || file.lenght === 0) return;
-                    /\.(jpg|jpeg|png|gif)$/i.test(file[0]?.name) || "Permitido somente tipo imagem"
-                  },
-                  fileCount: (file) => {
-                    if (!file || file.lenght === 0) return;
-                    file.length === 1 || "Por favor adicionar apenas uma imagem"
-                  },
-                  fileSize: (file) => {
-                    if (!file || file.lenght === 0) return;
-                    file[0]?.size <= 2 * 2 ** 20 || "O tamanho máximo permitido é de 2MB"
-                  },
-                }
-              })}
-            />
+          <form onSubmit={handleSubmit(onSubmitUpdatePlate)} id="formEditPlate">
+            <div className="formPart1">
+              <InputFile
+                id="uploadImagePlate"
+                label="Imagem do prato"
+                placeholder={inputFileName ? inputFileName : "Selecione imagem para alterá-la"}
+                icon={UploadIcon}
+                onChange={(event) => setInputFileName(event.target.files[0].name)}
+                error={errors.image?.message}
+                register={register("image", {
+                  maxLength: { value: 255, message: "Número máximo de caracteres é 255" },
+                  validate: {
+                    fileFormat: (file) => {
+                      if (!file || file.lenght === 0) return;
+                      /\.(jpg|jpeg|png|gif)$/i.test(file[0]?.name) || "Permitido somente tipo imagem"
+                    },
+                    fileCount: (file) => {
+                      if (!file || file.lenght === 0) return;
+                      file.length === 1 || "Por favor adicionar apenas uma imagem"
+                    },
+                    fileSize: (file) => {
+                      if (!file || file.lenght === 0) return;
+                      file[0]?.size <= 2 * 2 ** 20 || "O tamanho máximo permitido é de 2MB"
+                    },
+                  }
+                })}
+              />
 
-            <Input
-              id="name"
-              label="Nome"
-              type="text"
-              value={plateDataForm.name}
-              placeholder="Ex.: Salada Ceasar"
-              onChange={handleInputChange}
-              error={errors.name?.message}
-              register={register("name", {
-                shouldUnregister: true,
-                required: plateDataForm.name ? false : "Campo obrigatório",
-                pattern: { value: /^[^0-9]+$/, message: "Somente texto é permitido" },
-                maxLength: { value: 255, message: "Número máximo de caracteres é 255" }
-              })}
-            />
+              <Input
+                id="name"
+                label="Nome"
+                type="text"
+                value={plateDataForm.name}
+                placeholder="Ex.: Salada Ceasar"
+                onChange={handleInputChange}
+                error={errors.name?.message}
+                register={register("name", {
+                  shouldUnregister: true,
+                  required: plateDataForm.name ? false : "Campo obrigatório",
+                  pattern: { value: /^[^0-9]+$/, message: "Somente texto é permitido" },
+                  maxLength: { value: 255, message: "Número máximo de caracteres é 255" }
+                })}
+              />
 
-            <Select
-              id="category"
-              label="Categoria"
-              value={plateDataForm.category}
-              options={["Refeições", "Sobremesas", "Bebidas"]}
-              onChange={handleInputChange}
-              error={errors.category?.message}
-              register={register("category", {
-                required: plateDataForm.category ? false : "Campo obrigatório",
-                pattern: { value: /^(Refeições|Sobremesas|Bebidas)$/, message: "Somente uma das opções é permitido" },
-                maxLength: { value: 255, message: "Número máximo de caracteres é 255" }
-              })}
-            />
+              <Select
+                id="category"
+                label="Categoria"
+                value={plateDataForm.category}
+                options={["Refeições", "Sobremesas", "Bebidas"]}
+                onChange={handleInputChange}
+                error={errors.category?.message}
+                register={register("category", {
+                  required: plateDataForm.category ? false : "Campo obrigatório",
+                  pattern: { value: /^(Refeições|Sobremesas|Bebidas)$/, message: "Somente uma das opções é permitido" },
+                  maxLength: { value: 255, message: "Número máximo de caracteres é 255" }
+                })}
+              />
+            </div>
 
-            <article className="containerIngredients">
-              <label htmlFor="boxIngredients">Ingredientes</label>
-              <div id="boxIngredients">
-                {fields?.map((ingredient, index) => (
+            <div className="formPart2">
+              <article className="containerIngredients">
+                <label htmlFor="boxIngredients">Ingredientes</label>
+                <div id="boxIngredients">
+                  {fields?.map((ingredient, index) => (
+                    <InputList
+                      key={ingredient.id}
+                      value={ingredient.name}
+                      onClick={() => remove(index)}
+                    />
+                  ))}
+
                   <InputList
-                    key={ingredient.id}
-                    value={ingredient.name}
-                    onClick={() => remove(index)}
+                    isNew
+                    placeholder="Adicionar"
+                    value={newIngredient}
+                    onChange={(event) => setNewIngredient(event.target.value)}
+                    onClick={handleAddIngredient}
                   />
-                ))}
+                </div>
+                {errors.ingredients &&
+                  (errors.ingredients.root ?
+                    <span className='inputError'>{errors.ingredients.root.message}</span> :
+                    <span className='inputError'>{errors.ingredients.message}</span>
+                  )
+                }
+              </article>
 
-                <InputList
-                  isNew
-                  placeholder="Adicionar"
-                  value={newIngredient}
-                  onChange={(event) => setNewIngredient(event.target.value)}
-                  onClick={handleAddIngredient}
-                />
-              </div>
-              {errors.ingredients &&
-                (errors.ingredients.root ?
-                  <span className='inputError'>{errors.ingredients.root.message}</span> :
-                  <span className='inputError'>{errors.ingredients.message}</span>
-                )
-              }
-            </article>
-
-            <Input
-              id="price"
-              label="Preço"
-              type="text"
-              placeholder="R$ 0,00"
-              value={plateDataForm.price}
-              onChange={(event) => handleFormatPrice(event.target.value)}
-              error={errors.price?.message}
-              register={register("price", {
-                required: plateDataForm.price ? false : "Campo obrigatório",
-                pattern: { value: /^R\$\s[0-9]+([.][0-9]+)?([,][0-9]+)?$/, message: "Insira um valor válido. Ex: R$ 10,25" },
-                maxLength: { value: 255, message: "Número máximo de caracteres é 255" }
-              })}
-            />
+              <Input
+                id="price"
+                label="Preço"
+                type="text"
+                placeholder="R$ 0,00"
+                value={plateDataForm.price}
+                onChange={(event) => handleFormatPrice(event.target.value)}
+                error={errors.price?.message}
+                register={register("price", {
+                  required: plateDataForm.price ? false : "Campo obrigatório",
+                  pattern: { value: /^R\$\s[0-9]+([.][0-9]+)?([,][0-9]+)?$/, message: "Insira um valor válido. Ex: R$ 10,25" },
+                  maxLength: { value: 255, message: "Número máximo de caracteres é 255" }
+                })}
+              />
+            </div>
 
             <Textarea
               id="description"

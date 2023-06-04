@@ -124,7 +124,7 @@ export function NewPlate() {
                 })}
               />
             </div>
-            
+
             <div className="formPart2">
               <article className="containerIngredients">
                 <label htmlFor="boxIngredients">Ingredientes</label>
