@@ -26,7 +26,7 @@ export const Container = styled.section`
   }
 
   .description {
-    margin: 2.0rem 0;
+    margin: .4rem 0 2.0rem;
     font-family: 'Poppins';
     font-size: 1.4rem;
     line-height: 140%;

@@ -70,6 +70,7 @@ export const Container = styled.div`
     }
 
     .description {
+      margin-top: -1.2rem;
       font-family: 'Poppins';
       font-size: 1.4rem;
       line-height: 140%;
