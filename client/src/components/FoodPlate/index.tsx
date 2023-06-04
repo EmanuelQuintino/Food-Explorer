@@ -9,12 +9,14 @@ import { CountOrderPlate } from "../CountOrderPlate";
 import { useAuth } from "../../hooks/useAuth";
 import { toast } from "react-toastify";
 import { useQueryUser } from "../../hooks/useQueryUser";
+import { useSystem } from "../../hooks/useSystem";
 
 type FoodPlateType = {
   isFavorite?: boolean;
   plate: {
     id: string;
     name: string;
+    description: string;
     price: string;
     image: string;
   }
@@ -25,6 +27,7 @@ export function FoodPlate({ plate, isFavorite = false }: FoodPlateType) {
   const { userAuth } = useAuth();
   const navigate = useNavigate();
   const { refetchQueryUser } = useQueryUser();
+  const { windowWidth } = useSystem();
 
   const goToPageEditPlate = () => navigate(`/editplate/${plate.id}`);
 
@@ -74,6 +77,8 @@ export function FoodPlate({ plate, isFavorite = false }: FoodPlateType) {
       <button className="nameButton">
         <h3 onClick={goToPlateDetails}>{plate.name} &gt;</h3>
       </button>
+
+      {windowWidth > 640 && <p className="description">{plate.description}</p>}
 
       <p className="price">{Number(plate.price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
 

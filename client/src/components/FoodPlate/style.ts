@@ -45,7 +45,6 @@ export const Container = styled.div`
   .nameButton h3 {
     font-family: 'Poppins', sans-serif;
     font-size: 1.4rem;
-    width: 21.0rem;
     color: ${({ theme }) => theme.colors.light200};
   }
 
@@ -56,5 +55,34 @@ export const Container = styled.div`
 
   .box {
     width: 100%;
+  }
+
+  @media (min-width: 640px) {    
+    width: 30.4rem;
+    height: 46.2rem;
+    
+    .imagePlate {
+      width: 17.6rem;
+    }
+
+    .nameButton h3 {
+      font-size: 2.4rem;
+    }
+
+    .description {
+      font-family: 'Poppins';
+      font-size: 1.4rem;
+      line-height: 140%;
+      color: ${({ theme }) => theme.colors.light300};
+    }
+
+    .price {
+      font-size: 2.8rem;
+      color: ${({ theme }) => theme.colors.cake200};
+    }
+
+    .box {
+      width: 100%;
+    }
   }
 `;
