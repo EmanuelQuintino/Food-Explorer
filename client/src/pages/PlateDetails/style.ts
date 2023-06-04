@@ -67,11 +67,11 @@ export const Container = styled.section`
     height: 2.0rem;
   }
 
-  .box {
+  .boxButton {
     margin-top: 0;
   }
 
-  .box > button {
+  .boxButton > button {
     border-radius: .5rem;
     height: 3.8rem;
     width: 18.8rem;
@@ -110,8 +110,16 @@ export const Container = styled.section`
     }
 
     .containerCountOrderPlate {
-      justify-content: flex-start;
+      place-content: flex-start;
       margin-top: 3.6rem;
+    }
+    
+
+    .boxButton > button {
+      border-radius: .5rem;
+      height: 3.8rem;
+      width: 18.8rem;
+      font-size: 1.2rem;
     }
   }
 `;

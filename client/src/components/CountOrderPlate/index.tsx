@@ -72,7 +72,7 @@ export function CountOrderPlate({ plate, iconButton, nameButton }: ButtonType) {
           </button>
         </div>
 
-        <div className="box">
+        <div className="boxButton">
           <Button name={nameButton} icon={iconButton} onClick={includeUserOrderPlate} />
         </div>
       </section>
