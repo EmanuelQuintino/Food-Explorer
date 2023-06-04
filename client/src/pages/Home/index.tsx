@@ -21,11 +21,8 @@ export function Home() {
         <>
           <LogoHome />
 
-          {plateQuery.isLoading && <p><ImSpinner2 className="spinner" /></p>}
-          {userData.isLoading && <p><ImSpinner2 className="spinner" /></p>}
-
-          {plateQuery.error && <p className="queryError">Erro em carregar os pratos!</p>}
-          {userData.error && <p className="queryError">Erro em carregar dados do usuário!</p>}
+          {plateQuery.isLoading || userData.isLoading ? <p><ImSpinner2 className="spinner" /></p> : null}
+          {plateQuery.error || userData.error ? <p className="queryError">Algo deu errado!</p> : null}
 
           {plateQuery?.data && plateQuery.data.length === 0 ?
             <p className="messageEmptyList">Lista de pratos vazia</p> :

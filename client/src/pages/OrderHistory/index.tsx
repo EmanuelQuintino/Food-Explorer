@@ -53,8 +53,8 @@ export function OrderHistory() {
             />
           </form>
 
-          {ordersQuery.error && <p className="queryError">Algo deu errado!</p>}
-          {ordersQuery.isLoading && <p><ImSpinner2 className="spinner" /></p>}
+          {ordersQuery.isLoading || plateQuery.isLoading ? <p><ImSpinner2 className="spinner" /></p> : null}
+          {ordersQuery.error || plateQuery.error ? <p className="queryError">Algo deu errado!</p> : null}
 
           <article className="OrdersContainer">
             {ordersQuery.data && ordersQuery.data.length == 0 ?

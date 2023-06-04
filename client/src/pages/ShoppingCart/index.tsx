@@ -48,8 +48,8 @@ export function ShoppingCart() {
         <>
           <button className="backPageButton" onClick={() => navigate(-1)}>&lt; Voltar</button>
 
-          {isLoading && <p><ImSpinner2 className="spinner" /></p>}
           {error && <p className="queryError">Algo deu errado!</p>}
+          {isLoading && <p><ImSpinner2 className="spinner" /></p>}
 
           {newArrayUserOrder && userOrder.plates?.length > 0 ? (
             <div className="orderPaymentContainer">
