@@ -29,15 +29,15 @@ export const Container = styled.section`
     width: 36.0rem;
 
     .imagePlate {
-      width: 9.6rem;
+      width: 10.0rem;
     }
 
     .namePlateButton {
-      font-size: 2.0rem;
+      font-size: 2.2rem;
     }
 
     .removeFavoriteButton {
-      font-size: 1.4rem;
+      font-size: 1.6rem;
     }
   }
 `;

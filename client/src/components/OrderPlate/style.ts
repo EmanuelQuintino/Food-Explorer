@@ -30,11 +30,12 @@ export const Container = styled.section`
   .removeOrderPlate {
     margin-top: .8rem;
     font-size: 1.2rem;
+    font-weight: 500;
     font-family: 'Roboto';
     color: ${({ theme }) => theme.colors.tomato400};
   }
 
-  @media (min-width: 940px) {
+  @media (min-width: 960px) {
     .plateNamePrice {
       width: 28.0rem;
       display: flex;
@@ -56,6 +57,31 @@ export const Container = styled.section`
     
     .removeOrderPlate {
       font-size: 1.4rem;
+    }
+  }
+
+  @media (min-width: 990px) {
+    .plateNamePrice {
+      width: 32.0rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .imagePlate {
+      width: 10.0rem;
+    }
+
+    .plateName {
+      font-size: 2.2rem;
+    }
+  
+    .platePrice{
+      font-size: 1.6rem;
+    }
+    
+    .removeOrderPlate {
+      font-size: 1.6rem;
     }
   }
 `;
