@@ -27,7 +27,7 @@ export function Home() {
           {plateQuery.error && <p className="queryError">Erro em carregar os pratos!</p>}
           {userData.error && <p className="queryError">Erro em carregar dados do usuário!</p>}
 
-          {plateQuery?.data && plateQuery.data.length > 0 ?
+          {plateQuery?.data && plateQuery.data.length === 0 ?
             <p className="messageEmptyList">Lista de pratos vazia</p> :
             <>
               <section className="boxPlates">

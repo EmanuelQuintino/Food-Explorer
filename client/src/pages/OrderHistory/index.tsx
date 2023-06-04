@@ -58,7 +58,7 @@ export function OrderHistory() {
 
           <article className="OrdersContainer">
             {ordersQuery.data && ordersQuery.data.length == 0 ?
-              <p className="messageEmpty">Lista de pedidos vazia</p> :
+              <p className="messageEmpty">Sem histórico de pedidos</p> :
               windowWidth < 680 ?
                 filterOrders?.map(order => {
                   return (

@@ -94,11 +94,12 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   .messageEmptyList {
-    color: ${({ theme }) => theme.colors.light500};
+    width: 100%;
+    height: 30vh;
     font-weight: 700;
     font-size: 2.0rem;
-    margin-top: 9.2rem;
-    text-align: center;
-    width: 100%;
+    color: ${({ theme }) => theme.colors.light500};
+    display: grid;
+    place-content: center;
   }
 `;
