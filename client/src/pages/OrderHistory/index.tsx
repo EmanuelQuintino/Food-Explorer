@@ -6,11 +6,11 @@ import { useOrdersQuery } from "../../hooks/useOrdersQuery";
 import { CardHistoryOrderPlate } from "../../components/CardHistoryOrderPlate";
 import { usePlateQuery } from "../../hooks/usePlateQuery";
 import { SearchIcon } from "../../assets/SearchIcon";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { TableHistoryOrderPlate } from "../../components/TableHistoryOrderPlate";
 
 export function OrderHistory() {
-  const { menuActive, windowWidth, setWindowWidth } = useSystem();
+  const { menuActive, windowWidth } = useSystem();
   const ordersQuery = useOrdersQuery();
   const plateQuery = usePlateQuery();
   const [searchOrders, setSearchOrders] = useState("");
@@ -32,12 +32,6 @@ export function OrderHistory() {
       order.status.toLowerCase().includes(searchOrders.toLowerCase())
     );
   });
-
-  useEffect(() => {
-    window.addEventListener('resize', () => {
-      setWindowWidth(window.innerWidth);
-    });
-  }, []);
 
   return (
     <Container>
