@@ -27,6 +27,10 @@ export const Container = styled.section`
     color: ${({ theme }) => theme.colors.light100};
     border-bottom: solid ${({ theme }) => theme.colors.light600};
     cursor: pointer;
+
+    :hover {
+      background: ${({ theme }) => theme.colors.dark900};
+    }
   }
 
   th:first-child {
