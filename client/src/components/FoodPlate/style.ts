@@ -63,6 +63,7 @@ export const Container = styled.div`
     
     .imagePlate {
       width: 17.6rem;
+      margin-top: -5.6rem;
     }
 
     .nameButton h3 {

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   .box {
-    margin-top: 5%;
+    margin-top: 4%;
     padding: 2.4rem;
     position: relative;
   }
@@ -40,7 +40,6 @@ export const Container = styled.div`
 
   @media (min-width: 640px) {
     .box {
-      margin-top: 8%;
       padding: 2.4rem;
       position: relative;
     }
@@ -52,7 +51,7 @@ export const Container = styled.div`
     }
 
     .macaronLogo {
-      width: 45%;
+      width: 40%;
       height: auto;
     }
     
