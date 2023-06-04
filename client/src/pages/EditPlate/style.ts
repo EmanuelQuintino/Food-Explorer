@@ -8,7 +8,7 @@ export const Container = styled.section`
     font-style: normal;
     font-weight: 400;
     font-size: 2.8rem;
-    margin: 2.4rem 0;
+    margin: 2.4rem 0 .4rem;
   }
 
   form {
