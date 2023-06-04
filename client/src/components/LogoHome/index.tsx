@@ -1,12 +1,12 @@
 import { Container } from "./style";
 
-export function Slogan() {
+export function LogoHome() {
   return (
     <Container>
       <div className="box">
         <div>
           <img src="images/rectangle.png" alt="rectangle" className="rectangle" />
-          <img src="images/pngegg.png" alt="pngegg" className="pngegg" />
+          <img src="images/macaron.png" alt="macaron.png" className="macaronLogo" />
         </div>
         <div className="slogan">
           <h2>Sabores inigualáveis</h2>

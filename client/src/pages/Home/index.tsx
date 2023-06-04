@@ -1,5 +1,5 @@
 import { Container } from "./style"
-import { Slogan } from "../../components/Slogan"
+import { LogoHome } from "../../components/LogoHome"
 import { FoodPlate } from "../../components/FoodPlate"
 import { useSystem } from "../../hooks/useSystem"
 import { ImSpinner2 } from "react-icons/im";
@@ -15,11 +15,11 @@ export function Home() {
     <Container>
       {!menuActive &&
         <>
-          <Slogan />
+          <LogoHome />
 
           {plateQuery.isLoading && <p><ImSpinner2 className="spinner" /></p>}
           {userData.isLoading && <p><ImSpinner2 className="spinner" /></p>}
-          
+
           {plateQuery.error && <p className="queryError">Erro em carregar os pratos!</p>}
           {userData.error && <p className="queryError">Erro em carregar dados do usuário!</p>}
 

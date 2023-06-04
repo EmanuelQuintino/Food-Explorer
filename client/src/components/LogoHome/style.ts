@@ -13,7 +13,7 @@ export const Container = styled.div`
     transform: translateX(2%);
   }
 
-  .pngegg {
+  .macaronLogo {
     position: absolute;
     width: 19.0rem;
     height: 14.9rem;
@@ -50,7 +50,7 @@ export const Container = styled.div`
       transform: translateX(0%);
     }
 
-    .pngegg {
+    .macaronLogo {
       width: 45%;
       height: auto;
     }
