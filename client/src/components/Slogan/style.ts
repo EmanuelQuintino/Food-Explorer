@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   .box {
-    margin-top: 3.6rem;
+    margin-top: 8%;
     padding: 2.4rem;
     position: relative;
   }
@@ -40,7 +40,6 @@ export const Container = styled.div`
 
   @media (min-width: 640px) {
     .box {
-      margin-top: 10.0rem;
       padding: 2.4rem;
       position: relative;
     }
