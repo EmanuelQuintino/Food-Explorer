@@ -22,6 +22,7 @@ export const Container = styled.section`
       display: flex;
       align-items: center;
       gap: 1.2rem;
+      white-space: nowrap;
 
       > svg {
         width: 2.0rem;
