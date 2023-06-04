@@ -34,7 +34,7 @@ export const Container = styled.section`
     color: ${({ theme }) => theme.colors.tomato400};
   }
 
-  @media (min-width: 930px) {
+  @media (min-width: 940px) {
     .plateNamePrice {
       width: 28.0rem;
       display: flex;

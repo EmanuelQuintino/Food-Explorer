@@ -52,6 +52,7 @@ export const Container = styled.section`
     .orderPaymentContainer {
       display: flex;
       align-items: first baseline;
+      gap: 3.2rem
     }
 
     .orderContainer {

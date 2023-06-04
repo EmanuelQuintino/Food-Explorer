@@ -43,7 +43,7 @@ export function TablePayment() {
                   <QRCodeExplorer />
                 </div>
               }
-              
+
               {paymentForm === "credCard" &&
                 <>
                   {!isPaymentConfirm ?
