@@ -48,15 +48,6 @@ export const Container = styled.section`
     margin-top: 3.2rem;
   }
   
-  .messageEmpty {
-    color: ${({ theme }) => theme.colors.light500};
-    font-weight: 700;
-    font-size: 2.0rem;
-    margin-top: 12.0rem;
-    text-align: center;
-    width: 100%;
-  }
-  
   @media (min-width: 640px) {
     .orderPaymentContainer {
       display: flex;

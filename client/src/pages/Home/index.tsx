@@ -11,6 +11,10 @@ export function Home() {
   const plateQuery = usePlateQuery();
   const userData = useQueryUser();
 
+  const arrayMeals = plateQuery.data?.filter(plate => plate.category == "Refeições");
+  const arrayDesserts = plateQuery.data?.filter(plate => plate.category == "Sobremesas");
+  const arrayDrinks = plateQuery.data?.filter(plate => plate.category == "Bebidas");
+
   return (
     <Container>
       {!menuActive &&
@@ -23,53 +27,67 @@ export function Home() {
           {plateQuery.error && <p className="queryError">Erro em carregar os pratos!</p>}
           {userData.error && <p className="queryError">Erro em carregar dados do usuário!</p>}
 
-          <section className="boxPlates">
-            <h2>Refeições</h2>
-            <div className="plates">
-              {plateQuery.data?.filter(plate => plate.category == "Refeições")
-                .map(plate => {
-                  return (
-                    <FoodPlate
-                      key={plate.id}
-                      plate={plate}
-                      isFavorite={userData.data?.favorites.map(plate => plate.plate_id).includes(plate.id)}
-                    />
-                  )
-                })}
-            </div>
-          </section>
+          {plateQuery?.data && plateQuery.data.length > 0 ?
+            <p className="messageEmptyList">Lista de pratos vazia</p> :
+            <>
+              <section className="boxPlates">
+                {arrayMeals && arrayMeals.length > 0 &&
+                  <>
+                    <h2>Refeições</h2>
+                    <div className="plates">
+                      {arrayMeals.map(plate => {
+                        return (
+                          <FoodPlate
+                            key={plate.id}
+                            plate={plate}
+                            isFavorite={userData.data?.favorites.map(plate => plate.plate_id).includes(plate.id)}
+                          />
+                        )
+                      })}
+                    </div>
+                  </>
+                }
+              </section>
 
-          <section className="boxPlates">
-            <h2>Sobremesas</h2>
-            <div className="plates">
-              {plateQuery.data?.filter(plate => plate.category == "Sobremesas")
-                .map(plate => {
-                  return (
-                    <FoodPlate
-                      key={plate.id}
-                      plate={plate}
-                      isFavorite={userData.data?.favorites.map(plate => plate.plate_id).includes(plate.id)}
-                    />
-                  )
-                })}
-            </div>
-          </section>
+              <section className="boxPlates">
+                {arrayDesserts && arrayDesserts.length > 0 &&
+                  <>
+                    <h2>Sobremesas</h2>
+                    <div className="plates">
+                      {arrayDesserts.map(plate => {
+                        return (
+                          <FoodPlate
+                            key={plate.id}
+                            plate={plate}
+                            isFavorite={userData.data?.favorites.map(plate => plate.plate_id).includes(plate.id)}
+                          />
+                        )
+                      })}
+                    </div>
+                  </>
+                }
+              </section>
 
-          <section className="boxPlates">
-            <h2>Bebidas</h2>
-            <div className="plates">
-              {plateQuery.data?.filter(plate => plate.category == "Bebidas")
-                .map(plate => {
-                  return (
-                    <FoodPlate
-                      key={plate.id}
-                      plate={plate}
-                      isFavorite={userData.data?.favorites.map(plate => plate.plate_id).includes(plate.id)}
-                    />
-                  )
-                })}
-            </div>
-          </section>
+              <section className="boxPlates">
+                {arrayDrinks && arrayDrinks.length > 0 &&
+                  <>
+                    <h2>Bebidas</h2>
+                    <div className="plates">
+                      {arrayDrinks.map(plate => {
+                        return (
+                          <FoodPlate
+                            key={plate.id}
+                            plate={plate}
+                            isFavorite={userData.data?.favorites.map(plate => plate.plate_id).includes(plate.id)}
+                          />
+                        )
+                      })}
+                    </div>
+                  </>
+                }
+              </section>
+            </>
+          }
         </>
       }
     </Container>

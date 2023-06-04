@@ -17,13 +17,4 @@ export const Container = styled.section`
     flex-wrap: wrap;
     gap: 0 4.8rem;
   }
-
-  .messageEmptyFavorites {
-    color: ${({ theme }) => theme.colors.light500};
-    font-weight: 700;
-    font-size: 2.0rem;
-    margin-top: 9.2rem;
-    text-align: center;
-    width: 100%;
-  }
 `;

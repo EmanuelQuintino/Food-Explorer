@@ -32,7 +32,7 @@ export function Favorites() {
           <article className="platesContainer">
             {favoritePlates && favoritePlates?.length > 0 ?
               (favoritePlates?.map(plate => <FavoritePlate key={plate?.id} plate={plate} />)) :
-              (<p className="messageEmptyFavorites">Lista vazia</p>)
+              (<p className="messageEmptyList">Lista vazia</p>)
             }
           </article>
         </>

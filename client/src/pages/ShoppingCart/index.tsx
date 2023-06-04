@@ -80,7 +80,7 @@ export function ShoppingCart() {
           ) : (
             <>
               <h2 className="titleH2Empty">Meu pedido</h2>
-              <p className="messageEmpty">Carrinho vazio</p>
+              <p className="messageEmptyList">Carrinho vazio</p>
             </>
           )}
         </>

@@ -58,8 +58,8 @@ export function OrderHistory() {
 
           <article className="OrdersContainer">
             {ordersQuery.data && ordersQuery.data.length == 0 ?
-              (<p className="messageEmptyFavorites">Lista de pedidos vazia</p>) :
-              (windowWidth < 680 ?
+              <p className="messageEmpty">Lista de pedidos vazia</p> :
+              windowWidth < 680 ?
                 filterOrders?.map(order => {
                   return (
                     <CardHistoryOrderPlate
@@ -96,7 +96,6 @@ export function OrderHistory() {
                     })}
                   </tbody>
                 </table>
-              )
             }
           </article>
         </>
