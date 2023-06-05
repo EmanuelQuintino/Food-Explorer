@@ -137,8 +137,6 @@ export function EditPlate() {
     };
   };
 
-  console.log(errors);
-
   return (
     <Container>
       {!menuActive &&
