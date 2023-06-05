@@ -39,7 +39,7 @@ export function OrderHistory() {
         <>
           <button className="backPageButton" onClick={() => navigate(-1)}>&lt; Voltar</button>
 
-          <h2>Histórico de Pedidos</h2>
+          <h2 className="pageTitle">Histórico de Pedidos</h2>
 
           <form className="inputSearchForm" onSubmit={(event) => event.preventDefault()}>
             <label htmlFor="inputSearch" className="srOnly">Input Search</label>

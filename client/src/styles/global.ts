@@ -18,6 +18,14 @@ export const GlobalStyles = createGlobalStyle`
     font-size: 1.6rem;
     font-family: 'Roboto', sans-serif;
   }
+
+  .pageTitle {
+    margin-top: 2.4rem;
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2.8rem;
+  }
   
   input, select, textarea, button {
     font-family: 'Roboto', sans-serif;

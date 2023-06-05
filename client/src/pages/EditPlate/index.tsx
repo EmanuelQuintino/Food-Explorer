@@ -143,7 +143,7 @@ export function EditPlate() {
         <>
           <button className="backPageButton" onClick={() => navigate(-1)}>&lt; Voltar</button>
 
-          <h2>Editar prato</h2>
+          <h2 className="pageTitle">Editar prato</h2>
 
           {isLoading && <p><ImSpinner2 className="spinner" /></p>}
           {error && <p className="queryError">Algo deu errado!</p>}

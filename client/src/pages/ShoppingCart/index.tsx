@@ -54,7 +54,7 @@ export function ShoppingCart() {
           {newArrayUserOrder && userOrder.plates?.length > 0 ? (
             <div className="orderPaymentContainer">
               <div className="orderContainer">
-                <h2>Meu pedido</h2>
+                <h2 className="pageTitle">Meu pedido</h2>
                 <article className="platesContainer">
                   {newArrayUserOrder.map(orderPlate => <OrderPlate key={orderPlate?.id} orderPlate={orderPlate} />)}
                 </article>
@@ -64,7 +64,7 @@ export function ShoppingCart() {
                 {newArrayUserOrder && userOrder.plates?.length > 0 &&
                   <>
                     <div className="titlePayment">
-                      <h2>Pagamento</h2>
+                      <h2 className="pageTitle">Pagamento</h2>
                       <p className="orderTotalPrice">
                         Total: {newArrayUserOrder.map((plate) => plate.amount * Number(plate.price))
                           .reduce((a: number, b: number) => a + b)
@@ -79,7 +79,7 @@ export function ShoppingCart() {
             </div>
           ) : (
             <>
-              <h2 className="titleH2Empty">Meu pedido</h2>
+              <h2 className="pageTitle">Meu pedido</h2>
               <p className="messageEmptyList">Carrinho vazio</p>
             </>
           )}

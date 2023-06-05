@@ -2,7 +2,6 @@ import styled from "styled-components"
 
 export const Container = styled.section`
   width: 100%;
-  padding: 0 3.2rem 2.8rem;
   
   .plateContainer {
     text-align: center;

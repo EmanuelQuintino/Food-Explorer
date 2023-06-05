@@ -77,7 +77,7 @@ export function NewPlate() {
         <>
           <button className="backPageButton" onClick={() => navigate(-1)}>&lt; Voltar</button>
 
-          <h2>Novo prato</h2>
+          <h2 className="pageTitle">Novo prato</h2>
 
           <form onSubmit={handleSubmit(onSubmitCreatePlate)} id="formCreatePlate">
             <div className="formPart1">

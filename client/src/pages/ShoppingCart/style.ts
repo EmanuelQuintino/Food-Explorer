@@ -1,15 +1,6 @@
 import styled from "styled-components"
 
-export const Container = styled.section`
-  padding: 0 3.2rem 2.8rem;
-  
-  .orderContainer h2 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 400;
-    font-size: 2.8rem;
-    margin-top: 3.2rem;
-  }
-  
+export const Container = styled.section`    
   .platesContainer {
     margin-top: 1.6rem;
     display: flex;
@@ -22,12 +13,6 @@ export const Container = styled.section`
     align-items: center;
     justify-content: space-between;
     margin-top: 3.2rem;
-    
-    h2 {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 400;
-      font-size: 2.8rem;
-    }
   }
   
   .orderTotalPrice {
@@ -39,13 +24,6 @@ export const Container = styled.section`
 
   .paymentContainer table {
     margin-top: 3.6rem;
-  }
-
-  .titleH2Empty {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 400;
-    font-size: 2.8rem;
-    margin-top: 3.2rem;
   }
   
   @media (min-width: 640px) {
