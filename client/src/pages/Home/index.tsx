@@ -6,6 +6,8 @@ import { ImSpinner2 } from "react-icons/im";
 import { usePlateQuery } from "../../hooks/usePlateQuery";
 import { useQueryUser } from "../../hooks/useQueryUser";
 import { useRef } from "react";
+import { NextIcon } from "../../assets/nextIcon";
+import { PreviousIcon } from "../../assets/PreviousIcon";
 
 export function Home() {
   const { menuActive, foodPlateWidth } = useSystem();
@@ -77,8 +79,21 @@ export function Home() {
                         )
                       })}
                     </div>
-                    <button onClick={handlePrevCarouselMeals}>Prev</button>
-                    <button onClick={handleNextCarouselMeals}>Next</button>
+
+                    <div className="shadowBox">
+                      <div className="shadowPrev"></div>
+                      <div className="shadowNext"></div>
+                    </div>
+
+                    <div className="boxButtonCarousel">
+                      <button onClick={handlePrevCarouselMeals}>
+                        <PreviousIcon />
+                      </button>
+                      <button onClick={handleNextCarouselMeals}>
+                        <NextIcon />
+                      </button>
+                    </div>
+                    
                   </>
                 }
               </section>
