@@ -80,7 +80,7 @@ export const Container = styled.section`
   @media (min-width: 640px) {    
     .ContainerBoxPlates {
       width: 85%;
-      margin: 2.4rem 10%;
+      margin: 2.4rem 8.5%;
       
       h2 {
         font-size: 2.4rem;
@@ -90,7 +90,7 @@ export const Container = styled.section`
 
   @media (min-width: 960px) {    
     .ContainerBoxPlates {
-      width: 77%;
+      width: 80%;
     }
   }
 `;
