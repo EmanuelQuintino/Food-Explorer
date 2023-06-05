@@ -5,6 +5,7 @@ export const Container = styled.section`
   
   .plateContainer {
     text-align: center;
+    margin-top: 1.2rem;
   }
 
   .imagePlate {
@@ -64,6 +65,10 @@ export const Container = styled.section`
     margin-top: 0;
   }
 
+  .buttonToEdit button {
+    margin-top: 2.4rem;
+  }
+
   .boxButton > button {
     border-radius: .5rem;
     height: 3.8rem;
@@ -81,7 +86,7 @@ export const Container = styled.section`
     }
 
     .imagePlate {
-      width: 32.0rem;
+      width: 31.0rem;
       border-radius: 100%;
     }
 
@@ -107,12 +112,21 @@ export const Container = styled.section`
       margin-top: 3.6rem;
     }
     
-
     .boxButton > button {
       border-radius: .5rem;
       height: 3.8rem;
       width: 18.8rem;
-      font-size: 1.2rem;
+      font-size: 1.4rem;
+
+      svg {
+        width: 2.0rem;
+        height: 2.0rem;
+      }
+    }
+    
+    .buttonToEdit button {
+      width: 18.8rem;
+      font-size: 1.4rem;
     }
   }
 `;

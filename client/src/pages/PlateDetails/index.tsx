@@ -48,7 +48,7 @@ export function PlateDetails() {
               </div>
 
               {userAuth.isAdmin ?
-                <section className="box">
+                <section className="box buttonToEdit">
                   <Button name={"Editar prato"} onClick={pageUpdatePlate} />
                 </section>
                 :
