@@ -15,6 +15,7 @@ export const Container = styled.section`
       align-items: center;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
     }
     
     .plates::-webkit-scrollbar {

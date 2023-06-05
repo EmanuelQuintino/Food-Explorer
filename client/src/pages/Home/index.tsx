@@ -5,15 +5,31 @@ import { useSystem } from "../../hooks/useSystem"
 import { ImSpinner2 } from "react-icons/im";
 import { usePlateQuery } from "../../hooks/usePlateQuery";
 import { useQueryUser } from "../../hooks/useQueryUser";
+import { useRef } from "react";
 
 export function Home() {
-  const { menuActive } = useSystem();
+  const { menuActive, foodPlateWidth } = useSystem();
   const plateQuery = usePlateQuery();
   const userData = useQueryUser();
+  const carouselMeals = useRef(null);
 
   const arrayMeals = plateQuery.data?.filter(plate => plate.category == "Refeições");
   const arrayDesserts = plateQuery.data?.filter(plate => plate.category == "Sobremesas");
   const arrayDrinks = plateQuery.data?.filter(plate => plate.category == "Bebidas");
+
+  function handlePrevCarousel(event: React.MouseEvent<HTMLButtonElement>) {
+    event.preventDefault();
+    console.log(event.target.id);
+    console.log(carouselMeals.current.offsetWidth);
+    carouselMeals.current.scrollLeft -= foodPlateWidth;
+  };
+
+  function handleNextCarousel(event: React.MouseEvent<HTMLButtonElement>) {
+    event.preventDefault();
+    console.log(event.target.id);
+    console.log(carouselMeals.current.offsetWidth);
+    carouselMeals.current.scrollLeft += foodPlateWidth;
+  };
 
   return (
     <Container>
@@ -31,7 +47,7 @@ export function Home() {
                 {arrayMeals && arrayMeals.length > 0 &&
                   <>
                     <h2>Refeições</h2>
-                    <div className="plates">
+                    <div className="plates" ref={carouselMeals}>
                       {arrayMeals.map(plate => {
                         return (
                           <FoodPlate
@@ -42,6 +58,8 @@ export function Home() {
                         )
                       })}
                     </div>
+                    <button id="buttonPrevMeals" onClick={handlePrevCarousel}>Prev</button>
+                    <button id="buttonNextMeals" onClick={handleNextCarousel}>Next</button>
                   </>
                 }
               </section>

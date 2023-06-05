@@ -2,7 +2,7 @@ import { Container } from "./style";
 import { FavoriteIcon } from "../../assets/FavoriteIcon";
 import { FavoriteIconMatch } from "../../assets/FavoriteIconMatch";
 import { EditIcon } from "../../assets/EditIcon";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { API } from "../../services/api";
 import { useNavigate } from "react-router-dom";
 import { CountOrderPlate } from "../CountOrderPlate";
@@ -27,7 +27,8 @@ export function FoodPlate({ plate, isFavorite = false }: FoodPlateType) {
   const { userAuth } = useAuth();
   const navigate = useNavigate();
   const { refetchQueryUser } = useQueryUser();
-  const { windowWidth } = useSystem();
+  const { windowWidth, setFoodPlateWidth } = useSystem();
+  const foodPlateRef = useRef<HTMLDivElement>(null);
 
   const goToPageEditPlate = () => navigate(`/editplate/${plate.id}`);
 
@@ -54,10 +55,17 @@ export function FoodPlate({ plate, isFavorite = false }: FoodPlateType) {
     }
   }
 
+  useEffect(() => {
+    if (foodPlateRef.current) {
+      const width = foodPlateRef.current.offsetWidth;
+      setFoodPlateWidth(width);
+    }
+  }, [windowWidth]);
+
   const imageURL = `${API.defaults.baseURL}/images/${plate.image}`;
 
   return (
-    <Container>
+    <Container ref={foodPlateRef}>
       {userAuth.isAdmin
         ? <button onClick={goToPageEditPlate} className="editIcon">
           <EditIcon />
