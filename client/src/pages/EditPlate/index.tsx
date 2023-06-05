@@ -137,6 +137,8 @@ export function EditPlate() {
     };
   };
 
+  console.log(errors);
+
   return (
     <Container>
       {!menuActive &&
@@ -267,7 +269,7 @@ export function EditPlate() {
 
           <div className="formButtons">
             <ButtonDelete name="Excluir prato" onClick={onDeletePlate} />
-            <ButtonSave name="Salvar alterações" form="formCreatePlate" />
+            <ButtonSave name="Salvar alterações" form="formEditPlate" />
           </div>
         </>
       }
