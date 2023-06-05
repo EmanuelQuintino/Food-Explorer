@@ -1,17 +1,15 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 20.0rem;
+  width: 21.0rem;
   height: 29.0rem;
-  padding: 1.8rem;
+  padding: 2.4rem;
   text-align: center;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 1.2rem;
-
   position: relative;
   scroll-snap-align: start;
 
@@ -40,11 +38,13 @@ export const Container = styled.div`
   
   .imagePlate {
     width: 9.2rem;
+    margin: .8rem 2.4rem 0;
   }
 
   .nameButton h3 {
     font-family: 'Poppins', sans-serif;
     font-size: 1.4rem;
+    white-space: nowrap;
     color: ${({ theme }) => theme.colors.light200};
   }
 

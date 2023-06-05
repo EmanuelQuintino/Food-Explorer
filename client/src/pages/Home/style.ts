@@ -12,7 +12,9 @@ export const Container = styled.section`
     }
         
     .plates {
+      width: 100%;
       display: flex;
+      align-items: center;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       margin-top: .8rem;
