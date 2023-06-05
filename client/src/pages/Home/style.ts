@@ -2,17 +2,20 @@ import styled from "styled-components"
 
 export const Container = styled.section`  
   .ContainerBoxPlates {
-    margin: 1.2rem 0;
+    width: 100%;
+    margin: 1.2rem auto;
+    padding: 0 2.4rem;
     
+    h2 {
+      font-size: 1.8rem;
+      font-weight: 500;
+      font-family: 'Poppins', sans-serif;
+    }
+
     .boxPlates {
       position: relative;
       width: 100%;
-      
-      h2 {
-        font-size: 1.8rem;
-        font-weight: 500;
-        font-family: 'Poppins', sans-serif;
-      }
+      margin-top: 1.2rem;
       
       .plates {
         display: flex;
@@ -24,49 +27,49 @@ export const Container = styled.section`
       
       .plates::-webkit-scrollbar {
         display: none;
-      }
-      
-      .shadowBox {
+      }      
+        
+      .shadowPrev {
         height: 100%;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+        width: 15%;
+        background: ${({ theme }) => theme.colors.gradient100};
         position: absolute;
         top: 0;
-        
-        .shadowPrev {
-          height: 100%;
-          width: 10%;
-          background: ${({ theme }) => theme.colors.gradient100};
-        }
-        
-        .shadowNext {
-          height: 100%;
-          width: 10%;
-          background: ${({ theme }) => theme.colors.gradient001};
-        }
       }
       
-      .boxButtonCarousel {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+      .shadowNext {
+        height: 100%;
+        width: 10%;
+        background: ${({ theme }) => theme.colors.gradient001};
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+
+      .buttonPrev {
         position: absolute;
         top: 40%;
+        left: 0;
+      }
+
+      .buttonNext {
+        position: absolute;
+        top: 40%;
+        right: 0;
+      }
+              
+      .buttonPrev svg,
+      .buttonNext svg {
+        width: 3.0rem;
+        height: 3.0rem;
         
-        svg {
-          width: 3.0rem;
-          height: 3.0rem;
-          
-          path {
-            fill: ${({ theme }) => theme.colors.light400};
-          }
+        path {
+          fill: ${({ theme }) => theme.colors.light400};
         }
       }
         
-      svg:hover {        
+      .buttonPrev svg:hover,
+      .buttonNext svg:hover {        
         path {
           fill: ${({ theme }) => theme.colors.light100};
         }
@@ -77,7 +80,7 @@ export const Container = styled.section`
   @media (min-width: 640px) {    
     .ContainerBoxPlates {
       width: 85%;
-      margin: 2.4rem auto;
+      margin: 2.4rem 10%;
       
       h2 {
         font-size: 2.4rem;
