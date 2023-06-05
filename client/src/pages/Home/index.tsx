@@ -11,24 +11,43 @@ export function Home() {
   const { menuActive, foodPlateWidth } = useSystem();
   const plateQuery = usePlateQuery();
   const userData = useQueryUser();
-  const carouselMeals = useRef(null);
+
+  const carouselMeals: React.RefObject<HTMLDivElement> = useRef(null);
+  const carouselDesserts: React.RefObject<HTMLDivElement> = useRef(null);
+  const carouselDrinks: React.RefObject<HTMLDivElement> = useRef(null);
 
   const arrayMeals = plateQuery.data?.filter(plate => plate.category == "Refeições");
   const arrayDesserts = plateQuery.data?.filter(plate => plate.category == "Sobremesas");
   const arrayDrinks = plateQuery.data?.filter(plate => plate.category == "Bebidas");
 
-  function handlePrevCarousel(event: React.MouseEvent<HTMLButtonElement>) {
+  function handlePrevCarouselMeals(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
-    console.log(event.target.id);
-    console.log(carouselMeals.current.offsetWidth);
-    carouselMeals.current.scrollLeft -= foodPlateWidth;
+    if (carouselMeals.current) carouselMeals.current.scrollLeft -= foodPlateWidth;
   };
 
-  function handleNextCarousel(event: React.MouseEvent<HTMLButtonElement>) {
+  function handleNextCarouselMeals(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
-    console.log(event.target.id);
-    console.log(carouselMeals.current.offsetWidth);
-    carouselMeals.current.scrollLeft += foodPlateWidth;
+    if (carouselMeals.current) carouselMeals.current.scrollLeft += foodPlateWidth;
+  };
+
+  function handlePrevCarouselDesserts(event: React.MouseEvent<HTMLButtonElement>) {
+    event.preventDefault();
+    if (carouselDesserts.current) carouselDesserts.current.scrollLeft -= foodPlateWidth;
+  };
+
+  function handleNextCarouselDesserts(event: React.MouseEvent<HTMLButtonElement>) {
+    event.preventDefault();
+    if (carouselDesserts.current) carouselDesserts.current.scrollLeft += foodPlateWidth;
+  };
+
+  function handlePrevCarouselDrinks(event: React.MouseEvent<HTMLButtonElement>) {
+    event.preventDefault();
+    if (carouselDrinks.current) carouselDrinks.current.scrollLeft -= foodPlateWidth;
+  };
+
+  function handleNextCarouselDrinks(event: React.MouseEvent<HTMLButtonElement>) {
+    event.preventDefault();
+    if (carouselDrinks.current) carouselDrinks.current.scrollLeft += foodPlateWidth;
   };
 
   return (
@@ -58,8 +77,8 @@ export function Home() {
                         )
                       })}
                     </div>
-                    <button id="buttonPrevMeals" onClick={handlePrevCarousel}>Prev</button>
-                    <button id="buttonNextMeals" onClick={handleNextCarousel}>Next</button>
+                    <button onClick={handlePrevCarouselMeals}>Prev</button>
+                    <button onClick={handleNextCarouselMeals}>Next</button>
                   </>
                 }
               </section>
@@ -68,7 +87,7 @@ export function Home() {
                 {arrayDesserts && arrayDesserts.length > 0 &&
                   <>
                     <h2>Sobremesas</h2>
-                    <div className="plates">
+                    <div className="plates" ref={carouselDesserts}>
                       {arrayDesserts.map(plate => {
                         return (
                           <FoodPlate
@@ -79,6 +98,8 @@ export function Home() {
                         )
                       })}
                     </div>
+                    <button onClick={handlePrevCarouselDesserts}>Prev</button>
+                    <button onClick={handleNextCarouselDesserts}>Next</button>
                   </>
                 }
               </section>
@@ -87,7 +108,7 @@ export function Home() {
                 {arrayDrinks && arrayDrinks.length > 0 &&
                   <>
                     <h2>Bebidas</h2>
-                    <div className="plates">
+                    <div className="plates" ref={carouselDrinks}>
                       {arrayDrinks.map(plate => {
                         return (
                           <FoodPlate
@@ -98,6 +119,8 @@ export function Home() {
                         )
                       })}
                     </div>
+                    <button onClick={handlePrevCarouselDrinks}>Prev</button>
+                    <button onClick={handleNextCarouselDrinks}>Next</button>
                   </>
                 }
               </section>
