@@ -64,36 +64,37 @@ export function Home() {
           {plateQuery?.data && plateQuery.data.length === 0 ?
             <p className="messageEmptyList">Lista de pratos vazia</p> :
             <>
-              <section className="boxPlates">
+              <section className="ContainerBoxPlates">
                 {arrayMeals && arrayMeals.length > 0 &&
                   <>
                     <h2>Refeições</h2>
-                    <div className="plates" ref={carouselMeals}>
-                      {arrayMeals.map(plate => {
-                        return (
-                          <FoodPlate
-                            key={plate.id}
-                            plate={plate}
-                            isFavorite={userData.data?.favorites.map(plate => plate.plate_id).includes(plate.id)}
-                          />
-                        )
-                      })}
-                    </div>
+                    <div className="boxPlates">
+                      <div className="plates" ref={carouselMeals}>
+                        {arrayMeals.map(plate => {
+                          return (
+                            <FoodPlate
+                              key={plate.id}
+                              plate={plate}
+                              isFavorite={userData.data?.favorites.map(plate => plate.plate_id).includes(plate.id)}
+                            />
+                          )
+                        })}
+                      </div>
 
-                    <div className="shadowBox">
-                      <div className="shadowPrev"></div>
-                      <div className="shadowNext"></div>
-                    </div>
+                      <div className="shadowBox">
+                        <div className="shadowPrev"></div>
+                        <div className="shadowNext"></div>
+                      </div>
 
-                    <div className="boxButtonCarousel">
-                      <button onClick={handlePrevCarouselMeals}>
-                        <PreviousIcon />
-                      </button>
-                      <button onClick={handleNextCarouselMeals}>
-                        <NextIcon />
-                      </button>
+                      <div className="boxButtonCarousel">
+                        <button onClick={handlePrevCarouselMeals}>
+                          <PreviousIcon />
+                        </button>
+                        <button onClick={handleNextCarouselMeals}>
+                          <NextIcon />
+                        </button>
+                      </div>
                     </div>
-                    
                   </>
                 }
               </section>

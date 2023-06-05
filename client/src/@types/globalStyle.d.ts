@@ -15,6 +15,7 @@ declare module 'styled-components' {
       dark800: string,
       dark900: string,
       gradient100: string,
+      gradient001: string,
       gradient200: string,
       light100: string,
       light200: string,
