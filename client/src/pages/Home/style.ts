@@ -3,7 +3,6 @@ import styled from "styled-components"
 export const Container = styled.section`  
   .boxPlates {
     margin: 1.2rem 0;
-    padding: 0 0 0 2.4rem;
   
     h2 {
       font-size: 1.8rem;
@@ -36,7 +35,7 @@ export const Container = styled.section`
 
   @media (min-width: 960px) {    
     .boxPlates {
-      width: 80%;
+      width: 77%;
     }
   }
 `;
