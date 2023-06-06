@@ -83,7 +83,7 @@ export const Container = styled.section`
         
     .ContainerBoxPlates {
       width: 85%;
-      margin: 2.4rem 9.5%;
+      margin: 2.4rem 9.25%;
       
       h2 {
         font-size: 2.4rem;

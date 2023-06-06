@@ -3,16 +3,19 @@ import { SearchIcon } from "../../assets/SearchIcon"
 import { useSystem } from "../../hooks/useSystem";
 import { usePlateQuery } from "../../hooks/usePlateQuery";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export function InputSearchPlate() {
   const { menuActive, toggleMenu, setFilterFoodPlates } = useSystem();
   const [searchPlates, setSearchPlates] = useState("");
   const plateQuery = usePlateQuery();
+  const navigate = useNavigate();
 
   const filterPlates = plateQuery.data?.filter((plate) => {
+    const ingredientsName = plate.ingredients.map(ingredient => ingredient.name);
     return (
       String(plate.name).toLowerCase().includes(searchPlates.toLowerCase()) ||
-      plate.category.toLowerCase().includes(searchPlates.toLowerCase())
+      String(ingredientsName).toLowerCase().includes(searchPlates.toLowerCase())
     );
   });
 
@@ -23,6 +26,8 @@ export function InputSearchPlate() {
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     menuActive ? toggleMenu() : "";
+    if (location.pathname === "/") return;
+    navigate('/');
   };
 
   return (
