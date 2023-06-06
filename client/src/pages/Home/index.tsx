@@ -21,21 +21,21 @@ export function Home() {
   const userData = useQueryUser();
   const plateQuery = usePlateQuery();
 
-  useEffect(() => {
-    if (plateQuery.data) setFilterFoodPlates(filterFoodPlates.length === 0 ? plateQuery.data : filterFoodPlates);
-  }, [plateQuery.data]);
-
   const carouselMeals: React.RefObject<HTMLDivElement> = useRef(null);
   const carouselDesserts: React.RefObject<HTMLDivElement> = useRef(null);
   const carouselDrinks: React.RefObject<HTMLDivElement> = useRef(null);
-  const platesRef = useRef<HTMLDivElement>(null);
+  const platesRefToScroll = useRef<HTMLDivElement>(null);
 
   if (scrollToPlates) {
-    if (platesRef.current) {
-      platesRef.current.scrollIntoView();
+    if (platesRefToScroll.current) {
+      platesRefToScroll.current.scrollIntoView();
       setScrollToPlates(false);
     };
   };
+
+  useEffect(() => {
+    if (plateQuery.data) setFilterFoodPlates(filterFoodPlates.length === 0 ? plateQuery.data : filterFoodPlates);
+  }, [plateQuery.data]);
 
   const arrayMeals = filterFoodPlates.filter(plate => plate.category === "Refeições");
   const arrayDesserts = filterFoodPlates.filter(plate => plate.category === "Sobremesas");
@@ -77,7 +77,7 @@ export function Home() {
         <>
           <LogoHome />
 
-          <span ref={platesRef}></span>
+          <span ref={platesRefToScroll}></span>
 
           {plateQuery.isLoading || userData.isLoading ? <p><ImSpinner2 className="spinner" /></p> : null}
           {plateQuery.error || userData.error ? <p className="queryError">Algo deu errado!</p> : null}
