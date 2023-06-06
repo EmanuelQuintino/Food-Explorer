@@ -53,6 +53,10 @@ export function EditPlate() {
   const plateData = data?.find(plate => plate.id == params.id);
 
   useEffect(() => {
+    window.scrollTo({ top: 0 });
+  }, []);
+
+  useEffect(() => {
     if (plateData) {
       setPlateDataForm({
         name: plateData.name,

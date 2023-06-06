@@ -33,6 +33,10 @@ export function NewPlate() {
   const { menuActive } = useSystem();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    window.scrollTo({ top: 0 });
+  }, []);
+
   const { control, register, handleSubmit, formState: { errors }, watch, setError, reset } = useForm<PlateDataTypes>();
 
   const { fields, append, remove } = useFieldArray({
