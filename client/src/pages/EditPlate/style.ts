@@ -1,10 +1,6 @@
 import styled from "styled-components"
 
 export const Container = styled.section`
-  form {
-    position: relative;
-  }
-
   form section {
     position: relative;
   }
