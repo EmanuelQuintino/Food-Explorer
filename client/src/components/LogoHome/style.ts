@@ -37,6 +37,22 @@ export const Container = styled.div`
     }
   }
 
+  @media (min-width: 590px) {    
+    .slogan {
+      width: 50%;
+      top: 35%;
+      left: 42%;
+      
+      h2 {
+        font-size: 2.4rem;
+      }
+      
+      p {
+        font-size: 1.4rem;
+      }
+    }
+  }
+
   @media (min-width: 640px) {
     .box {
       padding: 2.4rem;
@@ -56,21 +72,50 @@ export const Container = styled.div`
     
     .slogan {
       width: auto;
-      top: 37%;
-      left: 50%;
+      top: 35%;
+      left: 42%;
       
       h2 {
-        font-size: 3.6rem;
+        font-size: 2.8rem;
       }
       
       p {
-        font-size: 1.4rem;
+        font-size: 1.6rem;
+      }
+    }
+  }
+
+  @media (min-width: 745px) {
+    .slogan {
+      width: 50%;
+      top: 35%;
+      left: 42%;
+      
+      h2 {
+        font-size: 2.8rem;
+      }
+      
+      p {
+        font-size: 1.6rem;
       }
     }
   }
 
   @media (min-width: 810px) {    
     .slogan {
+      h2 {
+        font-size: 3.6rem;
+      }
+      
+      p {
+        font-size: 1.6rem;
+      }
+    }
+  }
+
+  @media (min-width: 970px) {    
+    .slogan {
+      left: 50%;
       h2 {
         font-size: 4.2rem;
       }
