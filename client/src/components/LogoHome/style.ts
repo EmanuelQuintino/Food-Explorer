@@ -2,8 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   .box {
-    margin-top: 4%;
-    padding: 2.4rem;
+    padding: 2.4rem 0;
     position: relative;
   }
   
@@ -15,17 +14,17 @@ export const Container = styled.div`
 
   .macaronLogo {
     position: absolute;
-    width: 19.0rem;
-    height: 14.9rem;
-    left: .2rem;
+    width: 17.0rem;
+    height: 14.2rem;
+    left: -1.2rem;
     bottom: 2.75rem;
   }
   
   .slogan {
-    width: 50%;
+    width: 60%;
     position: absolute;
-    bottom: 4.8rem;
-    right: 1.2rem;
+    bottom: 5.6rem;
+    right: -2.0rem;
     
     h2 {
       color: ${({ theme }) => theme.colors.light300};
@@ -51,7 +50,7 @@ export const Container = styled.div`
     }
 
     .macaronLogo {
-      width: 40%;
+      width: 42%;
       height: auto;
     }
     

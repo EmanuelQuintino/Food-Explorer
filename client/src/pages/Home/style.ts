@@ -1,10 +1,11 @@
 import styled from "styled-components"
 
-export const Container = styled.section`  
+export const Container = styled.section`
+  margin-top: 3%;
+
   .ContainerBoxPlates {
     width: 100%;
     margin: 1.2rem auto;
-    padding: 0 2.4rem;
     
     h2 {
       font-size: 1.8rem;
@@ -77,7 +78,9 @@ export const Container = styled.section`
     }
   }
 
-  @media (min-width: 640px) {    
+  @media (min-width: 640px) {
+    margin-top: 5%;
+        
     .ContainerBoxPlates {
       width: 85%;
       margin: 2.4rem 8.5%;

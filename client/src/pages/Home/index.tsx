@@ -6,7 +6,7 @@ import { ImSpinner2 } from "react-icons/im";
 import { usePlateQuery } from "../../hooks/usePlateQuery";
 import { useQueryUser } from "../../hooks/useQueryUser";
 import { useRef } from "react";
-import { NextIcon } from "../../assets/nextIcon";
+import { NextIcon } from "../../assets/NextIcon";
 import { PreviousIcon } from "../../assets/PreviousIcon";
 
 export function Home() {
