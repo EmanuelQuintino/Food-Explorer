@@ -16,6 +16,7 @@ export const Container = styled.section`
   }
   
   .orderTotalPrice {
+    margin-top: 2.8rem;
     font-family: 'Poppins';
     font-weight: 500;
     font-size: 1.8rem;
