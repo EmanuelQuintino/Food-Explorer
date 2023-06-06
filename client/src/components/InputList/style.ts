@@ -28,6 +28,8 @@ export const Container = styled.section<SectionTypes>`
   }
   
   button {
+    display: flex;
+    align-items: center;
     border: none;
     background: none;
     color: ${({ theme, isNew }) => isNew ? theme.colors.light500 : theme.colors.light300};

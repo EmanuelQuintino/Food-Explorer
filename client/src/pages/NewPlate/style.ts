@@ -17,7 +17,7 @@ export const Container = styled.section`
     flex-wrap: wrap;
     width: 100%;
     border-radius: .8rem;
-    padding: .6rem;
+    padding: .8rem;
     background: ${({ theme }) => theme.colors.dark800};
   }
 
