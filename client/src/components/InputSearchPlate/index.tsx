@@ -2,14 +2,12 @@ import { Container } from "./style";
 import { SearchIcon } from "../../assets/SearchIcon"
 import { useSystem } from "../../hooks/useSystem";
 import { usePlateQuery } from "../../hooks/usePlateQuery";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export function InputSearchPlate() {
-  const { menuActive, toggleMenu } = useSystem();
-  const plateQuery = usePlateQuery();
+  const { menuActive, toggleMenu, setFilterFoodPlates } = useSystem();
   const [searchPlates, setSearchPlates] = useState("");
-
-  plateQuery.data?.filter(plate => plate.category == "Refeições");
+  const plateQuery = usePlateQuery();
 
   const filterPlates = plateQuery.data?.filter((plate) => {
     return (
@@ -18,14 +16,15 @@ export function InputSearchPlate() {
     );
   });
 
+  useEffect(() => {
+    if (filterPlates) setFilterFoodPlates(filterPlates);
+  }, [searchPlates]);
+
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     menuActive ? toggleMenu() : "";
-    console.log(searchPlates);
   };
 
-  console.log(searchPlates);
-  
   return (
     <Container>
       <form onSubmit={handleSubmit}>

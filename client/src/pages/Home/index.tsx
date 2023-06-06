@@ -3,24 +3,28 @@ import { LogoHome } from "../../components/LogoHome"
 import { FoodPlate } from "../../components/FoodPlate"
 import { useSystem } from "../../hooks/useSystem"
 import { ImSpinner2 } from "react-icons/im";
-import { usePlateQuery } from "../../hooks/usePlateQuery";
 import { useQueryUser } from "../../hooks/useQueryUser";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { NextIcon } from "../../assets/NextIcon";
 import { PreviousIcon } from "../../assets/PreviousIcon";
+import { usePlateQuery } from "../../hooks/usePlateQuery";
 
 export function Home() {
-  const { menuActive, foodPlateWidth, windowWidth } = useSystem();
-  const plateQuery = usePlateQuery();
+  const { menuActive, foodPlateWidth, windowWidth, filterFoodPlates, setFilterFoodPlates } = useSystem();
   const userData = useQueryUser();
+  const plateQuery = usePlateQuery();
+
+  useEffect(() => {
+    if (plateQuery.data) setFilterFoodPlates(filterFoodPlates.length === 0 ? plateQuery.data : filterFoodPlates);
+  }, [plateQuery.data]);
 
   const carouselMeals: React.RefObject<HTMLDivElement> = useRef(null);
   const carouselDesserts: React.RefObject<HTMLDivElement> = useRef(null);
   const carouselDrinks: React.RefObject<HTMLDivElement> = useRef(null);
 
-  const arrayMeals = plateQuery.data?.filter(plate => plate.category == "Refeições");
-  const arrayDesserts = plateQuery.data?.filter(plate => plate.category == "Sobremesas");
-  const arrayDrinks = plateQuery.data?.filter(plate => plate.category == "Bebidas");
+  const arrayMeals = filterFoodPlates.filter(plate => plate.category === "Refeições");
+  const arrayDesserts = filterFoodPlates.filter(plate => plate.category === "Sobremesas");
+  const arrayDrinks = filterFoodPlates.filter(plate => plate.category === "Bebidas");
 
   function handlePrevCarouselMeals(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
@@ -61,7 +65,7 @@ export function Home() {
           {plateQuery.isLoading || userData.isLoading ? <p><ImSpinner2 className="spinner" /></p> : null}
           {plateQuery.error || userData.error ? <p className="queryError">Algo deu errado!</p> : null}
 
-          {plateQuery?.data && plateQuery.data.length === 0 ?
+          {filterFoodPlates && filterFoodPlates.length === 0 ?
             <p className="messageEmptyList">Lista de pratos vazia</p> :
             <>
               <section className="ContainerBoxPlates">
@@ -104,7 +108,7 @@ export function Home() {
               <section className="ContainerBoxPlates">
                 {arrayDesserts && arrayDesserts.length > 0 &&
                   <>
-                    <h2>Refeições</h2>
+                    <h2>Sobremesas</h2>
                     <div className="boxPlates">
                       <div className="plates" ref={carouselDesserts}>
                         {arrayDesserts.map(plate => {
@@ -141,7 +145,7 @@ export function Home() {
               <section className="ContainerBoxPlates">
                 {arrayDrinks && arrayDrinks.length > 0 &&
                   <>
-                    <h2>Refeições</h2>
+                    <h2>Bebidas</h2>
                     <div className="boxPlates">
                       <div className="plates" ref={carouselDrinks}>
                         {arrayDrinks.map(plate => {

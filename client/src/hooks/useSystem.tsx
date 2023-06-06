@@ -1,9 +1,24 @@
 import { PropsWithChildren, createContext, useState, useContext } from "react";
 
+type IngredientsType = {
+  id: string;
+  name: string;
+};
+
+type FoodPlates = {
+  id: string;
+  name: string;
+  description: string;
+  price: string;
+  category: string;
+  image: string;
+  ingredients: IngredientsType[]
+}[];
+
 type PlateOrdersTypes = {
   id: string;
   amount: number;
-}
+};
 
 type SystemContextType = {
   toggleMenu: () => void;
@@ -20,7 +35,9 @@ type SystemContextType = {
   setWindowWidth: React.Dispatch<React.SetStateAction<number>>;
   foodPlateWidth: number;
   setFoodPlateWidth: React.Dispatch<React.SetStateAction<number>>;
-}
+  filterFoodPlates: FoodPlates;
+  setFilterFoodPlates: React.Dispatch<React.SetStateAction<FoodPlates>>;
+};
 
 const SystemContext = createContext<SystemContextType>({} as SystemContextType);
 
@@ -31,6 +48,7 @@ export function SystemProvider({ children }: PropsWithChildren) {
   const [isPaymentConfirm, setIsPaymentConfirm] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [foodPlateWidth, setFoodPlateWidth] = useState(0);
+  const [filterFoodPlates, setFilterFoodPlates] = useState<FoodPlates>([]);
 
   const toggleMenu = () => setMenuActive(menuActive ? false : true);
 
@@ -56,12 +74,12 @@ export function SystemProvider({ children }: PropsWithChildren) {
       const newUserOrder = {
         userID: userOrder.userID,
         plates: userOrder.plates.filter((plate: PlateOrdersTypes) => plate.id !== plateID)
-      }
+      };
 
       localStorage.setItem("@FoodExplorer:order", JSON.stringify(newUserOrder));
       updateOrderTotal(newUserOrder.userID)
-    }
-  }
+    };
+  };
 
   return (
     <SystemContext.Provider value={{
@@ -72,7 +90,8 @@ export function SystemProvider({ children }: PropsWithChildren) {
       isWaitPayment, setIsWaitPayment,
       isPaymentConfirm, setIsPaymentConfirm,
       windowWidth, setWindowWidth,
-      foodPlateWidth, setFoodPlateWidth
+      foodPlateWidth, setFoodPlateWidth,
+      filterFoodPlates, setFilterFoodPlates
     }}>
       {children}
     </SystemContext.Provider>
