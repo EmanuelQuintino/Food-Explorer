@@ -55,7 +55,6 @@ export const HeaderContainer = styled.header`
     }
   }
 
-
   .orderContainer {
     position: relative;
     
@@ -65,7 +64,8 @@ export const HeaderContainer = styled.header`
     }
 
     button {
-      padding: 2.4rem;
+      height: 4.6rem;
+      padding: 0 2.4rem;
       font-size: 1.2rem;
       white-space: nowrap;
     }
