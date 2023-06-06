@@ -113,15 +113,16 @@ export const Container = styled.div`
     }
   }
 
-  @media (min-width: 970px) {    
+  @media (min-width: 1100px) {    
     .slogan {
       left: 50%;
+
       h2 {
         font-size: 4.2rem;
       }
       
       p {
-        font-size: 1.6rem;
+        font-size: 1.8rem;
       }
     }
   }
