@@ -10,7 +10,14 @@ import { PreviousIcon } from "../../assets/PreviousIcon";
 import { usePlateQuery } from "../../hooks/usePlateQuery";
 
 export function Home() {
-  const { menuActive, foodPlateWidth, windowWidth, filterFoodPlates, setFilterFoodPlates } = useSystem();
+  const {
+    menuActive,
+    foodPlateWidth,
+    windowWidth,
+    filterFoodPlates, setFilterFoodPlates,
+    scrollToPlates, setScrollToPlates
+  } = useSystem();
+
   const userData = useQueryUser();
   const plateQuery = usePlateQuery();
 
@@ -21,6 +28,14 @@ export function Home() {
   const carouselMeals: React.RefObject<HTMLDivElement> = useRef(null);
   const carouselDesserts: React.RefObject<HTMLDivElement> = useRef(null);
   const carouselDrinks: React.RefObject<HTMLDivElement> = useRef(null);
+  const platesRef = useRef<HTMLDivElement>(null);
+
+  if (scrollToPlates) {
+    if (platesRef.current) {
+      platesRef.current.scrollIntoView();
+      setScrollToPlates(false);
+    };
+  };
 
   const arrayMeals = filterFoodPlates.filter(plate => plate.category === "Refeições");
   const arrayDesserts = filterFoodPlates.filter(plate => plate.category === "Sobremesas");
@@ -61,6 +76,8 @@ export function Home() {
       {!menuActive &&
         <>
           <LogoHome />
+
+          <span ref={platesRef}></span>
 
           {plateQuery.isLoading || userData.isLoading ? <p><ImSpinner2 className="spinner" /></p> : null}
           {plateQuery.error || userData.error ? <p className="queryError">Algo deu errado!</p> : null}

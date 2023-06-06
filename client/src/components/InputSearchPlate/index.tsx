@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export function InputSearchPlate() {
-  const { menuActive, toggleMenu, setFilterFoodPlates } = useSystem();
+  const { menuActive, toggleMenu, setFilterFoodPlates, setScrollToPlates } = useSystem();
   const [searchPlates, setSearchPlates] = useState("");
   const plateQuery = usePlateQuery();
   const navigate = useNavigate();
@@ -26,6 +26,7 @@ export function InputSearchPlate() {
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     menuActive ? toggleMenu() : "";
+    setScrollToPlates(true);
     if (location.pathname === "/") return;
     navigate('/');
   };
