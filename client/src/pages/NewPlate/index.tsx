@@ -81,52 +81,58 @@ export function NewPlate() {
 
           <form onSubmit={handleSubmit(onSubmitCreatePlate)} id="formCreatePlate">
             <div className="formPart1">
-              <InputFile
-                id="uploadImagePlate"
-                label="Imagem do prato"
-                placeholder={inputFileName ? inputFileName : "Selecione imagem"}
-                icon={UploadIcon}
-                onChange={(event) => setInputFileName(event.target.files[0].name)}
-                error={errors.image?.message}
-                register={register("image", {
-                  required: "Campo obrigatório",
-                  maxLength: { value: 255, message: "Número máximo de caracteres é 255" },
-                  validate: {
-                    fileFormat: (file) => /\.(jpg|jpeg|png|gif)$/i.test(file[0].name) || "Permitido somente tipo imagem",
-                    fileCount: (file) => file.length === 1 || "Por favor adicionar apenas uma imagem",
-                    fileSize: (file) => file[0].size <= 2 * 2 ** 20 || "O tamanho máximo permitido é de 2MB",
-                  }
-                })}
-              />
+              <section>
+                <InputFile
+                  id="uploadImagePlate"
+                  label="Imagem do prato"
+                  placeholder={inputFileName ? inputFileName : "Selecione imagem"}
+                  icon={UploadIcon}
+                  onChange={(event) => setInputFileName(event.target.files[0].name)}
+                  error={errors.image?.message}
+                  register={register("image", {
+                    required: "Campo obrigatório",
+                    maxLength: { value: 255, message: "Número máximo de caracteres é 255" },
+                    validate: {
+                      fileFormat: (file) => /\.(jpg|jpeg|png|gif)$/i.test(file[0].name) || "Permitido somente tipo imagem",
+                      fileCount: (file) => file.length === 1 || "Por favor adicionar apenas uma imagem",
+                      fileSize: (file) => file[0].size <= 2 * 2 ** 20 || "O tamanho máximo permitido é de 2MB",
+                    }
+                  })}
+                />
+              </section>
 
-              <Input
-                id="name"
-                label="Nome"
-                type="text"
-                placeholder="Ex.: Salada Ceasar"
-                error={errors.name?.message}
-                register={register("name", {
-                  required: "Campo obrigatório",
-                  pattern: { value: /^[^0-9]+$/, message: "Somente texto é permitido" },
-                  maxLength: { value: 255, message: "Número máximo de caracteres é 255" }
-                })}
-              />
+              <section>
+                <Input
+                  id="name"
+                  label="Nome"
+                  type="text"
+                  placeholder="Ex.: Salada Ceasar"
+                  error={errors.name?.message}
+                  register={register("name", {
+                    required: "Campo obrigatório",
+                    pattern: { value: /^[^0-9]+$/, message: "Somente texto é permitido" },
+                    maxLength: { value: 255, message: "Número máximo de caracteres é 255" }
+                  })}
+                />
+              </section>
 
-              <Select
-                id="category"
-                label="Categoria"
-                options={["Refeições", "Sobremesas", "Bebidas"]}
-                error={errors.category?.message}
-                register={register("category", {
-                  required: "Campo obrigatório",
-                  pattern: { value: /^(Refeições|Sobremesas|Bebidas)$/, message: "Somente uma das opções é permitido" },
-                  maxLength: { value: 255, message: "Número máximo de caracteres é 255" }
-                })}
-              />
+              <section>
+                <Select
+                  id="category"
+                  label="Categoria"
+                  options={["Refeições", "Sobremesas", "Bebidas"]}
+                  error={errors.category?.message}
+                  register={register("category", {
+                    required: "Campo obrigatório",
+                    pattern: { value: /^(Refeições|Sobremesas|Bebidas)$/, message: "Somente uma das opções é permitido" },
+                    maxLength: { value: 255, message: "Número máximo de caracteres é 255" }
+                  })}
+                />
+              </section>
             </div>
 
             <div className="formPart2">
-              <article className="containerIngredients">
+              <section className="containerIngredients">
                 <label htmlFor="boxIngredients">Ingredientes</label>
                 <div id="boxIngredients">
                   {fields?.map((ingredient, index) => (
@@ -151,34 +157,38 @@ export function NewPlate() {
                     <span className='inputError'>{errors.ingredients.message}</span>
                   )
                 }
-              </article>
+              </section>
 
-              <Input
-                id="price"
-                label="Preço"
-                type="text"
-                placeholder="R$ 0,00"
-                value={price}
-                onChange={(event) => handleFormatPrice(event.target.value)}
-                error={errors.price?.message}
-                register={register("price", {
+              <section>
+                <Input
+                  id="price"
+                  label="Preço"
+                  type="text"
+                  placeholder="R$ 0,00"
+                  value={price}
+                  onChange={(event) => handleFormatPrice(event.target.value)}
+                  error={errors.price?.message}
+                  register={register("price", {
+                    required: "Campo obrigatório",
+                    pattern: { value: /^R\$\s[0-9]+([.][0-9]+)?([,][0-9]+)?$/, message: "Insira um valor válido. Ex: R$ 10,25" },
+                    maxLength: { value: 255, message: "Número máximo de caracteres é 255" }
+                  })}
+                />
+              </section>
+            </div>
+
+            <section>
+              <Textarea
+                id="description"
+                label="Descrição"
+                placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
+                error={errors.description?.message}
+                register={register("description", {
                   required: "Campo obrigatório",
-                  pattern: { value: /^R\$\s[0-9]+([.][0-9]+)?([,][0-9]+)?$/, message: "Insira um valor válido. Ex: R$ 10,25" },
                   maxLength: { value: 255, message: "Número máximo de caracteres é 255" }
                 })}
               />
-            </div>
-
-            <Textarea
-              id="description"
-              label="Descrição"
-              placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
-              error={errors.description?.message}
-              register={register("description", {
-                required: "Campo obrigatório",
-                maxLength: { value: 255, message: "Número máximo de caracteres é 255" }
-              })}
-            />
+            </section>
           </form>
 
           <div className="formButtons">

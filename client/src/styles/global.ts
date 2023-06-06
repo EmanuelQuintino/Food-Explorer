@@ -65,7 +65,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   .inputError {
-    color: orange;
+    color: ${({ theme }) => theme.colors.carrot100};
     display: block;
     position: absolute;
     font-size: 1.0rem;
@@ -111,5 +111,11 @@ export const GlobalStyles = createGlobalStyle`
     color: ${({ theme }) => theme.colors.light500};
     display: grid;
     place-content: center;
+  }
+
+  @media (min-width: 640px) {
+    .inputError {
+      font-size: 1.2rem;
+    }
   }
 `;
