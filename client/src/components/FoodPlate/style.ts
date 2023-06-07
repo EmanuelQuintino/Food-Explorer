@@ -36,10 +36,17 @@ export const Container = styled.div`
     }
   }
 
-  .imagePlate {
+  .boxImagePlate {
     width: 9.2rem;
-    height: auto;
+    height: 9.2rem;
     margin: .8rem 2.4rem 0;
+    display: grid;
+    place-content: center;
+  }
+  
+  .imagePlate {
+    width: 100%;
+    height: 100%;
   }
   
   .nameButton h3 {
@@ -63,9 +70,9 @@ export const Container = styled.div`
     height: 46.2rem;
     gap: 1.6rem;
     
-    .imagePlate {
+    .boxImagePlate {
       width: 17.6rem;
-      margin-top: -5.6rem;
+      height: 17.6rem;
     }
 
     .nameButton h3 {
