@@ -80,7 +80,9 @@ export function FoodPlate({ plate, isFavorite = false }: FoodPlateType) {
         )
       }
 
-      <img src={imageURL} alt="image-plate" className="imagePlate" />
+      <div className="boxImagePlate">
+        <img src={imageURL} alt="image-plate" className="imagePlate" />
+      </div>
 
       <button className="nameButton">
         <h3 onClick={goToPlateDetails}>{plate.name} &gt;</h3>
