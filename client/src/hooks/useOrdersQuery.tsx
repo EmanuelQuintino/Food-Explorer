@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { API } from "../services/api";
 import { useAuth } from "./useAuth";
+import { useSystem } from "./useSystem";
 
 type OrderPlatesTypes = {
   order_id: string;
@@ -22,7 +23,12 @@ type UserOrdersTypes = {
 
 export const useOrdersQuery = () => {
   const { userAuth } = useAuth();
-  const URI = `/orders${userAuth.isAdmin ? "/index" : ""}`
+  const { searchOrder } = useSystem();
+
+  const URI = userAuth.isAdmin ?
+    `/orders/index?search=${searchOrder}` :
+    `/orders?search=${searchOrder}`;
+
   const query = useQuery({
     queryKey: ['userOrders'],
     queryFn: async () => await API.get(URI) as UserOrdersTypes

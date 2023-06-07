@@ -39,6 +39,8 @@ type SystemContextType = {
   setFilterFoodPlates: React.Dispatch<React.SetStateAction<FoodPlates>>;
   scrollToPlates: boolean;
   setScrollToPlates: React.Dispatch<React.SetStateAction<boolean>>;
+  searchOrder: String;
+  setSearchOrder: React.Dispatch<React.SetStateAction<string>>
 };
 
 const SystemContext = createContext<SystemContextType>({} as SystemContextType);
@@ -52,6 +54,7 @@ export function SystemProvider({ children }: PropsWithChildren) {
   const [foodPlateWidth, setFoodPlateWidth] = useState(0);
   const [filterFoodPlates, setFilterFoodPlates] = useState<FoodPlates>([]);
   const [scrollToPlates, setScrollToPlates] = useState(false);
+  const [searchOrder, setSearchOrder] = useState("");
 
   const toggleMenu = () => setMenuActive(menuActive ? false : true);
 
@@ -96,6 +99,7 @@ export function SystemProvider({ children }: PropsWithChildren) {
       foodPlateWidth, setFoodPlateWidth,
       filterFoodPlates, setFilterFoodPlates,
       scrollToPlates, setScrollToPlates,
+      searchOrder, setSearchOrder,
     }}>
       {children}
     </SystemContext.Provider>
