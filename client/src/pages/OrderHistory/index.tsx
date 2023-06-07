@@ -9,12 +9,28 @@ import { SearchIcon } from "../../assets/SearchIcon";
 import { TableRowHistoryOrders } from "../../components/TableRowHistoryOrders";
 import { useEffect, useState } from "react";
 
+type OrderPlatesTypes = {
+  order_id: string;
+  plate_id: string;
+  amount: number;
+  price: number;
+};
+
+type UserOrdersTypes = {
+  id: string;
+  status: string;
+  code: number;
+  user_id: string;
+  order_plates: OrderPlatesTypes[]
+  created_at: string;
+};
+
 export function OrderHistory() {
   const { menuActive, windowWidth, searchOrder, setSearchOrder } = useSystem();
+  const [filterOrders, setFilterOrders] = useState<UserOrdersTypes[]>();
   const ordersQuery = useOrdersQuery();
   const plateQuery = usePlateQuery();
   const navigate = useNavigate();
-  const [filterOrders, setFilterOrders] = useState([]);
 
   const newOrdersDataPlateName = ordersQuery.data?.map(order => {
     return {
@@ -42,7 +58,7 @@ export function OrderHistory() {
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setSearchOrder(event.target.inputSearch.value);
+    setSearchOrder(event.currentTarget.inputSearch.value);
   };
 
   return (
