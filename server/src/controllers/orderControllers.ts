@@ -89,11 +89,28 @@ export const orderControllers = {
       const id = req.userID;
       if (!id) throw newAppError("Por favor insirar o ID do usuário", 400);
 
-      const orders = await prisma.orders.findMany({
-        include: { order_plates: true },
-        orderBy: { code: 'desc' }
-      });
-      return res.status(200).json(orders);
+      const { search } = req.query;
+
+      if (search) {
+        const orders = await prisma.orders.findMany({
+          include: { order_plates: true },
+          orderBy: { code: 'desc' },
+          where: {
+            OR: [
+              { code: { equals: Number(search) || undefined } },
+              { status: { contains: String(search) || undefined } },
+            ],
+          },
+        });
+        return res.status(200).json(orders);
+      } else {
+        const orders = await prisma.orders.findMany({
+          include: { order_plates: true },
+          orderBy: { code: 'desc' },
+          take: 30,
+        });
+        return res.status(200).json(orders);
+      };
     } catch (error: any) {
       if (error.code === "P2021") return res.status(500).json("Tabela não encontrada");
       return next(error);
@@ -103,6 +120,7 @@ export const orderControllers = {
   read: async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { id } = req.query;
+      const { search } = req.query;
       const userID = req.userID;
 
       if (!userID) throw newAppError("Por favor insirar o ID do usuário", 400);
@@ -120,12 +138,28 @@ export const orderControllers = {
 
         return res.status(200).json(order);
       } else {
-        const orders = await prisma.orders.findMany({
-          where: { user_id: userID },
-          include: { order_plates: true },
-          orderBy: { code: 'desc' }
-        });
-        return res.status(200).json(orders);
+        if (search) {
+          const orders = await prisma.orders.findMany({
+            include: { order_plates: true },
+            orderBy: { code: 'desc' },
+            where: {
+              user_id: userID,
+              OR: [
+                { code: { equals: Number(search) || undefined } },
+                { status: { contains: String(search) || undefined } },
+              ],
+            },
+          });
+          return res.status(200).json(orders);
+        } else {
+          const orders = await prisma.orders.findMany({
+            where: { user_id: userID },
+            include: { order_plates: true },
+            orderBy: { code: 'desc' },
+            take: 3,
+          });
+          return res.status(200).json(orders);
+        }
       };
     } catch (error: any) {
       if (error.code === "P2021") return res.status(500).json("Tabela não encontrada");
