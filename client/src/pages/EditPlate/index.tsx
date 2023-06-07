@@ -123,12 +123,6 @@ export function EditPlate() {
     };
   };
 
-  const onSubmitUpdatePlate = (data: PlateDataTypes) => mutate({
-    ...data,
-    id: plateData.id,
-    category: plateDataForm.category
-  });
-
   const onDeletePlate = async () => {
     const confirmDelete = confirm("Deseja excluir prato?")
     if (confirmDelete) {
@@ -140,6 +134,16 @@ export function EditPlate() {
         .catch((error) => toast.error(error.response.data.error || "Erro ao excluir prato"));
     };
   };
+
+  useEffect(() => {
+    if (isSuccess) navigate("/");
+  }, [isSuccess]);
+
+  const onSubmitUpdatePlate = (data: PlateDataTypes) => mutate({
+    ...data,
+    id: plateData.id,
+    category: plateDataForm.category
+  });
 
   return (
     <Container>

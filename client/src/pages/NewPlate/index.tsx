@@ -2,7 +2,7 @@ import { Container } from "./style";
 import { useSystem } from "../../hooks/useSystem";
 import { usePlateCreate } from "../../hooks/usePlateCreate";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { InputFile } from "../../components/InputFile";
 import { Input } from "../../components/Input";
@@ -68,6 +68,10 @@ export function NewPlate() {
       return setPrice("");
     }
   }
+
+  useEffect(() => {
+    if (isSuccess) navigate("/");
+  }, [isSuccess]);
 
   const onSubmitCreatePlate = (data: PlateDataTypes) => mutate(data);
 
