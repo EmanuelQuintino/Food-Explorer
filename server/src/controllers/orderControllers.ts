@@ -156,7 +156,7 @@ export const orderControllers = {
             where: { user_id: userID },
             include: { order_plates: true },
             orderBy: { code: 'desc' },
-            take: 3,
+            take: 30,
           });
           return res.status(200).json(orders);
         }

@@ -6,15 +6,15 @@ import { useOrdersQuery } from "../../hooks/useOrdersQuery";
 import { CardHistoryOrderPlate } from "../../components/CardHistoryOrderPlate";
 import { usePlateQuery } from "../../hooks/usePlateQuery";
 import { SearchIcon } from "../../assets/SearchIcon";
-import { useState } from "react";
 import { TableRowHistoryOrders } from "../../components/TableRowHistoryOrders";
+import { useEffect, useState } from "react";
 
 export function OrderHistory() {
-  const { menuActive, windowWidth } = useSystem();
+  const { menuActive, windowWidth, searchOrder, setSearchOrder } = useSystem();
   const ordersQuery = useOrdersQuery();
   const plateQuery = usePlateQuery();
-  const [searchOrders, setSearchOrders] = useState("");
   const navigate = useNavigate();
+  const [filterOrders, setFilterOrders] = useState([]);
 
   const newOrdersDataPlateName = ordersQuery.data?.map(order => {
     return {
@@ -26,12 +26,24 @@ export function OrderHistory() {
     };
   });
 
-  const filterOrders = newOrdersDataPlateName?.filter((order) => {
+  const filterNewOrdersDataPlateName = newOrdersDataPlateName?.filter((order) => {
     return (
-      String(order.code).toLowerCase().includes(searchOrders.toLowerCase()) ||
-      order.status.toLowerCase().includes(searchOrders.toLowerCase())
+      String(order.code).toLowerCase().includes(searchOrder.toLowerCase()) ||
+      order.status.toLowerCase().includes(searchOrder.toLowerCase())
     );
   });
+
+  useEffect(() => {
+    if (ordersQuery.data && filterNewOrdersDataPlateName) {
+      setFilterOrders(filterNewOrdersDataPlateName)
+      ordersQuery.refetchOrdersQuery();
+    };
+  }, [ordersQuery?.data, searchOrder]);
+
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setSearchOrder(event.target.inputSearch.value);
+  };
 
   return (
     <Container>
@@ -41,7 +53,7 @@ export function OrderHistory() {
 
           <h2 className="pageTitle">Histórico de Pedidos</h2>
 
-          <form className="inputSearchForm" onSubmit={(event) => event.preventDefault()}>
+          <form className="inputSearchForm" onSubmit={handleSubmit}>
             <label htmlFor="inputSearch" className="srOnly">Input Search</label>
             <SearchIcon />
             <input
@@ -49,7 +61,7 @@ export function OrderHistory() {
               name="inputSearch"
               id="inputSearch"
               placeholder="Buscar por código ou status"
-              onChange={(event) => setSearchOrders(event.target.value)}
+              onChange={(event) => event.target.value.length === 0 ? setSearchOrder(event.target.value) : null}
             />
           </form>
 
@@ -58,7 +70,7 @@ export function OrderHistory() {
 
           <article className="OrdersContainer">
             {ordersQuery.data && ordersQuery.data.length == 0 ?
-              <p className="messageEmpty">Sem histórico de pedidos</p> :
+              <p className="messageEmptyList">Sem histórico de pedidos</p> :
               windowWidth < 680 ?
                 filterOrders?.map(order => {
                   return (
