@@ -23,6 +23,10 @@ export const Container = styled.section`
       align-items: center;
       gap: 1.2rem;
       white-space: nowrap;
+      
+      :hover {
+        cursor: pointer;
+      }
 
       > svg {
         width: 2.0rem;
