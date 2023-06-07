@@ -21,8 +21,10 @@ export const Container = styled.section`
       .plates {
         display: flex;
         align-items: center;
+        gap: .8rem;
         overflow-x: auto;
         scroll-snap-type: x mandatory;
+        padding-right: 7.2rem;
       }
       
       .plates::-webkit-scrollbar {
