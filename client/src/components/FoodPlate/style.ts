@@ -11,7 +11,7 @@ export const Container = styled.div`
   justify-content: center;
   gap: 1.2rem;
   position: relative;
-  scroll-snap-align: start;
+  scroll-snap-align: center;
 
   .editIcon, .favoriteIcon, .FavoriteIconMatch {
     position: absolute;

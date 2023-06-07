@@ -24,7 +24,6 @@ export const Container = styled.section`
         gap: .8rem;
         overflow-x: auto;
         scroll-snap-type: x mandatory;
-        padding-right: 7.2rem;
       }
       
       .plates::-webkit-scrollbar {
@@ -33,7 +32,7 @@ export const Container = styled.section`
         
       .shadowPrev {
         height: 100%;
-        width: 15%;
+        width: 10%;
         background: ${({ theme }) => theme.colors.gradient100};
         position: absolute;
         top: 0;
@@ -88,6 +87,12 @@ export const Container = styled.section`
       
       h2 {
         font-size: 2.4rem;
+      }
+
+      .boxPlates{
+        .plates {
+          padding: 0 7.2rem 0 5.6rem;
+        }
       }
     }
   }
