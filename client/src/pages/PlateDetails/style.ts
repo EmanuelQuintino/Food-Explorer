@@ -5,9 +5,8 @@ export const Container = styled.section`
   
   .plateContainer {
     text-align: center;
-    margin-top: 1.2rem;
-    max-width: 42.0rem;
-    margin: 0 auto;
+    max-width: 28.0rem;
+    margin: 1.0rem auto 0;
   }
 
   .imagePlate {
@@ -89,20 +88,20 @@ export const Container = styled.section`
     }
 
     .imagePlate {
-      width: 31.0rem;
+      width: 24.0rem;
     }
 
     .plateContainerPart2 {
-      width: 64.0rem;
+      width: 48.0rem;
       text-align: left;
     }
 
     .namePlateButton {
-      font-size: 3.6rem;
+      font-size: 3.2rem;
     }
 
     .description {
-      font-size: 2.0rem;
+      font-size: 1.8rem;
     }
 
     .ingredients {
@@ -139,6 +138,23 @@ export const Container = styled.section`
   @media(min-width: 840px) { 
     .plateContainer {
       max-width: 90%;
+    }
+
+    .imagePlate {
+      width: 31.0rem;
+    }
+
+    .plateContainerPart2 {
+      width: 64.0rem;
+      text-align: left;
+    }
+
+    .namePlateButton {
+      font-size: 3.6rem;
+    }
+
+    .description {
+      font-size: 2.0rem;
     }
   }
 
