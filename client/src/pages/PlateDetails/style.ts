@@ -87,7 +87,6 @@ export const Container = styled.section`
 
     .imagePlate {
       width: 31.0rem;
-      border-radius: 100%;
     }
 
     .plateContainerPart2 {

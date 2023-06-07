@@ -36,24 +36,12 @@ export const Container = styled.div`
     }
   }
 
-  .boxImagePlate {
+  .imagePlate {
     width: 9.2rem;
-    height: 9.2rem;
-    border-radius: 100%;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height: auto;
     margin: .8rem 2.4rem 0;
   }
   
-  .imagePlate {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    object-position: center;
-  }
-
   .nameButton h3 {
     font-family: 'Poppins', sans-serif;
     font-size: 1.4rem;
@@ -75,9 +63,8 @@ export const Container = styled.div`
     height: 46.2rem;
     gap: 1.6rem;
     
-    .boxImagePlate {
+    .imagePlate {
       width: 17.6rem;
-      height: 17.6rem;
       margin-top: -5.6rem;
     }
 
