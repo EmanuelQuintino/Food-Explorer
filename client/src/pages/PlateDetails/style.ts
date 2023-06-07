@@ -6,6 +6,8 @@ export const Container = styled.section`
   .plateContainer {
     text-align: center;
     margin-top: 1.2rem;
+    max-width: 42.0rem;
+    margin: 0 auto;
   }
 
   .imagePlate {
@@ -82,7 +84,8 @@ export const Container = styled.section`
       align-items: center;
       justify-content: center;
       gap: 3.2rem;
-      margin-top: 2.0rem;
+      max-width: 100%;
+      margin: 2.0rem auto 0;
     }
 
     .imagePlate {
@@ -106,8 +109,12 @@ export const Container = styled.section`
       justify-content: flex-start;
     }
 
-    .containerCountOrderPlate {
+    .boxCountOrderPlate {
+      display: flex;
       place-content: flex-start;
+    }
+
+    .containerCountOrderPlate {
       margin-top: 3.6rem;
     }
     
@@ -128,4 +135,17 @@ export const Container = styled.section`
       font-size: 1.4rem;
     }
   }
+
+  @media(min-width: 840px) { 
+    .plateContainer {
+      max-width: 90%;
+    }
+  }
+
+  @media(min-width: 1040px) { 
+    .plateContainer {
+      max-width: 80%;
+    }
+  }
+
 `;

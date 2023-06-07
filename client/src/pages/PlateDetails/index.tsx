@@ -52,7 +52,7 @@ export function PlateDetails() {
                   <Button name={"Editar prato"} onClick={pageUpdatePlate} />
                 </section>
                 :
-                <section className="box">
+                <section className="boxCountOrderPlate">
                   <CountOrderPlate
                     plate={{ id: plateData.id, name: plateData.name, price: plateData.price }}
                     iconButton={OrderIcon}
