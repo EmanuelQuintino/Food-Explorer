@@ -95,6 +95,10 @@ export const Container = styled.section`
   @media (min-width: 960px) {    
     .ContainerBoxPlates {
       width: 80%;
+
+      h2 {
+        font-size: 2.6rem;
+      }
     }
   }
 `;
