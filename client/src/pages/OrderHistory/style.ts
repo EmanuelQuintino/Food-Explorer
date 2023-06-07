@@ -47,7 +47,7 @@ export const Container = styled.section`
       padding: 2.4rem;
       font-family: 'Roboto';
       font-weight: 400;
-      font-size: 1.4rem;
+      font-size: 1.6rem;
       color: ${({ theme }) => theme.colors.light200};
       border-right: .1rem solid ${({ theme }) => theme.colors.dark1000};
     }

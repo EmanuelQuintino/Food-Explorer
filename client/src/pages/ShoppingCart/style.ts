@@ -16,7 +16,7 @@ export const Container = styled.section`
   }
   
   .orderTotalPrice {
-    margin-top: 2.8rem;
+    margin-top: 2.4rem;
     font-family: 'Poppins';
     font-weight: 500;
     font-size: 1.8rem;
@@ -36,6 +36,11 @@ export const Container = styled.section`
 
     .orderContainer {
       width: 54.0rem;
+    }
+
+    .orderTotalPrice {
+      font-size: 2.8rem;
+      color: ${({ theme }) => theme.colors.light300};
     }
   }
 `;  

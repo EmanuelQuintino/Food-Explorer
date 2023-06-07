@@ -66,8 +66,8 @@ export const Container = styled.div`
   }
 
   @media (min-width: 640px) {    
-    width: 30.4rem;
-    height: 46.2rem;
+    width: 32.0rem;
+    height: 46.0rem;
     gap: 1.6rem;
     
     .boxImagePlate {

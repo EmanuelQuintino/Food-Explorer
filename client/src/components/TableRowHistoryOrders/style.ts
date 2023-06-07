@@ -5,7 +5,7 @@ type ContainerProps = {
 };
 
 export const Container = styled.tr<ContainerProps>`  
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   color: ${({ theme }) => theme.colors.light400};
 
   &:hover {
