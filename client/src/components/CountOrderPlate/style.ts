@@ -53,5 +53,11 @@ export const Container = styled.div`
       width: 9.2rem;
       font-size: 1.2rem;
     }
+
+    @media (min-width: 640px) {
+     .boxButton > button {
+        font-size: 1.4rem;
+      } 
+    }
   }
 `;
