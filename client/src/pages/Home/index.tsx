@@ -26,12 +26,12 @@ export function Home() {
   const carouselDrinks: React.RefObject<HTMLDivElement> = useRef(null);
   const platesRefToScroll = useRef<HTMLDivElement>(null);
 
-  if (scrollToPlates) {
-    if (platesRefToScroll.current) {
+  useEffect(() => {
+    if (scrollToPlates && platesRefToScroll.current) {
       platesRefToScroll.current.scrollIntoView();
       setScrollToPlates(false);
-    };
-  };
+    }
+  }, [scrollToPlates]);
 
   useEffect(() => {
     if (plateQuery.data) setFilterFoodPlates(filterFoodPlates.length === 0 ? plateQuery.data : filterFoodPlates);
