@@ -51,13 +51,13 @@ export function NewPlate() {
 
     if (newIngredient.length > 255) {
       return setError('ingredients', { message: 'Ingrediente excediu número de 255 caracteres' });
-    }
+    };
 
     if (newIngredient.length > 0 && newIngredient.length <= 255) {
       append({ name: newIngredient });
       setNewIngredient("");
-    }
-  }
+    };
+  };
 
   function handleFormatPrice(value: string) {
     if (value != "R$ 0,0") {
@@ -66,11 +66,16 @@ export function NewPlate() {
       return setPrice(formatted);
     } else {
       return setPrice("");
-    }
-  }
+    };
+  };
 
   useEffect(() => {
-    if (isSuccess) navigate("/");
+    if (isSuccess) {
+      reset();
+      setInputFileName("");
+      reset({ ingredients: [] });
+      setPrice("");
+    };
   }, [isSuccess]);
 
   const onSubmitCreatePlate = (data: PlateDataTypes) => mutate(data);
