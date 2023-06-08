@@ -34,14 +34,14 @@ export const plateControllers = {
       const arrayIngredients = JSON.parse(ingredients);
       if (arrayIngredients.length == 0) throw newAppError("Por favor inserir ingredientes", 400);
 
-      const imageFileName = req.file?.filename;
-      if (!imageFileName) throw newAppError("Por favor insirar imagem", 400);
+      const imageFile = req.file;
+      if (!imageFile) throw newAppError("Por favor insirir uma imagem PNG ou JPG", 400);
 
-      await diskStorage.saveFile(imageFileName);
+      await diskStorage.saveFile(imageFile.filename);
 
       await prisma.plates.create({
         data: {
-          name, description, price: Number(price.replace(",", ".")), category, image: imageFileName,
+          name, description, price: Number(price.replace(",", ".")), category, image: imageFile.filename,
           ingredients: {
             create: arrayIngredients.map((ingredient: string) => ({ name: ingredient }))
           }
