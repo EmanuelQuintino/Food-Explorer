@@ -172,8 +172,13 @@ export const plateControllers = {
       const { id } = req.params;
       if (!id) throw newAppError("Por favor insirar o ID do Prato", 400);
 
-      const imageFileName = req.file?.filename;
-      if (!imageFileName) throw newAppError("Por favor insirar imagem", 400);
+      const imageFile = req.file;
+      if (!imageFile) throw newAppError("Por favor insirar imagem", 400);
+
+      const isImage = ["image/png", "image/jpg", "image/jpeg"].find(type => type === imageFile?.mimetype);
+      if (!isImage) throw newAppError("Somente arquivos PNG e JPG são permitidos!", 400);
+
+      const imageFileName = imageFile.filename;
 
       const plate = await prisma.plates.findUnique({ where: { id: String(id) } });
       if (!plate) throw newAppError('Prato não encontrado', 404);
