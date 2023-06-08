@@ -45,7 +45,7 @@ export function EditPlate() {
   });
 
   const { mutate, isSuccess } = usePlateUpdate();
-  const { menuActive } = useSystem();
+  const { menuActive, setInputSearchPlatesValue } = useSystem();
   const navigate = useNavigate();
   const params = useParams();
 
@@ -130,13 +130,17 @@ export function EditPlate() {
         .then((response) => {
           toast.success(response.data || "Prato excluído com sucesso");
           navigate("/");
+          setInputSearchPlatesValue("");
         })
         .catch((error) => toast.error(error.response.data.error || "Erro ao excluir prato"));
     };
   };
 
   useEffect(() => {
-    if (isSuccess) navigate("/");
+    if (isSuccess) {
+      navigate("/");
+      setInputSearchPlatesValue("");
+    };
   }, [isSuccess]);
 
   const onSubmitUpdatePlate = (data: PlateDataTypes) => mutate({
