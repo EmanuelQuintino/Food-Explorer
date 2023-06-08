@@ -20,13 +20,19 @@ export function InputSearchPlate() {
   });
 
   useEffect(() => {
-    if (filterPlates) setFilterFoodPlates(filterPlates);
+    if (searchPlates.length === 0) {
+      if (filterPlates) setFilterFoodPlates(filterPlates);
+    };
   }, [searchPlates]);
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
+    if (filterPlates) setFilterFoodPlates(filterPlates);
+
     menuActive ? toggleMenu() : "";
     setScrollToPlates(true);
+
     if (location.pathname === "/") return;
     navigate('/');
   };
