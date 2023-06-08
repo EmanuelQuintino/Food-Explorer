@@ -88,8 +88,10 @@ export const Container = styled.section`
       h2 {
         font-size: 2.4rem;
       }
-
+      
       .boxPlates{
+        width: 100%;
+
         .plates {
           padding: 0 7.2rem 0 5.6rem;
         }
