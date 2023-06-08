@@ -23,13 +23,13 @@ export const Container = styled.section`
   .platePrice{
     font-family: 'Roboto';
     font-weight: 400;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     color: ${({ theme }) => theme.colors.light400};
   }
   
   .removeOrderPlate {
     margin-top: .8rem;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: 500;
     font-family: 'Roboto';
     color: ${({ theme }) => theme.colors.tomato400};

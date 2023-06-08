@@ -12,6 +12,7 @@ export const Container = styled.section`
   }
 
   .namePlateButton {
+    display: block;
     font-family: 'Poppins', sans-serif;
     font-size: 1.8rem;
     font-weight: 500;
@@ -20,7 +21,7 @@ export const Container = styled.section`
   }
 
   .removeFavoriteButton {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-family: 'Roboto';
     color: ${({ theme }) => theme.colors.tomato400};
   }
