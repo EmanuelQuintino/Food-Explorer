@@ -14,7 +14,7 @@ export function Home() {
     menuActive,
     foodPlateWidth,
     windowWidth,
-    filterFoodPlates, setFilterFoodPlates,
+    filterFoodPlates,
     scrollToPlates, setScrollToPlates
   } = useSystem();
 
@@ -32,10 +32,6 @@ export function Home() {
       setScrollToPlates(false);
     }
   }, [scrollToPlates]);
-
-  useEffect(() => {
-    if (plateQuery.data) setFilterFoodPlates(plateQuery.data);
-  }, [plateQuery.data]);
 
   const arrayMeals = filterFoodPlates.filter(plate => plate.category === "Refeições");
   const arrayDesserts = filterFoodPlates.filter(plate => plate.category === "Sobremesas");
