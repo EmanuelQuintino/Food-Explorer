@@ -193,6 +193,7 @@ export const plateControllers = {
 
       return res.status(200).json('Upload de imagem com sucesso');
     } catch (error: any) {
+      await diskStorage.deleteTempFile(req.file?.filename as string);
       return next(error);
     };
   },
