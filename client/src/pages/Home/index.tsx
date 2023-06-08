@@ -34,7 +34,7 @@ export function Home() {
   }, [scrollToPlates]);
 
   useEffect(() => {
-    if (plateQuery.data) setFilterFoodPlates(filterFoodPlates.length === 0 ? plateQuery.data : filterFoodPlates);
+    if (plateQuery.data) setFilterFoodPlates(plateQuery.data);
   }, [plateQuery.data]);
 
   const arrayMeals = filterFoodPlates.filter(plate => plate.category === "Refeições");
