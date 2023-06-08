@@ -112,7 +112,15 @@ export const plateControllers = {
       const arrayIngredients = JSON.parse(ingredients);
       if (arrayIngredients.length == 0) throw newAppError("Por favor inserir ingredientes", 400);
 
-      const imageFileName = req.file?.filename;
+      const imageFile = req.file;
+
+      if (imageFile) {
+        const isImage = ["image/png", "image/jpg", "image/jpeg"].find(type => type === imageFile?.mimetype);
+        if (!isImage) throw newAppError("Somente arquivos PNG e JPG são permitidos!", 400);
+      };
+
+      const imageFileName = imageFile?.filename;
+
       if (imageFileName) {
         await diskStorage.deleteFile(plate.image as string);
         await diskStorage.saveFile(imageFileName);
