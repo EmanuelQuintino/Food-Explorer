@@ -1,39 +1,32 @@
 # Food Explorer
 
-O Food Explorer é um menu interativo para um restaurante fictício. Esta aplicação web foi desenvolvida como parte do desafio proposto no curso Explorer, utilizando as tecnologias aprendidas durante o curso.
+Food Explorer é uma aplicação de menu interativo para as vendas de um restaurante. Ela permite que os usuários visualizem os pratos disponíveis, obtenham informações detalhadas sobre cada um deles e realizem seus pedidos. O administrador com acesso a recursos adicionais, como a capacidade de adicionar, editar e excluir pratos do menu, pode gerenciar os pedidos individualmente a atualizar o status em "Pendente", "Preparando" e "Entregue".
 
 ![Food Explorer](link_para_a_imagem)
 
 ## Funcionalidades
+- Autenticação: Os usuários devem se autenticar para acessar a aplicação. A autenticação é feita através de um sistema de login usando JWT (JSON Web Tokens).
+- Busca de Pratos: Tanto o usuário quanto o admin podem realizar buscas pelo nome do prato ou pelos ingredientes.
+- Visuaçização de pedidos em tabela com opção de busca por código ou status.
 
 ### Admin
 
-- Autenticação de administração utilizando JWT.
-- Cadastro, visualização, edição e exclusão de pratos.
-- Cada prato possui imagem, nome, categoria, descrição, ingredientes e preço.
-- Feedback de sucesso ao adicionar um prato.
+- Cadastro de Pratos: Fornecer nome, categoria, descrição, ingredientes, preço e upload de imagem.
+- Gerenciar pratos: O Admin pode editar os dados e excluir cada prato.
 
 ### Usuário
 
 - Visualização de todos os pratos cadastrados.
-- Busca por nome do prato ou ingredientes.
-- Visualização detalhada de um prato ao clicar nele.
 - Adição de pratos ao carrinho.
 - Controle da quantidade de itens no carrinho.
 - Exclusão de pratos do carrinho.
 - Marcação de pratos como favoritos.
 - Visualização do pedido, soma total e métodos de pagamento.
 
-### Outras Funcionalidades Opcionais
-
-- Alternar entre os modos light e dark.
-- Controle de status dos pedidos pelo admin.
-
 ## Tecnologias Utilizadas
 
-- Front-end: HTML, CSS, JavaScript
-- Back-end: [Nome do Framework ou Tecnologia]
-- Banco de Dados: [Nome do Banco de Dados]
+- Front-end: React.js, Tanstack React-Query, Axios, styled-components;
+- Back-end: Node.js, Express, JSON Web Token (JWT), Prisma, Typescript;
 
 ## Como Executar o Projeto
 
@@ -46,8 +39,3 @@ O Food Explorer é um menu interativo para um restaurante fictício. Esta aplica
 - [Demonstração Online](link_da_demo)
 - [Repositório do Front-end](link_do_repositorio_frontend)
 - [Repositório do Back-end](link_do_repositorio_backend)
-
-## Autores
-
-- [Nome do Autor 1](link_do_perfil_no_github)
-- [Nome do Autor 2](link_do_perfil_no_github)
