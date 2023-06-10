@@ -87,7 +87,7 @@ export const orderControllers = {
   index: async (req: Request, res: Response, next: NextFunction) => {
     try {
       const id = req.userID;
-      if (!id) throw newAppError("Por favor insirar o ID do usuário", 400);
+      if (!id) throw newAppError("Por favor inserir o ID do usuário", 400);
 
       const { search } = req.query;
 
@@ -123,7 +123,7 @@ export const orderControllers = {
       const { search } = req.query;
       const userID = req.userID;
 
-      if (!userID) throw newAppError("Por favor insirar o ID do usuário", 400);
+      if (!userID) throw newAppError("Por favor inserir o ID do usuário", 400);
 
       const user = await prisma.users.findUnique({ where: { id: String(userID) } });
       if (!user) throw newAppError('Usuário não encontrado', 404);
@@ -179,7 +179,7 @@ export const orderControllers = {
       const { id } = req.params;
       const { status } = userSchema.parse(req.body);
 
-      if (!id) throw newAppError("Por favor insirar o ID do pedido", 400);
+      if (!id) throw newAppError("Por favor inserir o ID do pedido", 400);
 
       const order = await prisma.orders.findUnique({ where: { id: String(id) } });
       if (!order) throw newAppError('Pedido não encontrado', 404);
@@ -199,7 +199,7 @@ export const orderControllers = {
   delete: async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { id } = req.params;
-      if (!id) throw newAppError("Por favor insirar o ID do pedido", 400);
+      if (!id) throw newAppError("Por favor inserir o ID do pedido", 400);
 
       const order = await prisma.orders.findUnique({ where: { id: String(id) } });
       if (!order) throw newAppError('Pedido não encontrado', 404);

@@ -101,7 +101,7 @@ export const plateControllers = {
       const { name, description, price, category, ingredients } = plateSchema.parse(req.body);
 
       const { id } = req.params;
-      if (!id) throw newAppError("Por favor insirar o ID do Prato", 400);
+      if (!id) throw newAppError("Por favor inserir o ID do Prato", 400);
 
       const plate = await prisma.plates.findUnique({ where: { id: String(id) } });
       if (!plate) throw newAppError('Prato não encontrado', 404);
@@ -152,7 +152,7 @@ export const plateControllers = {
   delete: async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { id } = req.params;
-      if (!id) throw newAppError("Por favor insirar o ID do Prato", 400);
+      if (!id) throw newAppError("Por favor inserir o ID do Prato", 400);
 
       const plate = await prisma.plates.findUnique({ where: { id: String(id) } });
       if (!plate) throw newAppError('Prato não encontrado', 404);
@@ -170,10 +170,10 @@ export const plateControllers = {
   patch: async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { id } = req.params;
-      if (!id) throw newAppError("Por favor insirar o ID do Prato", 400);
+      if (!id) throw newAppError("Por favor inserir o ID do Prato", 400);
 
       const imageFile = req.file;
-      if (!imageFile) throw newAppError("Por favor insirar imagem", 400);
+      if (!imageFile) throw newAppError("Por favor inserir imagem", 400);
 
       const isImage = ["image/png", "image/jpg", "image/jpeg"].find(type => type === imageFile?.mimetype);
       if (!isImage) throw newAppError("Somente arquivos PNG e JPG são permitidos!", 400);

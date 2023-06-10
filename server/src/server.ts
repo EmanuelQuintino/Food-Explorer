@@ -22,5 +22,5 @@ app.use(pageNotFoundError);
 app.use(appError);
 
 prisma.$connect()
-  .then(() => console.log("Database is connected.."))
+  .then(() => console.log("Database is connected..."))
   .catch((error) => console.error(error));

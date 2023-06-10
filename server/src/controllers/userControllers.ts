@@ -38,7 +38,7 @@ export const userControllers = {
   index: async (req: Request, res: Response, next: NextFunction) => {
     try {
       const id = req.userID;
-      if (!id) throw newAppError("Por favor insirar o ID do usuário", 400);
+      if (!id) throw newAppError("Por favor inserir o ID do usuário", 400);
 
       const users = await prisma.users.findMany({
         include: {
@@ -65,7 +65,7 @@ export const userControllers = {
   read: async (req: Request, res: Response, next: NextFunction) => {
     try {
       const id = req.userID;
-      if (!id) throw newAppError("Por favor insirar o ID do usuário", 400);
+      if (!id) throw newAppError("Por favor inserir o ID do usuário", 400);
 
       const user = await prisma.users.findUnique({
         where: { id: String(id) },
@@ -133,7 +133,7 @@ export const userControllers = {
   delete: async (req: Request, res: Response, next: NextFunction) => {
     try {
       const id = req.userID;
-      if (!id) throw newAppError("Por favor insirar o ID do usuário", 400);
+      if (!id) throw newAppError("Por favor inserir o ID do usuário", 400);
 
       const user = await prisma.users.findUnique({ where: { id: String(id) } });
       if (!user) throw newAppError('Usuário não encontrado', 404);

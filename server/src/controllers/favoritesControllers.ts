@@ -8,7 +8,7 @@ export const favoritesControllers = {
       const userID = req.userID;
       const { plateID } = req.params;
 
-      if (!userID) throw newAppError("Por favor insirar o ID do usuário", 400);
+      if (!userID) throw newAppError("Por favor inserir o ID do usuário", 400);
 
       const user = await prisma.users.findUnique({ where: { id: String(userID) } });
       if (!user) throw newAppError('Usuário não encontrado', 404);
@@ -42,7 +42,7 @@ export const favoritesControllers = {
       const userID = req.userID;
       const { plateID } = req.params;
 
-      if (!userID) throw newAppError("Por favor insirar o ID do usuário", 400);
+      if (!userID) throw newAppError("Por favor inserir o ID do usuário", 400);
 
       const user = await prisma.users.findUnique({ where: { id: String(userID) } });
       if (!user) throw newAppError('Usuário não encontrado', 404);
