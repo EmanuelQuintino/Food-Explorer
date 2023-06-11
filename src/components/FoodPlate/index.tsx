@@ -23,7 +23,7 @@ type FoodPlateType = {
 };
 
 export function FoodPlate({ plate, isFavorite = false }: FoodPlateType) {
-  const [favoriteMatch, setFavoriteMatch] = useState(isFavorite);
+  const [isfavoriteMatch, setIsfavoriteMatch] = useState(isFavorite);
   const { userAuth } = useAuth();
   const navigate = useNavigate();
   const { refetchQueryUser } = useQueryUser();
@@ -39,27 +39,29 @@ export function FoodPlate({ plate, isFavorite = false }: FoodPlateType) {
 
   async function toFavorite(): Promise<void> {
     try {
-      await API.post(`/favorites/${plate.id}`)
-      setFavoriteMatch(true)
+      setIsfavoriteMatch(true);
+      await API.post(`/favorites/${plate.id}`);
     } catch (error: any) {
-      toast.error(error.response?.data?.error || "Erro ao favoritar prato")
-    }
-  }
+      setIsfavoriteMatch(false);
+      toast.error(error.response.data.error || "Erro ao favoritar prato")
+    };
+  };
 
   async function unFavorite(): Promise<void> {
     try {
-      await API.delete(`/favorites/${plate.id}`)
-      setFavoriteMatch(false)
+      setIsfavoriteMatch(false)
+      await API.delete(`/favorites/${plate.id}`);
     } catch (error: any) {
+      setIsfavoriteMatch(true);
       toast.error(error.response.data.error || "Erro ao remover prato dos favoritos")
-    }
-  }
+    };
+  };
 
   useEffect(() => {
     if (foodPlateRef.current) {
       const width = foodPlateRef.current.offsetWidth;
       setFoodPlateWidth(width);
-    }
+    };
   }, [windowWidth]);
 
   const imageURL = `${API.defaults.baseURL}/images/${plate.image}`;
@@ -70,7 +72,7 @@ export function FoodPlate({ plate, isFavorite = false }: FoodPlateType) {
         ? <button onClick={goToPageEditPlate} className="editIcon">
           <EditIcon />
         </button>
-        : (favoriteMatch
+        : (isfavoriteMatch
           ? <button onClick={unFavorite} className={"FavoriteIconMatch"}>
             <FavoriteIconMatch />
           </button>
@@ -101,5 +103,5 @@ export function FoodPlate({ plate, isFavorite = false }: FoodPlateType) {
         </div>
       }
     </Container>
-  )
-}
+  );
+};

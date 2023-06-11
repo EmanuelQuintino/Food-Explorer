@@ -4,7 +4,7 @@ import { API } from "../services/api";
 type IngredientsType = {
   id: string;
   name: string;
-}
+};
 
 type FoodPlates = {
   data: {
@@ -16,7 +16,7 @@ type FoodPlates = {
     image: string;
     ingredients: IngredientsType[]
   }[];
-}
+};
 
 export const usePlateQuery = () => {
   const query = useQuery({
@@ -30,5 +30,5 @@ export const usePlateQuery = () => {
     ...query,
     data: query.data?.data,
     refetchPlateQuery
-  }
-} 
+  };
+};

@@ -4,12 +4,32 @@ import { FoodPlate } from "../../components/FoodPlate"
 import { useSystem } from "../../hooks/useSystem"
 import { ImSpinner2 } from "react-icons/im";
 import { useQueryUser } from "../../hooks/useQueryUser";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { NextIcon } from "../../assets/NextIcon";
 import { PreviousIcon } from "../../assets/PreviousIcon";
 import { usePlateQuery } from "../../hooks/usePlateQuery";
 
+type IngredientsType = {
+  id: string;
+  name: string;
+};
+
+type arrayFilterFavorites = {
+  isFavorite?: boolean;
+  id: string;
+  name: string;
+  description: string;
+  price: string;
+  category: string;
+  image: string;
+  ingredients: IngredientsType[];
+};
+
 export function Home() {
+  const [arrayMeals, setArrayMeals] = useState<arrayFilterFavorites[]>([]);
+  const [arrayDesserts, setArrayDesserts] = useState<arrayFilterFavorites[]>([]);
+  const [arrayDrinks, setArrayDrinks] = useState<arrayFilterFavorites[]>([]);
+
   const {
     menuActive,
     foodPlateWidth,
@@ -33,9 +53,24 @@ export function Home() {
     }
   }, [scrollToPlates]);
 
-  const arrayMeals = filterFoodPlates.filter(plate => plate.category === "Refeições");
-  const arrayDesserts = filterFoodPlates.filter(plate => plate.category === "Sobremesas");
-  const arrayDrinks = filterFoodPlates.filter(plate => plate.category === "Bebidas");
+  useEffect(() => {
+    if (userData.data && filterFoodPlates) {
+      const filterFoodPlatesWithFavorites = filterFoodPlates.map((plate) => {
+        const isFavorite = userData.data?.favorites?.some(
+          (favorite) => favorite.plate_id === plate.id
+        );
+        return { ...plate, isFavorite: isFavorite };
+      });
+
+      const filterDesserts = filterFoodPlatesWithFavorites.filter(plate => plate.category === "Sobremesas");
+      const filterDrinks = filterFoodPlatesWithFavorites.filter(plate => plate.category === "Bebidas");
+      const filterMeals = filterFoodPlatesWithFavorites.filter(plate => plate.category === "Refeições");
+
+      setArrayMeals(filterMeals);
+      setArrayDesserts(filterDesserts);
+      setArrayDrinks(filterDrinks);
+    };
+  }, [userData.data, filterFoodPlates]);
 
   function handlePrevCarouselMeals(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
@@ -78,7 +113,7 @@ export function Home() {
           {plateQuery.isLoading || userData.isLoading ? <p><ImSpinner2 className="spinner" /></p> : null}
           {plateQuery.error || userData.error ? <p className="queryError">Algo deu errado!</p> : null}
 
-          {userData.data && filterFoodPlates && filterFoodPlates.length === 0 ?
+          {filterFoodPlates && filterFoodPlates.length === 0 ?
             <p className="messageEmptyList">Lista de pratos vazia</p> :
             <>
               <section className="ContainerBoxPlates">
@@ -88,12 +123,11 @@ export function Home() {
                     <div className="boxPlates">
                       <div className="plates" ref={carouselMeals}>
                         {arrayMeals.map(plate => {
-                          const isFavorite = userData.data?.favorites.map(plate => plate.plate_id).includes(plate.id);
                           return (
                             <FoodPlate
                               key={plate.id}
                               plate={plate}
-                              isFavorite={isFavorite}
+                              isFavorite={plate.isFavorite}
                             />
                           )
                         })}
@@ -126,12 +160,11 @@ export function Home() {
                     <div className="boxPlates">
                       <div className="plates" ref={carouselDesserts}>
                         {arrayDesserts.map(plate => {
-                          const isFavorite = userData.data?.favorites.map(plate => plate.plate_id).includes(plate.id);
                           return (
                             <FoodPlate
                               key={plate.id}
                               plate={plate}
-                              isFavorite={isFavorite}
+                              isFavorite={plate.isFavorite}
                             />
                           )
                         })}
@@ -164,12 +197,11 @@ export function Home() {
                     <div className="boxPlates">
                       <div className="plates" ref={carouselDrinks}>
                         {arrayDrinks.map(plate => {
-                          const isFavorite = userData.data?.favorites.map(plate => plate.plate_id).includes(plate.id);
                           return (
                             <FoodPlate
                               key={plate.id}
                               plate={plate}
-                              isFavorite={isFavorite}
+                              isFavorite={plate.isFavorite}
                             />
                           )
                         })}
