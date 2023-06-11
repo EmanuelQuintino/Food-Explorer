@@ -11,6 +11,7 @@ import { Select } from "../../components/Select";
 import { Textarea } from "../../components/Textarea";
 import { InputList } from "../../components/InputList";
 import { UploadIcon } from "../../assets/UploadIcon";
+import { toast } from "react-toastify";
 
 type PlateDataTypes = {
   name: string;
@@ -28,7 +29,7 @@ export function NewPlate() {
   const [inputFileName, setInputFileName] = useState("");
   const [newIngredient, setNewIngredient] = useState("");
   const [price, setPrice] = useState("");
-  const { mutate, isSuccess } = usePlateCreate();
+  const { mutate, isSuccess, isLoading } = usePlateCreate();
 
   const { menuActive, setInputSearchPlatesValue } = useSystem();
   const navigate = useNavigate();
@@ -68,6 +69,10 @@ export function NewPlate() {
       return setPrice("");
     };
   };
+
+  useEffect(() => {
+    if (isLoading) toast.loading("Cadastrando prato...");
+  }, [isLoading]);
 
   useEffect(() => {
     if (isSuccess) {

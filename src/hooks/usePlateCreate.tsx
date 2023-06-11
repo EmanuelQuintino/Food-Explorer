@@ -33,8 +33,14 @@ async function createPlate(data: FoodPlates) {
   formData.append('description', plateData.description);
 
   await API.post("/plates", formData)
-    .then((response) => toast.success(response.data || "Prato cadastrado com sucesso"))
-    .catch((error) => toast.error(error.response.data.error || "Erro ao cadastrar prato"))
+    .then((response) => {
+      toast.dismiss();
+      // toast.success(response.data || "Prato cadastrado com sucesso");
+    })
+    .catch((error) => {
+      toast.dismiss();
+      toast.error(error.response.data.error || "Erro ao cadastrar prato")
+    });
 };
 
 export const usePlateCreate = () => {

@@ -44,7 +44,7 @@ export function EditPlate() {
     image: null,
   });
 
-  const { mutate, isSuccess } = usePlateUpdate();
+  const plateUpdate = usePlateUpdate();
   const { menuActive, setInputSearchPlatesValue } = useSystem();
   const navigate = useNavigate();
   const params = useParams();
@@ -137,13 +137,17 @@ export function EditPlate() {
   };
 
   useEffect(() => {
-    if (isSuccess) {
+    if (plateUpdate.isLoading) toast.loading("Atualizando prato...");
+  }, [plateUpdate.isLoading]);
+
+  useEffect(() => {
+    if (plateUpdate.isSuccess) {
       navigate("/");
       setInputSearchPlatesValue("");
     };
-  }, [isSuccess]);
+  }, [plateUpdate.isSuccess]);
 
-  const onSubmitUpdatePlate = (data: PlateDataTypes) => mutate({
+  const onSubmitUpdatePlate = (data: PlateDataTypes) => plateUpdate.mutate({
     ...data,
     id: plateData.id,
     category: plateDataForm.category

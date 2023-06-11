@@ -34,8 +34,14 @@ async function updatePlate(data: FoodPlates) {
   formData.append('description', plateData.description);
 
   await API.put(`/plates/${plateData.id}`, formData)
-    .then((response) => toast.success(response.data || "Prato atualizado com sucesso"))
-    .catch((error) => toast.error(error.response?.data?.error || "Erro ao atualizar prato"))
+    .then((response) => {
+      toast.dismiss();
+      // toast.success(response.data || "Prato atualizado com sucesso")
+    })
+    .catch((error) => {
+      toast.dismiss();
+      toast.error(error.response?.data?.error || "Erro ao atualizar prato")
+    });
 };
 
 export const usePlateUpdate = () => {
