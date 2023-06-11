@@ -18,7 +18,7 @@ export function App() {
   return (
     <Container>
       <header>
-        {windowWidth > 670 ? <HeaderDesktop /> : <HeaderMobile />}
+        {windowWidth > 960 ? <HeaderDesktop /> : <HeaderMobile />}
       </header>
 
       <main>
