@@ -30,7 +30,7 @@ export function NewPlate() {
   const [price, setPrice] = useState("");
   const { mutate, isSuccess } = usePlateCreate();
 
-  const { menuActive } = useSystem();
+  const { menuActive, setInputSearchPlatesValue } = useSystem();
   const navigate = useNavigate();
 
   const { control, register, handleSubmit, formState: { errors }, watch, setError, reset } = useForm<PlateDataTypes>();
@@ -71,10 +71,12 @@ export function NewPlate() {
 
   useEffect(() => {
     if (isSuccess) {
-      reset();
-      setInputFileName("");
-      reset({ ingredients: [] });
-      setPrice("");
+      // reset();
+      // setInputFileName("");
+      // reset({ ingredients: [] });
+      // setPrice("");
+      navigate("/");
+      setInputSearchPlatesValue("");
     };
   }, [isSuccess]);
 

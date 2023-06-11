@@ -27,7 +27,7 @@ export function SignUp() {
   }, []);
 
   const createUser = ({ name, email, password }: UserDataType) => {
-    if (!name || !email || !password) return alert("Por favor preencha todos os campos");
+    if (!name || !email || !password) return toast.warning("Por favor preencha todos os campos");
 
     API.post("/users", { name, email, password })
       .then((res) => {

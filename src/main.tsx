@@ -18,7 +18,14 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           <ThemeProvider theme={Theme}>
             <Routes />
             <GlobalStyles />
-            <ToastContainer autoClose={3000} theme={"dark"} />
+            <ToastContainer
+              theme={"dark"}
+              autoClose={3000}
+              closeOnClick={true}
+              pauseOnHover={false}
+              position={"top-right"}
+              pauseOnFocusLoss={false}
+            />
           </ThemeProvider>
         </AuthProvider>
       </SystemProvider>
