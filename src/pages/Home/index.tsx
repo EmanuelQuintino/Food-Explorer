@@ -78,7 +78,7 @@ export function Home() {
           {plateQuery.isLoading || userData.isLoading ? <p><ImSpinner2 className="spinner" /></p> : null}
           {plateQuery.error || userData.error ? <p className="queryError">Algo deu errado!</p> : null}
 
-          {filterFoodPlates && filterFoodPlates.length === 0 ?
+          {userData.data && filterFoodPlates && filterFoodPlates.length === 0 ?
             <p className="messageEmptyList">Lista de pratos vazia</p> :
             <>
               <section className="ContainerBoxPlates">
@@ -88,11 +88,12 @@ export function Home() {
                     <div className="boxPlates">
                       <div className="plates" ref={carouselMeals}>
                         {arrayMeals.map(plate => {
+                          const isFavorite = userData.data?.favorites.map(plate => plate.plate_id).includes(plate.id);
                           return (
                             <FoodPlate
                               key={plate.id}
                               plate={plate}
-                              isFavorite={userData.data?.favorites.map(plate => plate.plate_id).includes(plate.id)}
+                              isFavorite={isFavorite}
                             />
                           )
                         })}
@@ -125,11 +126,12 @@ export function Home() {
                     <div className="boxPlates">
                       <div className="plates" ref={carouselDesserts}>
                         {arrayDesserts.map(plate => {
+                          const isFavorite = userData.data?.favorites.map(plate => plate.plate_id).includes(plate.id);
                           return (
                             <FoodPlate
                               key={plate.id}
                               plate={plate}
-                              isFavorite={userData.data?.favorites.map(plate => plate.plate_id).includes(plate.id)}
+                              isFavorite={isFavorite}
                             />
                           )
                         })}
@@ -162,11 +164,12 @@ export function Home() {
                     <div className="boxPlates">
                       <div className="plates" ref={carouselDrinks}>
                         {arrayDrinks.map(plate => {
+                          const isFavorite = userData.data?.favorites.map(plate => plate.plate_id).includes(plate.id);
                           return (
                             <FoodPlate
                               key={plate.id}
                               plate={plate}
-                              isFavorite={userData.data?.favorites.map(plate => plate.plate_id).includes(plate.id)}
+                              isFavorite={isFavorite}
                             />
                           )
                         })}
