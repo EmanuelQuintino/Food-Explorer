@@ -1,6 +1,11 @@
 import { PropsWithChildren, createContext, useState, useContext } from "react";
 
-type IngredientsType = {
+type favoritePlatesTypes = {
+  user_id: string;
+  plate_id: string;
+}[];
+
+type IngredientsTypes = {
   id: string;
   name: string;
 };
@@ -12,7 +17,7 @@ type FoodPlates = {
   price: string;
   category: string;
   image: string;
-  ingredients: IngredientsType[]
+  ingredients: IngredientsTypes[]
 }[];
 
 type PlateOrdersTypes = {
@@ -40,9 +45,11 @@ type SystemContextType = {
   scrollToPlates: boolean;
   setScrollToPlates: React.Dispatch<React.SetStateAction<boolean>>;
   searchOrder: string;
-  setSearchOrder: React.Dispatch<React.SetStateAction<string>>
+  setSearchOrder: React.Dispatch<React.SetStateAction<string>>;
   inputSearchPlatesValue: string;
-  setInputSearchPlatesValue: React.Dispatch<React.SetStateAction<string>>
+  setInputSearchPlatesValue: React.Dispatch<React.SetStateAction<string>>;
+  userDataFavoritePlates: favoritePlatesTypes;
+  setUserDataFavoritePlates: React.Dispatch<React.SetStateAction<favoritePlatesTypes>>;
 };
 
 const SystemContext = createContext<SystemContextType>({} as SystemContextType);
@@ -58,6 +65,7 @@ export function SystemProvider({ children }: PropsWithChildren) {
   const [scrollToPlates, setScrollToPlates] = useState(false);
   const [searchOrder, setSearchOrder] = useState("");
   const [inputSearchPlatesValue, setInputSearchPlatesValue] = useState("");
+  const [userDataFavoritePlates, setUserDataFavoritePlates] = useState<favoritePlatesTypes>([]);
 
   const toggleMenu = () => setMenuActive(menuActive ? false : true);
 
@@ -104,6 +112,7 @@ export function SystemProvider({ children }: PropsWithChildren) {
       scrollToPlates, setScrollToPlates,
       searchOrder, setSearchOrder,
       inputSearchPlatesValue, setInputSearchPlatesValue,
+      userDataFavoritePlates, setUserDataFavoritePlates,
     }}>
       {children}
     </SystemContext.Provider>
