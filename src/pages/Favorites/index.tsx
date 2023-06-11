@@ -8,14 +8,14 @@ import { usePlateQuery } from "../../hooks/usePlateQuery";
 
 export function Favorites() {
   const { menuActive } = useSystem();
-  const { data, isLoading, error } = usePlateQuery();
+  const plateQuery = usePlateQuery();
   const userData = useQueryUser();
 
   const navigate = useNavigate();
 
   const favoritePlateIDs = userData.data?.favorites.map((plate) => plate.plate_id);
   const favoritePlates = favoritePlateIDs?.map((favoritePlateID) => {
-    return data?.find((plate) => plate.id === favoritePlateID);
+    return plateQuery.data?.find((plate) => plate.id === favoritePlateID);
   });
 
   return (
@@ -26,8 +26,8 @@ export function Favorites() {
 
           <h2 className="pageTitle">Meus favoritos</h2>
 
-          {isLoading && <p><ImSpinner2 className="spinner" /></p>}
-          {error && <p className="queryError">Algo deu errado!</p>}
+          {plateQuery.isLoading || userData.isLoading ? <p><ImSpinner2 className="spinner" /></p> : null}
+          {plateQuery.error || userData.error ? <p className="queryError">Algo deu errado!</p> : null}
 
           <article className="platesContainer">
             {favoritePlates && favoritePlates?.length > 0 ?

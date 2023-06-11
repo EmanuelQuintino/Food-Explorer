@@ -59,7 +59,6 @@ export function SystemProvider({ children }: PropsWithChildren) {
   const [searchOrder, setSearchOrder] = useState("");
   const [inputSearchPlatesValue, setInputSearchPlatesValue] = useState("");
 
-
   const toggleMenu = () => setMenuActive(menuActive ? false : true);
 
   function updateOrderTotal(userID: string) {
