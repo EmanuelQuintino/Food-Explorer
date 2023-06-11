@@ -1,12 +1,15 @@
 {
-  "name": "client",
+  "name": "food-explorer",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "build:typescript": "tsc",
+    "build:vite": "vite build",
+    "build": "npm run build:typescript && npm run build:vite",
+    "preview": "vite preview",
+    "start": "vite"
   },
   "dependencies": {
     "@tanstack/react-query": "^4.29.5",
