@@ -26,17 +26,24 @@ export function AuthProvider({ children }: PropsWithChildren) {
 
   function handleLogin({ email, password }: HandleLoginTypes) {
     if (!email || !password) return alert("Por favor preencha todos os campos");
-    API.post("/login", { email, password })
-      .then((res) => {
-        if (res.data.token) {
-          API.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;
-          localStorage.setItem("@FoodExplorer:token", `Bearer ${res.data.token}`);
 
-          const userDecodedToken = jwt_decode(res.data.token) as string;
-          setUserAuth(userDecodedToken);
-        }
-      })
-      .catch((error) => toast.error(error.response.data.error));
+    toast.promise(
+      API.post("/login", { email, password })
+        .then((res) => {
+          if (res.data.token) {
+            API.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;
+            localStorage.setItem("@FoodExplorer:token", `Bearer ${res.data.token}`);
+
+            const userDecodedToken = jwt_decode(res.data.token) as string;
+            setUserAuth(userDecodedToken);
+          }
+        }),
+      {
+        pending: 'Logando...',
+        error: {
+          render: (res: any) => res.data.response.data.error || "Erro ao fazer login"
+        },
+      });
   };
 
   function handleLogout() {
