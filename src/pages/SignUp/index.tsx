@@ -29,13 +29,17 @@ export function SignUp() {
   const createUser = ({ name, email, password }: UserDataType) => {
     if (!name || !email || !password) return toast.warning("Por favor preencha todos os campos");
 
-    API.post("/users", { name, email, password })
-      .then((res) => {
-        alert(res.data);
-        navigate('/');
-      })
-      .catch((error) => toast.error(error.response.data.error || "Erro ao cadastrar usuário"));
-  }
+    toast.promise(
+      API.post("/users", { name, email, password })
+        .then(() => {
+          navigate('/');
+        }),
+      {
+        pending: 'Cadastrando...',
+        success: "Usuário cadastrado com sucesso!",
+        error: { render: (res: any) => res.data.response.data.error || "Erro ao cadastrar usuário" },
+      });
+  };
 
   return (
     <Container>

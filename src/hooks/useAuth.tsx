@@ -40,9 +40,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
         }),
       {
         pending: 'Logando...',
-        error: {
-          render: (res: any) => res.data.response.data.error || "Erro ao fazer login"
-        },
+        error: { render: (res: any) => res.data.response.data.error || "Erro ao fazer login" },
       });
   };
 
