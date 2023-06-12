@@ -33,21 +33,20 @@ async function updatePlate(data: FoodPlates) {
   formData.append('ingredients', JSON.stringify(plateData.ingredients));
   formData.append('description', plateData.description);
 
-  await API.put(`/plates/${plateData.id}`, formData)
-    .then((response) => {
-      toast.dismiss();
-      // toast.success(response.data || "Prato atualizado com sucesso")
-    })
-    .catch((error) => {
-      toast.dismiss();
-      toast.error(error.response?.data?.error || "Erro ao atualizar prato")
-    });
+  return await API.put(`/plates/${plateData.id}`, formData);
 };
 
 export const usePlateUpdate = () => {
-  const mutate = useMutation({
-    mutationFn: updatePlate
+  const mutate = useMutation(updatePlate, {
+    onSuccess: () => {
+      toast.dismiss();
+      // toast.success(response.data || "Prato atualizado com sucesso")
+    },
+    onError: (error: any) => {
+      toast.dismiss();
+      toast.error(error.response?.data?.error || "Erro ao atualizar prato")
+    },
   });
 
   return mutate;
-} 
+};

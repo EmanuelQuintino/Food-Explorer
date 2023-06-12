@@ -32,21 +32,20 @@ async function createPlate(data: FoodPlates) {
   formData.append('ingredients', JSON.stringify(plateData.ingredients));
   formData.append('description', plateData.description);
 
-  await API.post("/plates", formData)
-    .then((response) => {
-      toast.dismiss();
-      // toast.success(response.data || "Prato cadastrado com sucesso");
-    })
-    .catch((error) => {
-      toast.dismiss();
-      toast.error(error.response.data.error || "Erro ao cadastrar prato")
-    });
+  return await API.post("/plates", formData);
 };
 
 export const usePlateCreate = () => {
-  const mutate = useMutation({
-    mutationFn: createPlate
+  const mutate = useMutation(createPlate, {
+    onSuccess: () => {
+      toast.dismiss();
+      // toast.success("Prato cadastrado com sucesso");
+    },
+    onError: (error: any) => {
+      toast.dismiss();
+      toast.error(error.response?.data?.error || "Erro ao cadastrar prato");
+    },
   });
 
   return mutate;
-} 
+};
