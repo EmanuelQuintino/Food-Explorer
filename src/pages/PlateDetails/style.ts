@@ -6,7 +6,7 @@ export const Container = styled.section`
   .plateContainer {
     text-align: center;
     max-width: 28.0rem;
-    margin: 25% auto 25%;
+    margin: 20% auto 25%;
   }
 
   .imagePlate {
