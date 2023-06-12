@@ -26,8 +26,9 @@ type PlateOrdersTypes = {
 };
 
 type SystemContextType = {
-  toggleMenu: () => void;
   menuActive: boolean;
+  setMenuActive: React.Dispatch<React.SetStateAction<boolean>>;
+  toggleMenu: () => void;
   orderTotal: number;
   setOrderTotal: React.Dispatch<React.SetStateAction<number>>;
   updateOrderTotal: (userID: string) => void;
@@ -100,7 +101,8 @@ export function SystemProvider({ children }: PropsWithChildren) {
 
   return (
     <SystemContext.Provider value={{
-      menuActive, toggleMenu,
+      menuActive, setMenuActive,
+      toggleMenu,
       orderTotal, setOrderTotal,
       updateOrderTotal,
       removeOrderPlate,

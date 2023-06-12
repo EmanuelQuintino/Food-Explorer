@@ -1,19 +1,23 @@
 import { Container } from "./style";
 import { HeaderMobile } from "../../components/HeaderMobile";
 import { HeaderDesktop } from "../../components/HeaderDesktop";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { Footer } from "../../components/Footer";
 import { useSystem } from "../../hooks/useSystem";
 import { useEffect } from "react";
 
 export function App() {
-  const { windowWidth, setWindowWidth } = useSystem();
+  const { windowWidth, setWindowWidth, setMenuActive } = useSystem();
 
   useEffect(() => {
     window.addEventListener('resize', () => {
       setWindowWidth(window.innerWidth);
     });
   }, []);
+
+  useEffect(() => {
+    if (windowWidth > 960) setMenuActive(false);
+  }, [windowWidth]);
 
   return (
     <Container>
