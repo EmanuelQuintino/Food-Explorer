@@ -77,7 +77,7 @@ export const GlobalStyles = createGlobalStyle`
     animation: spinnerRotate 1s linear infinite;
     font-size: 4.2rem;
     display: block;
-    margin: 25% auto 100%;
+    margin: 50% auto 50%;
     color: lightgray;
   }
 
@@ -105,7 +105,7 @@ export const GlobalStyles = createGlobalStyle`
 
   .messageEmptyList {
     width: 100%;
-    height: 30vh;
+    margin: 50% auto 50%;
     font-weight: 700;
     font-size: 2.0rem;
     color: ${({ theme }) => theme.colors.light500};
