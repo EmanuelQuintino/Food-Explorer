@@ -15,7 +15,7 @@ export const Container = styled.section`
 
     .boxPlates {
       position: relative;
-      width: 106%;
+      width: 105%;
       margin-top: 1.2rem;
       
       .plates {
