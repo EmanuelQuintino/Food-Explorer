@@ -77,14 +77,8 @@ export const GlobalStyles = createGlobalStyle`
     animation: spinnerRotate 1s linear infinite;
     font-size: 4.2rem;
     display: block;
-    margin: 50% auto 50%;
+    margin: 25% auto 100%;
     color: lightgray;
-  }
-
-  @keyframes spinnerRotate {
-    to {
-        transform: rotate(360deg);
-    }
   }
 
   .queryError {
@@ -113,9 +107,19 @@ export const GlobalStyles = createGlobalStyle`
     place-content: center;
   }
 
+  @keyframes spinnerRotate {
+    to {
+        transform: rotate(360deg);
+    }
+  }
+
   @media (min-width: 640px) {
     .inputError {
       font-size: 1.2rem;
+    }
+
+    .spinner {
+      margin: 20% auto 25%;
     }
   }
 `;

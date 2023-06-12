@@ -19,7 +19,7 @@ type UserOrderTypes = {
 
 export function ShoppingCart() {
   const [userOrder, setUserOrder] = useState<UserOrderTypes>({} as UserOrderTypes);
-  const { data, isLoading, error } = usePlateQuery();
+  const plateQuery = usePlateQuery();
   const { menuActive, orderTotal } = useSystem();
   const navigate = useNavigate();
 
@@ -33,7 +33,7 @@ export function ShoppingCart() {
   }, [orderTotal])
 
   const newArrayUserOrder = userOrder.plates?.map((plateOrder) => {
-    const matchPlate = data?.find((plateData) => plateData.id === plateOrder.id);
+    const matchPlate = plateQuery.data?.find((plateData) => plateData.id === plateOrder.id);
     return {
       ...plateOrder,
       name: matchPlate?.name,
@@ -48,10 +48,10 @@ export function ShoppingCart() {
         <>
           <button className="backPageButton" onClick={() => navigate(-1)}>&lt; Voltar</button>
 
-          {error && <p className="queryError">Algo deu errado!</p>}
-          {isLoading && <p><ImSpinner2 className="spinner" /></p>}
+          {plateQuery.error && <p className="queryError">Algo deu errado!</p>}
+          {plateQuery.isLoading && <p><ImSpinner2 className="spinner" /></p>}
 
-          {newArrayUserOrder && userOrder.plates?.length > 0 ? (
+          {plateQuery.data && newArrayUserOrder && userOrder.plates?.length > 0 ? (
             <div className="orderPaymentContainer">
               <div className="orderContainer">
                 <h2 className="pageTitle">Meu pedido</h2>
@@ -79,8 +79,9 @@ export function ShoppingCart() {
             </div>
           ) : (
             <>
-              <h2 className="pageTitle">Meu pedido</h2>
-              <p className="messageEmptyList">Carrinho vazio</p>
+              {plateQuery.data && (
+                <p className="messageEmptyList">Carrinho vazio</p>
+              )}
             </>
           )}
         </>
