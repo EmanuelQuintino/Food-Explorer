@@ -17,7 +17,7 @@ export function FormPayment() {
   const [credCardNumber, setCredCardNumber] = useState("");
   const [expirationDate, setExpirationDate] = useState("");
   const [cvcNumber, setCvcNumber] = useState("");
-  const { mutate } = useOrderCreate();
+  const orderCreate = useOrderCreate();
 
   function formatCredCardNumber(event: React.ChangeEvent<HTMLInputElement>) {
     const formatNumber = event.target.value
@@ -65,7 +65,7 @@ export function FormPayment() {
 
       // if(promise to payment is success)
       const localStorageUserOrder = localStorage.getItem("@FoodExplorer:order");
-      if (localStorageUserOrder) mutate(JSON.parse(localStorageUserOrder));
+      if (localStorageUserOrder) orderCreate.mutate(JSON.parse(localStorageUserOrder));
     }, 3000);
   };
 
