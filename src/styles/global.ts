@@ -77,7 +77,7 @@ export const GlobalStyles = createGlobalStyle`
     animation: spinnerRotate 1s linear infinite;
     font-size: 4.2rem;
     display: block;
-    margin: 25% auto 100%;
+    margin: 50% auto;
     color: lightgray;
   }
 
@@ -119,6 +119,10 @@ export const GlobalStyles = createGlobalStyle`
     }
 
     .spinner {
+      margin: 20% auto 25%;
+    }
+    
+    .messageEmptyList {
       margin: 20% auto 25%;
     }
   }
