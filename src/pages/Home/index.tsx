@@ -35,7 +35,9 @@ export function Home() {
     foodPlateWidth,
     windowWidth,
     filterFoodPlates,
-    scrollToPlates, setScrollToPlates
+    scrollToPlates, setScrollToPlates,
+    setFilterFoodPlates,
+    inputSearchPlatesValue,
   } = useSystem();
 
   const userData = useQueryUser();
@@ -47,10 +49,19 @@ export function Home() {
   const platesRefToScroll = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (scrollToPlates && platesRefToScroll.current) {
-      platesRefToScroll.current.scrollIntoView();
-      setScrollToPlates(false);
-    }
+    if (inputSearchPlatesValue.length === 0) {
+      if (plateQuery.data) setFilterFoodPlates(plateQuery.data);
+    };
+  }, [plateQuery.data, inputSearchPlatesValue]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (scrollToPlates && platesRefToScroll.current) {
+        platesRefToScroll.current.scrollIntoView();
+        console.log(platesRefToScroll.current.scrollHeight);
+        setScrollToPlates(false);
+      };
+    }, 100);
   }, [scrollToPlates]);
 
   useEffect(() => {
@@ -113,7 +124,9 @@ export function Home() {
           {plateQuery.isLoading || userData.isLoading ? <p><ImSpinner2 className="spinner" /></p> : null}
           {plateQuery.error || userData.error ? <p className="queryError">Algo deu errado!</p> : null}
 
-          {filterFoodPlates && filterFoodPlates.length === 0 ?
+          {!plateQuery.isLoading && !plateQuery.error &&
+            !userData.isLoading && !userData.error &&
+            filterFoodPlates && filterFoodPlates.length === 0 ?
             <p className="messageEmptyList">Lista de pratos vazia</p> :
             <>
               <section className="ContainerBoxPlates">

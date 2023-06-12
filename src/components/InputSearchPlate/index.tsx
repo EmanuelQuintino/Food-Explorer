@@ -33,7 +33,7 @@ export function InputSearchPlate() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (inputSearchPlatesValue.length > 0) {
+    if (inputSearchPlatesValue !== "") {
       const filter = plateQuery.data?.filter((plate) => {
         const ingredientsName = plate.ingredients.map(ingredient => ingredient.name);
         return (
@@ -48,19 +48,17 @@ export function InputSearchPlate() {
     };
   }, [plateQuery.data, inputSearchPlatesValue]);
 
-  useEffect(() => {
-    if (inputSearchPlatesValue.length === 0) {
-      if (plateQuery.data) setFilterFoodPlates(plateQuery.data);
-    };
-  }, [inputSearchPlatesValue]);
-
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    if (filterPlates) setFilterFoodPlates(filterPlates);
+    if (inputSearchPlatesValue === "") {
+      if (plateQuery.data) setFilterFoodPlates(plateQuery.data);
+    } else {
+      if (filterPlates) setFilterFoodPlates(filterPlates);
+    };
 
-    menuActive ? toggleMenu() : "";
     setScrollToPlates(true);
+    menuActive ? toggleMenu() : "";
 
     if (location.pathname === "/") return;
     navigate('/');
