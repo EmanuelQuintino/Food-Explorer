@@ -37,6 +37,20 @@ export const Container = styled.div`
     }
   }
 
+  @media (min-width: 440px) {    
+    .slogan {
+      width: 65%;
+      top: 35%;
+    }
+  }
+
+  @media (min-width: 530px) {    
+    .slogan {
+      width: 65%;
+      left: 35%;
+    }
+  }
+
   @media (min-width: 590px) {    
     .slogan {
       width: 50%;
