@@ -1,6 +1,14 @@
 import styled from "styled-components"
 
-export const Container = styled.section`    
+export const Container = styled.section`
+  .spinner {
+    margin: 70% auto 30%;
+  }
+  
+  .messageEmptyList {
+    margin: 70% auto 30%;
+  }
+
   .platesContainer {
     margin-top: 1.6rem;
     display: flex;
@@ -28,6 +36,14 @@ export const Container = styled.section`
   }
   
   @media (min-width: 640px) {
+    .spinner {
+      margin: 20% auto 25%;
+    }
+    
+    .messageEmptyList {
+      margin: 20% auto 25%;
+    }
+
     .orderPaymentContainer {
       display: flex;
       align-items: first baseline;
