@@ -84,7 +84,7 @@ export const Container = styled.section`
       justify-content: center;
       gap: 3.2rem;
       max-width: 100%;
-      margin: 2.0rem auto 0;
+      margin: 5% auto;
     }
 
     .imagePlate {
