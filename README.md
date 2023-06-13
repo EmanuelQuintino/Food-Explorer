@@ -5,14 +5,14 @@ Food Explorer é uma aplicação de menu interativo para as vendas de um restaur
 ![Food Explorer](./public/images-layout/home.png)
 
 ## Funcionalidades
-- Autenticação: Autenticação feita através de um sistema de login usando JWT (JSON Web Tokens) para acessar o sistema.
-- Busca de Pratos: Tanto o usuário quanto o admin podem realizar buscas pelo nome do prato ou pelos ingredientes.
-- Visualização de pedidos em tabela com opção de busca por código ou status.
+- **Autenticação:** Autenticação feita através de um sistema de login usando JWT (JSON Web Tokens) para acessar o sistema.
+- **Buscar Pratos:** Tanto o usuário quanto o admin podem realizar buscas pelo nome do prato ou pelos ingredientes.
+- **Visualizar pedidos:** Tabela para visualização de pedidos com opção de busca por código ou status.
 
 ### Admin
 
-- Cadastro de Pratos: Fornecer nome, categoria, descrição, ingredientes, preço e upload de imagem.
-- Gerenciar pratos: O Admin pode editar os dados e excluir cada prato.
+- **Cadastro de Pratos:** Fornecer nome, categoria, descrição, ingredientes, preço e upload de imagem.
+- **Gerenciar pratos:** O Admin pode editar os dados e excluir cada prato.
 
 ### Usuário
 
