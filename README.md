@@ -50,4 +50,4 @@ $ npm run dev
 ## Links
 
 - [Deploy](https://project-food-explorer.netlify.app/)
-- [Repositório da API](https://github.com/EmanuelQuintino/Food-Explorer-API)
+- [API Repository](https://github.com/EmanuelQuintino/Food-Explorer-API)
