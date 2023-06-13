@@ -25,16 +25,21 @@ Food Explorer é uma aplicação de menu interativo para as vendas de um restaur
 
 ## Tecnologias Utilizadas
 
-- Front-end: React.js, Tanstack React-Query, Axios, styled-components;
-- Back-end: Node.js, Express, JSON Web Token (JWT), Prisma, Typescript;
+- React.js
+- TypeScript
+- Styled-Components
+- React-Router-Dom
+- React-Hook-Form
+- Tanstack-Query 
+- Axios
 
 ## Como Executar o Projeto
 
-1. Clone o repositório: `git clone https://github.com/EmanuelQuintino/Food-Explorer.git`
-2. Instale as dependências: `npm install`
-3. Execute o projeto: `npm run dev`
+1. Clonar repositório: `git clone https://github.com/EmanuelQuintino/Food-Explorer.git`
+2. Instalar dependências: `npm install`
+3. Executar projeto: `npm run dev`
 
 ## Links Úteis
 
-- [Deploy](https://project-food-explorer.netlify.app/)
-- [Repositório da API](https://github.com/EmanuelQuintino/Food-Explorer-API)
+- <a href="https://project-food-explorer.netlify.app/" target="_blank">Deploy</a>
+- <a href="https://github.com/EmanuelQuintino/Food-Explorer-API" target="_blank">Repositório da API</a>
