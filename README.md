@@ -1,30 +1,30 @@
 # Food Explorer
 
-Food Explorer é uma aplicação de menu interativo para as vendas de um restaurante. Ela permite que os usuários visualizem os pratos disponíveis, obtenham informações detalhadas sobre cada um deles e realizem seus pedidos. O administrador com acesso a recursos adicionais, como a capacidade de adicionar, editar e excluir pratos do menu, pode gerenciar os pedidos individualmente a atualizar o status em "Pendente", "Preparando" e "Entregue".
+Food Explorer is an interactive menu application for restaurant sales. It allows users to view available food plates, obtain detailed information about each of them and place orders. The admin has access to additional features, such as the ability to add, edit and delete food plates from the menu, can manage orders individually and update the status in "Pendente", "Preparando" e "Entregue".
 
 ![Food Explorer](./public/images-layout/home.png)
 
-## Funcionalidades
+## Functionalities
 
-- O login é feito usando JWT (JSON Web Tokens) para acessar o sistema.
-- Tanto o usuário quanto o admin podem buscar pratos pelo nome ou pelos ingredientes.
-- Tabela para visualização de pedidos com opção de busca por código ou status.
+- Login is done with JWT (JSON Web Tokens) to access the system.
+- Both, the user and the admin, can search for food plates by name or ingredients.
+- Table for viewing orders with search option by code or status.
 
-### Admin
+### admin
 
-- Pode cadastrar pratos com nome, categoria, descrição, ingredientes, preço e upload de imagem.
-- Gerenciar os pedidos e alterar status além de editar dados, imagem e excluir prato.
+- Can register food plates with name, category, description, ingredients, price and image upload.
+- Manage orders and change status, in addition, to editing data, image and delete food plates.
 
-### Usuário
+### User
 
-- Visualização de todos os pratos cadastrados.
-- Adição de pratos ao carrinho.
-- Controle da quantidade de itens no carrinho.
-- Exclusão de pratos do carrinho.
-- Marcação de pratos como favoritos.
-- Visualização do pedido, soma total e métodos de pagamento.
+- Visualization of all food Plates registered in the menu.
+- Add food plates to the cart.
+- Control of the amount of items in the cart.
+- Delete food plates from the cart.
+- Mark food plates as favorites.
+- View order, total sum and payment methods.
 
-## Tecnologias Utilizadas
+## Technologies
 
 - `React.js`
 - `TypeScript`
@@ -34,9 +34,9 @@ Food Explorer é uma aplicação de menu interativo para as vendas de um restaur
 - `Tanstack-Query`
 - `Axios`
 
-## Como Executar o Projeto
+## Installation
 
-```shell
+```bash
 # Clonar repositório
 $ git clone https://github.com/EmanuelQuintino/Food-Explorer.git
 
@@ -47,7 +47,7 @@ $ npm install
 $ npm run dev
 ```
 
-## Links Úteis
+## Links
 
 - [Deploy](https://project-food-explorer.netlify.app/)
 - [Repositório da API](https://github.com/EmanuelQuintino/Food-Explorer-API)
