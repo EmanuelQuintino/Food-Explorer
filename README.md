@@ -4,17 +4,17 @@ Food Explorer é uma aplicação de menu interativo para as vendas de um restaur
 
 ![Food Explorer](./public/images-layout/home.png)
 
-### Funcionalidades
+## Funcionalidades
 - Autenticação: Autenticação feita através de um sistema de login usando JWT (JSON Web Tokens) para acessar o sistema.
 - Busca de Pratos: Tanto o usuário quanto o admin podem realizar buscas pelo nome do prato ou pelos ingredientes.
 - Visualização de pedidos em tabela com opção de busca por código ou status.
 
-#### Admin
+### Admin
 
 - Cadastro de Pratos: Fornecer nome, categoria, descrição, ingredientes, preço e upload de imagem.
 - Gerenciar pratos: O Admin pode editar os dados e excluir cada prato.
 
-#### Usuário
+### Usuário
 
 - Visualização de todos os pratos cadastrados.
 - Adição de pratos ao carrinho.
@@ -23,7 +23,7 @@ Food Explorer é uma aplicação de menu interativo para as vendas de um restaur
 - Marcação de pratos como favoritos.
 - Visualização do pedido, soma total e métodos de pagamento.
 
-### Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 - React.js
 - TypeScript
@@ -33,13 +33,13 @@ Food Explorer é uma aplicação de menu interativo para as vendas de um restaur
 - Tanstack-Query 
 - Axios
 
-### Como Executar o Projeto
+## Como Executar o Projeto
 
 1. Clonar repositório: `git clone https://github.com/EmanuelQuintino/Food-Explorer.git`
 2. Instalar dependências: `npm install`
 3. Executar projeto: `npm run dev`
 
-### Links Úteis
+## Links Úteis
 
 <!-- - <a href="https://project-food-explorer.netlify.app/" target="_blank">Deploy</a> -->
 <!-- - <a href="https://github.com/EmanuelQuintino/Food-Explorer-API" target="_blank">Repositório da API</a> -->
