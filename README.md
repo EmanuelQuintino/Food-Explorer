@@ -44,5 +44,5 @@ Food Explorer é uma aplicação de menu interativo para as vendas de um restaur
 <!-- - <a href="https://project-food-explorer.netlify.app/" target="_blank">Deploy</a> -->
 <!-- - <a href="https://github.com/EmanuelQuintino/Food-Explorer-API" target="_blank">Repositório da API</a> -->
 
-- [Deploy](https://project-food-explorer.netlify.app/){target="_blank"}
-- [Repositório da API](https://github.com/EmanuelQuintino/Food-Explorer-API){target="_blank"}
+- [Deploy](https://project-food-explorer.netlify.app/){:target="_blank"}
+- [Repositório da API](https://github.com/EmanuelQuintino/Food-Explorer-API){:target="_blank"}
