@@ -37,13 +37,13 @@ Food Explorer is an interactive menu application for restaurant sales. It allows
 ## Installation
 
 ```bash
-# Clonar repositório
+# Clone repository
 $ git clone https://github.com/EmanuelQuintino/Food-Explorer.git
 
-# Instalar dependências
+# Install dependencies
 $ npm install
 
-# Executar projeto
+# Run project
 $ npm run dev
 ```
 
