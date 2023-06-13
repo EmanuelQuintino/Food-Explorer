@@ -2,7 +2,7 @@
 
 Food Explorer é uma aplicação de menu interativo para as vendas de um restaurante. Ela permite que os usuários visualizem os pratos disponíveis, obtenham informações detalhadas sobre cada um deles e realizem seus pedidos. O administrador com acesso a recursos adicionais, como a capacidade de adicionar, editar e excluir pratos do menu, pode gerenciar os pedidos individualmente a atualizar o status em "Pendente", "Preparando" e "Entregue".
 
-![Food Explorer](link_para_a_imagem)
+![Food Explorer](./public/images-layout/home.png)
 
 ## Funcionalidades
 - Autenticação: Os usuários devem se autenticar para acessar a aplicação. A autenticação é feita através de um sistema de login usando JWT (JSON Web Tokens).
@@ -30,12 +30,11 @@ Food Explorer é uma aplicação de menu interativo para as vendas de um restaur
 
 ## Como Executar o Projeto
 
-1. Clone o repositório: `git clone https://github.com/seu-usuario/nome-do-repositorio.git`
+1. Clone o repositório: `git clone https://github.com/EmanuelQuintino/Food-Explorer.git`
 2. Instale as dependências: `npm install`
-3. Execute o projeto: `npm start`
+3. Execute o projeto: `npm run dev`
 
 ## Links Úteis
 
-- [Demonstração Online](link_da_demo)
-- [Repositório do Front-end](link_do_repositorio_frontend)
+- [Deploy](link_da_demo)
 - [Repositório do Back-end](link_do_repositorio_backend)
