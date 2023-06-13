@@ -10,7 +10,7 @@ Food Explorer is an interactive menu application for restaurant sales. It allows
 - Both, the user and the admin, can search for food plates by name or ingredients.
 - Table for viewing orders with search option by code or status.
 
-### admin
+### Admin
 
 - Can register food plates with name, category, description, ingredients, price and image upload.
 - Manage orders and change status, in addition, to editing data, image and delete food plates.
