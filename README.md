@@ -6,14 +6,14 @@ Food Explorer é uma aplicação de menu interativo para as vendas de um restaur
 
 ## Funcionalidades
 
-- Autenticação: O login é feito usando JWT (JSON Web Tokens) para acessar o sistema.
-- Buscar Pratos: Tanto o usuário quanto o admin podem buscar pratos pelo nome ou pelos ingredientes.
-- Visualizar pedidos: Tabela para visualização de pedidos com opção de busca por código ou status.
+- O login é feito usando JWT (JSON Web Tokens) para acessar o sistema.
+- Tanto o usuário quanto o admin podem buscar pratos pelo nome ou pelos ingredientes.
+- Tabela para visualização de pedidos com opção de busca por código ou status.
 
 ### Admin
 
-- Cadastro de Pratos: Fornecer nome, categoria, descrição, ingredientes, preço e upload de imagem.
-- Gerenciar pratos: O Admin pode editar os dados e excluir cada prato.
+- Pode cadastrar pratos com nome, categoria, descrição, ingredientes, preço e upload de imagem.
+- Gerenciar os pedidos e alterar status além de editar dados, imagem e excluir prato.
 
 ### Usuário
 
@@ -26,13 +26,13 @@ Food Explorer é uma aplicação de menu interativo para as vendas de um restaur
 
 ## Tecnologias Utilizadas
 
-- React.js
-- TypeScript
-- Styled-Components
-- React-Router-Dom
-- React-Hook-Form
-- Tanstack-Query 
-- Axios
+- `React.js`
+- `TypeScript`
+- `Styled-Components`
+- `React-Router-Dom`
+- `React-Hook-Form`
+- `Tanstack-Query`
+- `Axios`
 
 ## Como Executar o Projeto
 
