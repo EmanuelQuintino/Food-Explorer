@@ -36,9 +36,16 @@ Food Explorer é uma aplicação de menu interativo para as vendas de um restaur
 
 ## Como Executar o Projeto
 
-1. Clonar repositório: `git clone https://github.com/EmanuelQuintino/Food-Explorer.git`
-2. Instalar dependências: `npm install`
-3. Executar projeto: `npm run dev`
+```shell
+# Clonar repositório
+$ git clone https://github.com/EmanuelQuintino/Food-Explorer.git
+
+# Instalar dependências
+$ npm install
+
+# Executar projeto
+$ npm run dev
+```
 
 ## Links Úteis
 
