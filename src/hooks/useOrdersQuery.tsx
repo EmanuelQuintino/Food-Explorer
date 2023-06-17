@@ -25,12 +25,12 @@ export const useOrdersQuery = () => {
   const { userAuth } = useAuth();
   const { searchOrder } = useSystem();
 
-  const URI = userAuth.isAdmin ?
-    `/orders/index?search=${searchOrder}` :
-    `/orders?search=${searchOrder}`;
+  const URI = userAuth.isAdmin
+    ? `/orders/index?search=${searchOrder}`
+    : `/orders?search=${searchOrder}`;
 
   const query = useQuery({
-    queryKey: ['userOrders'],
+    queryKey: ['userOrders', searchOrder],
     queryFn: async () => await API.get(URI) as UserOrdersTypes
   });
 

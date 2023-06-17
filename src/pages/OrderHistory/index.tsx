@@ -7,27 +7,9 @@ import { CardHistoryOrderPlate } from "../../components/CardHistoryOrderPlate";
 import { usePlateQuery } from "../../hooks/usePlateQuery";
 import { SearchIcon } from "../../assets/SearchIcon";
 import { TableRowHistoryOrders } from "../../components/TableRowHistoryOrders";
-import { useEffect, useState } from "react";
-
-type OrderPlatesTypes = {
-  order_id: string;
-  plate_id: string;
-  amount: number;
-  price: number;
-};
-
-type UserOrdersTypes = {
-  id: string;
-  status: string;
-  code: number;
-  user_id: string;
-  order_plates: OrderPlatesTypes[]
-  created_at: string;
-};
 
 export function OrderHistory() {
   const { menuActive, windowWidth, searchOrder, setSearchOrder } = useSystem();
-  const [filterOrders, setFilterOrders] = useState<UserOrdersTypes[]>();
   const ordersQuery = useOrdersQuery();
   const plateQuery = usePlateQuery();
   const navigate = useNavigate();
@@ -41,23 +23,6 @@ export function OrderHistory() {
       })
     };
   });
-
-  const filterNewOrdersDataPlateName = newOrdersDataPlateName?.filter((order) => {
-    return (
-      String(order.code).toLowerCase().includes(searchOrder.toLowerCase()) ||
-      order.status.toLowerCase().includes(searchOrder.toLowerCase())
-    );
-  });
-
-  useEffect(() => {
-    ordersQuery.refetchOrdersQuery();
-  }, [ordersQuery?.data]);
-
-  useEffect(() => {
-    if (ordersQuery.data && filterNewOrdersDataPlateName) {
-      setFilterOrders(filterNewOrdersDataPlateName);
-    };
-  }, [ordersQuery?.data, searchOrder]);
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -80,7 +45,8 @@ export function OrderHistory() {
               name="inputSearch"
               id="inputSearch"
               placeholder="Buscar por código ou status"
-              onChange={(event) => event.target.value.length === 0 ? setSearchOrder(event.target.value) : null}
+              value={searchOrder}
+              onChange={(event) => setSearchOrder(event.target.value)}
             />
           </form>
 
@@ -88,10 +54,10 @@ export function OrderHistory() {
           {ordersQuery.error || plateQuery.error ? <p className="queryError">Algo deu errado!</p> : null}
 
           <article className="OrdersContainer">
-            {ordersQuery.data && ordersQuery.data.length == 0 ?
+            {newOrdersDataPlateName && newOrdersDataPlateName.length === 0 ?
               <p className="messageEmptyList">Sem histórico de pedidos</p> :
               windowWidth < 680 ?
-                filterOrders?.map(order => {
+                newOrdersDataPlateName?.map(order => {
                   return (
                     <CardHistoryOrderPlate
                       key={order.id}
@@ -113,7 +79,7 @@ export function OrderHistory() {
                     </tr>
                   </thead>
                   <tbody>
-                    {filterOrders?.map(order => {
+                    {newOrdersDataPlateName?.map(order => {
                       return (
                         <TableRowHistoryOrders
                           key={order.id}
