@@ -27,6 +27,8 @@ export function AuthProvider({ children }: PropsWithChildren) {
   function handleLogin({ email, password }: HandleLoginTypes) {
     if (!email || !password) return alert("Por favor preencha todos os campos");
 
+    toast.dismiss();
+
     toast.promise(
       API.post("/login", { email, password })
         .then((res) => {
