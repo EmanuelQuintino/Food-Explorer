@@ -38,9 +38,9 @@ async function updatePlate(data: FoodPlates) {
 
 export const usePlateUpdate = () => {
   const mutate = useMutation(updatePlate, {
-    onSuccess: () => {
+    onSuccess: (response) => {
       toast.dismiss();
-      // toast.success(response.data || "Prato atualizado com sucesso")
+      toast.success(response.data || "Prato atualizado com sucesso")
     },
     onError: (error: any) => {
       toast.dismiss();

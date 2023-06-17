@@ -37,9 +37,9 @@ async function createPlate(data: FoodPlates) {
 
 export const usePlateCreate = () => {
   const mutate = useMutation(createPlate, {
-    onSuccess: () => {
+    onSuccess: (response) => {
       toast.dismiss();
-      // toast.success("Prato cadastrado com sucesso");
+      toast.success(response.data || "Prato cadastrado com sucesso");
     },
     onError: (error: any) => {
       toast.dismiss();
