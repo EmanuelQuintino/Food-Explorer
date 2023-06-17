@@ -50,9 +50,12 @@ export function OrderHistory() {
   });
 
   useEffect(() => {
+    ordersQuery.refetchOrdersQuery();
+  }, [ordersQuery?.data]);
+
+  useEffect(() => {
     if (ordersQuery.data && filterNewOrdersDataPlateName) {
-      setFilterOrders(filterNewOrdersDataPlateName)
-      ordersQuery.refetchOrdersQuery();
+      setFilterOrders(filterNewOrdersDataPlateName);
     };
   }, [ordersQuery?.data, searchOrder]);
 
