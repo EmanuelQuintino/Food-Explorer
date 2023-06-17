@@ -1,8 +1,8 @@
 # Food Explorer
 
-Food Explorer is an interactive menu application for restaurant sales. It allows users to view available food plates, obtain detailed information about each of them and place orders. The admin has access to additional features, such as the ability to add, edit and delete food plates from the menu, can manage orders individually and update the status in "Pendente", "Preparando" e "Entregue".
-
 ![Food Explorer](./public/images-layout/home.png)
+
+Food Explorer is an interactive menu application for restaurant sales. It allows users to view available food plates, obtain detailed information about each of them and place orders. The admin has access to additional features, such as the ability to add, edit and delete food plates from the menu, can manage orders and update the status.
 
 ## Functionalities
 
