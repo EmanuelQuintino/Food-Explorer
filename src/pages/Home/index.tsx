@@ -38,6 +38,9 @@ export function Home() {
     scrollToPlates, setScrollToPlates,
     setFilterFoodPlates,
     inputSearchPlatesValue,
+    isPaymentConfirm,
+    setIsPaymentConfirm,
+    setOrderTotal,
   } = useSystem();
 
   const userData = useQueryUser();
@@ -47,6 +50,14 @@ export function Home() {
   const carouselDesserts: React.RefObject<HTMLDivElement> = useRef(null);
   const carouselDrinks: React.RefObject<HTMLDivElement> = useRef(null);
   const platesRefToScroll = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (isPaymentConfirm) {
+      localStorage.removeItem("@FoodExplorer:order");
+      setIsPaymentConfirm(false);
+      setOrderTotal(0);
+    };
+  }, [isPaymentConfirm]);
 
   useEffect(() => {
     if (inputSearchPlatesValue.length === 0) {
