@@ -39,9 +39,24 @@ export function TablePayment() {
           <tr>
             <td>
               {paymentForm === "pix" &&
-                <div className="qrCodeExplorerIcon">
-                  <QRCodeExplorer />
-                </div>
+                <>
+                  {!isPaymentConfirm ?
+                    (!isWaitPayment ?
+                      <div className="qrCodeExplorerIcon">
+                        <QRCodeExplorer />
+                      </div>
+                      :
+                      <div className="boxPaymentApproved">
+                        <ClockTimeIcon />
+                        <p>Aguardando pagamento...</p>
+                      </div>
+                    ) :
+                    <div className="boxPaymentApproved">
+                      <ApprovedIcon />
+                      <p>Pagamento aprovado!</p>
+                    </div>
+                  }
+                </>
               }
 
               {paymentForm === "credCard" &&
