@@ -4,7 +4,7 @@ export const Container = styled.section`
   width: 100%;
 
   .spinner {
-    margin: 100% auto;
+    margin: 75% auto;
   }
   
   .plateContainer {
