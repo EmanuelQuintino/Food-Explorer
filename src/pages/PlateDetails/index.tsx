@@ -25,43 +25,45 @@ export function PlateDetails() {
 
   return (
     <Container>
-      {!menuActive && plateData &&
+      {!menuActive &&
         <>
           <button className="backPageButton" onClick={() => navigate(-1)}>&lt; Voltar</button>
 
           {isLoading && <p><ImSpinner2 className="spinner" /></p>}
           {error && <p className="queryError">Algo deu errado!</p>}
 
-          <section className="plateContainer">
-            <div className="plateContainerPart1">
-              <img src={imageURL} alt="image-plate" className="imagePlate" />
-            </div>
-
-            <div className="plateContainerPart2">
-              <h3 className="namePlateButton">{plateData.name}</h3>
-              <p className="description">{plateData.description}</p>
-
-              <div className="ingredients">
-                {plateData.ingredients.map(ingredient => {
-                  return <span className="ingredient" key={ingredient.id}>{ingredient.name}</span>
-                })}
+          {plateData &&
+            <section className="plateContainer">
+              <div className="plateContainerPart1">
+                <img src={imageURL} alt="image-plate" className="imagePlate" />
               </div>
 
-              {userAuth.isAdmin ?
-                <section className="box buttonToEdit">
-                  <Button name={"Editar prato"} onClick={pageUpdatePlate} />
-                </section>
-                :
-                <section className="boxCountOrderPlate">
-                  <CountOrderPlate
-                    plate={{ id: plateData.id, name: plateData.name, price: plateData.price }}
-                    iconButton={OrderIcon}
-                    nameButton={`pedir - ${Number(plateData.price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`}
-                  />
-                </section>
-              }
-            </div>
-          </section>
+              <div className="plateContainerPart2">
+                <h3 className="namePlateButton">{plateData.name}</h3>
+                <p className="description">{plateData.description}</p>
+
+                <div className="ingredients">
+                  {plateData.ingredients.map(ingredient => {
+                    return <span className="ingredient" key={ingredient.id}>{ingredient.name}</span>
+                  })}
+                </div>
+
+                {userAuth.isAdmin ?
+                  <section className="box buttonToEdit">
+                    <Button name={"Editar prato"} onClick={pageUpdatePlate} />
+                  </section>
+                  :
+                  <section className="boxCountOrderPlate">
+                    <CountOrderPlate
+                      plate={{ id: plateData.id, name: plateData.name, price: plateData.price }}
+                      iconButton={OrderIcon}
+                      nameButton={`pedir - ${Number(plateData.price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`}
+                    />
+                  </section>
+                }
+              </div>
+            </section>
+          }
         </>
       }
     </Container>
