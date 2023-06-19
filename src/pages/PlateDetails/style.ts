@@ -2,6 +2,10 @@ import styled from "styled-components"
 
 export const Container = styled.section`
   width: 100%;
+
+  .spinner {
+    margin: 75% auto;
+  }
   
   .plateContainer {
     text-align: center;
@@ -78,6 +82,10 @@ export const Container = styled.section`
   }
 
   @media(min-width: 640px) { 
+    .spinner {
+      margin: 25% auto;
+    }
+
     .plateContainer {
       display: flex;
       align-items: center;
