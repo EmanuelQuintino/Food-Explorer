@@ -83,7 +83,7 @@ export const Container = styled.section`
 
   @media(min-width: 640px) { 
     .spinner {
-      margin: 25% auto;
+      margin: 20% auto;
     }
 
     .plateContainer {
