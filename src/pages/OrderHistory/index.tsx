@@ -54,45 +54,47 @@ export function OrderHistory() {
           {ordersQuery.error || plateQuery.error ? <p className="queryError">Algo deu errado!</p> : null}
 
           <article className="OrdersContainer">
-            {newOrdersDataPlateName && newOrdersDataPlateName.length === 0 ?
-              <p className="messageEmptyList">Sem histórico de pedidos</p> :
-              windowWidth < 680 ?
-                newOrdersDataPlateName?.map(order => {
-                  return (
-                    <CardHistoryOrderPlate
-                      key={order.id}
-                      id={order.id}
-                      code={order.code}
-                      status={order.status}
-                      date={order.created_at}
-                      plates={order.order_plates}
-                    />
-                  );
-                }) :
-                <table className="tableOrderPlates">
-                  <thead>
-                    <tr>
-                      <th>Status</th>
-                      <th>Código</th>
-                      <th>Detalhamento</th>
-                      <th>Data e hora</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {newOrdersDataPlateName?.map(order => {
-                      return (
-                        <TableRowHistoryOrders
-                          key={order.id}
-                          id={order.id}
-                          code={order.code}
-                          status={order.status}
-                          date={order.created_at}
-                          plates={order.order_plates}
-                        />
-                      );
-                    })}
-                  </tbody>
-                </table>
+            {newOrdersDataPlateName &&
+              (newOrdersDataPlateName.length === 0 ?
+                <p className="messageEmptyList">Sem histórico de pedidos</p> :
+                windowWidth < 680 ?
+                  newOrdersDataPlateName?.map(order => {
+                    return (
+                      <CardHistoryOrderPlate
+                        key={order.id}
+                        id={order.id}
+                        code={order.code}
+                        status={order.status}
+                        date={order.created_at}
+                        plates={order.order_plates}
+                      />
+                    );
+                  }) :
+                  <table className="tableOrderPlates">
+                    <thead>
+                      <tr>
+                        <th>Status</th>
+                        <th>Código</th>
+                        <th>Detalhamento</th>
+                        <th>Data e hora</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {newOrdersDataPlateName?.map(order => {
+                        return (
+                          <TableRowHistoryOrders
+                            key={order.id}
+                            id={order.id}
+                            code={order.code}
+                            status={order.status}
+                            date={order.created_at}
+                            plates={order.order_plates}
+                          />
+                        );
+                      })}
+                    </tbody>
+                  </table>
+              )
             }
           </article>
         </>
