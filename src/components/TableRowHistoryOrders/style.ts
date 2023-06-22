@@ -9,7 +9,7 @@ export const Container = styled.tr<ContainerProps>`
   color: ${({ theme }) => theme.colors.light400};
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.dark900};
+    background-color: ${({ theme }) => theme.colors.dark800};
   }
 
   td, tr {
