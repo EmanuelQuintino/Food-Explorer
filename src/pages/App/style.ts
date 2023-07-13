@@ -2,14 +2,22 @@ import styled from "styled-components"
 
 export const Container = styled.section`
   height: 100vh;
-  width: 100%;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   
   main {
+    width: 130.0rem;
+    margin: 0 auto;
     padding: 0 2.4rem 2.8rem;
     flex: 1;
+  }
+
+  @media (max-width: 1300px) {
+    main {
+      width: 100%;
+    } 
   }
 
   @media(min-width: 42.0rem) {
