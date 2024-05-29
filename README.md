@@ -50,5 +50,5 @@ $ npm run dev
 ## Links
 
 - [Deploy](https://project-food-explorer.netlify.app/)
-- [Figma Layout](https://www.figma.com/file/n1sxHaMRqSD5Q7IVAupr8u/food-explorer-v2-(Community)?type=design&node-id=201-1532&mode=design&t=2BOKJUeznb5s74Zi-0)
+- [Figma Layout](<https://www.figma.com/design/06xz80VQse1BLnHEAAVdFz/food-explorer-v2-(Community)?node-id=201-1532&t=Yy7GZAjAhQVidg60-0>)
 - [API Repository](https://github.com/EmanuelQuintino/Food-Explorer-API)
